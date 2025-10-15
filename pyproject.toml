@@ -1,0 +1,9 @@
+[project]
+name = "data-projects-lab"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.3.3",
+    "plotly>=6.3.1",
+]
