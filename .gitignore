@@ -1,3 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Entorno virtual de uv
+.venv/
+venv/
+ENV/
+
+# uv
+.uv/
+uv.lock.bak
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Datos y modelos (si son muy grandes)
+*.csv
+*.xlsx
+*.h5
+*.pkl
+*.joblib
+models/
+data/large/
+
+# Configuración local
+.env
+.env.local
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+
+# Claude Code settings
 CLAUDE.md
 .mcp.json
 .claude/settings.local.json
