@@ -1163,8 +1163,8 @@ X_normalized_max = normalizer_max.fit_transform(X)
 
 ```mermaid
 graph TD
-    A{¿Tus datos tienen<br/>outliers?} -->|Sí| B[RobustScaler]
-    A -->|No| C{¿Necesitas valores<br/>en [0,1]?}
+    A{¿Tus datos tienen outliers?} -->|Sí| B[RobustScaler]
+    A -->|No| C{¿Necesitas valores en rango 0-1?}
 
     C -->|Sí| D[MinMaxScaler]
     C -->|No| E{¿Datos sparse?}

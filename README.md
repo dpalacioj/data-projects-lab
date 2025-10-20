@@ -192,7 +192,7 @@ Al crear nuevos notebooks o tutoriales, sigue estas pautas:
 
 Este es un repositorio educativo. Si encuentras errores o tienes sugerencias:
 
-1. Abre un [Issue](https://github.com/tu-usuario/data-projects-lab/issues) describiendo el problema/mejora
+1. Abre un [Issue](https://github.com/dpalacioj/data-projects-lab/issues) describiendo el problema/mejora
 2. Si quieres contribuir código, crea un Pull Request
 3. Asegúrate de seguir las guías de estilo del proyecto
 
@@ -200,8 +200,8 @@ Este es un repositorio educativo. Si encuentras errores o tienes sugerencias:
 
 **David Palacio Jiménez**
 
-- 📧 Email: david.palacio@example.com
-- 🐙 GitHub: [@tu-usuario](https://github.com/tu-usuario)
+- 📧 Email: davidpalacioj@gmail.com
+- 🐙 GitHub: [dpalacioj](https://github.com/dpalacioj)
 
 ## 📄 Licencia
 
@@ -209,18 +209,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Ver el archivo [LICENSE](LI
 
 **Copyright (c) 2025 David Palacio Jiménez**
 
-## 🙏 Agradecimientos
-
-- [Anthropic](https://www.anthropic.com/) por Claude Code
-- Comunidad de Python y Data Science
-- Contribuidores de scikit-learn, pandas, PyCaret, FLAML y todas las librerías open source
-- Estudiantes que proporcionan feedback valioso
-
 ---
-
-## 💡 Consejos para Estudiantes
-
-> **Usa Claude Code mientras sigues los tutoriales**: Pregúntale sobre el código, pídele que explique conceptos, que te ayude a debuggear o que sugiera mejoras. ¡Es tu tutor personal de IA disponible 24/7!
 
 ### Preguntas Frecuentes
 
@@ -231,7 +220,7 @@ Se recomienda conocimiento básico de Python, pero los tutoriales incluyen expli
 ¡Sí! Todo el código está bajo licencia MIT. Úsalo, modifícalo y compártelo.
 
 **¿Cómo reporto un error o sugiero mejoras?**
-Abre un [Issue](https://github.com/tu-usuario/data-projects-lab/issues) en GitHub con todos los detalles.
+Abre un [Issue](https://github.com/dpalacioj/data-projects-lab/issues) en GitHub con todos los detalles.
 
 **¿Se agregarán más tutoriales?**
 Sí, el repositorio se actualiza regularmente con nuevo contenido.
