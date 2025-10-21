@@ -61,3 +61,10 @@ Thumbs.db
 CLAUDE.md
 .mcp.json
 .claude/settings.local.json
+.claude/agents/task-decomposition-expert.md
+.claude/agents/search-specialist.md
+.claude/agents/model-evaluator.md
+.claude/agents/data-scientist.md
+.claude/agents/data-engineer.md
+.claude/agents/code-reviewer.md
+.claude/agents/ai-engineer.md

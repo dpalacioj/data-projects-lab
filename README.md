@@ -25,15 +25,11 @@ Explora la carpeta **[`tutorials/`](./tutorials/)** para acceder a todos los tut
 
 ### 🚀 Proyectos Completos
 
-La carpeta **[`projects/`](./projects/)** contiene implementaciones end-to-end de proyectos reales:
+La carpeta **[`projects/`](./projects/)** contiene implementaciones end-to-end de proyectos de Machine Learning. Cada proyecto tiene su propio README con instrucciones detalladas.
 
-#### 🚢 Proyecto Titanic
-Predicción de supervivencia con el dataset del Titanic. Incluye:
-- Descarga y limpieza de datos
-- Análisis exploratorio (EDA)
-- Entrenamiento con AutoML (PyCaret y FLAML)
-- Interpretabilidad de modelos con SHAP
-- Deployment con Streamlit
+#### Proyectos Disponibles:
+
+- **[🚢 Titanic - Predicción de Supervivencia](./projects/titanic/):** Proyecto completo de clasificación con AutoML, interpretabilidad y deployment en Streamlit
 
 *Más proyectos en desarrollo...*
 
