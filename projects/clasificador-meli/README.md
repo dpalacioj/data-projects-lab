@@ -1,12 +1,49 @@
 # 🛒 Clasificador de Productos Mercado Libre
 
-Proyecto de clasificación de productos de Mercado Libre utilizando técnicas de Machine Learning.
+Proyecto de clasificación de productos de Mercado Libre utilizando técnicas de Machine Learning y NLP.
+
+## 📖 Descripción del Proyecto
+
+Este proyecto aborda el desafío de **clasificar automáticamente productos** en las categorías correctas de Mercado Libre basándose en:
+
+- 📝 **Título del producto** (texto)
+- 🏷️ **Categoría** (variable objetivo)
+- 📊 **Metadatos adicionales** (precio, condición, etc.)
+
+### Objetivo
+
+Construir un modelo de clasificación multi-clase que pueda predecir la categoría de un producto dado su título y características.
 
 ---
 
 ## 📦 Dataset
 
-El dataset para este proyecto se almacena usando **Git LFS (Large File Storage)** debido a su tamaño (~316 MB).
+### Información General
+
+- **Nombre:** `MLA_100k.jsonlines`
+- **Tamaño:** 316 MB
+- **Registros:** ~100,000 productos
+- **Formato:** JSON Lines (un JSON por línea)
+- **Ubicación:** `datos/MLA_100k.jsonlines`
+- **Almacenamiento:** Git LFS (Large File Storage)
+
+### ¿Qué contiene el dataset?
+
+Cada línea del archivo es un producto con la siguiente estructura:
+
+```json
+{
+  "title": "Zapatillas Nike Air Max...",
+  "category": "Calzado > Zapatillas > Running",
+  "price": 15999.99,
+  "condition": "new",
+  "...": "..."
+}
+```
+
+### ¿Por qué Git LFS?
+
+El dataset pesa **316 MB**, que excede el límite recomendado de GitHub (100 MB). Git LFS permite versionar archivos grandes sin saturar el repositorio.
 
 ### ¿Qué es Git LFS?
 
@@ -74,18 +111,21 @@ git lfs pull
 Después de configurar Git LFS, el dataset se descarga automáticamente:
 
 ```bash
-# Verificar que el archivo existe
-ls -lh datos/*.jsonl
+# Verificar que el archivo existe y tiene el tamaño correcto
+ls -lh datos/MLA_100k.jsonlines
 
-# Debería mostrar algo como:
-# -rw-r--r-- 1 user group 316M Oct 20 2025 datos/meli_clasificacion.jsonl
+# Debería mostrar:
+# -rw-r--r-- 1 user group 316M Oct 20 2025 datos/MLA_100k.jsonlines
 ```
 
-Si el archivo **NO** está o es muy pequeño (<1KB):
+**⚠️ IMPORTANTE:** Si el archivo es muy pequeño (<1KB), solo se descargó el "puntero" de LFS:
 
 ```bash
-# Forzar descarga de archivos LFS
+# Forzar descarga del archivo completo
 git lfs pull
+
+# Verificar nuevamente
+ls -lh datos/MLA_100k.jsonlines  # Ahora debería ser 316M
 ```
 
 ---
@@ -107,10 +147,29 @@ git lfs ls-files
 ```python
 import pandas as pd
 
-# Leer el dataset
-df = pd.read_json('../../datos/meli_clasificacion.jsonl', lines=True)
+# Leer el dataset (formato JSON Lines)
+df = pd.read_json('../../datos/MLA_100k.jsonlines', lines=True)
 
-print(f"Dataset: {df.shape[0]:,} filas × {df.shape[1]} columnas")
+print(f"📊 Dataset cargado: {df.shape[0]:,} filas × {df.shape[1]} columnas")
+print(f"💾 Memoria: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
+
+# Ver primeras filas
+df.head()
+```
+
+### Ejemplo de Exploración Rápida
+
+```python
+# Ver columnas disponibles
+print("Columnas:", df.columns.tolist())
+
+# Distribución de categorías
+print("\nTop 10 categorías:")
+print(df['category'].value_counts().head(10))
+
+# Longitud promedio de títulos
+df['title_length'] = df['title'].str.len()
+print(f"\nLongitud promedio de títulos: {df['title_length'].mean():.0f} caracteres")
 ```
 
 ---
