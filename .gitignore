@@ -5,12 +5,13 @@ __pycache__/
 *.so
 .Python
 
-# Entorno virtual de uv
+# Virtual environments
 .venv/
 venv/
 ENV/
+env/
 
-# uv
+# uv package manager
 .uv/
 uv.lock.bak
 
@@ -19,28 +20,36 @@ uv.lock.bak
 *.ipynb_checkpoints
 */.ipynb_checkpoints/*
 
+# Logs
+*.log
+logs/
+*.log.*
+
 # IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
 
-# Datos y modelos (si son muy grandes)
+# OS
+.DS_Store
+Thumbs.db
+
+# Datos temporales
+*.tmp
+*.temp
+
+# Datos grandes
 *.csv
 *.xlsx
-*.h5
-*.pkl
-*.joblib
-models/
 data/large/
 
 # Configuración local
 .env
 .env.local
 
-# Pytest
+# Testing
 .pytest_cache/
 .coverage
 htmlcov/
@@ -51,20 +60,21 @@ htmlcov/
 .dmypy.json
 dmypy.json
 
-# Logs
-*.log
+# Modelos ML
+# NOTA: Para este proyecto educativo, modelos pequeños (<5MB) SÍ se commitean
+# para que el proyecto funcione de inmediato (ej: Streamlit app)
+# Si tienes modelos grandes (>5MB), considera usar Git LFS o almacenamiento externo
 
-# OS
-Thumbs.db
+# Descomentar las siguientes líneas para ignorar TODOS los modelos:
+# *.joblib
+# *.pkl
+# *.h5
+# *.pth
+# *.onnx
+# models/
 
-# Claude Code settings
+# Claude Code configuración local
 CLAUDE.md
 .mcp.json
 .claude/settings.local.json
-.claude/agents/task-decomposition-expert.md
-.claude/agents/search-specialist.md
-.claude/agents/model-evaluator.md
-.claude/agents/data-scientist.md
-.claude/agents/data-engineer.md
-.claude/agents/code-reviewer.md
-.claude/agents/ai-engineer.md
+.claude/agents/
