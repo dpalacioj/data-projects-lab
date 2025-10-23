@@ -1,3 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# uv package manager
+.uv/
+uv.lock.bak
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Datos temporales
+*.tmp
+*.temp
+
+# Datos grandes
+*.csv
+*.xlsx
+data/large/
+
+# Configuración local
+.env
+.env.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Modelos ML
+# NOTA: Para este proyecto educativo, modelos pequeños (<5MB) SÍ se commitean
+# para que el proyecto funcione de inmediato (ej: Streamlit app)
+# Si tienes modelos grandes (>5MB), considera usar Git LFS o almacenamiento externo
+
+# Descomentar las siguientes líneas para ignorar TODOS los modelos:
+# *.joblib
+# *.pkl
+# *.h5
+# *.pth
+# *.onnx
+# models/
+
+# Claude Code configuración local
 CLAUDE.md
 .mcp.json
 .claude/settings.local.json
+.claude/agents/
