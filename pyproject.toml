@@ -19,12 +19,19 @@ dependencies = [
     "jupyter>=1.0.0",
     "ipykernel>=7.0.1",
     "nbconvert>=7.16.6",
+    "pyarrow>=14.0.0",
+    "xgboost>=1.5.0",
+    "scipy>=1.5.0",
+    "joblib>=1.0.0",
+    "optuna>=3.0.0",
+    "streamlit>=1.50.0",
+    "plotly>=5.0.0",
+    "pydantic>=1.8.0",
 ]
 
 [project.optional-dependencies]
 # Proyecto Titanic
 titanic = [
-    "pycaret>=3.3.0",
     "flaml[automl]>=2.3.6",
     "streamlit>=1.50.0",
     "plotly>=5.5.0",
@@ -80,6 +87,9 @@ Issues = "https://github.com/dpalacioj/data-projects-lab/issues"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = []
 
 [tool.uv]
 dev-dependencies = [

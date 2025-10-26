@@ -1,301 +1,317 @@
-# 🛒 Clasificador de Productos Mercado Libre
+# Clasificador de Productos Mercado Libre
 
-Proyecto de clasificación de productos de Mercado Libre utilizando técnicas de Machine Learning y NLP.
+Proyecto de Machine Learning para clasificar automáticamente si un producto de MercadoLibre es nuevo o usado basándose en sus características.
 
-## 📖 Descripción del Proyecto
+## Guía de Lectura para Estudiantes
 
-Este proyecto aborda el desafío de **clasificar automáticamente productos** en las categorías correctas de Mercado Libre basándose en:
+### Por dónde empezar
 
-- 📝 **Título del producto** (texto)
-- 🏷️ **Categoría** (variable objetivo)
-- 📊 **Metadatos adicionales** (precio, condición, etc.)
+1. **Lee primero:** `GUIA_LECTURA.md` - Explica la estructura del proyecto y qué hace cada archivo
+2. **Entiende los datos:** `DICCIONARIO_DATOS.md` - Describe todas las variables del dataset
+3. **Explora el código:** Comienza por los notebooks en `src/notebooks/`
+4. **Prueba la aplicación:** Sigue las instrucciones de Uso Rápido más abajo
 
-### Objetivo
+### Estructura del Proyecto
 
-Construir un modelo de clasificación multi-clase que pueda predecir la categoría de un producto dado su título y características.
+```
+clasificador-meli/
+├── src/                    # Código fuente
+│   ├── features/           # Preprocesamiento de datos
+│   ├── models/             # Entrenamiento del modelo (código)
+│   ├── config/             # Configuraciones centralizadas
+│   ├── utils/              # Funciones auxiliares
+│   └── notebooks/          # Jupyter notebooks con EDA
+├── models/                 # Modelos entrenados (artefactos .pkl)
+├── ui/                     # Interfaz Streamlit
+├── test_data/              # Datos de prueba
+└── train.py                # Script principal para entrenar
+```
+
+**Nota importante:**
+- `src/models/` = código Python para entrenar
+- `models/` = archivos del modelo entrenado (.pkl)
+
+Esta separación es una convención estándar en proyectos de ML.
+
+## Descripción
+
+Clasificador binario (new/used) que predice la condición de productos usando:
+- Características del producto (precio, cantidad, vendedor)
+- Métodos de pago disponibles
+- Información de envío
+- Variables temporales (fechas de publicación)
+
+**Modelo:** XGBoost
+**Accuracy:** ~86%
+**Dataset:** 100,000 productos de MercadoLibre Argentina
 
 ---
 
-## 📦 Dataset
+## Instalación
 
-### Información General
+### Requisitos
 
-- **Nombre:** `MLA_100k.jsonlines`
-- **Tamaño:** 316 MB
-- **Registros:** ~100,000 productos
-- **Formato:** JSON Lines (un JSON por línea)
-- **Ubicación:** `datos/MLA_100k.jsonlines`
-- **Almacenamiento:** Git LFS (Large File Storage)
+- Python 3.8+
+- Git LFS (para descargar el dataset)
 
-### ¿Qué contiene el dataset?
+### Paso 1: Clonar repositorio
 
-Cada línea del archivo es un producto con la siguiente estructura:
+```bash
+git clone https://github.com/dpalacioj/data-projects-lab.git
+cd data-projects-lab/projects/clasificador-meli
+```
+
+### Paso 2: Instalar Git LFS (si no lo tienes)
+
+**macOS:**
+```bash
+brew install git-lfs
+git lfs install
+```
+
+**Linux:**
+```bash
+sudo apt-get install git-lfs
+git lfs install
+```
+
+**Windows:**
+Descarga desde https://git-lfs.github.com/
+
+### Paso 3: Descargar dataset
+
+```bash
+git lfs pull
+```
+
+Verifica que el archivo existe:
+```bash
+ls -lh ../../datasets/MLA_100k.jsonlines
+# Debe mostrar ~316 MB
+```
+
+### Paso 4: Instalar dependencias
+
+**Opción A: Con uv (recomendado)**
+```bash
+# Desde la raíz del repositorio data-projects-lab/
+uv sync
+```
+
+**Opción B: Con pip**
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Uso Rápido
+
+### 1. Entrenar el Modelo
+
+```bash
+# Entrenar con configuración base
+python train.py
+
+# Entrenar con optimización de hiperparámetros
+python train.py --optimize
+
+# Forzar reprocesamiento desde JSON (ignora parquet)
+python train.py --from-json
+```
+
+El modelo se guardará en `models/xgb_model_v1.pkl`
+
+### 2. Ejecutar UI de Streamlit
+
+```bash
+streamlit run ui/streamlit_app.py
+```
+
+La aplicación se abrirá en http://localhost:8501
+
+### 3. Probar con Datos de Ejemplo
+
+En la UI de Streamlit, puedes cargar archivos de `test_data/`:
+
+- `test_products_complete.csv` - CSV con 5 productos
+- `test_products.json` - JSON con 5 productos
+- `test_products.jsonlines` - JSONLINES con 5 productos
+- `single_product_example.json` - Ejemplo para ingreso manual
+
+---
+
+## Características de la UI
+
+La interfaz de Streamlit ofrece:
+
+1. **5 opciones de carga de datos:**
+   - CSV
+   - JSON
+   - JSONLINES
+   - Parquet
+   - Ingreso Manual (copiar/pegar JSON)
+
+2. **Visualización estandarizada:**
+   - Métricas de resumen (Total, NEW, USED con porcentajes)
+   - Gráfico de barras de distribución
+   - Tabla detallada con gradient de confianza
+   - Estadísticas adicionales por condición
+
+3. **Probabilidades de predicción:**
+   - `probability_new`: Probabilidad de ser nuevo
+   - `probability_used`: Probabilidad de ser usado
+   - `confidence`: Confianza de la predicción (max probability)
+
+4. **Descarga de resultados:**
+   - CSV, JSON o Parquet según el formato de entrada
+
+---
+
+## Dataset
+
+**Nombre:** MLA_100k.jsonlines
+**Ubicación:** `../../datasets/MLA_100k.jsonlines`
+**Tamaño:** 316 MB
+**Registros:** ~100,000 productos
+**Formato:** JSON Lines (un JSON por línea)
+
+### Ejemplo de registro
 
 ```json
 {
-  "title": "Zapatillas Nike Air Max...",
-  "category": "Calzado > Zapatillas > Running",
-  "price": 15999.99,
+  "title": "Auriculares Samsung...",
   "condition": "new",
+  "price": 80,
+  "seller_id": 74952096,
+  "listing_type_id": "bronze",
+  "seller_address": {...},
+  "shipping": {...},
   "...": "..."
 }
 ```
 
-### ¿Por qué Git LFS?
-
-El dataset pesa **316 MB**, que excede el límite recomendado de GitHub (100 MB). Git LFS permite versionar archivos grandes sin saturar el repositorio.
-
-### ¿Qué es Git LFS?
-
-Git LFS es una extensión de Git que permite versionar archivos grandes sin saturar el repositorio. Los archivos grandes se almacenan en un servidor externo y Git solo guarda referencias pequeñas.
+Ver `DICCIONARIO_DATOS.md` para descripción completa de todas las variables.
 
 ---
 
-## 🚀 Configuración de Git LFS (Primera Vez)
+## Flujo de Trabajo
 
-### Paso 1: Instalar Git LFS
+### 1. Entrenamiento
 
-#### macOS:
-```bash
-brew install git-lfs
+```
+datasets/MLA_100k.jsonlines
+    ↓
+src/features/preprocessing.py (transform)
+    ↓
+src/models/train_model.py (train)
+    ↓
+models/xgb_model_v1.pkl (guardado)
 ```
 
-#### Linux (Ubuntu/Debian):
-```bash
-sudo apt-get install git-lfs
+### 2. Predicción (UI)
+
 ```
-
-#### Windows:
-Descarga el instalador desde: https://git-lfs.github.com/
-
----
-
-### Paso 2: Inicializar Git LFS en tu Usuario
-
-```bash
-# Solo necesitas hacer esto UNA VEZ por usuario
-git lfs install
-```
-
-Deberías ver:
-```
-✅ Updated git hooks.
-✅ Git LFS initialized.
+Usuario sube archivo
+    ↓
+ui/streamlit_app.py (carga datos)
+    ↓
+src/features/preprocessing.py (transform)
+    ↓
+models/xgb_model_v1.pkl (predict)
+    ↓
+ui/streamlit_app.py (display_results)
 ```
 
 ---
 
-### Paso 3: Clonar el Repositorio con LFS
+## Sistema de Logging
 
-Si **aún no has clonado el repositorio:**
-
-```bash
-# Clonar normalmente (LFS se activa automáticamente)
-git clone https://github.com/dpalacioj/data-projects-lab.git
-cd data-projects-lab
-```
-
-Si **ya tienes el repositorio clonado:**
-
-```bash
-cd data-projects-lab
-
-# Descargar archivos LFS
-git lfs pull
-```
-
----
-
-## 📥 Descarga del Dataset
-
-Después de configurar Git LFS, el dataset se descarga automáticamente:
-
-```bash
-# Verificar que el archivo existe y tiene el tamaño correcto
-ls -lh datos/MLA_100k.jsonlines
-
-# Debería mostrar:
-# -rw-r--r-- 1 user group 316M Oct 20 2025 datos/MLA_100k.jsonlines
-```
-
-**⚠️ IMPORTANTE:** Si el archivo es muy pequeño (<1KB), solo se descargó el "puntero" de LFS:
-
-```bash
-# Forzar descarga del archivo completo
-git lfs pull
-
-# Verificar nuevamente
-ls -lh datos/MLA_100k.jsonlines  # Ahora debería ser 316M
-```
-
----
-
-## 🔍 Verificar Configuración
-
-```bash
-# Ver qué archivos están en LFS
-git lfs ls-files
-
-# Debería mostrar:
-# 1mXW0DwSH... - datos/meli_clasificacion.jsonl
-```
-
----
-
-## 📊 Uso del Dataset en Notebooks
+El proyecto incluye un sistema de logging centralizado que registra eventos importantes:
 
 ```python
-import pandas as pd
+from src.utils.logger import setup_logger
+logger = setup_logger(__name__)
 
-# Leer el dataset (formato JSON Lines)
-df = pd.read_json('../../datos/MLA_100k.jsonlines', lines=True)
-
-print(f"📊 Dataset cargado: {df.shape[0]:,} filas × {df.shape[1]} columnas")
-print(f"💾 Memoria: {df.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
-
-# Ver primeras filas
-df.head()
+logger.info("Iniciando entrenamiento...")
+logger.debug("Detalles de depuración...")
+logger.error("Error encontrado", exc_info=True)
 ```
 
-### Ejemplo de Exploración Rápida
-
-```python
-# Ver columnas disponibles
-print("Columnas:", df.columns.tolist())
-
-# Distribución de categorías
-print("\nTop 10 categorías:")
-print(df['category'].value_counts().head(10))
-
-# Longitud promedio de títulos
-df['title_length'] = df['title'].str.len()
-print(f"\nLongitud promedio de títulos: {df['title_length'].mean():.0f} caracteres")
+Los logs se muestran en consola con formato:
+```
+2025-10-26 14:32:15 | INFO | preprocessing | Iniciando preprocesamiento | Shape: (100000, 48)
 ```
 
----
-
-## ⚠️ Notas Importantes
-
-1. **Límites de GitHub LFS (Cuenta Gratuita):**
-   - 1 GB de almacenamiento
-   - 1 GB de ancho de banda por mes
-   - Si excedes, el repo sigue funcionando pero las descargas LFS se pausan
-
-2. **No commitear archivos grandes sin LFS:**
-   ```bash
-   # ❌ MAL - Archivo grande sin LFS
-   git add datos/archivo_grande.csv
-
-   # ✅ BIEN - Primero trackear con LFS
-   git lfs track "datos/*.csv"
-   git add .gitattributes
-   git add datos/archivo_grande.csv
-   ```
-
-3. **Archivos ya trackeados con LFS:**
-   - `*.jsonl` (JSON Lines)
-   - `*.parquet`
-   - `*.csv` (>10MB)
-
----
-
-## 🛠️ Para Contribuidores
-
-### Si necesitas agregar archivos grandes:
-
+Para probar el sistema de logging:
 ```bash
-# 1. Trackear el tipo de archivo con LFS
-git lfs track "datos/*.nuevo_formato"
-
-# 2. Agregar el .gitattributes actualizado
-git add .gitattributes
-
-# 3. Agregar tu archivo
-git add datos/mi_archivo.nuevo_formato
-
-# 4. Commit normal
-git commit -m "feat: agregar nuevo dataset"
-
-# 5. Push (LFS se encarga automáticamente)
-git push
+python test_logging.py
 ```
 
 ---
 
-## 📚 Estructura del Proyecto
+## Archivos Importantes
 
-```
-projects/clasificador-meli/
-├── README.md                    # Este archivo
-├── 01_descarga_datos.ipynb      # (Próximamente)
-├── 02_eda.ipynb                 # (Próximamente)
-└── ...
-```
-
-**Dataset:** `datos/meli_clasificacion.jsonl` (en raíz del repo)
+- `GUIA_LECTURA.md` - Guía detallada de lectura del proyecto
+- `DICCIONARIO_DATOS.md` - Descripción de variables del dataset
+- `train.py` - Script principal de entrenamiento
+- `test_logging.py` - Script de prueba del sistema de logging
+- `test_data/README.md` - Instrucciones para usar datos de prueba
 
 ---
 
-## 🆘 Solución de Problemas
+## Tecnologías Utilizadas
 
-### Problema: "El archivo .jsonl es muy pequeño (1KB)"
-
-**Causa:** Git descargó solo el puntero LFS, no el archivo real.
-
-**Solución:**
-```bash
-git lfs pull
-```
-
----
-
-### Problema: "git lfs: command not found"
-
-**Causa:** Git LFS no está instalado.
-
-**Solución:**
-```bash
-# macOS
-brew install git-lfs
-
-# Linux
-sudo apt-get install git-lfs
-
-# Luego inicializar
-git lfs install
-```
+- **Python 3.8+**
+- **XGBoost** - Modelo de clasificación
+- **Pandas** - Manipulación de datos
+- **NumPy** - Operaciones numéricas
+- **Scikit-learn** - Preprocesamiento y métricas
+- **Streamlit** - Interfaz de usuario interactiva
+- **Joblib** - Serialización del modelo
+- **Git LFS** - Versionado de archivos grandes
 
 ---
 
-### Problema: "Bandwidth limit exceeded"
+## Métricas del Modelo
 
-**Causa:** Excediste el límite mensual de 1GB de GitHub LFS.
+**Modelo entrenado:** XGBoost Classifier
+**Accuracy:** ~86%
+**Clases:** Binary (new, used)
 
-**Solución:**
-- Espera al siguiente mes
-- O descarga el dataset manualmente desde: [Google Drive](https://drive.google.com/file/d/1mXW-0DwSHX0sSklp3lQxLChw3XDDwM1b/view) (backup)
-
----
-
-## 📝 Recursos
-
-- [Documentación oficial Git LFS](https://git-lfs.github.com/)
-- [GitHub: About Git LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage)
-- [Git LFS Tutorial](https://www.atlassian.com/git/tutorials/git-lfs)
+El modelo fue entrenado con:
+- 80% datos de entrenamiento
+- 20% datos de prueba
+- Validación cruzada en optimización
+- Grid Search para hiperparámetros
 
 ---
 
-## 👤 Autor
+## Preguntas Frecuentes
 
-**David Palacio Jiménez**
+**¿Por qué hay dos carpetas models/?**
+- `src/models/` = código Python (train_model.py, xgb_model.py)
+- `models/` = archivos del modelo entrenado (.pkl, .json)
 
-- 📧 Email: davidpalacioj@gmail.com
-- 🐙 GitHub: [dpalacioj](https://github.com/dpalacioj)
+Esta es una convención estándar en proyectos de ML.
+
+**¿Qué es el archivo .parquet en src/data/?**
+Es el dataset preprocesado guardado en formato Parquet (más rápido de cargar que JSON). Se genera automáticamente al entrenar.
+
+**¿Cómo agrego nuevos datos?**
+1. Agrega productos al dataset JSON
+2. Ejecuta `python train.py --from-json` para reentrenar
+
+**¿Puedo usar otro modelo?**
+Sí. Modifica `src/models/train_model.py` para usar otro clasificador de scikit-learn o XGBoost.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver [LICENSE](../../LICENSE) para más detalles.
+MIT License - Ver archivo LICENSE en la raíz del repositorio
 
-**Copyright (c) 2025 David Palacio Jiménez**
+---
+
+**Desarrollado para fines educativos**
+Data Projects Lab - 2025
