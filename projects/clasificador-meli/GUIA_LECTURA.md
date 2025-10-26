@@ -24,9 +24,6 @@ src/notebooks/preprocessing_eda.ipynb    [★ EMPIEZA AQUÍ]
 - Exploración inicial con archivo pequeño (celdas 1-6)
 - Análisis completo del dataset (celda 8 en adelante)
 
-**Por qué las celdas 1-6 no cargan todos los datos:**
-Son para exploración rápida con un CSV pequeño de prueba antes de cargar los 316 MB completos. El dataset real se carga en la **celda 8**.
-
 ### 3. Feature Engineering (45 min)
 ```
 src/features/preprocessing.py
@@ -69,7 +66,8 @@ ui/streamlit_app.py
 **Modos de input:**
 - CSV con múltiples productos
 - JSON Lines
-- JSON individual (pegar en textarea)
+- JSON individual (pegar en text area)
+- Archivos `.parquet`
 
 **Ejecutar:**
 ```bash
@@ -93,45 +91,6 @@ clasificador-meli/
 │   └── train_model.py                  # Pipeline de training
 ├── train.py                            # Entry point
 └── ui/streamlit_app.py                 # 5. Demo interactiva
-```
-
----
-
-## Actividades Prácticas
-
-### 1. Nueva Feature
-Agrega en `preprocessing.py`:
-```python
-def extract_brand_from_title(self, title):
-    brands = ["Samsung", "Apple", "LG", "Sony"]
-    for brand in brands:
-        if brand.lower() in title.lower():
-            return brand
-    return "Other"
-```
-
-### 2. Interpretabilidad con SHAP
-En `model_xgboost.ipynb`:
-```python
-import shap
-explainer = shap.TreeExplainer(model)
-shap_values = explainer.shap_values(X_test)
-shap.summary_plot(shap_values, X_test)
-```
-
-### 3. API REST con FastAPI
-Crea `api/main.py`:
-```python
-from fastapi import FastAPI
-from joblib import load
-
-app = FastAPI()
-model = load("../models/xgb_model_v1.pkl")
-
-@app.post("/predict")
-def predict(product: dict):
-    # Preprocesar y predecir
-    return {"condition": "new" or "used"}
 ```
 
 ---

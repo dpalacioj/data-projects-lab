@@ -148,7 +148,6 @@ Algunas variables tienen significados que requieren clarificación adicional:
 ## Referencias
 
 - [Documentación API MercadoLibre](https://developers.mercadolibre.com/)
-- [Estructura de respuesta de productos](https://developers.mercadolibre.com/es_ar/items-y-busquedas)
 
 ---
 

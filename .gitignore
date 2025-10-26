@@ -41,7 +41,6 @@ Thumbs.db
 *.temp
 
 # Datos grandes
-*.csv
 *.xlsx
 data/large/
 

@@ -97,12 +97,6 @@ ls -lh ../../datasets/MLA_100k.jsonlines
 # Desde la raíz del repositorio data-projects-lab/
 uv sync
 ```
-
-**Opción B: Con pip**
-```bash
-pip install -r requirements.txt
-```
-
 ---
 
 ## Uso Rápido
@@ -138,6 +132,7 @@ En la UI de Streamlit, puedes cargar archivos de `test_data/`:
 - `test_products.json` - JSON con 5 productos
 - `test_products.jsonlines` - JSONLINES con 5 productos
 - `single_product_example.json` - Ejemplo para ingreso manual
+- `test_products_processed.parquet`- Archivo parquet
 
 ---
 
