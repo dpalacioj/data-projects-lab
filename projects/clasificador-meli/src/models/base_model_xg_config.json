@@ -1,0 +1,19 @@
+{
+  "n_estimators": 800,
+  "max_depth": 15,
+  "objective": "binary:logistic",
+  "reg_lambda": 10,
+  "gamma": 0.3,
+  "alpha": 1,
+  "learning_rate": 0.10,
+  "colsample_bytree": 0.7,
+  "scale_pos_weight": 1,
+  "subsample": 0.1,
+  "min_child_weight": 3,
+  "num_parallel_tree": 2,
+  "importance_type": "weight",
+  "eval_metric": "auc",
+  "verbosity": 1,
+  "nthread": -1,
+  "tree_method": "auto"
+}
