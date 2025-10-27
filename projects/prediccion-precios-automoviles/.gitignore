@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# MLFlow
+mlruns/
+mlartifacts/
+
+# Data
+# NOTA: Los datos raw/ SÍ se suben al repositorio para uso educativo
+# data/raw/ NO está ignorado intencionalmente
+data/processed/*.csv
+data/processed/*.parquet
+data/interim/*.csv
+data/interim/*.parquet
+
+# Models
+models/*.pkl
+models/*.joblib
+models/*.h5
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Reports
+reports/*.html
+reports/*.pdf

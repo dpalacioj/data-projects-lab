@@ -1,0 +1,5 @@
+{
+  "model_type": "random_forest_deep",
+  "test_r2": 0.9535066480646172,
+  "model_file": "random_forest_deep_model.pkl"
+}

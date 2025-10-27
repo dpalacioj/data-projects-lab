@@ -1,0 +1,5 @@
+{
+  "model_type": "knn",
+  "test_r2": 0.7178107358031385,
+  "model_file": "knn_model.pkl"
+}

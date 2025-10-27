@@ -1,0 +1,5 @@
+{
+  "model_type": "linear_regression",
+  "test_r2": 0.7769610980554936,
+  "model_file": "linear_regression_model.pkl"
+}

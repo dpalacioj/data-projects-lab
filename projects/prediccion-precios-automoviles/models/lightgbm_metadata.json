@@ -1,0 +1,5 @@
+{
+  "model_type": "lightgbm",
+  "test_r2": 0.9744647439080618,
+  "model_file": "lightgbm_model.pkl"
+}
