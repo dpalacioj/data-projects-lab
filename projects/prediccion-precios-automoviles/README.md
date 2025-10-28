@@ -13,7 +13,6 @@ Este proyecto educativo implementa un sistema completo de Machine Learning para 
 ### Objetivo Pedagógico
 
 El proyecto está diseñado para estudiantes de IA y Analytics, mostrando:
-- Generación de datos sintéticos realistas
 - Análisis Exploratorio de Datos (EDA)
 - Entrenamiento y evaluación de modelos
 - Seguimiento de experimentos con MLFlow
@@ -191,12 +190,27 @@ jupyter notebook notebooks/02_training.ipynb
 El mejor modelo se guarda en `models/`
 
 **Visualizar experimentos en MLFlow UI:**
+
+**Opción 1 (Recomendada) - Script automático:**
 ```bash
-cd projects/prediccion-precios-automoviles
-mlflow ui --backend-store-uri file://$(pwd)/mlruns
+cd prediccion-precios-automoviles
+./start_mlflow.sh
+```
+
+**Opción 2 - Comando manual:**
+```bash
+cd prediccion-precios-automoviles
+mlflow ui
 ```
 
 Abrir en navegador: http://localhost:5000
+
+**Características del script:**
+- ✅ Detecta automáticamente si el puerto 5000 está ocupado
+- ✅ Ofrece detener procesos anteriores de MLFlow
+- ✅ Completamente portable (funciona para cualquier usuario)
+
+**Nota:** El notebook `02_training.ipynb` imprime automáticamente las instrucciones al ejecutarse
 
 ### 3. Módulos Python Reutilizables
 

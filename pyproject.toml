@@ -27,6 +27,9 @@ dependencies = [
     "streamlit>=1.50.0",
     "plotly>=5.0.0",
     "pydantic>=1.8.0",
+    "mlflow>=3.5.1",
+    "fastapi>=0.120.0",
+    "lightgbm>=4.6.0",
 ]
 
 [project.optional-dependencies]

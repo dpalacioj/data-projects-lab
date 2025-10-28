@@ -40,7 +40,7 @@ src/config/config.py
 - `extract_payment_methods()`: One-hot encoding de métodos de pago
 - `transform()`: Pipeline completo
 
-### 4. Modelado (90 min)
+### 4. Modelado
 ```
 src/notebooks/model_xgboost.ipynb       [Experimentación]
 src/models/xgb_model.py                 [Implementación]
@@ -59,7 +59,7 @@ python train.py              # Entrenamiento base
 python train.py --optimize   # Con optimización
 ```
 
-### 5. Despliegue (30 min)
+### 5. Despliegue
 ```
 ui/streamlit_app.py
 ```

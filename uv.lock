@@ -824,10 +824,13 @@ name = "data-projects-lab"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "fastapi" },
     { name = "ipykernel" },
     { name = "joblib" },
     { name = "jupyter" },
+    { name = "lightgbm" },
     { name = "matplotlib" },
+    { name = "mlflow" },
     { name = "nbconvert" },
     { name = "numpy" },
     { name = "optuna" },
@@ -912,6 +915,7 @@ dev = [
 requires-dist = [
     { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
     { name = "data-projects-lab", extras = ["titanic", "meli", "interpretability", "optimization", "experiment", "dev"], marker = "extra == 'all'" },
+    { name = "fastapi", specifier = ">=0.120.0" },
     { name = "fastapi", marker = "extra == 'regresion-automoviles'", specifier = ">=0.100.0" },
     { name = "flaml", extras = ["automl"], marker = "extra == 'titanic'", specifier = ">=2.3.6" },
     { name = "gradio", marker = "extra == 'regresion-automoviles'", specifier = ">=5.0.0" },
@@ -919,9 +923,11 @@ requires-dist = [
     { name = "joblib", specifier = ">=1.0.0" },
     { name = "joblib", marker = "extra == 'meli'", specifier = ">=1.0.0" },
     { name = "jupyter", specifier = ">=1.0.0" },
+    { name = "lightgbm", specifier = ">=4.6.0" },
     { name = "lightgbm", marker = "extra == 'regresion-automoviles'", specifier = ">=4.0.0" },
     { name = "lime", marker = "extra == 'interpretability'", specifier = ">=0.2.0" },
     { name = "matplotlib", specifier = ">=3.8.0" },
+    { name = "mlflow", specifier = ">=3.5.1" },
     { name = "mlflow", marker = "extra == 'experiment'", specifier = ">=2.0.0" },
     { name = "mlflow", marker = "extra == 'regresion-automoviles'", specifier = ">=2.0.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },

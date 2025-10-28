@@ -10,7 +10,9 @@ __pycache__/
 *.ipynb_checkpoints/
 
 # MLFlow
-mlruns/
+# Ignorar contenido de mlruns pero no el directorio en sí
+mlruns/*
+!mlruns/.gitkeep
 mlartifacts/
 
 # Data

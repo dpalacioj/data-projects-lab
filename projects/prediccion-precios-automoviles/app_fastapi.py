@@ -14,6 +14,7 @@ Documentación interactiva disponible en:
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
+from contextlib import asynccontextmanager
 import sys
 from pathlib import Path
 
@@ -23,11 +24,46 @@ sys.path.append(str(Path(__file__).parent / "src"))
 from predict import load_model, predict_single, format_prediction
 
 
-# Crear aplicación FastAPI
+# Variable global para el modelo
+model = None
+model_type = "unknown"
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Gestor de ciclo de vida de la aplicación.
+    Carga el modelo al iniciar y libera recursos al finalizar.
+    """
+    global model, model_type
+
+    # Startup
+    print("Iniciando aplicación...")
+    print("Cargando modelo...")
+
+    try:
+        model = load_model()
+        # Intentar obtener el tipo de modelo del pipeline
+        if hasattr(model, 'named_steps'):
+            regressor = model.named_steps.get('regressor')
+            model_type = type(regressor).__name__
+        print(f"Modelo cargado exitosamente: {model_type}")
+    except Exception as e:
+        print(f"Error al cargar modelo: {e}")
+        print("La aplicación continuará pero las predicciones fallarán")
+
+    yield  # Aquí la aplicación está corriendo
+
+    # Shutdown (opcional)
+    print("Cerrando aplicación...")
+
+
+# Crear aplicación FastAPI con lifespan
 app = FastAPI(
     title="API de Predicción de Precios de Automóviles",
     description="API REST para predecir precios de automóviles usados usando Machine Learning",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 
@@ -116,35 +152,6 @@ class HealthResponse(BaseModel):
     status: str = Field(..., description="Estado del servicio")
     model_loaded: bool = Field(..., description="Indica si el modelo está cargado")
     message: str = Field(..., description="Mensaje adicional")
-
-
-# Variable global para el modelo
-# Se carga al iniciar la aplicación
-model = None
-model_type = "unknown"
-
-
-@app.on_event("startup")
-async def startup_event():
-    """
-    Evento ejecutado al iniciar la aplicación.
-    Carga el modelo en memoria para mejorar el rendimiento.
-    """
-    global model, model_type
-
-    print("Iniciando aplicación...")
-    print("Cargando modelo...")
-
-    try:
-        model = load_model()
-        # Intentar obtener el tipo de modelo del pipeline
-        if hasattr(model, 'named_steps'):
-            regressor = model.named_steps.get('regressor')
-            model_type = type(regressor).__name__
-        print(f"Modelo cargado exitosamente: {model_type}")
-    except Exception as e:
-        print(f"Error al cargar modelo: {e}")
-        print("La aplicación continuará pero las predicciones fallarán")
 
 
 @app.get("/", tags=["General"])

@@ -1,0 +1,5 @@
+# MLFlow Configuration
+# Este archivo configura MLFlow para usar mlruns/ en la raíz del proyecto
+# Es portable para cualquier usuario que clone el repositorio
+
+backend_store_uri = mlruns

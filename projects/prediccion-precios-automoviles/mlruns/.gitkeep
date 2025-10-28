@@ -1,0 +1,7 @@
+# Este archivo asegura que el directorio mlruns/ se suba al repositorio
+# Los experimentos de MLFlow se crearán automáticamente cuando ejecutes:
+#   notebooks/02_training.ipynb
+#
+# Para visualizar experimentos:
+#   cd prediccion-precios-automoviles
+#   ./start_mlflow.sh

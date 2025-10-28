@@ -58,28 +58,69 @@ def find_best_model():
     Notas:
         Busca archivos JSON con metadatos y selecciona el de mayor R²
     """
+    # Primero intentar con model_metadata.json (el más reciente del notebook)
+    main_metadata = MODELS_DIR / "model_metadata.json"
+    if main_metadata.exists():
+        with open(main_metadata, 'r') as f:
+            metadata = json.load(f)
+
+        model_type = metadata.get('model_type', '').lower().replace(' ', '_')
+        # Buscar archivo del modelo basado en el tipo
+        possible_files = [
+            f"{model_type}_best_model.pkl",
+            f"{model_type}_model.pkl",
+        ]
+
+        for filename in possible_files:
+            model_path = MODELS_DIR / filename
+            if model_path.exists():
+                r2 = metadata.get('test_r2', 0)
+                print(f"Modelo encontrado: {filename} (R² = {r2:.4f})")
+                return model_path
+
+    # Si no encuentra, buscar en todos los metadata files
     metadata_files = list(MODELS_DIR.glob("*_metadata.json"))
 
     if not metadata_files:
         raise FileNotFoundError("No se encontraron modelos entrenados")
 
     best_r2 = -1
-    best_model_file = None
+    best_model_path = None
+    best_metadata_file = None
 
     for metadata_file in metadata_files:
         with open(metadata_file, 'r') as f:
             metadata = json.load(f)
 
         r2 = metadata.get('test_r2', 0)
-        if r2 > best_r2:
-            best_r2 = r2
-            best_model_file = metadata.get('model_file')
 
-    if best_model_file is None:
+        # Intentar obtener model_file del metadata
+        model_file = metadata.get('model_file')
+
+        # Si no existe model_file, inferir del nombre del metadata
+        if model_file is None:
+            # De "lightgbm_metadata.json" extraer "lightgbm"
+            base_name = metadata_file.stem.replace('_metadata', '')
+            # Buscar archivos posibles
+            possible_files = [
+                f"{base_name}_best_model.pkl",
+                f"{base_name}_model.pkl",
+            ]
+            for filename in possible_files:
+                candidate = MODELS_DIR / filename
+                if candidate.exists():
+                    model_file = filename
+                    break
+
+        if model_file and r2 > best_r2:
+            best_r2 = r2
+            best_model_path = MODELS_DIR / model_file
+            best_metadata_file = metadata_file.name
+
+    if best_model_path is None:
         raise ValueError("No se pudo determinar el mejor modelo")
 
-    best_model_path = MODELS_DIR / best_model_file
-    print(f"Mejor modelo encontrado: {best_model_file} (R² = {best_r2:.4f})")
+    print(f"Mejor modelo encontrado: {best_model_path.name} (R² = {best_r2:.4f})")
 
     return best_model_path
 
