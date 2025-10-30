@@ -70,23 +70,34 @@ cd data-projects-lab
 # Instalar uv si no lo tienes
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Sincronizar el entorno (instala todas las dependencias)
+# Opción A: Instalación base (solo notebooks y exploración)
 uv sync
+
+# Opción B: Instalación para un proyecto específico
+uv sync --extra titanic                    # Proyecto Titanic
+uv sync --extra meli                       # Clasificador Mercado Libre
+uv sync --extra regresion-automoviles      # Regresión Automóviles
+
+# Opción C: Instalación completa (todos los proyectos)
+uv sync --all-extras
 ```
 
-#### 3️⃣ Instalar dependencias opcionales (según tus necesidades)
+#### 3️⃣ Instalar extras temáticos (opcional)
 ```bash
-# Para interpretabilidad de modelos (SHAP, LIME)
-uv pip install -e ".[interpretability]"
+# Interpretabilidad de modelos (SHAP, LIME)
+uv sync --extra interpretability
 
-# Para experimentación avanzada (Optuna, MLflow, W&B)
-uv pip install -e ".[experiment]"
+# Optimización de hiperparámetros (Optuna)
+uv sync --extra optimization
 
-# Para desarrollo y testing
-uv pip install -e ".[dev]"
+# Experimentación y tracking (MLflow, W&B)
+uv sync --extra experiment
 
-# O instalar todo de una vez
-uv pip install -e ".[all]"
+# Interfaces web (Streamlit, Gradio, Plotly)
+uv sync --extra web
+
+# Herramientas de desarrollo (pytest, black, ruff, mypy)
+uv sync --extra dev
 ```
 
 #### 4️⃣ Verificar la instalación
@@ -135,11 +146,54 @@ source .venv/bin/activate
 jupyter lab
 ```
 
-### Ejecutar Proyectos con Streamlit
-Ejemplo con el proyecto Titanic:
+### Ejecutar Proyectos Específicos
+
+#### 🚢 Proyecto Titanic (AutoML)
 ```bash
-# Desde la raíz del repositorio
+# 1. Instalar dependencias
+uv sync --extra titanic
+
+# 2. Ejecutar notebooks
+uv run jupyter lab projects/titanic/
+
+# 3. Ejecutar app Streamlit
 uv run streamlit run projects/titanic/08_titanic_streamlit.py
+```
+
+#### 🛒 Proyecto Clasificador Meli (ML Clásico)
+```bash
+# 1. Instalar dependencias
+uv sync --extra meli
+
+# 2. Ejecutar notebooks
+uv run jupyter lab projects/meli/
+
+# 3. Ejecutar aplicación (si disponible)
+uv run streamlit run projects/meli/app.py
+```
+
+#### 🚗 Proyecto Regresión Automóviles (MLOps)
+```bash
+# 1. Instalar dependencias
+uv sync --extra regresion-automoviles
+
+# 2. Ejecutar notebooks
+uv run jupyter lab projects/regresion-automoviles/
+
+# 3. Ejecutar app Gradio
+uv run python projects/regresion-automoviles/gradio_app.py
+
+# 4. O ejecutar API FastAPI
+uv run uvicorn projects.regresion-automoviles.api:app --reload
+```
+
+#### 💡 Combinar múltiples proyectos
+```bash
+# Instalar dependencias de varios proyectos a la vez
+uv sync --extra titanic --extra meli --extra web
+
+# O instalar todo
+uv sync --all-extras
 ```
 
 ## 🎓 Metodología de Aprendizaje
