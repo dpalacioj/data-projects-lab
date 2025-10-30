@@ -59,6 +59,10 @@ htmlcov/
 .dmypy.json
 dmypy.json
 
+# MLflow
+mlruns/
+mlflow-artifacts/
+
 # Modelos ML
 # NOTA: Para este proyecto educativo, modelos pequeños (<5MB) SÍ se commitean
 # para que el proyecto funcione de inmediato (ej: Streamlit app)

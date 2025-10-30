@@ -102,7 +102,7 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 # Paquete mínimo para monorepo educativo
-packages = ["data_projects_lab"]
+# packages = []  # No se necesita paquete Python para este monorepo educativo
 
 [tool.uv]
 dev-dependencies = [
