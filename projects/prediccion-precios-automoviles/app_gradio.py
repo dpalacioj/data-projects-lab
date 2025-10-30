@@ -236,10 +236,8 @@ with gr.Blocks(title="Predicción de Precios de Automóviles") as app:
 
 if __name__ == "__main__":
     # Lanzar aplicación
-    # share=True crea un link público temporal (útil para demostrar)
-    # share=False mantiene la app solo en local
     app.launch(
         server_name="0.0.0.0",  # Permite acceso desde otras máquinas en la red
         server_port=7860,        # Puerto por defecto de Gradio
-        share=False              # Cambiar a True para crear link público
+        share=False             
     )
