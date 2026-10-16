@@ -61,13 +61,20 @@ def write_notebook(filename: str, cells: list[dict]) -> None:
 # Bloques reutilizables
 # ---------------------------------------------------------------------------
 PATH_BOOTSTRAP = """\
-# Permite importar el paquete src/ desde el notebook
+# Permite importar el paquete segmentacion desde el notebook
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path.cwd().parent if Path.cwd().name == "notebooks" else Path.cwd()
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+_cwd = Path.cwd()
+if _cwd.name == "legacy":
+    PROJECT_ROOT = _cwd.parent.parent
+elif _cwd.name == "notebooks":
+    PROJECT_ROOT = _cwd.parent
+else:
+    PROJECT_ROOT = _cwd
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 """
 
 
@@ -112,8 +119,8 @@ operación). *Online Retail II* lo es.
 import pandas as pd
 import numpy as np
 
-from src.data.loader import download_dataset, load_raw_transactions
-from src.config import RAW_DATA_FILE
+from segmentacion.data.loader import download_dataset, load_raw_transactions
+from segmentacion.config import RAW_DATA_FILE
 
 pd.set_option("display.max_columns", 30)
 pd.set_option("display.width", 120)
@@ -317,9 +324,9 @@ es lo que separa a un científico de datos junior de uno senior:
             """\
 import pandas as pd
 
-from src.data.loader import load_raw_transactions
-from src.features.rfm import clean_transactions
-from src.config import CLEAN_DATA_FILE
+from segmentacion.data.loader import load_raw_transactions
+from segmentacion.features.rfm import clean_transactions
+from segmentacion.config import CLEAN_DATA_FILE
 
 pd.set_option("display.max_columns", 30)
 """
@@ -515,8 +522,8 @@ de comportamiento de clientes en retail.
 import pandas as pd
 import numpy as np
 
-from src.features.rfm import build_customer_features, build_rfm
-from src.config import CLEAN_DATA_FILE, RFM_DATA_FILE, FEATURES_DATA_FILE
+from segmentacion.features.rfm import build_customer_features, build_rfm
+from segmentacion.config import CLEAN_DATA_FILE, RFM_DATA_FILE, FEATURES_DATA_FILE
 """
         ),
         md("## 1. Cargar las transacciones limpias"),
@@ -730,8 +737,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from src.config import FEATURES_DATA_FILE
-from src.visualization.plots import plot_distributions
+from segmentacion.config import FEATURES_DATA_FILE
+from segmentacion.visualization.plots import plot_distributions
 
 sns.set_style("whitegrid")
 plt.rcParams["figure.dpi"] = 100
@@ -948,8 +955,8 @@ las dimensiones.
 import pandas as pd
 import numpy as np
 
-from src.config import FEATURES_DATA_FILE, RFM_FEATURES, EXTENDED_NUMERIC_FEATURES
-from src.features.preprocessing import build_preprocessing_pipeline
+from segmentacion.config import FEATURES_DATA_FILE, RFM_FEATURES, EXTENDED_NUMERIC_FEATURES
+from segmentacion.features.preprocessing import build_preprocessing_pipeline
 """
         ),
         code(
@@ -1091,7 +1098,7 @@ print(f"Con log+escalar:  Silhouette = {sil_scaled:.3f}")
         code(
             """\
 import joblib
-from src.config import PIPELINE_FILE
+from segmentacion.config import PIPELINE_FILE
 
 joblib.dump(pipe_ext, PIPELINE_FILE)
 print(f"Pipeline guardado en: {PIPELINE_FILE}")
@@ -1173,7 +1180,7 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 
-from src.config import (
+from segmentacion.config import (
     FEATURES_DATA_FILE,
     EXTENDED_NUMERIC_FEATURES,
     KMEANS_K_RANGE,
@@ -1182,9 +1189,9 @@ from src.config import (
     SEGMENTS_FILE,
     RANDOM_STATE,
 )
-from src.features.preprocessing import build_preprocessing_pipeline
-from src.models.clustering import find_optimal_k, fit_kmeans
-from src.visualization.plots import plot_clusters_2d, plot_elbow_and_silhouette
+from segmentacion.features.preprocessing import build_preprocessing_pipeline
+from segmentacion.models.clustering import find_optimal_k, fit_kmeans
+from segmentacion.visualization.plots import plot_clusters_2d, plot_elbow_and_silhouette
 from sklearn.decomposition import PCA
 """
         ),
@@ -1416,16 +1423,16 @@ import matplotlib.pyplot as plt
 
 from sklearn.decomposition import PCA
 
-from src.config import (
+from segmentacion.config import (
     FEATURES_DATA_FILE,
     EXTENDED_NUMERIC_FEATURES,
     DBSCAN_MODEL_FILE,
     PIPELINE_FILE,
     RANDOM_STATE,
 )
-from src.features.preprocessing import build_preprocessing_pipeline
-from src.models.clustering import evaluate_clustering, fit_dbscan
-from src.visualization.plots import plot_clusters_2d, plot_k_distance
+from segmentacion.features.preprocessing import build_preprocessing_pipeline
+from segmentacion.models.clustering import evaluate_clustering, fit_dbscan
+from segmentacion.visualization.plots import plot_clusters_2d, plot_k_distance
 """
         ),
         md("## 1. Preparar features"),
@@ -1656,7 +1663,7 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 
-from src.config import (
+from segmentacion.config import (
     FEATURES_DATA_FILE,
     EXTENDED_NUMERIC_FEATURES,
     KMEANS_MODEL_FILE,
@@ -1664,10 +1671,10 @@ from src.config import (
     SEGMENTS_FILE,
     SEGMENT_PROFILES_FILE,
 )
-from src.features.preprocessing import build_preprocessing_pipeline
-from src.models.clustering import evaluate_clustering
-from src.models.profiling import build_segment_profiles, label_segments
-from src.visualization.plots import plot_segment_radar
+from segmentacion.features.preprocessing import build_preprocessing_pipeline
+from segmentacion.models.clustering import evaluate_clustering
+from segmentacion.models.profiling import build_segment_profiles, label_segments
+from segmentacion.visualization.plots import plot_segment_radar
 """
         ),
         md("## 1. Cargar features y modelos"),

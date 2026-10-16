@@ -19,8 +19,8 @@ from urllib.request import urlopen
 
 import pandas as pd
 
-from src.config import RAW_DATA_DIR, RAW_DATA_FILE, RAW_DATA_URL
-from src.utils.logger import setup_logger
+from segmentacion.config import RAW_DATA_DIR, RAW_DATA_FILE, RAW_DATA_URL
+from segmentacion.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

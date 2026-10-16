@@ -13,7 +13,7 @@ requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.1.0",
     "numpy>=1.26.0",
-    "scikit-learn>=1.3.0,<1.6.0",
+    "scikit-learn>=1.9",
     "matplotlib>=3.8.0",
     "seaborn>=0.13.0",
     "jupyter>=1.0.0",
@@ -53,6 +53,10 @@ segmentacion-clientes = [
     "openpyxl>=3.1.0",
     "joblib>=1.3.0",
     "pyarrow>=14.0.0",
+    "polars>=2.0",
+    "fastexcel>=0.11",
+    "skimpy>=0.0.15",
+    "fg-data-profiling>=0.1",
 ]
 
 # Extras temáticos
@@ -134,7 +138,11 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["projects/segmentacion-clientes/tests"]
+pythonpath = ["projects/segmentacion-clientes/src"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
-addopts = "-v --cov=src --cov-report=term-missing"
+addopts = "-v"
+markers = [
+    "slow: cifras del OVA de la Unidad 2 verificadas contra el parquet real (requiere data/raw/online_retail_II.parquet)",
+]

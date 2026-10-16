@@ -5,7 +5,7 @@ Centraliza rutas, nombres de archivos, parámetros y constantes
 para evitar duplicación y facilitar el mantenimiento.
 
 Uso típico desde un notebook:
-    from src.config import RAW_DATA_FILE, RFM_FEATURES, RANDOM_STATE
+    from segmentacion.config import RAW_DATA_FILE, RFM_FEATURES, RANDOM_STATE
 """
 
 from pathlib import Path
@@ -13,9 +13,9 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 # Rutas del proyecto
 # ---------------------------------------------------------------------------
-# Path(__file__) es la ruta de este archivo (config.py).
-# .parent sube a src/, .parent.parent sube a la raíz del proyecto.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# Path(__file__) es la ruta de este archivo (config.py), ubicado en
+# src/segmentacion/. Tres .parent suben a: segmentacion/ → src/ → raiz del proyecto.
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"

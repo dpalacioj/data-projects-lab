@@ -1,5 +1,5 @@
 """Funciones de visualización para EDA y resultados de clustering."""
-from src.visualization.plots import (
+from segmentacion.visualization.plots import (
     plot_clusters_2d,
     plot_distributions,
     plot_elbow_and_silhouette,

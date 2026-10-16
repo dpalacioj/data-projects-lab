@@ -32,7 +32,7 @@ from sklearn.metrics import (
     silhouette_score,
 )
 
-from src.utils.logger import setup_logger
+from segmentacion.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 

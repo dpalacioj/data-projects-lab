@@ -185,7 +185,7 @@ source .venv/bin/activate
 ### Paso 3 · Descargar el dataset
 
 ```bash
-uv run python -c "from src.data.loader import download_dataset; download_dataset()"
+uv run python -c "from segmentacion.data.loader import download_dataset; download_dataset()"
 ```
 
 > El archivo (~45 MB descomprimido) queda en `data/raw/online_retail_II.xlsx`.

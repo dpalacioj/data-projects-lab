@@ -15,7 +15,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.utils.logger import setup_logger
+from segmentacion.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
