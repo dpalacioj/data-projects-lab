@@ -1,5 +1,5 @@
-"""Construcción de features RFM y comportamentales para clustering."""
-from segmentacion.features.rfm import build_customer_features, build_rfm
+"""Construccion de features: RFM en Polars + pipeline sklearn (legacy)."""
 from segmentacion.features.preprocessing import build_preprocessing_pipeline
+from segmentacion.features.rfm import construir_rfm
 
-__all__ = ["build_rfm", "build_customer_features", "build_preprocessing_pipeline"]
+__all__ = ["construir_rfm", "build_preprocessing_pipeline"]
