@@ -11,6 +11,7 @@ como tutorial guiado para estudiantes de maestría en IA: cada notebook explica 
 
 - [Documentación Rápida](#documentación-rápida)
 - [Caso de Negocio](#caso-de-negocio)
+- [Objetivo de negocio, objetivo de análisis y criterio de éxito](#objetivo-de-negocio-objetivo-de-análisis-y-criterio-de-éxito)
 - [Objetivo Pedagógico](#objetivo-pedagógico)
 - [Dataset](#dataset)
 - [Estructura del Proyecto](#estructura-del-proyecto)
@@ -50,6 +51,26 @@ Preguntas concretas que el proyecto busca responder:
 3. ¿Qué clientes están en riesgo de irse?
 4. ¿Qué clientes responderían mejor a una promoción agresiva?
 5. ¿Hay clientes con comportamiento atípico (mayoristas, fraudes)?
+
+---
+
+## Objetivo de negocio, objetivo de análisis y criterio de éxito
+
+Reproduce la **Tabla 2** del OVA de la Unidad 2 — la misma matriz que
+usamos para alinear negocio y análisis antes de tocar código.
+
+| Campo | Contenido |
+|---|---|
+| **Problema de negocio** | El retailer trata a todos los clientes por igual; las campañas de regalo rinden poco porque no hablan al cliente adecuado en el momento adecuado. |
+| **Pregunta de negocio** | ¿Cómo agrupar a los clientes para que las acciones de marketing (comunicación, descuentos, retención) tengan rendimiento diferenciado? |
+| **Objetivo de análisis** | Construir segmentos no supervisados de clientes basados en RFM extendido, estables entre K-Means y DBSCAN, acompañados de una ficha accionable por segmento. |
+| **Criterio de éxito analítico** | Silhouette ≥ 0,35 y más del 70 % de los clientes concentrados en 3-5 segmentos interpretables. |
+| **Criterio de éxito de negocio** | Que marketing adopte las fichas de acción (medible en U4 por tasa de contacto por segmento). |
+| **Riesgo principal** | Que el pipeline no sea reproducible el día de grabación. Mitigación: `scripts/figuras_u2.py` y `tests/test_cifras_referencia.py` fallan si cambia alguna cifra del OVA. |
+| **Datos y licencia** | Online Retail II (UCI 502, Chen 2019, CC BY 4.0). Procedencia, hash y procedimiento en [`data/README.md`](data/README.md). |
+
+El cuaderno `00_objetivo_de_analisis.ipynb` deja esta misma tabla al
+alcance en vivo durante clase.
 
 ---
 
@@ -106,50 +127,64 @@ Ver [DICCIONARIO_DATOS.md](DICCIONARIO_DATOS.md) para el detalle de cada variabl
 segmentacion-clientes/
 │
 ├── data/
-│   ├── raw/           # Dataset original (descargado por src/data/loader.py)
+│   ├── README.md      # Procedencia, licencia (CC BY 4.0) y SHA-256
+│   ├── raw/           # Descargado por scripts/descargar_datos.py (gitignored)
 │   ├── interim/       # Datos limpios (intermedios)
-│   └── processed/     # Features finales y clientes segmentados
+│   └── processed/     # ventas_validas, cancelaciones, rfm_u2 (gitignored)
 │
-├── notebooks/         # Tutoriales paso a paso (ejecutar en orden)
-│   ├── 01_data_understanding.ipynb
-│   ├── 02_data_cleaning.ipynb
-│   ├── 03_feature_engineering.ipynb
-│   ├── 04_exploratory_data_analysis.ipynb
-│   ├── 05_preprocessing_pipelines.ipynb
-│   ├── 06_clustering_kmeans.ipynb
-│   ├── 07_clustering_dbscan.ipynb
-│   └── 08_model_comparison_and_interpretation.ipynb
+├── notebooks/
+│   ├── 00_objetivo_de_analisis.ipynb      # CRISP-DM fase 1 (nuevo)
+│   ├── 01_comprension_datos.ipynb         # Lectura con esquema + diagnóstico
+│   ├── 02_limpieza.ipynb                  # preparar_ventas → cancelaciones.parquet
+│   ├── 03_variables_cliente.ipynb         # construir_rfm con fecha_corte
+│   ├── 04_eda.ipynb                       # Cuartiles, Tukey, correlaciones
+│   ├── 05_eda_automatizado.ipynb          # skimpy + fg-data-profiling
+│   └── legacy/
+│       ├── 05_preprocessing_pipelines.ipynb      # ↓ en migración a U3
+│       ├── 06_clustering_kmeans.ipynb
+│       ├── 07_clustering_dbscan.ipynb
+│       └── 08_model_comparison_and_interpretation.ipynb
 │
-├── src/               # Código modular reutilizable
-│   ├── config.py             # Constantes y rutas
+├── scripts/
+│   ├── descargar_datos.py     # Descarga + SHA-256 + xlsx → parquet
+│   ├── figuras_u2.py          # Figuras 6-9 del OVA en reports/figures/
+│   ├── perfil.py              # Perfil HTML sobre muestra (seed=42)
+│   ├── caso_recompra.py       # Insumo de U3 (recompra 90 d)
+│   └── figuras_u3.py          # Insumo de U3 (ROC, PR, importancias)
+│
+├── src/segmentacion/          # Paquete importable
+│   ├── config.py                 # Rutas, FECHA_SNAPSHOT
 │   ├── data/
-│   │   └── loader.py         # Descarga y carga del dataset
+│   │   ├── cargar.py             # ESQUEMA, leer_excel_con_esquema, leer_parquet
+│   │   ├── limpieza.py           # quitar_duplicados, separar_cancelaciones,
+│   │   │                         # exigir_cliente, filtrar_validas, preparar_ventas
+│   │   └── loader.py             # (pandas, lo usa el legacy)
+│   ├── eda/
+│   │   └── resumen.py            # cuartiles, cercas_tukey, asociaciones, etc.
 │   ├── features/
-│   │   ├── rfm.py            # build_rfm, build_customer_features
-│   │   └── preprocessing.py  # Pipelines sklearn
-│   ├── models/
-│   │   ├── clustering.py     # fit_kmeans, fit_dbscan, métricas
-│   │   └── profiling.py      # Perfilamiento de segmentos
-│   ├── visualization/
-│   │   └── plots.py          # Gráficos reutilizables
-│   └── utils/
-│       └── logger.py         # Logger estandarizado
+│   │   ├── rfm.py                # construir_rfm(ventas, fecha_corte)
+│   │   └── preprocessing.py      # Pipeline sklearn (legacy / U3)
+│   ├── models/{clustering,profiling}.py   # Sin cambios (legacy / U3)
+│   ├── utils/logger.py
+│   └── visualization/plots.py
 │
-├── app/
-│   └── streamlit_app.py      # Demo interactiva
+├── tests/
+│   ├── test_limpieza.py          # Rápido, 6 filas inventadas
+│   ├── test_rfm.py               # Rápido, corte explícito
+│   └── test_cifras_referencia.py # @pytest.mark.slow, cifras del §4 OVA
 │
-├── models/             # Modelos entrenados (.joblib)
-├── reports/figures/    # Gráficos generados
-│
-├── README.md
+├── app/streamlit_app.py          # Demo interactiva (consume U3 output)
+├── models/                        # Modelos entrenados (.joblib, gitignored)
+├── reports/figures/               # Gráficos generados (gitignored)
+├── HALLAZGOS.md                   # Hallazgos U2 → insumo de U3
 ├── GUIA_LECTURA.md
 ├── DICCIONARIO_DATOS.md
 └── .gitignore
 ```
 
-> **Nota:** `src/models/` contiene **código** para clustering;
-> `models/` (en la raíz) contiene los **artefactos** entrenados.
-> Es la convención estándar en proyectos de ML.
+> **Nota:** `src/segmentacion/models/` contiene **código** para
+> clustering; `models/` (en la raíz) contiene los **artefactos**
+> entrenados. Es la convención estándar en proyectos de ML.
 
 ---
 
@@ -168,9 +203,16 @@ Desde la raíz del repositorio `data-projects-lab`:
 uv sync --extra segmentacion-clientes
 ```
 
-Esto instala `streamlit`, `plotly`, `openpyxl` (lectura de .xlsx),
-`joblib` y `pyarrow`, además de las dependencias base
-(pandas, numpy, scikit-learn, matplotlib, seaborn, jupyter).
+Esto instala `polars>=2.0`, `fastexcel`, `skimpy`, `fg-data-profiling`,
+`streamlit`, `plotly`, `openpyxl` (lectura de .xlsx), `joblib` y
+`pyarrow`, además de las dependencias base
+(pandas, numpy, scikit-learn>=1.9, matplotlib, seaborn, jupyter).
+
+Para los tests y herramientas de desarrollo:
+
+```bash
+uv sync --extra segmentacion-clientes --extra dev
+```
 
 ### Paso 2 · Activar el entorno virtual
 
@@ -185,29 +227,53 @@ source .venv/bin/activate
 ### Paso 3 · Descargar el dataset
 
 ```bash
-uv run python -c "from segmentacion.data.loader import download_dataset; download_dataset()"
+uv run python scripts/descargar_datos.py
 ```
 
-> El archivo (~45 MB descomprimido) queda en `data/raw/online_retail_II.xlsx`.
-> Si ya existe, no se vuelve a descargar.
+> El script descarga el `.zip` desde UCI, verifica el **SHA-256**
+> contra la constante del propio script, extrae `online_retail_II.xlsx`
+> y escribe `data/raw/online_retail_II.parquet` con el esquema del OVA.
+> Si el hash no coincide, se detiene (código 2). Detalles en
+> [`data/README.md`](data/README.md).
 
 ---
 
 ## Cómo Ejecutar
 
-### Notebooks
+### Notebooks (Unidad 2)
 
 ```bash
 cd projects/segmentacion-clientes
-jupyter lab
+uv run jupyter lab
 ```
 
-Abrir los notebooks en orden numérico (`01_` → `08_`).
-Cada uno guarda salidas que el siguiente consume.
+Abrir los notebooks en orden: `00_objetivo_de_analisis` →
+`01_comprension_datos` → `02_limpieza` → `04_eda` →
+`03_variables_cliente` → `05_eda_automatizado`.
+
+Los cuadernos `legacy/05-08` siguen funcionando (solo cambian los
+`import` tras renombrar el paquete) pero están **en migración** a
+Unidad 3 — ver [`GUIA_LECTURA.md`](GUIA_LECTURA.md).
+
+### Pruebas
+
+```bash
+uv run pytest                                # rápido (test_limpieza, test_rfm)
+uv run pytest -m slow                        # cifras del OVA contra el parquet real
+```
+
+### Scripts auxiliares
+
+```bash
+uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/figures
+uv run python scripts/perfil.py              # HTML en reports/perfil_muestra.html
+```
 
 ### Aplicación Streamlit
 
-Después de ejecutar al menos hasta el notebook `06_clustering_kmeans.ipynb`:
+Después de ejecutar al menos hasta el notebook
+`notebooks/legacy/06_clustering_kmeans.ipynb` (se reemplazará por el
+cuaderno 10 de U3):
 
 ```bash
 cd projects/segmentacion-clientes
