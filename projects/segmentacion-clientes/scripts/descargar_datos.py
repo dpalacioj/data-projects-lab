@@ -24,18 +24,22 @@ import zipfile
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-import polars as pl
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+import polars as pl  # noqa: E402
+
+from segmentacion.data.cargar import ESQUEMA, leer_excel_con_esquema  # noqa: E402
 
 URL = "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
 SHA256_ZIP = "572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb"
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
 ZIP_PATH = RAW_DIR / "online_retail_II.zip"
 XLSX_PATH = RAW_DIR / "online_retail_II.xlsx"
 PARQUET_PATH = RAW_DIR / "online_retail_II.parquet"
-
-ESQUEMA = {"Invoice": pl.Utf8, "StockCode": pl.Utf8, "Customer ID": pl.Int64}
 
 
 def descargar(url: str, destino: Path) -> bytes:
@@ -84,8 +88,7 @@ def convertir_a_parquet(xlsx: Path, parquet: Path) -> None:
         print(f"parquet ya existe ({parquet.stat().st_size / 1e6:.1f} MB); se reutiliza.")
         return
     print(f"leyendo {xlsx} con esquema {ESQUEMA} ...")
-    hojas = pl.read_excel(xlsx, sheet_id=0, schema_overrides=ESQUEMA)
-    df = pl.concat(hojas.values(), how="vertical")
+    df = leer_excel_con_esquema(xlsx)
     df.write_parquet(parquet, compression="zstd")
     print(f"parquet escrito en {parquet}: {df.height:,} filas, {df.width} columnas.".replace(",", " "))
 

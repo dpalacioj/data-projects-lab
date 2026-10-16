@@ -2,47 +2,42 @@
 """Figuras 6 a 9 del OVA de la Unidad 2 (Online Retail II, Chen 2019, CC BY 4.0).
 
 Uso:
-    uv run python figuras_u2.py data/raw/online_retail_II.xlsx reports/figures
+    uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/figures
 
 Requiere: polars>=2.0, fastexcel, matplotlib. Las cifras impresas al final son las
 que cita el OVA; si cambian, hay que actualizar el documento y la spec.
+
+Las reglas de limpieza y la lectura con esquema viven en el paquete
+`segmentacion.data` (una sola fuente de verdad); este script solo las orquesta
+para generar las cuatro figuras.
 """
 import sys
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import numpy as np
-import polars as pl
+import matplotlib.pyplot as plt  # noqa: E402
+import numpy as np  # noqa: E402
+import polars as pl  # noqa: E402
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+from segmentacion.data.cargar import leer_excel_con_esquema  # noqa: E402
+from segmentacion.data.limpieza import preparar_ventas  # noqa: E402
 
 AZUL, NARANJA, GRIS = "#4F69CC", "#ED7D31", "#7F7F7F"
-plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11,
-                     "axes.spines.top": False, "axes.spines.right": False})
-
-
-def leer_excel_con_esquema(ruta: Path) -> pl.DataFrame:
-    hojas = pl.read_excel(ruta, sheet_id=0,
-                          schema_overrides={"Invoice": pl.Utf8, "StockCode": pl.Utf8, "Customer ID": pl.Int64})
-    return pl.concat(hojas.values(), how="vertical")
-
-
-def quitar_duplicados(df): return df.unique()
-def separar_cancelaciones(df):
-    c = pl.col("Invoice").str.starts_with("C")
-    return df.filter(~c), df.filter(c)
-def exigir_cliente(df): return df.filter(pl.col("Customer ID").is_not_null())
-def filtrar_validas(df): return df.filter(pl.col("Quantity") > 0, pl.col("Price") > 0)
-
-
-def preparar_ventas(df):
-    n0 = df.height
-    df = df.pipe(quitar_duplicados); n1 = df.height
-    df, canc = separar_cancelaciones(df); n2 = df.height
-    df = df.pipe(exigir_cliente); n3 = df.height
-    df = df.pipe(filtrar_validas); n4 = df.height
-    print(f"filas: {n0} -> sin duplicados {n1} -> sin cancelaciones {n2} -> con cliente {n3} -> validas {n4} ({n4/n0:.1%})")
-    return df.with_columns((pl.col("Quantity") * pl.col("Price")).alias("Importe")), canc
+plt.rcParams.update(
+    {
+        "font.family": "DejaVu Sans",
+        "font.size": 11,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
 
 
 def figuras(v: pl.DataFrame, out: Path):
