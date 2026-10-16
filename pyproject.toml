@@ -85,10 +85,11 @@ web = [
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
-    "black>=23.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
     "ipython>=8.0.0",
+    "pre-commit>=3.6.0",
+    "nbstripout>=0.7.0",
 ]
 
 # Instalación completa
@@ -111,25 +112,34 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 bypass-selection = true
 
-[tool.black]
-line-length = 100
-target-version = ['py311']
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.venv
-  | _build
-  | build
-  | dist
-)/
-'''
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-select = ["E", "F", "I", "N", "W"]
+# Ruff en esta spec cubre el paquete, cuadernos, scripts y tests de la Unidad 2;
+# el resto de proyectos tiene lint pre-existente que se saneara en otra tanda.
+extend-exclude = [
+    "projects/titanic",
+    "projects/clasificador-meli",
+    "projects/prediccion-precios-automoviles",
+    "projects/ejercicio-preprocesamiento",
+    "projects/promociones_usuarios",
+    "projects/temporal-split",
+    "projects/threholds-example",
+    "tutorials",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+# E501: line length ya la controla el formatter. Las reglas N* (naming) chocan
+# con convenciones de sklearn (`X`, `X_2d`), constantes de dominio
+# (`DBSCAN_PARAMS`) y nombres descriptivos de tests que referencian la factura
+# "C"; no las imponemos.
 ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# scripts de referencia tienen matplotlib.use("Agg") antes de los imports.
+"projects/segmentacion-clientes/scripts/caso_recompra.py" = ["E402"]
+"projects/segmentacion-clientes/scripts/figuras_u3.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.11"

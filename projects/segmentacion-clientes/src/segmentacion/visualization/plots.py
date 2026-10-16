@@ -91,9 +91,7 @@ def plot_k_distance(X: np.ndarray, k: int = 5):
     ax.plot(k_distances, color="seagreen")
     ax.set_xlabel("Puntos ordenados por distancia")
     ax.set_ylabel(f"Distancia al {k}º vecino más cercano")
-    ax.set_title(
-        f"Curva k-distance (k={k}) — el codo sugiere un valor adecuado de eps"
-    )
+    ax.set_title(f"Curva k-distance (k={k}) — el codo sugiere un valor adecuado de eps")
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
     return fig

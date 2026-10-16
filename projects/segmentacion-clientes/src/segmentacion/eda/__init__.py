@@ -1,4 +1,5 @@
 """Resumenes de EDA en Polars (cuartiles, cercas de Tukey, correlaciones)."""
+
 from segmentacion.eda.resumen import (
     asociaciones,
     cercas_tukey,

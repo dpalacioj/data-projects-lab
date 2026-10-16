@@ -15,6 +15,7 @@ y pide actualizar la constante SHA256_ZIP (y el OVA y la spec si procede).
 Fuente: https://archive.ics.uci.edu/dataset/502/online+retail+ii
 Licencia: Creative Commons Attribution 4.0 International (CC BY 4.0).
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -30,7 +31,6 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 import polars as pl  # noqa: E402
-
 from segmentacion.data.cargar import ESQUEMA, leer_excel_con_esquema  # noqa: E402
 
 URL = "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip"
@@ -90,7 +90,9 @@ def convertir_a_parquet(xlsx: Path, parquet: Path) -> None:
     print(f"leyendo {xlsx} con esquema {ESQUEMA} ...")
     df = leer_excel_con_esquema(xlsx)
     df.write_parquet(parquet, compression="zstd")
-    print(f"parquet escrito en {parquet}: {df.height:,} filas, {df.width} columnas.".replace(",", " "))
+    print(
+        f"parquet escrito en {parquet}: {df.height:,} filas, {df.width} columnas.".replace(",", " ")
+    )
 
 
 def main() -> int:
@@ -99,7 +101,11 @@ def main() -> int:
     extraer_xlsx(contenido, XLSX_PATH)
     convertir_a_parquet(XLSX_PATH, PARQUET_PATH)
     df = pl.read_parquet(PARQUET_PATH)
-    print(f"verificacion final: filas={df.height:,}, Invoice.dtype={df.schema['Invoice']}".replace(",", " "))
+    print(
+        f"verificacion final: filas={df.height:,}, Invoice.dtype={df.schema['Invoice']}".replace(
+            ",", " "
+        )
+    )
     return 0
 
 

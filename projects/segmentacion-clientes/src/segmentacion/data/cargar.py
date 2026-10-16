@@ -9,6 +9,7 @@ Expone:
 Los scripts y cuadernos de la Unidad 2 pasan por aqui para que la leccion
 "declarar el esquema al leer" quede en un solo sitio.
 """
+
 from __future__ import annotations
 
 from pathlib import Path

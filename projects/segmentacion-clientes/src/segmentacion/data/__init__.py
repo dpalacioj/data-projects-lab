@@ -1,4 +1,5 @@
 """Lectura, carga y limpieza del dataset Online Retail II."""
+
 from segmentacion.data.cargar import ESQUEMA, leer_excel_con_esquema, leer_parquet
 from segmentacion.data.limpieza import (
     exigir_cliente,

@@ -10,6 +10,7 @@ Si alguna cifra NO coincide:
     2. verifica que no haya cambiado el hash del zip (`descargar_datos.py`);
     3. reporta la discrepancia; actualizar el OVA y la spec se decide a mano.
 """
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -17,11 +18,9 @@ from pathlib import Path
 
 import polars as pl
 import pytest
-
 from segmentacion.data.cargar import leer_parquet
 from segmentacion.data.limpieza import (
     exigir_cliente,
-    filtrar_validas,
     preparar_ventas,
     quitar_duplicados,
     separar_cancelaciones,

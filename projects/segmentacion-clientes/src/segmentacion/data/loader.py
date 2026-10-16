@@ -107,9 +107,7 @@ def load_raw_transactions(
         Transacciones combinadas, una fila por línea de factura.
     """
     if not file_path.exists():
-        raise FileNotFoundError(
-            f"No se encontró {file_path}. Ejecuta primero download_dataset()."
-        )
+        raise FileNotFoundError(f"No se encontró {file_path}. Ejecuta primero download_dataset().")
 
     logger.info(f"Leyendo {file_path.name} ({len(sheets)} hojas)...")
     frames = []

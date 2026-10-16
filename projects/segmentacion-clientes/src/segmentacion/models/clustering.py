@@ -41,6 +41,7 @@ logger = setup_logger(__name__)
 # K-Means
 # ---------------------------------------------------------------------------
 
+
 def fit_kmeans(
     X: np.ndarray,
     n_clusters: int,
@@ -52,8 +53,7 @@ def fit_kmeans(
     model = KMeans(n_clusters=n_clusters, **params)
     model.fit(X)
     logger.info(
-        f"K-Means k={n_clusters} entrenado | inertia={model.inertia_:.2f} | "
-        f"iter={model.n_iter_}"
+        f"K-Means k={n_clusters} entrenado | inertia={model.inertia_:.2f} | iter={model.n_iter_}"
     )
     return model
 
@@ -103,6 +103,7 @@ def find_optimal_k(
 # DBSCAN
 # ---------------------------------------------------------------------------
 
+
 def fit_dbscan(
     X: np.ndarray,
     eps: float = 0.5,
@@ -135,6 +136,7 @@ def fit_dbscan(
 # ---------------------------------------------------------------------------
 # Métricas
 # ---------------------------------------------------------------------------
+
 
 def evaluate_clustering(X: np.ndarray, labels: np.ndarray) -> dict[str, float]:
     """

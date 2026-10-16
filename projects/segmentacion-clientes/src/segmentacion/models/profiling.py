@@ -118,15 +118,11 @@ def label_segments(profiles: pd.DataFrame) -> pd.DataFrame:
             )
         elif frequent and valuable:
             names.append("Clientes Leales")
-            actions.append(
-                "Cross-sell de productos complementarios y "
-                "campañas de referidos."
-            )
+            actions.append("Cross-sell de productos complementarios y campañas de referidos.")
         elif recent and not frequent:
             names.append("Clientes Nuevos / Ocasionales")
             actions.append(
-                "Campaña de bienvenida y nurturing para incrementar "
-                "frecuencia de compra."
+                "Campaña de bienvenida y nurturing para incrementar frecuencia de compra."
             )
         elif not recent and valuable:
             names.append("En Riesgo / Hibernando")
@@ -143,8 +139,7 @@ def label_segments(profiles: pd.DataFrame) -> pd.DataFrame:
         else:
             names.append("Segmento Mixto")
             actions.append(
-                "Analizar manualmente: combinación intermedia. "
-                "Considerar A/B testing de mensajes."
+                "Analizar manualmente: combinación intermedia. Considerar A/B testing de mensajes."
             )
 
     profiles["segment_name"] = names

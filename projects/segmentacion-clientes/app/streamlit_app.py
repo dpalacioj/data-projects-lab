@@ -279,8 +279,7 @@ elif section == "📊 Perfiles y acciones":
 
     if "last_labels" not in st.session_state:
         st.warning(
-            "Primero ejecuta un modelo en la sección **🤖 Clustering** "
-            "para ver el perfilamiento."
+            "Primero ejecuta un modelo en la sección **🤖 Clustering** para ver el perfilamiento."
         )
         st.stop()
 
@@ -293,11 +292,7 @@ elif section == "📊 Perfiles y acciones":
 
     # Tabla resumen
     st.markdown("### Tabla resumen")
-    cols_to_show = (
-        ["n_customers", "share", "segment_name"]
-        + EXTENDED_NUMERIC_FEATURES
-        + ["action"]
-    )
+    cols_to_show = ["n_customers", "share", "segment_name"] + EXTENDED_NUMERIC_FEATURES + ["action"]
     st.dataframe(profiles[cols_to_show], use_container_width=True)
 
     # Gráficos comparativos por feature
@@ -315,7 +310,9 @@ elif section == "📊 Perfiles y acciones":
     # Recomendaciones por cluster
     st.markdown("### Acciones de marketing recomendadas")
     for cluster_id, row in profiles.iterrows():
-        with st.expander(f"Cluster {cluster_id} · {row['segment_name']} · {int(row['n_customers'])} clientes"):
+        with st.expander(
+            f"Cluster {cluster_id} · {row['segment_name']} · {int(row['n_customers'])} clientes"
+        ):
             st.markdown(f"**Acción recomendada:** {row['action']}")
             st.markdown(
                 f"- Recency promedio: **{row['Recency']:.0f}** días\n"

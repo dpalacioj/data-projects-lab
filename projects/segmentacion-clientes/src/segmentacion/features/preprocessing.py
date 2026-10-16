@@ -96,9 +96,7 @@ def build_preprocessing_pipeline(
         ("num", build_numeric_pipeline(use_log=use_log), list(numeric_features)),
     ]
     if categorical_features:
-        transformers.append(
-            ("cat", build_categorical_pipeline(), list(categorical_features))
-        )
+        transformers.append(("cat", build_categorical_pipeline(), list(categorical_features)))
 
     column_transformer = ColumnTransformer(
         transformers=transformers,

@@ -9,6 +9,7 @@ Salida :  `reports/perfil_muestra.html` (gitignored).
 
 Pensado para CI / grabacion: genera el HTML sin abrir Jupyter.
 """
+
 from __future__ import annotations
 
 import sys
@@ -20,7 +21,6 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from data_profiling import ProfileReport  # noqa: E402
-
 from segmentacion.data.cargar import leer_parquet  # noqa: E402
 
 VENTAS = PROJECT_ROOT / "data" / "processed" / "ventas_validas.parquet"

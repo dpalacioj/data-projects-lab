@@ -1,4 +1,5 @@
 """Funciones de visualización para EDA y resultados de clustering."""
+
 from segmentacion.visualization.plots import (
     plot_clusters_2d,
     plot_distributions,

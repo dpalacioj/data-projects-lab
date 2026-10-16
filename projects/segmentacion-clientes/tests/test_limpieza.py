@@ -2,13 +2,13 @@
 
 Rapidos (sin tocar disco). Cubren una fila por regla y la secuencia completa.
 """
+
 from __future__ import annotations
 
 from datetime import datetime
 
 import polars as pl
 import pytest
-
 from segmentacion.data.limpieza import (
     exigir_cliente,
     filtrar_validas,
@@ -36,12 +36,12 @@ def df_inventado() -> pl.DataFrame:
     """5 filas, una por regla, mas una valida de referencia."""
     base = datetime(2010, 1, 1, 10, 0)
     filas = [
-        _fila("536365", 17850, 6, 2.55, base),         # valida
-        _fila("536365", 17850, 6, 2.55, base),         # duplicado exacto
-        _fila("C536379", 17850, -1, 2.55, base),       # cancelacion
-        _fila("536366", None, 6, 2.55, base),          # sin cliente
-        _fila("536367", 17850, -3, 2.55, base),        # cantidad invalida
-        _fila("536368", 17850, 5, 0.0, base),          # precio invalido
+        _fila("536365", 17850, 6, 2.55, base),  # valida
+        _fila("536365", 17850, 6, 2.55, base),  # duplicado exacto
+        _fila("C536379", 17850, -1, 2.55, base),  # cancelacion
+        _fila("536366", None, 6, 2.55, base),  # sin cliente
+        _fila("536367", 17850, -3, 2.55, base),  # cantidad invalida
+        _fila("536368", 17850, 5, 0.0, base),  # precio invalido
     ]
     return pl.DataFrame(filas)
 

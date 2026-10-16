@@ -1,4 +1,5 @@
 """Fixtures compartidos de los tests del proyecto segmentacion-clientes."""
+
 from __future__ import annotations
 
 from pathlib import Path

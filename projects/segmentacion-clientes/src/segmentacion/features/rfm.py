@@ -12,6 +12,7 @@ En la Unidad 2 la fecha de corte es `max(InvoiceDate) + 1 dia` (snapshot). La
 Unidad 3 reutiliza esta misma funcion con cortes anteriores a los que define en
 `SPEC_procesamiento_U3.md`, sin cambios de firma.
 """
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -30,7 +31,9 @@ def construir_rfm(ventas: Frame, fecha_corte: datetime) -> pl.DataFrame:
         v.group_by("Customer ID")
         .agg(
             ((pl.lit(fecha_corte) - pl.col("InvoiceDate").max()).dt.total_days()).alias("recencia"),
-            ((pl.lit(fecha_corte) - pl.col("InvoiceDate").min()).dt.total_days()).alias("antiguedad"),
+            ((pl.lit(fecha_corte) - pl.col("InvoiceDate").min()).dt.total_days()).alias(
+                "antiguedad"
+            ),
             pl.col("Invoice").n_unique().alias("frecuencia"),
             pl.col("Importe").sum().alias("monetario"),
             pl.col("StockCode").n_unique().alias("productos_distintos"),

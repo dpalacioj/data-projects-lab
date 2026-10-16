@@ -57,9 +57,9 @@ EXTENDED_NUMERIC_FEATURES = [
     "Recency",
     "Frequency",
     "Monetary",
-    "AvgTicket",          # ticket promedio por factura
-    "ProductDiversity",   # cantidad de productos distintos comprados
-    "AvgQuantity",        # cantidad promedio de items por factura
+    "AvgTicket",  # ticket promedio por factura
+    "ProductDiversity",  # cantidad de productos distintos comprados
+    "AvgQuantity",  # cantidad promedio de items por factura
 ]
 
 # Variables categóricas (si se incluye país, por ejemplo)

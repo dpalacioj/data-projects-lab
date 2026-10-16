@@ -12,6 +12,7 @@ Todas aceptan `pl.DataFrame` o `pl.LazyFrame`. `preparar_ventas` registra
 `n_antes/n_despues` por regla via `logging`; util en los cuadernos (02) y
 en los scripts (`figuras_u2.py`).
 """
+
 from __future__ import annotations
 
 import logging

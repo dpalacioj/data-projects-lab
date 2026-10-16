@@ -2,17 +2,19 @@
 
 Rapidos: 5 filas inventadas, una posterior al corte.
 """
+
 from __future__ import annotations
 
 from datetime import datetime
 
 import polars as pl
 import pytest
-
 from segmentacion.features.rfm import construir_rfm
 
 
-def _venta(cliente: int, invoice: str, qty: int, price: float, fecha: datetime, stock: str = "85123A") -> dict:
+def _venta(
+    cliente: int, invoice: str, qty: int, price: float, fecha: datetime, stock: str = "85123A"
+) -> dict:
     return {
         "Invoice": invoice,
         "StockCode": stock,
@@ -33,9 +35,9 @@ def ventas_inventadas() -> pl.DataFrame:
         [
             _venta(1001, "A1", 2, 10.0, datetime(2010, 1, 10), "ITEM-A"),  # dentro
             _venta(1001, "A2", 1, 20.0, datetime(2010, 3, 15), "ITEM-A"),  # dentro
-            _venta(1001, "A3", 3, 5.0, datetime(2010, 6, 1), "ITEM-B"),    # dentro
-            _venta(1002, "B1", 1, 15.0, datetime(2010, 2, 1), "ITEM-A"),   # dentro
-            _venta(1001, "A4", 10, 2.0, datetime(2010, 7, 1), "ITEM-A"),   # POSTERIOR al corte
+            _venta(1001, "A3", 3, 5.0, datetime(2010, 6, 1), "ITEM-B"),  # dentro
+            _venta(1002, "B1", 1, 15.0, datetime(2010, 2, 1), "ITEM-A"),  # dentro
+            _venta(1001, "A4", 10, 2.0, datetime(2010, 7, 1), "ITEM-A"),  # POSTERIOR al corte
         ]
     )
 

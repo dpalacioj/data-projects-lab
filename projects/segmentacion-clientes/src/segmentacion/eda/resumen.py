@@ -11,6 +11,7 @@ Funciones citadas por el OVA (seccion 2.2):
 Las funciones aceptan `pl.DataFrame` o `pl.LazyFrame`; donde la operacion es
 agregacion, se colecta al final.
 """
+
 from __future__ import annotations
 
 import polars as pl
@@ -56,7 +57,9 @@ def asociaciones(df: Frame, a: str, b: str) -> dict[str, float]:
     }
 
 
-def ventas_por_mes(df: Frame, col_fecha: str = "InvoiceDate", col_importe: str = "Importe") -> pl.DataFrame:
+def ventas_por_mes(
+    df: Frame, col_fecha: str = "InvoiceDate", col_importe: str = "Importe"
+) -> pl.DataFrame:
     """Agrega `col_importe` por mes truncando `col_fecha`."""
     return (
         _eager(df)
