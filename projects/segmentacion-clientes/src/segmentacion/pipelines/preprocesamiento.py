@@ -33,12 +33,19 @@ def construir_preprocesador(
     num_log: list[str] | None = None,
     num_std: list[str] | None = None,
     cat: list[str] | None = None,
+    incluir_prop_llm: bool = False,
 ) -> ColumnTransformer:
     """Devuelve el `ColumnTransformer` del caso de recompra.
 
     Los defaults son `NUM_LOG`, `NUM_STD`, `CAT`. Pasar listas distintas
     permite experimentar en el cuaderno 07 (ingenieria de caracteristicas)
     sin cambiar el contrato del modelo final.
+
+    Si `incluir_prop_llm=True`, se añade un bloque `prop` con las 12
+    columnas `prop_<categoria>` del modulo LLM (ver `features.texto_llm`)
+    como `passthrough` (ya estan acotadas en `[0, 1]`; no se escalan).
+    El cuaderno 08 usa este flag para comparar el bosque con y sin las
+    columnas del LLM; cuando esta en False, las cifras de §9 no cambian.
     """
     if num_log is None:
         num_log = NUM_LOG
@@ -47,24 +54,28 @@ def construir_preprocesador(
     if cat is None:
         cat = CAT
 
-    return ColumnTransformer(
-        [
-            (
-                "log",
-                Pipeline(
-                    [
-                        ("imp", SimpleImputer(strategy="median")),
-                        ("log", FunctionTransformer(np.log1p, feature_names_out="one-to-one")),
-                        ("sc", StandardScaler()),
-                    ]
-                ),
-                num_log,
+    bloques = [
+        (
+            "log",
+            Pipeline(
+                [
+                    ("imp", SimpleImputer(strategy="median")),
+                    ("log", FunctionTransformer(np.log1p, feature_names_out="one-to-one")),
+                    ("sc", StandardScaler()),
+                ]
             ),
-            (
-                "num",
-                Pipeline([("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]),
-                num_std,
-            ),
-            ("cat", OneHotEncoder(handle_unknown="ignore"), cat),
-        ]
-    )
+            num_log,
+        ),
+        (
+            "num",
+            Pipeline([("imp", SimpleImputer(strategy="median")), ("sc", StandardScaler())]),
+            num_std,
+        ),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), cat),
+    ]
+    if incluir_prop_llm:
+        from segmentacion.features.texto_llm import CATEGORIAS_LISTA
+
+        prop_cols = [f"prop_{c}" for c in CATEGORIAS_LISTA]
+        bloques.append(("prop", "passthrough", prop_cols))
+    return ColumnTransformer(bloques)
