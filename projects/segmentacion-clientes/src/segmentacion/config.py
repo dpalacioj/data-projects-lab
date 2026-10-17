@@ -8,6 +8,7 @@ Uso típico desde un notebook:
     from segmentacion.config import RAW_DATA_FILE, RFM_FEATURES, RANDOM_STATE
 """
 
+from datetime import datetime
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -66,9 +67,20 @@ EXTENDED_NUMERIC_FEATURES = [
 CATEGORICAL_FEATURES = ["CountryGroup"]
 
 # ---------------------------------------------------------------------------
-# Hiperparámetros y semillas
+# Unidad 3: cohortes de recompra en 90 dias
 # ---------------------------------------------------------------------------
-RANDOM_STATE = 42
+# Corte A (2011-06-01): se usa para construir cohortes de ENTRENAMIENTO y validacion
+# cruzada. Corte B (2011-09-01): se usa para la cohorte de PRUEBA (hold-out temporal).
+# El horizonte es la ventana en la que se mide la etiqueta de recompra tras el corte.
+FECHA_CORTE_A = datetime(2011, 6, 1)
+FECHA_CORTE_B = datetime(2011, 9, 1)
+HORIZONTE = 90
+SEMILLA = 42  # unica semilla del paquete; alias historico: RANDOM_STATE
+
+# ---------------------------------------------------------------------------
+# Hiperparámetros y semillas (U2 legacy)
+# ---------------------------------------------------------------------------
+RANDOM_STATE = SEMILLA
 
 # K-Means
 KMEANS_DEFAULT_K = 4
