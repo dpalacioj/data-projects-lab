@@ -251,18 +251,32 @@ Abrir los notebooks en orden: `00_objetivo_de_analisis` →
 `01_comprension_datos` → `02_limpieza` → `04_eda` →
 `03_variables_cliente` → `05_eda_automatizado`.
 
-Los cuadernos `legacy/05-08` siguen funcionando (solo cambian los
-`import` tras renombrar el paquete) pero están **en migración** a
-Unidad 3 — ver [`GUIA_LECTURA.md`](GUIA_LECTURA.md).
+### Notebooks (Unidad 3)
+
+El caso supervisado "recompra en 90 días" + ingeniería de pipelines sin
+fuga. Orden recomendado: **06 → 07 → (08) → 09 → 10**.
+
+- `06_particion_y_fuga`: cohortes A y B con `cohorte(ventas, cancelaciones, corte, horizonte=90)`; demostración de fuga temporal.
+- `07_ingenieria_caracteristicas`: anatomía del `ColumnTransformer`.
+- `08_llm_como_transformador` (opcional): categorización con LLM; `FakeLLM` por defecto. Ver `SPEC_llm_transformador.md`.
+- `09_modelos_y_pipelines`: tres modelos + regla; umbrales; importancia; curva de profundidad; `guardar()` el bosque en `models/recompra_v1/`.
+- `10_segmentacion_no_supervisada`: k-means + DBSCAN sobre el mismo preprocesador.
+
+Scripts asociados:
+
+```bash
+uv run python scripts/caso_recompra.py       # genera reports/{resultados.json, cohorte_A.parquet, cohorte_B.parquet}
+uv run python scripts/figuras_u3.py          # genera reports/figures/g_{fuga,sobreajuste,roc_pr,importancia}.png
+```
 
 ### Pruebas
 
 ```bash
-uv run pytest                                # rápido (test_limpieza, test_rfm)
-uv run pytest -m slow                        # cifras del OVA contra el parquet real
+uv run pytest                                # rápido (sin red, sin claves de API; incluye FakeLLM del módulo LLM)
+uv run pytest -m slow                        # cifras del OVA contra el parquet real (U2 §4 + U3 §9)
 ```
 
-### Scripts auxiliares
+### Scripts auxiliares (U2)
 
 ```bash
 uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/figures
@@ -271,16 +285,13 @@ uv run python scripts/perfil.py              # HTML en reports/perfil_muestra.ht
 
 ### Aplicación Streamlit
 
-Después de ejecutar al menos hasta el notebook
-`notebooks/legacy/06_clustering_kmeans.ipynb` (se reemplazará por el
-cuaderno 10 de U3):
-
 ```bash
 cd projects/segmentacion-clientes
 uv run streamlit run app/streamlit_app.py
 ```
 
-La app se abre en http://localhost:8501.
+La app se abre en http://localhost:8501. En U4 consumirá
+`models/recompra_v1/metadatos.json` (contrato con la ficha del modelo).
 
 ---
 

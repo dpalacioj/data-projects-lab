@@ -1,5 +1,19 @@
 # Tutorial: Técnicas de Preprocesamiento en Machine Learning
 
+> **Caso aplicado sobre Online Retail II (Unidad 3 del módulo Proyecto I):**
+> para ver estas técnicas en acción sobre un dataset real, ejecutados
+> dentro de un `ColumnTransformer` con prevención de fuga, revisa los
+> cuadernos del proyecto `segmentacion-clientes`:
+>
+> - [`07_ingenieria_caracteristicas.ipynb`](../projects/segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb)
+>   — qué aprende cada bloque del preprocesador (`NUM_LOG`, `NUM_STD`, `CAT`).
+> - [`09_modelos_y_pipelines.ipynb`](../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
+>   — pipeline completo (preprocesador + modelo) con validación cruzada,
+>   umbrales y serialización con `metadatos.json`.
+>
+> Este tutorial cubre la **teoría** de cada técnica; los cuadernos
+> muestran la aplicación sin repetir el código.
+
 ## Índice
 
 1. [Introducción](#introducción)
