@@ -1,0 +1,9 @@
+{
+  "WHITE HANGING HEART T-LIGHT HOLDER": "[{\"descripcion\": \"WHITE HANGING HEART T-LIGHT HOLDER\", \"categoria\": \"iluminacion\", \"confianza\": 0.95}]",
+  "REGENCY CAKESTAND 3 TIER": "[{\"descripcion\": \"REGENCY CAKESTAND 3 TIER\", \"categoria\": \"cocina\", \"confianza\": 0.92}]",
+  "JUMBO BAG RED RETROSPOT": "[{\"descripcion\": \"JUMBO BAG RED RETROSPOT\", \"categoria\": \"bolsas\", \"confianza\": 0.98}]",
+  "RECIPE BOX WITH METAL HEART": "[{\"descripcion\": \"RECIPE BOX WITH METAL HEART\", \"categoria\": \"cocina\", \"confianza\": 0.80}]",
+  "ETIQUETA_INEXISTENTE": "[{\"descripcion\": \"ETIQUETA_INEXISTENTE\", \"categoria\": \"inventada\", \"confianza\": 0.5}]",
+  "MALFORMED": "no es json valido",
+  "LOTE_COMPLETO": "[{\"descripcion\": \"WHITE HANGING HEART T-LIGHT HOLDER\", \"categoria\": \"iluminacion\", \"confianza\": 0.95}, {\"descripcion\": \"REGENCY CAKESTAND 3 TIER\", \"categoria\": \"cocina\", \"confianza\": 0.92}, {\"descripcion\": \"JUMBO BAG RED RETROSPOT\", \"categoria\": \"bolsas\", \"confianza\": 0.98}]"
+}
