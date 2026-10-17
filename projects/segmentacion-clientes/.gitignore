@@ -9,6 +9,7 @@ data/interim/*
 # Modelos entrenados (artefactos)
 models/*.pkl
 models/*.joblib
+models/**/*.joblib
 models/*.json
 !models/.gitkeep
 
