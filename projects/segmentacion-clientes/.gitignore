@@ -55,3 +55,6 @@ Thumbs.db
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Credenciales del cliente LLM (ver .env.example)
+.env

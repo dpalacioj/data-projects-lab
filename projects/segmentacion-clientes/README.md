@@ -283,6 +283,44 @@ uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/fi
 uv run python scripts/perfil.py              # HTML en reports/perfil_muestra.html
 ```
 
+### Uso de modelos de lenguaje (opcional, cuaderno 08)
+
+El módulo `features/texto_llm.py` categoriza las ~5 300 descripciones
+únicas de producto en 12 etiquetas cerradas. El cliente por defecto es
+`FakeLLM` (sin red, lee desde `tests/fixtures/respuestas_fake.json`),
+por lo que **todos los tests y el cuaderno 08 corren sin claves ni red**.
+
+Para ejecutar con un cliente real (DeepSeek, OpenAI, Groq, Ollama local,
+etc.), configura `.env` siguiendo [`.env.example`](.env.example):
+
+```bash
+LLM_BASE_URL=https://api.ejemplo.com/v1
+LLM_API_KEY=sk-...
+LLM_MODELO=nombre-del-modelo
+```
+
+y descomenta las dos líneas marcadas en el cuaderno 08. El cliente
+`cliente_openai_compatible` cubre cualquier endpoint con formato OpenAI;
+el repositorio **no nombra ningún proveedor** fuera de este bloque y de
+este README.
+
+**Qué se envía:** solo descripciones de producto (CC BY 4.0 de UCI).
+**Qué no se envía:** ningún dato del cliente, factura, fecha, etiqueta
+o cualquier variable sensible — por diseño (ver `test_sin_fuga` del
+módulo).
+
+**Costo de la última corrida** (completar tras ejecutar el flujo con
+cliente real):
+- Fecha: _(pendiente — primera corrida)_
+- Lotes: 107 (5 305 descripciones / 50 por lote).
+- Tokens aproximados: _(pendiente)_.
+- Tiempo: _(pendiente)_.
+
+**Reproducción sin red:** la caché versionada
+`data/interim/categorias_llm.parquet` (una vez poblada) hace que una
+segunda ejecución no invoque al cliente. Para forzar un recálculo,
+borrar la caché.
+
 ### Aplicación Streamlit
 
 ```bash
