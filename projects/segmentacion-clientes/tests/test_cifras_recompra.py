@@ -127,13 +127,13 @@ def resultados_modelos(xy_cohortes):
 
 
 def test_regresion_logistica_cv_auc(resultados_modelos):
-    r = resultados_modelos["Regresion logistica"]
+    r = resultados_modelos["Regresión logística"]
     assert abs(r["cv_auc"] - 0.817) < 1e-3
     assert abs(r["cv_auc_sd"] - 0.013) < 1e-3
 
 
 def test_regresion_logistica_test_B(resultados_modelos):
-    r = resultados_modelos["Regresion logistica"]["test"]
+    r = resultados_modelos["Regresión logística"]["test"]
     assert abs(r["auc"] - 0.795) < 1e-3
     assert abs(r["ap"] - 0.758) < 1e-3
     assert abs(r["precision"] - 0.801) < 1e-3
@@ -142,13 +142,13 @@ def test_regresion_logistica_test_B(resultados_modelos):
 
 
 def test_arbol_cv_auc(resultados_modelos):
-    r = resultados_modelos["Arbol de decision"]
+    r = resultados_modelos["Árbol de decisión"]
     assert abs(r["cv_auc"] - 0.800) < 1e-3
     assert abs(r["cv_auc_sd"] - 0.015) < 1e-3
 
 
 def test_arbol_test_B(resultados_modelos):
-    r = resultados_modelos["Arbol de decision"]["test"]
+    r = resultados_modelos["Árbol de decisión"]["test"]
     assert abs(r["auc"] - 0.780) < 1e-3
     assert abs(r["ap"] - 0.723) < 1e-3
     assert abs(r["precision"] - 0.764) < 1e-3

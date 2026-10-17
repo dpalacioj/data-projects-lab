@@ -33,8 +33,8 @@ def dataset_minimo():
 
 def test_modelos_contiene_las_tres_familias_del_ova():
     assert set(MODELOS.keys()) == {
-        "Regresion logistica",
-        "Arbol de decision",
+        "Regresión logística",
+        "Árbol de decisión",
         "Bosque aleatorio",
     }
 
@@ -42,7 +42,7 @@ def test_modelos_contiene_las_tres_familias_del_ova():
 def test_entrenar_devuelve_las_cuatro_metricas_cv(dataset_minimo):
     X, y = dataset_minimo
     cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
-    pipe = Pipeline([("pre", construir_preprocesador()), ("mod", MODELOS["Regresion logistica"])])
+    pipe = Pipeline([("pre", construir_preprocesador()), ("mod", MODELOS["Regresión logística"])])
     out = entrenar(pipe, X, y, cv=cv)
     assert set(out.keys()) == {"cv_auc", "cv_auc_sd", "cv_ap", "cv_f1"}
     assert 0.0 <= out["cv_auc"] <= 1.0

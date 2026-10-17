@@ -24,8 +24,8 @@ from sklearn.tree import DecisionTreeClassifier
 from segmentacion.config import SEMILLA
 
 MODELOS: dict[str, Any] = {
-    "Regresion logistica": LogisticRegression(max_iter=1000, random_state=SEMILLA),
-    "Arbol de decision": DecisionTreeClassifier(max_depth=4, random_state=SEMILLA),
+    "Regresión logística": LogisticRegression(max_iter=1000, random_state=SEMILLA),
+    "Árbol de decisión": DecisionTreeClassifier(max_depth=4, random_state=SEMILLA),
     "Bosque aleatorio": RandomForestClassifier(
         n_estimators=300,
         min_samples_leaf=5,
