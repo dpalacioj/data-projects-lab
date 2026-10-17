@@ -1,463 +1,224 @@
-# Métricas de Machine Learning: Regresión vs Clasificación
+# Tutorial 05: Métricas de regresión y clasificación
 
-## Introducción
+> Reescrito desde **fuentes primarias**:
+> - Hastie, Tibshirani, Friedman (2009). *The Elements of Statistical Learning*, 2nd ed. (capítulos 2, 7 y 9).
+> - Scikit-learn user guide, sección [3.4 Metrics and scoring](https://scikit-learn.org/stable/modules/model_evaluation.html).
+> - Davis, Goadrich (2006). *The Relationship Between Precision-Recall and ROC Curves*. ICML.
+>
+> Todas las figuras son **propias**, generadas desde el caso de recompra
+> del proyecto `segmentacion-clientes` (`scripts/figuras_u3.py`).
 
-En Machine Learning, las **métricas** son herramientas que nos ayudan a medir qué tan bien está funcionando nuestro modelo. Imagina que son como las calificaciones en la escuela: nos dicen si vamos bien o si necesitamos estudiar más.
+## Índice
 
-Pero aquí está lo interesante: **no todas las métricas sirven para todo**. Dependiendo del tipo de problema que estemos resolviendo, usamos diferentes métricas.
-
-## ¿Qué es Regresión y qué es Clasificación?
-
-Antes de hablar de métricas, entendamos la diferencia fundamental:
-
-### Regresión
-**Predecimos un número continuo** (puede tomar cualquier valor en un rango)
-
-**Ejemplos:**
-- Predecir el precio de una casa: $250,000, $300,500, $425,750...
-- Predecir la temperatura: 15.5°C, 22.3°C, 18.1°C...
-- Predecir el precio de un automóvil: $18,500, $45,200...
-- Predecir las ventas del próximo mes: $152,350
-
-### Clasificación
-**Predecimos una categoría o clase** (opciones limitadas y discretas)
-
-**Ejemplos:**
-- Predecir si un correo es spam o no spam (2 clases)
-- Predecir el tipo de flor: rosa, tulipán, girasol (3 clases)
-- Predecir si un cliente comprará: sí o no (2 clases)
-- Predecir el sentimiento: positivo, neutral, negativo (3 clases)
-
-```mermaid
-graph TD
-    A[Problema de ML] --> B{¿Qué predecimos?}
-    B -->|Un número| C[REGRESIÓN]
-    B -->|Una categoría| D[CLASIFICACIÓN]
-
-    C --> E[Ejemplos:<br/>- Precio: $25,500<br/>- Temperatura: 18.5°C<br/>- Edad: 32 años]
-    D --> F[Ejemplos:<br/>- Spam: Sí/No<br/>- Color: Rojo/Azul/Verde<br/>- Calidad: Buena/Mala]
-```
-
-## Métricas de Regresión
-
-Cuando predecimos números, queremos saber: **¿Qué tan cerca estamos del valor real?**
-
-### 1. MAE (Mean Absolute Error - Error Absoluto Medio)
-
-**¿Qué es?**
-El promedio de las diferencias (en valor absoluto) entre lo que predijimos y el valor real.
-
-**Fórmula simple:**
-```
-MAE = Promedio(|Predicción - Valor Real|)
-```
-
-**Ejemplo:**
-Imagina que predices precios de casas:
-
-| Casa | Precio Real | Predicción | Error |
-|------|-------------|------------|-------|
-| 1    | $300,000    | $310,000   | $10,000 |
-| 2    | $250,000    | $240,000   | $10,000 |
-| 3    | $400,000    | $420,000   | $20,000 |
-
-```
-MAE = (10,000 + 10,000 + 20,000) / 3 = $13,333
-```
-
-**Interpretación:**
-"En promedio, mis predicciones se equivocan por $13,333"
-
-**¿Cuándo usarlo?**
-- Cuando quieres una métrica fácil de entender
-- Cuando todos los errores tienen la misma importancia
-- Cuando quieres reportar a gente no técnica
-
-**Ventajas:**
-- Fácil de interpretar (está en las mismas unidades que tu variable)
-- No es muy sensible a valores extremos (outliers)
-
-**Desventajas:**
-- No penaliza más los errores grandes
+1. [Por qué medimos](#por-qué-medimos)
+2. [Métricas de regresión](#métricas-de-regresión)
+3. [Métricas de clasificación](#métricas-de-clasificación)
+4. [Precisión vs. Recall: la decisión del umbral](#precisión-vs-recall-la-decisión-del-umbral)
+5. [AUC y Precisión Media](#auc-y-precisión-media)
+6. [Sobreajuste y la curva de validación](#sobreajuste-y-la-curva-de-validación)
+7. [Qué métrica usar y cuándo](#qué-métrica-usar-y-cuándo)
+8. [Caso aplicado: recompra en 90 días](#caso-aplicado-recompra-en-90-días)
 
 ---
 
-### 2. MSE (Mean Squared Error - Error Cuadrático Medio)
+## Por qué medimos
 
-**¿Qué es?**
-El promedio de las diferencias al cuadrado entre predicción y valor real.
+Un modelo de ML produce predicciones. **Las métricas son el puente entre
+las predicciones y la decisión de negocio.** Antes de escribir código,
+hay que acordar con quien va a actuar sobre esas predicciones:
 
-**Fórmula simple:**
-```
-MSE = Promedio((Predicción - Valor Real)²)
-```
+- ¿Qué cuesta un **falso positivo**? ¿Y un **falso negativo**?
+- ¿Buscamos predecir **un valor numérico** (regresión) o una **clase**
+  (clasificación)?
+- ¿Queremos predecir **sí/no** o **una probabilidad**?
 
-**Usando el mismo ejemplo:**
+Un modelo con "accuracy 95 %" sin esa conversación de negocio detrás es
+un número aislado. Las métricas son útiles cuando se vinculan a una
+decisión concreta.
 
-| Casa | Precio Real | Predicción | Error | Error² |
-|------|-------------|------------|-------|--------|
-| 1    | $300,000    | $310,000   | $10,000 | 100,000,000 |
-| 2    | $250,000    | $240,000   | $10,000 | 100,000,000 |
-| 3    | $400,000    | $420,000   | $20,000 | 400,000,000 |
+## Métricas de regresión
 
-```
-MSE = (100,000,000 + 100,000,000 + 400,000,000) / 3 = 200,000,000
-```
+Dado un vector real `y` y una predicción `ŷ`:
 
-**¿Por qué elevar al cuadrado?**
-Porque penaliza más los errores grandes. Un error de $20,000 pesa 4 veces más que un error de $10,000 (20² vs 10²).
+| Métrica | Fórmula | Interpretación | Robustez a outliers |
+|---|---|---|---|
+| **MAE** (Mean Absolute Error) | `mean(|y − ŷ|)` | Error medio en las unidades originales. | Alta — penaliza linealmente. |
+| **MSE** (Mean Squared Error) | `mean((y − ŷ)²)` | Error cuadrático; penaliza desviaciones grandes. | Baja — los outliers dominan. |
+| **RMSE** | `√MSE` | Mismas unidades que `y`. | Baja — hereda la de MSE. |
+| **R²** (coeficiente de determinación) | `1 − SS_res / SS_tot` | Fracción de la varianza explicada; **negativo** si el modelo es peor que la media. | Depende de la escala de `y`. |
 
-**Desventajas:**
-- Difícil de interpretar (las unidades están al cuadrado: dólares²)
-- Muy sensible a outliers
+**Hastie et al. (2009), §7.2** justifican el MSE como la función de
+pérdida natural bajo el supuesto de ruido gaussiano. En producción, el
+MAE suele ser más interpretable para el negocio ("el modelo se
+equivoca en promedio ±X unidades"), mientras que el RMSE pesa más los
+errores grandes.
 
----
+### Cuándo elegir cada una
 
-### 3. RMSE (Root Mean Squared Error - Raíz del Error Cuadrático Medio)
+- **MAE**: cuando los errores tienen el mismo costo en todas las
+  magnitudes (p.ej. pronóstico de ventas en unidades físicas).
+- **RMSE / MSE**: cuando los errores grandes son desproporcionadamente
+  costosos (p.ej. estimación de precios en inmuebles).
+- **R²**: para comparar modelos entre sí sobre el **mismo** dataset.
+  No compara datasets distintos.
 
-**¿Qué es?**
-La raíz cuadrada del MSE. Esto lo devuelve a las unidades originales.
+## Métricas de clasificación
 
-**Fórmula simple:**
-```
-RMSE = √(MSE)
-```
+Para clasificación binaria, todo nace de la **matriz de confusión**:
 
-**Usando el ejemplo:**
-```
-RMSE = √(200,000,000) = $14,142
-```
+|  | Predicho positivo | Predicho negativo |
+|---|---|---|
+| **Positivo real** | TP (verdadero positivo) | FN (falso negativo) |
+| **Negativo real** | FP (falso positivo) | TN (verdadero negativo) |
 
-**Interpretación:**
-"En promedio, mis predicciones se equivocan por unos $14,142"
+Las métricas derivadas:
 
-**¿Cuándo usarlo?**
-- Es la métrica más común en regresión
-- Cuando quieres penalizar más los errores grandes
-- Cuando necesitas una métrica diferenciable (para optimización)
+| Métrica | Fórmula | Lectura |
+|---|---|---|
+| **Accuracy** | `(TP + TN) / total` | ¿Qué fracción está bien? Engaña con clases desbalanceadas. |
+| **Precision** | `TP / (TP + FP)` | De los que señaló el modelo, ¿cuántos acertó? |
+| **Recall / Sensibilidad** | `TP / (TP + FN)` | De los positivos reales, ¿cuántos encontró? |
+| **F1** | `2·P·R / (P + R)` | Media armónica de P y R; penaliza desequilibrios. |
+| **Especificidad** | `TN / (TN + FP)` | De los negativos reales, ¿cuántos encontró? |
 
-**Ventajas:**
-- Penaliza más los errores grandes
-- Está en las mismas unidades que tu variable
-- Muy usada, fácil de comparar con otros modelos
+### El riesgo de la *accuracy* en datasets desbalanceados
 
-**Desventajas:**
-- Sensible a outliers (un error gigante puede disparar el RMSE)
+Si el 95 % de los casos son negativos, un modelo que predice **siempre
+negativo** tiene accuracy 95 %. Es **inútil** para detectar positivos.
+En U3 del módulo (caso recompra, §9 de la spec), la clase mayoritaria
+en la cohorte B tiene accuracy **0,573**: ese es el "mínimo honesto"
+que cualquier modelo debe superar.
 
----
+## Precisión vs. Recall: la decisión del umbral
 
-### 4. R² (Coeficiente de Determinación)
+Un clasificador probabilístico produce `p ∈ [0, 1]`. La decisión
+"positivo si `p ≥ umbral`" convierte probabilidades en decisiones. El
+umbral **no** es una propiedad del modelo: es una decisión de negocio.
 
-**¿Qué es?**
-Mide qué porcentaje de la variabilidad de los datos es explicado por tu modelo.
+- **Umbral alto (p.ej. 0,7)**: pocas predicciones positivas, pero muy
+  seguras. **Alta precisión**, bajo recall.
+- **Umbral bajo (p.ej. 0,2)**: muchas predicciones positivas; se cae
+  más veces, pero no se escapa casi ningún positivo real. **Alto
+  recall**, baja precisión.
 
-**Rango de valores:**
-- R² = 1.0 (100%): Modelo perfecto, explica toda la variabilidad
-- R² = 0.5 (50%): Modelo explica la mitad de la variabilidad
-- R² = 0.0 (0%): Modelo no mejor que predecir siempre el promedio
-- R² < 0: Modelo peor que predecir siempre el promedio (¡muy malo!)
+Es un trade-off puro: cualquier mejora en precisión suele venir con una
+caída en recall, y viceversa.
 
-**Ejemplo visual:**
+### Analogía
 
-```mermaid
-graph LR
-    A[R² = 0.95<br/>Excelente] --> B[R² = 0.80<br/>Muy bueno]
-    B --> C[R² = 0.60<br/>Aceptable]
-    C --> D[R² = 0.40<br/>Malo]
-    D --> E[R² < 0<br/>Terrible]
+Imagina un radar de pesca:
 
-    style A fill:#2ecc71
-    style B fill:#27ae60
-    style C fill:#f39c12
-    style D fill:#e67e22
-    style E fill:#c0392b
-```
+- **Alta precisión + bajo recall**: solo lanza la red cuando está muy
+  seguro de que hay peces. Pierde algunas oportunidades, pero no gasta
+  esfuerzo en vano.
+- **Alto recall + baja precisión**: lanza la red cada vez que
+  "sospecha". Captura más peces en total, pero muchas veces no pesca
+  nada.
 
-**Interpretación:**
-- R² = 0.85 → "Mi modelo explica el 85% de la variabilidad en los precios"
-- R² = 0.60 → "Mi modelo explica el 60% de la variabilidad"
+Depende del costo del esfuerzo (precisión alta) vs. el costo de perder
+peces (recall alto).
 
-**¿Cuándo usarlo?**
-- Cuando quieres saber qué tan bueno es tu modelo en general
-- Para comparar modelos (mayor R² es mejor)
-- Para reportar resultados (es fácil de entender)
+## AUC y Precisión Media
 
-**Ventajas:**
-- Independiente de la escala (sirve para comparar cualquier problema)
-- Muy intuitivo (es un porcentaje)
+Dos métricas que **integran sobre todos los umbrales**:
 
-**Desventajas:**
-- No te dice la magnitud del error (puedes tener R²=0.95 pero errores grandes si tu variable tiene mucho rango)
+- **AUC (Area Under the ROC Curve)**: probabilidad de que el modelo
+  dé una probabilidad más alta a un positivo que a un negativo elegido
+  al azar. Independiente del umbral. 0,5 = azar; 1 = perfecto.
+- **AP (Average Precision)**: área bajo la curva precisión-recall. Más
+  informativa que AUC cuando la clase positiva es minoritaria (Davis
+  & Goadrich, 2006).
 
----
+> La figura `g_roc_pr.png` del proyecto `segmentacion-clientes`
+> (generada por `scripts/figuras_u3.py`) muestra ambas curvas con las
+> marcas de umbral `0,3` y `0,5`.
 
-## Métricas de Clasificación
+![ROC y PR](../projects/segmentacion-clientes/reports/figures/g_roc_pr.png)
 
-Cuando predecimos categorías, queremos saber: **¿Qué tan seguido acertamos la clase correcta?**
+### Qué métrica elegir
 
-### Matriz de Confusión
+- **Clases balanceadas**: AUC es apropiada.
+- **Clase positiva rara**: AP mide mejor la utilidad de un ranking. Un
+  modelo con AUC alta y AP baja todavía ranquea mejor el ruido que lo
+  interesante.
 
-Antes de entender las métricas, necesitamos entender la **matriz de confusión**. Es una tabla que muestra nuestros aciertos y errores.
+## Sobreajuste y la curva de validación
 
-**Ejemplo: Detector de Spam**
+Un modelo que memoriza el conjunto de entrenamiento parece excelente
+sobre esos datos, pero falla al generalizar. **Hastie et al. (2009),
+§7.4** describen la relación entre complejidad del modelo y error de
+test como una curva en forma de U.
 
-|                | Predijo: NO SPAM | Predijo: SPAM |
-|----------------|------------------|---------------|
-| **Real: NO SPAM** | 85 (TN)       | 5 (FP)        |
-| **Real: SPAM**    | 10 (FN)       | 100 (TP)      |
+> La figura `g_sobreajuste.png` lo muestra sobre el caso de recompra:
+> AUC(A) crece monótonamente con la profundidad del árbol (de 0,696 a
+> 1,000); AUC(B) crece al principio y **cae** después de profundidad 4.
 
-**Términos:**
-- **TP (True Positive)**: Predijimos SPAM y era SPAM ✓ (100 correos)
-- **TN (True Negative)**: Predijimos NO SPAM y no era SPAM ✓ (85 correos)
-- **FP (False Positive)**: Predijimos SPAM pero NO era SPAM ✗ (5 correos) - ERROR TIPO 1
-- **FN (False Negative)**: Predijimos NO SPAM pero SÍ era SPAM ✗ (10 correos) - ERROR TIPO 2
+![Sobreajuste](../projects/segmentacion-clientes/reports/figures/g_sobreajuste.png)
 
-```mermaid
-graph TD
-    A[Matriz de Confusión] --> B[Verdaderos Positivos TP<br/>Predijo Spam y SÍ era Spam]
-    A --> C[Verdaderos Negativos TN<br/>Predijo No-Spam y NO era Spam]
-    A --> D[Falsos Positivos FP<br/>Predijo Spam pero NO era Spam<br/>Error Tipo 1]
-    A --> E[Falsos Negativos FN<br/>Predijo No-Spam pero SÍ era Spam<br/>Error Tipo 2]
+### Cómo detectarlo
 
-    style B fill:#2ecc71
-    style C fill:#2ecc71
-    style D fill:#e74c3c
-    style E fill:#e74c3c
-```
+- Comparar AUC/accuracy del **train** vs. **test**: si la diferencia
+  crece con la complejidad, el modelo está memorizando.
+- Usar **validación cruzada**: si CV AUC ≈ test AUC, no hay fuga
+  temporal ni sobreajuste severo.
+- Fuga de datos: el modelo que incluye `recencia_fuga` (variable que
+  usa información posterior al corte) salta de AUC(B) = 0,795 a 0,955.
+  Un salto así de grande sin cambio de arquitectura es casi siempre
+  fuga, no mejora real.
 
----
+![Fuga](../projects/segmentacion-clientes/reports/figures/g_fuga.png)
 
-### 1. Accuracy (Exactitud)
+## Qué métrica usar y cuándo
 
-**¿Qué es?**
-El porcentaje de predicciones correctas sobre el total.
+| Problema | Métrica principal | Métricas secundarias |
+|---|---|---|
+| Regresión balanceada | **RMSE** | MAE, R² |
+| Regresión con outliers | **MAE** | RMSE, quantile loss |
+| Clasificación balanceada | **AUC** | Accuracy, F1 |
+| Clasificación con clase rara | **AP** | Recall @ umbral fijo, F1 |
+| Operación crítica con costo asimétrico | **Precisión** o **Recall** según costo | F1, tabla de umbrales |
 
-**Fórmula:**
-```
-Accuracy = (TP + TN) / (TP + TN + FP + FN)
-```
+### Antes de elegir, hazte estas tres preguntas
 
-**Usando el ejemplo del spam:**
-```
-Accuracy = (100 + 85) / (100 + 85 + 5 + 10)
-         = 185 / 200
-         = 0.925 = 92.5%
-```
+1. **¿Qué cuesta cada tipo de error?** FP y FN rara vez cuestan lo mismo.
+2. **¿Qué le vas a reportar al negocio?** Si no entienden la métrica,
+   no la van a usar para decidir. MAE suele ser más intuitiva que RMSE.
+3. **¿Cuál es el baseline?** El modelo debe superar un baseline simple
+   (clase mayoritaria, regla de dominio) **y** por un margen que
+   justifique su mantenimiento.
 
-**Interpretación:**
-"Acierto el 92.5% de las veces"
+## Caso aplicado: recompra en 90 días
 
-**¿Cuándo usarlo?**
-- Cuando las clases están balanceadas (similar cantidad de cada clase)
-- Cuando todos los errores son igual de costosos
+El proyecto `segmentacion-clientes` tiene un caso supervisado completo
+donde todas estas métricas se calculan de verdad:
 
-**⚠️ CUIDADO: El Problema de las Clases Desbalanceadas**
+- **Pregunta de negocio**: ¿este cliente volverá a comprar en los
+  próximos 90 días?
+- **Datos**: Online Retail II (UCI 502), 2 años de transacciones.
+- **Modelos**: regresión logística, árbol de profundidad 4, bosque de
+  300 árboles.
+- **Línea base**: regla "quien compró hace menos de 90 días comprará
+  otra vez". Accuracy 0,706, precisión 0,681, recall 0,585, F1 0,629.
+- **Mejor modelo**: regresión logística, AUC(B) = 0,795. Supera a la
+  regla en AUC, no por mucho en F1 — es el equilibrio honesto.
 
-Imagina que tienes 95 correos legítimos y 5 spam. Si tu modelo predice SIEMPRE "no spam", tendrías:
-```
-Accuracy = 95/100 = 95%
-```
+Flujo completo en los cuadernos:
 
-¡95% de accuracy pero no detecta NINGÚN spam! Por eso el accuracy puede engañar.
+- [`06_particion_y_fuga.ipynb`](../projects/segmentacion-clientes/notebooks/06_particion_y_fuga.ipynb)
+  — cómo construir cohortes sin fuga.
+- [`09_modelos_y_pipelines.ipynb`](../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
+  — las métricas aplicadas con pipelines reproducibles y curva de
+  profundidad; importancias del bosque:
 
----
-
-### 2. Precision (Precisión)
-
-**¿Qué es?**
-De todos los que predijimos como positivos, ¿cuántos realmente lo eran?
-
-**Pregunta que responde:**
-"Cuando digo que algo es spam, ¿qué tan seguido tengo razón?"
-
-**Fórmula:**
-```
-Precision = TP / (TP + FP)
-```
-
-**Ejemplo:**
-```
-Precision = 100 / (100 + 5) = 0.952 = 95.2%
-```
-
-**Interpretación:**
-"Cuando marco un correo como spam, tengo razón el 95.2% de las veces"
-
-**¿Cuándo es importante?**
-- Cuando los falsos positivos son costosos
-- Ejemplo: Detectar fraude (no quieres bloquear clientes legítimos)
-- Ejemplo: Diagnóstico médico (no quieres decir que alguien está enfermo si no lo está)
+![Importancia](../projects/segmentacion-clientes/reports/figures/g_importancia.png)
 
 ---
 
-### 3. Recall (Sensibilidad / Exhaustividad)
+## Para ir más allá
 
-**¿Qué es?**
-De todos los positivos reales, ¿cuántos detectamos?
-
-**Pregunta que responde:**
-"De todos los correos spam que existen, ¿cuántos logré detectar?"
-
-**Fórmula:**
-```
-Recall = TP / (TP + FN)
-```
-
-**Ejemplo:**
-```
-Recall = 100 / (100 + 10) = 0.909 = 90.9%
-```
-
-**Interpretación:**
-"Logro detectar el 90.9% de los correos spam que existen"
-
-**¿Cuándo es importante?**
-- Cuando los falsos negativos son costosos
-- Ejemplo: Detectar cáncer (no quieres dejar pasar un caso positivo)
-- Ejemplo: Detectar fraude (mejor revisar de más que dejar pasar uno)
-
----
-
-### 4. F1-Score
-
-**¿Qué es?**
-El balance entre Precision y Recall. Es la media armónica de ambos.
-
-**Fórmula:**
-```
-F1 = 2 × (Precision × Recall) / (Precision + Recall)
-```
-
-**Ejemplo:**
-```
-F1 = 2 × (0.952 × 0.909) / (0.952 + 0.909)
-   = 2 × 0.865 / 1.861
-   = 0.930 = 93.0%
-```
-
-**¿Cuándo usarlo?**
-- Cuando quieres un balance entre Precision y Recall
-- Cuando las clases están desbalanceadas
-- Cuando tanto los falsos positivos como los falsos negativos son importantes
-
----
-
-## Comparación Visual: Precision vs Recall
-
-Imagina que estás pescando:
-
-```mermaid
-graph TD
-    A[Piscina con 10 peces rojos] --> B{Tu red captura}
-    B --> C[8 peces rojos<br/>2 peces azules]
-
-    C --> D[Precision = 8/10 = 80%<br/>De lo que pescaste,<br/>80% era lo que buscabas]
-
-    A --> E[Recall = 8/10 = 80%<br/>De los 10 peces rojos,<br/>capturaste 8 80%]
-
-    style D fill:#3498db
-    style E fill:#e74c3c
-```
-
-- **Alta Precision, Bajo Recall**: Pescas pocos peces, pero casi todos son los correctos
-- **Bajo Precision, Alto Recall**: Pescas muchos peces, pero varios no son los que buscas
-- **Balance (F1-Score alto)**: Pescas muchos de los correctos y pocos incorrectos
-
----
-
-## Tabla Resumen: ¿Qué Métrica Usar Cuándo?
-
-### Regresión
-
-| Métrica | Cuándo Usarla | Ejemplo |
-|---------|---------------|---------|
-| **MAE** | Cuando todos los errores importan igual | Predecir ventas (un error de $1000 es el doble de malo que uno de $500) |
-| **RMSE** | Cuando quieres penalizar más los errores grandes | Predecir precios de casas (un error de $100k es mucho peor que uno de $10k) |
-| **R²** | Para evaluar qué tan bueno es tu modelo en general | Comparar si Modelo A (R²=0.85) es mejor que Modelo B (R²=0.70) |
-
-### Clasificación
-
-| Métrica | Cuándo Usarla | Ejemplo |
-|---------|---------------|---------|
-| **Accuracy** | Cuando las clases están balanceadas | Predecir si una moneda es cara o cruz (50%-50%) |
-| **Precision** | Cuando los falsos positivos son costosos | Detectar fraude (no bloquear clientes legítimos) |
-| **Recall** | Cuando los falsos negativos son costosos | Detectar enfermedades (no queremos dejar pasar ningún caso) |
-| **F1-Score** | Cuando quieres un balance entre precision y recall | Clasificar emails como spam (balance entre no molestar usuarios y detectar spam) |
-
----
-
-## Ejemplo Completo: Proyecto de Predicción de Precios de Automóviles
-
-En nuestro proyecto de automóviles, estamos haciendo **REGRESIÓN** (predecimos un precio numérico).
-
-### Métricas que usamos:
-
-**1. RMSE = $1,309**
-- "En promedio, nuestras predicciones se equivocan por unos $1,309"
-- Si el rango de precios es $1,000 - $80,000, este error es pequeño
-
-**2. MAE = $632**
-- "En promedio, nuestras predicciones se alejan $632 del precio real"
-- Más fácil de interpretar que RMSE
-
-**3. R² = 0.95**
-- "Nuestro modelo explica el 95% de la variabilidad en los precios"
-- ¡Excelente! Significa que el modelo captura muy bien los patrones
-
-### ¿Por qué NO usamos Accuracy, Precision, Recall?
-
-Porque esas métricas son para **clasificación** (predecir categorías).
-
-Si quisiéramos convertir esto en clasificación, tendríamos que hacer algo como:
-- "Económico" (<$10,000)
-- "Medio" ($10,000-$30,000)
-- "Costoso" (>$30,000)
-
-Pero perderíamos información valiosa (la diferencia entre $10,000 y $9,999 no es tan grande como para cambiar de categoría).
-
----
-
-## Ejercicio de Reflexión
-
-**Pregunta:** ¿Qué métricas usarías en estos casos?
-
-1. **Predecir si un estudiante aprobará o reprobará un examen**
-   - Tipo: Clasificación
-   - Métricas sugeridas: Accuracy (si hay similar cantidad de aprobados y reprobados), Recall si es importante detectar a todos los que podrían reprobar
-
-2. **Predecir la temperatura máxima del próximo día**
-   - Tipo: Regresión
-   - Métricas sugeridas: MAE (fácil de entender: "nos equivocamos por 2°C en promedio"), RMSE
-
-3. **Detectar transacciones fraudulentas (1% de las transacciones son fraude)**
-   - Tipo: Clasificación con clases muy desbalanceadas
-   - Métricas sugeridas: Precision (no queremos bloquear transacciones legítimas), Recall (no queremos dejar pasar fraudes), F1-Score
-
-4. **Predecir cuántos clientes visitarán tu tienda mañana**
-   - Tipo: Regresión
-   - Métricas sugeridas: MAE, RMSE, R²
-
----
-
-## Conclusión
-
-La elección de métricas depende de:
-
-1. **Tipo de problema**
-   - Regresión → RMSE, MAE, R²
-   - Clasificación → Accuracy, Precision, Recall, F1-Score
-
-2. **Balance de clases**
-   - Balanceado → Accuracy está bien
-   - Desbalanceado → Precision, Recall, F1-Score
-
-3. **Costo de los errores**
-   - Falsos positivos costosos → Alta Precision
-   - Falsos negativos costosos → Alto Recall
-   - Ambos importantes → F1-Score
-
-4. **Interpretabilidad**
-   - Para audiencia no técnica → MAE, R², Accuracy
-   - Para audiencia técnica → RMSE, F1-Score
-
-**Recuerda:** No hay una métrica perfecta. A menudo reportamos varias métricas para tener una visión completa del desempeño del modelo.
+- **Hastie et al. (2009)** §7.10 — selección de modelos y validación
+  cruzada.
+- **Scikit-learn metrics guide** — glosario completo de métricas con
+  ejemplos ejecutables.
+- **Davis & Goadrich (2006)** — por qué PR puede ser más informativa
+  que ROC para clases desbalanceadas.
