@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Instalar Python 3.11
+        run: uv python install 3.11
+
+      - name: Sincronizar dependencias
+        run: uv sync --extra segmentacion-clientes --extra dev
+
+      - name: Diagnostico (smoke)
+        run: python3 scripts/smoke_test.py
+
+      - name: Lint
+        run: uv run ruff check projects/segmentacion-clientes/
+
+      - name: Tests rapidos
+        run: uv run pytest -m "not slow"

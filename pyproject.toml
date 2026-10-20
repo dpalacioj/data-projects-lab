@@ -89,8 +89,6 @@ dev = [
     "ruff>=0.1.0",
     "mypy>=1.0.0",
     "ipython>=8.0.0",
-    "pre-commit>=3.6.0",
-    "nbstripout>=0.7.0",
 ]
 
 # Instalación completa
@@ -149,7 +147,7 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["projects/segmentacion-clientes/tests"]
+testpaths = ["tests", "projects/segmentacion-clientes/tests"]
 pythonpath = ["projects/segmentacion-clientes/src"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
