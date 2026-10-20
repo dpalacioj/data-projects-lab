@@ -1,5 +1,8 @@
 # Interfaz unica de comandos del repositorio.
 # `make` sin argumentos muestra esta ayuda.
+#
+# Si este archivo te parece denso (que son @, .PHONY, $(MAKEFILE_LIST)...),
+# lee tutorials/02c-el-makefile-del-curso.md: explica cada linea.
 
 .DEFAULT_GOAL := help
 .PHONY: help setup setup-caso smoke test lint clean
