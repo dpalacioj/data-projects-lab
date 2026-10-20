@@ -1,0 +1,180 @@
+{
+ "cohorte_A": {
+  "n": 4933,
+  "pos": 1621,
+  "tasa": 32.9
+ },
+ "cohorte_B": {
+  "n": 5249,
+  "pos": 2241,
+  "tasa": 42.7
+ },
+ "modelos": {
+  "Regresión logística": {
+   "cv_auc": 0.817,
+   "cv_auc_sd": 0.013,
+   "cv_ap": 0.718,
+   "cv_f1": 0.612,
+   "test_auc": 0.795,
+   "test_ap": 0.758,
+   "test_acc": 0.717,
+   "test_prec": 0.801,
+   "test_rec": 0.448,
+   "test_f1": 0.574
+  },
+  "Árbol de decisión": {
+   "cv_auc": 0.8,
+   "cv_auc_sd": 0.015,
+   "cv_ap": 0.668,
+   "cv_f1": 0.6,
+   "test_auc": 0.78,
+   "test_ap": 0.723,
+   "test_acc": 0.717,
+   "test_prec": 0.764,
+   "test_rec": 0.487,
+   "test_f1": 0.595
+  },
+  "Bosque aleatorio": {
+   "cv_auc": 0.816,
+   "cv_auc_sd": 0.01,
+   "cv_ap": 0.72,
+   "cv_f1": 0.614,
+   "test_auc": 0.785,
+   "test_ap": 0.755,
+   "test_acc": 0.717,
+   "test_prec": 0.799,
+   "test_rec": 0.451,
+   "test_f1": 0.577
+  }
+ },
+ "regla": {
+  "acc": 0.706,
+  "prec": 0.681,
+  "rec": 0.585,
+  "f1": 0.629
+ },
+ "fuga_recencia": {
+  "cv_auc": 0.881,
+  "test_auc": 0.955
+ },
+ "fuga_escalado": {
+  "media_recencia_todo": 186.9,
+  "media_recencia_train": 168.7
+ },
+ "umbrales": {
+  "0.3": {
+   "prec": 0.69,
+   "rec": 0.641,
+   "f1": 0.664,
+   "n_pos": 2082
+  },
+  "0.4": {
+   "prec": 0.753,
+   "rec": 0.555,
+   "f1": 0.639,
+   "n_pos": 1651
+  },
+  "0.5": {
+   "prec": 0.799,
+   "rec": 0.451,
+   "f1": 0.577,
+   "n_pos": 1265
+  },
+  "0.6": {
+   "prec": 0.858,
+   "rec": 0.343,
+   "f1": 0.49,
+   "n_pos": 896
+  }
+ },
+ "importancia": [
+  [
+   "num__recencia",
+   0.251
+  ],
+  [
+   "log__monetario",
+   0.218
+  ],
+  [
+   "log__frecuencia",
+   0.197
+  ],
+  [
+   "log__productos_distintos",
+   0.147
+  ],
+  [
+   "num__antiguedad",
+   0.122
+  ],
+  [
+   "num__tasa_devolucion",
+   0.058
+  ],
+  [
+   "cat__pais_otro",
+   0.003
+  ],
+  [
+   "cat__pais_UK",
+   0.003
+  ]
+ ],
+ "curva_profundidad": [
+  [
+   1,
+   0.696,
+   0.676
+  ],
+  [
+   2,
+   0.774,
+   0.745
+  ],
+  [
+   3,
+   0.806,
+   0.769
+  ],
+  [
+   4,
+   0.821,
+   0.78
+  ],
+  [
+   6,
+   0.848,
+   0.768
+  ],
+  [
+   8,
+   0.886,
+   0.744
+  ],
+  [
+   12,
+   0.964,
+   0.7
+  ],
+  [
+   null,
+   1.0,
+   0.656
+  ]
+ ],
+ "cm_rf": [
+  [
+   2754,
+   254
+  ],
+  [
+   1230,
+   1011
+  ]
+ ],
+ "cortes": {
+  "A": "2011-06-01",
+  "B": "2011-09-01"
+ }
+}
