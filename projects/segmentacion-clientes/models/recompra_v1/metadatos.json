@@ -1,0 +1,27 @@
+{
+  "fecha_corte": "2011-06-01",
+  "horizonte": 90,
+  "variables_en_orden": [
+    "monetario",
+    "frecuencia",
+    "productos_distintos",
+    "recencia",
+    "antiguedad",
+    "tasa_devolucion",
+    "pais"
+  ],
+  "semilla": 42,
+  "versiones": {
+    "python": "3.11",
+    "polars": "2.0",
+    "sklearn": "1.9.1"
+  },
+  "datos": {
+    "ruta": "data/raw/online_retail_II.parquet",
+    "hash": "6994df0411eca9ef"
+  },
+  "auc_validacion": 0.816,
+  "umbral_acordado": 0.3,
+  "fecha": "2026-10-16",
+  "autor": "David Palacio (U3)"
+}

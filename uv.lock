@@ -896,6 +896,7 @@ segmentacion-clientes = [
     { name = "plotly" },
     { name = "polars" },
     { name = "pyarrow" },
+    { name = "pydantic" },
     { name = "skimpy" },
     { name = "streamlit" },
 ]
@@ -943,6 +944,7 @@ requires-dist = [
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=3.6.0" },
     { name = "pyarrow", marker = "extra == 'segmentacion-clientes'", specifier = ">=14.0.0" },
     { name = "pydantic", marker = "extra == 'meli'", specifier = ">=1.8.0" },
+    { name = "pydantic", marker = "extra == 'segmentacion-clientes'", specifier = ">=2.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },

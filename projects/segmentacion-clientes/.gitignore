@@ -9,6 +9,7 @@ data/interim/*
 # Modelos entrenados (artefactos)
 models/*.pkl
 models/*.joblib
+models/**/*.joblib
 models/*.json
 !models/.gitkeep
 
@@ -54,3 +55,6 @@ Thumbs.db
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Credenciales del cliente LLM (ver .env.example)
+.env
