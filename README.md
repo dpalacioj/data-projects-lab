@@ -29,9 +29,14 @@ La carpeta **[`projects/`](./projects/)** contiene implementaciones end-to-end d
 
 #### Proyectos Disponibles:
 
-- **[🚢 Titanic - Predicción de Supervivencia](./projects/titanic/):** Proyecto completo de clasificación con AutoML, interpretabilidad y deployment en Streamlit
+- **[🚢 Titanic — Predicción de Supervivencia](./projects/titanic/):** Clasificación con AutoML, interpretabilidad y deployment en Streamlit.
+- **[🛒 Clasificador Meli](./projects/clasificador-meli/):** Clasificación de calidad de publicaciones de MercadoLibre con `pydantic` y `xgboost`.
+- **[🚗 Regresión Precios de Automóviles](./projects/prediccion-precios-automoviles/):** Regresión con MLOps (MLflow, Gradio, FastAPI) sobre precios de vehículos usados.
+- **[🎯 Segmentación de Clientes](./projects/segmentacion-clientes/):** Clustering no supervisado (K-Means y DBSCAN) sobre Online Retail II. Recurso de la **Unidad 2** del módulo Proyecto I (RAE1.1); todo el flujo de limpieza y EDA está en **Polars 2.x**.
 
-*Más proyectos en desarrollo...*
+Hay además varios ejercicios y mini-proyectos en `projects/`
+(`ejercicio-preprocesamiento`, `promociones_usuarios`, `temporal-split`,
+`threholds-example`) usados como material de clase.
 
 ## 🛠️ Tecnologías Utilizadas
 

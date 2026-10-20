@@ -15,7 +15,14 @@ models/*.json
 # Reportes generados
 reports/figures/*.png
 reports/figures/*.html
+reports/*.html
 !reports/figures/.gitkeep
+!reports/.gitkeep
+
+# Datos adicionales (zips de UCI y xlsx de descarga)
+data/raw/*.xlsx
+data/raw/*.zip
+data/raw/*.parquet
 
 # Notebooks
 .ipynb_checkpoints/

@@ -13,7 +13,7 @@ requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.1.0",
     "numpy>=1.26.0",
-    "scikit-learn>=1.3.0,<1.6.0",
+    "scikit-learn>=1.9",
     "matplotlib>=3.8.0",
     "seaborn>=0.13.0",
     "jupyter>=1.0.0",
@@ -53,6 +53,10 @@ segmentacion-clientes = [
     "openpyxl>=3.1.0",
     "joblib>=1.3.0",
     "pyarrow>=14.0.0",
+    "polars>=2.0",
+    "fastexcel>=0.11",
+    "skimpy>=0.0.15",
+    "fg-data-profiling>=0.1",
 ]
 
 # Extras temáticos
@@ -81,10 +85,11 @@ web = [
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
-    "black>=23.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
     "ipython>=8.0.0",
+    "pre-commit>=3.6.0",
+    "nbstripout>=0.7.0",
 ]
 
 # Instalación completa
@@ -107,25 +112,34 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 bypass-selection = true
 
-[tool.black]
-line-length = 100
-target-version = ['py311']
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.venv
-  | _build
-  | build
-  | dist
-)/
-'''
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-select = ["E", "F", "I", "N", "W"]
+# Ruff en esta spec cubre el paquete, cuadernos, scripts y tests de la Unidad 2;
+# el resto de proyectos tiene lint pre-existente que se saneara en otra tanda.
+extend-exclude = [
+    "projects/titanic",
+    "projects/clasificador-meli",
+    "projects/prediccion-precios-automoviles",
+    "projects/ejercicio-preprocesamiento",
+    "projects/promociones_usuarios",
+    "projects/temporal-split",
+    "projects/threholds-example",
+    "tutorials",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+# E501: line length ya la controla el formatter. Las reglas N* (naming) chocan
+# con convenciones de sklearn (`X`, `X_2d`), constantes de dominio
+# (`DBSCAN_PARAMS`) y nombres descriptivos de tests que referencian la factura
+# "C"; no las imponemos.
 ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# scripts de referencia tienen matplotlib.use("Agg") antes de los imports.
+"projects/segmentacion-clientes/scripts/caso_recompra.py" = ["E402"]
+"projects/segmentacion-clientes/scripts/figuras_u3.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -134,7 +148,11 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["projects/segmentacion-clientes/tests"]
+pythonpath = ["projects/segmentacion-clientes/src"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
-addopts = "-v --cov=src --cov-report=term-missing"
+addopts = "-v"
+markers = [
+    "slow: cifras del OVA de la Unidad 2 verificadas contra el parquet real (requiere data/raw/online_retail_II.parquet)",
+]

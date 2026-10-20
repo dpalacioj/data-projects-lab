@@ -23,18 +23,19 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-# Permitir importar src/ aunque streamlit ejecute desde una raíz diferente
+# Permitir importar el paquete segmentacion aunque streamlit ejecute desde otra raiz
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
-from src.config import (  # noqa: E402
+from segmentacion.config import (  # noqa: E402
     EXTENDED_NUMERIC_FEATURES,
     FEATURES_DATA_FILE,
 )
-from src.features.preprocessing import build_preprocessing_pipeline  # noqa: E402
-from src.models.clustering import evaluate_clustering, fit_dbscan, fit_kmeans  # noqa: E402
-from src.models.profiling import build_segment_profiles, label_segments  # noqa: E402
+from segmentacion.features.preprocessing import build_preprocessing_pipeline  # noqa: E402
+from segmentacion.models.clustering import evaluate_clustering, fit_dbscan, fit_kmeans  # noqa: E402
+from segmentacion.models.profiling import build_segment_profiles, label_segments  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Configuración de página
@@ -278,8 +279,7 @@ elif section == "📊 Perfiles y acciones":
 
     if "last_labels" not in st.session_state:
         st.warning(
-            "Primero ejecuta un modelo en la sección **🤖 Clustering** "
-            "para ver el perfilamiento."
+            "Primero ejecuta un modelo en la sección **🤖 Clustering** para ver el perfilamiento."
         )
         st.stop()
 
@@ -292,11 +292,7 @@ elif section == "📊 Perfiles y acciones":
 
     # Tabla resumen
     st.markdown("### Tabla resumen")
-    cols_to_show = (
-        ["n_customers", "share", "segment_name"]
-        + EXTENDED_NUMERIC_FEATURES
-        + ["action"]
-    )
+    cols_to_show = ["n_customers", "share", "segment_name"] + EXTENDED_NUMERIC_FEATURES + ["action"]
     st.dataframe(profiles[cols_to_show], use_container_width=True)
 
     # Gráficos comparativos por feature
@@ -314,7 +310,9 @@ elif section == "📊 Perfiles y acciones":
     # Recomendaciones por cluster
     st.markdown("### Acciones de marketing recomendadas")
     for cluster_id, row in profiles.iterrows():
-        with st.expander(f"Cluster {cluster_id} · {row['segment_name']} · {int(row['n_customers'])} clientes"):
+        with st.expander(
+            f"Cluster {cluster_id} · {row['segment_name']} · {int(row['n_customers'])} clientes"
+        ):
             st.markdown(f"**Acción recomendada:** {row['action']}")
             st.markdown(
                 f"- Recency promedio: **{row['Recency']:.0f}** días\n"
