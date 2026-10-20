@@ -1,0 +1,5 @@
+# Este tutorial es un "monta el ambiente desde cero".
+# El estudiante genera su propio lockfile y su propio .venv.
+# No los versionamos para que la comparacion sea honesta.
+.venv/
+uv.lock

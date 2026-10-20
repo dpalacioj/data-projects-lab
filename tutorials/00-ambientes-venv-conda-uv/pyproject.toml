@@ -1,0 +1,20 @@
+[project]
+name = "knn-tutorial"
+version = "0.1.0"
+description = "Tutorial: el mismo notebook de KNN con tres gestores de ambientes."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "jupyterlab>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# No se publica como paquete, es un tutorial.
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
