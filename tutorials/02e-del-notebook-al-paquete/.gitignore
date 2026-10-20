@@ -1,0 +1,10 @@
+# Si el estudiante instala el paquete en modo editable, estos pueden aparecer.
+paquete/.venv/
+paquete/*.egg-info/
+paquete/dist/
+paquete/build/
+__pycache__/
+.pytest_cache/
+
+# Parquet generado por el notebook al ejecutar la celda de setup.
+ventas.parquet
