@@ -23,6 +23,26 @@ Explora la carpeta **[`tutorials/`](./tutorials/)** para acceder a todos los tut
 
 > 💡 Los tutoriales se actualizan regularmente. Revisa la carpeta `tutorials/` para ver todo el contenido disponible.
 
+### 📅 Sesiones del módulo
+
+La carpeta **[`sesiones/`](./sesiones/)** contiene las **guías del instructor**
+para el módulo Proyecto I (Especialización en Ciencia de Datos e IA, UdeM).
+Cada sesión tiene su propio guión (`README.md`), material teórico y práctico
+por tema (`.md`), taller (`taller.md`), troubleshooting y checklist del día.
+
+**No duplican código**: cada sesión apunta a los proyectos y tutoriales. Mapa
+rápido:
+
+| Sesión | Unidad | Estado |
+|---|---|---|
+| [S01 · Objetivo de análisis y CRISP-DM](./sesiones/s01-objetivo-crisp-dm/) | U1 | 🟡 placeholder |
+| [S02 · Exploración de datos con Polars](./sesiones/s02-exploracion-polars/) | U2 | 🟢 completa |
+| [S03 · Procesamiento, pipelines, modelos y LLM](./sesiones/s03-procesamiento-sklearn/) | U3 | 🟢 completa |
+| [S04 · Aplicación y MLOps](./sesiones/s04-app-mlops/) | U4 | 🟡 placeholder |
+
+Convenciones del repositorio en
+[`sesiones/_templates/CONVENCIONES.md`](./sesiones/_templates/CONVENCIONES.md).
+
 ### 🚀 Proyectos Completos
 
 La carpeta **[`projects/`](./projects/)** contiene implementaciones end-to-end de proyectos de Machine Learning. Cada proyecto tiene su propio README con instrucciones detalladas.
