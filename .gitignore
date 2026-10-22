@@ -43,6 +43,7 @@ Thumbs.db
 # Datos grandes
 *.xlsx
 data/large/
+*.csv
 
 # Configuración local
 .env
