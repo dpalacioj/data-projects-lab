@@ -45,6 +45,12 @@ Thumbs.db
 data/large/
 *.csv
 
+# Datasets descargados por torchvision (FashionMNIST, MNIST, CIFAR...)
+projects/04-reconocimiento-imagenes/data/
+
+# Modelos entrenados grandes del proyecto CNN
+projects/04-reconocimiento-imagenes/models/*.pth
+
 # Configuración local
 .env
 .env.local
@@ -54,6 +60,9 @@ data/large/
 .coverage
 htmlcov/
 *.cover
+
+# Linters
+.ruff_cache/
 
 # MyPy
 .mypy_cache/
