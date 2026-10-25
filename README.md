@@ -60,7 +60,20 @@ cd data-projects-lab
 python3 scripts/smoke_test.py
 ```
 
-Si sale en rojo, cada `FAIL` trae el comando que lo arregla. No te asustes.
+**Si `python3` no te funciona**, no estás haciendo nada mal: el nombre del
+intérprete depende de cómo instalaste Python. Prueba en este orden hasta
+que uno responda:
+
+- `python3 --version` (lo común en macOS y Linux)
+- `python --version` (algunos Linux, y Windows con la casilla "Add Python to PATH" marcada)
+- `py --version` (Windows con el instalador oficial)
+
+Usa el que te funcione en todos los comandos del README. Si ninguno
+responde, Python no está instalado y debes instalarlo primero
+(descarga en [python.org](https://www.python.org/downloads/)).
+
+Si `smoke_test.py` sale en rojo, cada `FAIL` trae el comando que lo
+arregla. No te asustes.
 
 ### Instalar la base del curso
 
@@ -89,9 +102,10 @@ En este orden. No es un calendario, es la secuencia que tiene sentido.
 
 1. Este README hasta el final (estás aquí).
 2. [`tutorials/00-ambientes-venv-conda-uv/`](tutorials/00-ambientes-venv-conda-uv/) — por qué `uv` y no otro gestor.
-3. [`tutorials/01-git-flujo-de-trabajo.md`](tutorials/01-git-flujo-de-trabajo.md) — clonar, rama, commit, PR, CI.
-4. [`sesiones/s01-objetivo-crisp-dm/README.md`](sesiones/s01-objetivo-crisp-dm/README.md) — el encuadre del curso: CRISP-DM y dónde se practica cada fase.
-5. [`sesiones/README.md`](sesiones/README.md) — mapa de las sesiones de clase.
+3. [`tutorials/01-git-flujo-de-trabajo.md`](tutorials/01-git-flujo-de-trabajo.md) — clonar, rama, commit, PR, CI (visión general).
+4. [`tutorials/01b-tu-primer-ci.md`](tutorials/01b-tu-primer-ci.md) — hands-on: construye tu propio repo con CI desde cero. Teoría de qué es, por qué, y práctica paso a paso con diagramas. Es el que más dudas quita.
+5. [`sesiones/s01-objetivo-crisp-dm/README.md`](sesiones/s01-objetivo-crisp-dm/README.md) — el encuadre del curso: CRISP-DM y dónde se practica cada fase.
+6. [`sesiones/README.md`](sesiones/README.md) — mapa de las sesiones de clase.
 
 De ahí en adelante, cada sesión te lleva a los tutoriales y proyectos
 que necesite.
@@ -212,7 +226,13 @@ Si falla en CI pero pasa en tu laptop, casi siempre es un archivo que
 olvidaste commitear. El tutorial de git lo explica con detalle en su
 [Paso 6](tutorials/01-git-flujo-de-trabajo.md#paso-6--qué-pasa-cuando-abres-el-pr).
 
-No tienes que configurar CI. Ya está.
+**Para entender CI de verdad**, no basta con usar el de este repo. Haz
+el [tutorial 01b](tutorials/01b-tu-primer-ci.md): construyes tu propio
+repo con CI desde cero, con teoría, diagramas y 12 pasos prácticos. Al
+terminar vas a saber qué significa cada línea del `ci.yml` y qué pasa
+exactamente cuando abres un PR.
+
+No tienes que configurar el CI de este repo. Ya está.
 
 ---
 
@@ -227,7 +247,6 @@ No tienes que configurar CI. Ya está.
 | `scripts/` | Herramientas sueltas. Hoy solo `smoke_test.py` |
 | `datasets/` | Datasets de proyectos legacy. Los del caso guía no se versionan |
 | `imagenes/` | Figuras usadas en tutoriales |
-| `instructor/` | Notas privadas del docente (no las ve el estudiante) |
 
 En la raíz: `pyproject.toml` y `uv.lock` declaran y fijan dependencias;
 `Makefile` es la lista de comandos (`make` sin argumentos los muestra).
@@ -262,8 +281,3 @@ mantienen la base ligera.
 ## Licencia
 
 MIT. Ver [`LICENSE`](LICENSE).
-
----
-
-Hecho con dolor de cabeza y café por **David Palacio Jiménez**
-(`david.palacio@unosquare.com`) para la Universidad de Medellín.
