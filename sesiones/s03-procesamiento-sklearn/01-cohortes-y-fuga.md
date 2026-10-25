@@ -167,12 +167,12 @@ garantiza por construcción que el scaler nunca ve B.
 
 ## Si falla
 
-- «Mis conteos no coinciden con 4 933 / 5 249»: ver [`troubleshooting.md`](troubleshooting.md)
+- «Mis conteos no coinciden con 4 933 / 5 249»: ver [`07-troubleshooting.md`](07-troubleshooting.md)
   §«Cifras del §9 no coinciden».
 - «Me da fuga sin usar `recencia_fuga`»: alguien debe estar usando
   `train_test_split` dentro del pipeline; busca en el cuaderno.
 
 ## Siguiente
 
-- Próximo tema: [`pipelines-sin-fuga.md`](pipelines-sin-fuga.md).
+- Próximo tema: [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md).
 - Cuaderno asociado: [`06_particion_y_fuga.ipynb`](../../projects/00-segmentacion-clientes/notebooks/06_particion_y_fuga.ipynb).

@@ -134,7 +134,7 @@ construir_preprocesador(incluir_prop_llm=True)
 Añade un bloque `prop` con las 12 columnas `prop_<cat>` que produce
 `features.texto_llm.proporcion_gasto_por_categoria`. Son proporciones
 en [0, 1] y pasan como `passthrough` (no se escalan). Ver
-[`llm-transformador.md`](llm-transformador.md).
+[`05-llm-transformador.md`](05-llm-transformador.md).
 
 **Default** = `False`. Las cifras del §9 se calculan sin las 12
 columnas; incluirlas requiere la caché del LLM poblada.
@@ -151,11 +151,11 @@ columnas; incluirlas requiere la caché del LLM poblada.
 ## Si falla
 
 - «El scaler aprende la media de A ∪ B»: el `fit` no estaba dentro de
-  `Pipeline`. Ver [`troubleshooting.md`](troubleshooting.md).
+  `Pipeline`. Ver [`07-troubleshooting.md`](07-troubleshooting.md).
 - «OHE da `ValueError: Found unknown categories`»: olvidaste
   `handle_unknown="ignore"`.
 
 ## Siguiente
 
-- Próximo tema: [`modelos-y-umbral.md`](modelos-y-umbral.md).
+- Próximo tema: [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md).
 - Cuaderno asociado: [`07_ingenieria_caracteristicas.ipynb`](../../projects/00-segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb).

@@ -139,14 +139,14 @@ fuga del cuaderno 06.
 ## Si falla
 
 - «Mi perfil HTML da `ModuleNotFoundError: fg_data_profiling`»: el
-  paquete se importa como `data_profiling`. Ver [`troubleshooting.md`](troubleshooting.md).
+  paquete se importa como `data_profiling`. Ver [`07-troubleshooting.md`](07-troubleshooting.md).
 - «La correlación Spearman no coincide con el spec»: verifica que
   trabajas sobre las 779 425 filas válidas (post-`preparar_ventas`),
   no sobre el crudo.
 
 ## Siguiente
 
-- Taller: [`taller.md`](taller.md).
+- Taller: [`06-taller.md`](06-taller.md).
 - Cuadernos asociados: [`04_eda.ipynb`](../../projects/00-segmentacion-clientes/notebooks/04_eda.ipynb),
   [`03_variables_cliente.ipynb`](../../projects/00-segmentacion-clientes/notebooks/03_variables_cliente.ipynb),
   [`05_eda_automatizado.ipynb`](../../projects/00-segmentacion-clientes/notebooks/05_eda_automatizado.ipynb).

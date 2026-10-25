@@ -13,7 +13,7 @@ que organiza esta sesión es:
 
 ## 0. Para antes de clase
 
-- [ ] Revisar [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
+- [ ] Revisar [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
 - [ ] `uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py`
       (verifica el hash SHA-256 del zip de UCI 502).
@@ -44,11 +44,11 @@ Al terminar la sesión el estudiante puede:
 | Bloque | Duración | Contenido | Documento |
 |---|---|---|---|
 | **El problema** | 10 min | Tres cifras contradictorias del mismo dataset según cómo se cargó | este README §3 |
-| **A — CRISP-DM fase 1** | 20 min | Objetivo de análisis + criterios de éxito | [`crisp-dm-fase1.md`](crisp-dm-fase1.md) |
-| **B — Polars y por qué** | 30 min | Lectura con esquema, cuándo pandas | [`polars-vs-pandas.md`](polars-vs-pandas.md) · [`esquema-al-leer.md`](esquema-al-leer.md) |
-| **C — Las 5 reglas** | 60 min | `preparar_ventas` + HALLAZGOS como contrato | [`limpieza-5-reglas.md`](limpieza-5-reglas.md) |
-| **D — EDA manual vs automatizado** | 60 min | Tukey, correlaciones, skim, fg-profiling | [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md) |
-| **Taller** | 60 min | Aplicar a un dataset propio del estudiante | [`taller.md`](taller.md) |
+| **A — CRISP-DM fase 1** | 20 min | Objetivo de análisis + criterios de éxito | [`01-crisp-dm-fase1.md`](01-crisp-dm-fase1.md) |
+| **B — Polars y por qué** | 30 min | Lectura con esquema, cuándo pandas | [`02-polars-vs-pandas.md`](02-polars-vs-pandas.md) · [`03-esquema-al-leer.md`](03-esquema-al-leer.md) |
+| **C — Las 5 reglas** | 60 min | `preparar_ventas` + HALLAZGOS como contrato | [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md) |
+| **D — EDA manual vs automatizado** | 60 min | Tukey, correlaciones, skim, fg-profiling | [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md) |
+| **Taller** | 60 min | Aplicar a un dataset propio del estudiante | [`06-taller.md`](06-taller.md) |
 
 ## 3. El problema (antes de las herramientas)
 
@@ -76,14 +76,14 @@ Estas tres preguntas motivan los tres bloques siguientes.
 
 ## 4. Materiales y artefactos
 
-- [`crisp-dm-fase1.md`](crisp-dm-fase1.md) — ficha de objetivo (Tabla 2 del OVA).
-- [`polars-vs-pandas.md`](polars-vs-pandas.md) — cuándo cada uno.
-- [`esquema-al-leer.md`](esquema-al-leer.md) — `schema_overrides` y por qué.
-- [`limpieza-5-reglas.md`](limpieza-5-reglas.md) — las 5 funciones + HALLAZGOS.
-- [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md) — Tukey, correlaciones, skim, profiling.
-- [`taller.md`](taller.md) — aplicación a dataset propio.
-- [`troubleshooting.md`](troubleshooting.md) — errores reales que vimos.
-- [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md) — 15 minutos antes.
+- [`01-crisp-dm-fase1.md`](01-crisp-dm-fase1.md) — ficha de objetivo (Tabla 2 del OVA).
+- [`02-polars-vs-pandas.md`](02-polars-vs-pandas.md) — cuándo cada uno.
+- [`03-esquema-al-leer.md`](03-esquema-al-leer.md) — `schema_overrides` y por qué.
+- [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md) — las 5 funciones + HALLAZGOS.
+- [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md) — Tukey, correlaciones, skim, profiling.
+- [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
+- [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales que vimos.
+- [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md) — 15 minutos antes.
 
 **Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `00_objetivo_de_analisis`, `01_comprension_datos`, `02_limpieza`,
@@ -108,26 +108,26 @@ uv run jupyter lab notebooks/
 Orden recomendado de los cuadernos:
 `00 → 01 → 02 → 04 → 03 → 05`.
 
-> Windows: ver [`troubleshooting.md`](troubleshooting.md) sección
+> Windows: ver [`07-troubleshooting.md`](07-troubleshooting.md) sección
 > «ExecutionPolicy antes del primer script».
 
 ## 6. Autoverificación (sin spoiler)
 
 1. ¿Por qué `pl.read_excel(..., schema_overrides={"Invoice": pl.Utf8})`
    es la **lección** del cuaderno 01 y no un detalle?
-   _(ver [`esquema-al-leer.md`](esquema-al-leer.md) §1.)_
+   _(ver [`03-esquema-al-leer.md`](03-esquema-al-leer.md) §1.)_
 2. ¿Qué comprueba `tests/test_cifras_referencia.py` y qué garantiza
    que esté marcado `slow`?
-   _(ver [`limpieza-5-reglas.md`](limpieza-5-reglas.md) §4.)_
+   _(ver [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md) §4.)_
 3. ¿Cuál es la diferencia entre `recencia`, `recencia_fuga` y por qué
    `construir_rfm` **no** incluye la segunda?
-   _(ver [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md) §5.)_
+   _(ver [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md) §5.)_
 4. Si el perfil HTML (`fg-data-profiling`) muestra una correlación
    Pearson distinta a la que calculaste a mano, ¿cuál crees?
-   _(ver [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md) §3.)_
+   _(ver [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md) §3.)_
 5. ¿Qué fila de `HALLAZGOS.md` **no** se materializa en U2 sino en U3,
    y por qué?
-   _(ver [`limpieza-5-reglas.md`](limpieza-5-reglas.md) §5.)_
+   _(ver [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md) §5.)_
 
 ## 7. Alternativas con criterio (fecha de referencia: 2026-10-19)
 
@@ -150,7 +150,7 @@ Orden recomendado de los cuadernos:
 
 ## 9. Cierre y puente
 
-- **Tarea:** terminar el taller ([`taller.md`](taller.md)) y actualizar
+- **Tarea:** terminar el taller ([`06-taller.md`](06-taller.md)) y actualizar
   `HALLAZGOS.md` del dataset elegido.
 - **Puente a S03:** _«Las correlaciones que calculamos describen el
   pasado. ¿Qué pasa si el pasado incluye información del futuro — y no

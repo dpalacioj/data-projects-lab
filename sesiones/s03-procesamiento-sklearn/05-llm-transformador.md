@@ -212,7 +212,7 @@ regla y, luego, al LLM.
 ## Si falla
 
 - `ModuleNotFoundError: fg_data_profiling`: se importa como
-  `data_profiling`. Ver [`troubleshooting.md`](troubleshooting.md).
+  `data_profiling`. Ver [`07-troubleshooting.md`](07-troubleshooting.md).
 - «Mi cliente real da `401`»: la variable `LLM_API_KEY` no está
   definida en el entorno activo. Verifica con `env | grep LLM_`.
 - «La caché no se usa en la segunda ejecución»: puede ser que el
@@ -221,5 +221,5 @@ regla y, luego, al LLM.
 
 ## Siguiente
 
-- [`taller.md`](taller.md).
+- [`06-taller.md`](06-taller.md).
 - Cuaderno asociado: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb).

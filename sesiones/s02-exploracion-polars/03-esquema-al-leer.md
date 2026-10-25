@@ -99,5 +99,5 @@ esquema no se aplicó. Si da otro número, el archivo cambió (ver §Si falla).
 
 ## Siguiente
 
-- Próximo tema: [`limpieza-5-reglas.md`](limpieza-5-reglas.md).
+- Próximo tema: [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md).
 - Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/00-segmentacion-clientes/notebooks/01_comprension_datos.ipynb).

@@ -81,10 +81,10 @@ derivable del artefacto `models/recompra_v1/metadatos.json`, la fila
 ## Si falla
 
 El estudiante no sabe cómo escribir el criterio de negocio:
-→ [`troubleshooting.md`](troubleshooting.md) §«Mi criterio de negocio
+→ [`07-troubleshooting.md`](07-troubleshooting.md) §«Mi criterio de negocio
 no se puede medir».
 
 ## Siguiente
 
-- Próximo tema: [`polars-vs-pandas.md`](polars-vs-pandas.md).
+- Próximo tema: [`02-polars-vs-pandas.md`](02-polars-vs-pandas.md).
 - Cuaderno asociado: [`00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).

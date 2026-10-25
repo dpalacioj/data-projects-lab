@@ -48,11 +48,11 @@ distinto (CNN sobre Fashion-MNIST).
 
 | Fase CRISP-DM | Dónde se trabaja | Material |
 |---|---|---|
-| **1. Negocio** | Discusión guiada en S02 + taller individual | [`s02-exploracion-polars/crisp-dm-fase1.md`](../s02-exploracion-polars/crisp-dm-fase1.md) · [`segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb) |
+| **1. Negocio** | Discusión guiada en S02 + taller individual | [`s02-exploracion-polars/01-crisp-dm-fase1.md`](../s02-exploracion-polars/01-crisp-dm-fase1.md) · [`segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb) |
 | **2. Datos** | S02 completa | [`s02-exploracion-polars/`](../s02-exploracion-polars/) · notebooks 01-05 del caso guía |
-| **3. Preparación** | S03 (parte 1) | [`s03-procesamiento-sklearn/pipelines-sin-fuga.md`](../s03-procesamiento-sklearn/pipelines-sin-fuga.md) · notebooks 06-07 del caso guía |
-| **4. Modelado** | S03 (parte 2) | [`s03-procesamiento-sklearn/modelos-y-umbral.md`](../s03-procesamiento-sklearn/modelos-y-umbral.md) · notebooks 08-10 del caso guía |
-| **5. Evaluación** | S03 (cierre) + taller | [`s03-procesamiento-sklearn/taller.md`](../s03-procesamiento-sklearn/taller.md) |
+| **3. Preparación** | S03 (parte 1) | [`s03-procesamiento-sklearn/02-pipelines-sin-fuga.md`](../s03-procesamiento-sklearn/02-pipelines-sin-fuga.md) · notebooks 06-07 del caso guía |
+| **4. Modelado** | S03 (parte 2) | [`s03-procesamiento-sklearn/03-modelos-y-umbral.md`](../s03-procesamiento-sklearn/03-modelos-y-umbral.md) · notebooks 08-10 del caso guía |
+| **5. Evaluación** | S03 (cierre) + taller | [`s03-procesamiento-sklearn/06-taller.md`](../s03-procesamiento-sklearn/06-taller.md) |
 | **6. Entrega** | Proyecto CNN (notebook → modular → Streamlit → FastAPI) | [`projects/04-reconocimiento-imagenes/`](../../projects/04-reconocimiento-imagenes/) |
 
 > **Nota.** No hay sesión aparte "S01 de 4 horas sobre CRISP-DM". La
@@ -65,7 +65,7 @@ distinto (CNN sobre Fashion-MNIST).
 ## Los seis campos de la fase 1 (los que hay que llenar antes de abrir Jupyter)
 
 Esta es la operacionalización de la fase 1 que el curso usa. Ver detalle
-en [`crisp-dm-fase1.md`](../s02-exploracion-polars/crisp-dm-fase1.md).
+en [`crisp-dm-fase1.md`](../s02-exploracion-polars/01-crisp-dm-fase1.md).
 
 1. **Problema de negocio** (dos líneas, en lenguaje del dueño del proceso).
 2. **Pregunta de negocio** (en voz del área que la hará).

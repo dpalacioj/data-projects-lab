@@ -169,6 +169,6 @@ Cinco pruebas:
 
 ## Siguiente
 
-- Próximo tema: [`llm-transformador.md`](llm-transformador.md) (opcional).
-- Si saltas el LLM: [`taller.md`](taller.md).
+- Próximo tema: [`05-llm-transformador.md`](05-llm-transformador.md) (opcional).
+- Si saltas el LLM: [`06-taller.md`](06-taller.md).
 - Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).

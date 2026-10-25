@@ -132,7 +132,7 @@ Vive en el parquet `cancelaciones.parquet` y espera a U3.
 
 ## Si falla
 
-- «Mi secuencia no da 779 425»: ver [`troubleshooting.md`](troubleshooting.md)
+- «Mi secuencia no da 779 425»: ver [`07-troubleshooting.md`](07-troubleshooting.md)
   §«Las cifras no coinciden con la spec».
 - «`preparar_ventas` no loggea»: el `uv run` necesita `--extra dev`
   para pytest, pero el logger funciona sin dev. Si no sale, revisa
@@ -140,5 +140,5 @@ Vive en el parquet `cancelaciones.parquet` y espera a U3.
 
 ## Siguiente
 
-- Próximo tema: [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md).
+- Próximo tema: [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md).
 - Cuaderno asociado: [`02_limpieza.ipynb`](../../projects/00-segmentacion-clientes/notebooks/02_limpieza.ipynb).

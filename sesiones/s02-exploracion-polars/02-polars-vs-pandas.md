@@ -111,12 +111,12 @@ Tres pruebas que el estudiante hace solo:
 
 ## Si falla
 
-- «Mi `pl.read_excel` tarda minutos»: ver [`troubleshooting.md`](troubleshooting.md)
+- «Mi `pl.read_excel` tarda minutos»: ver [`07-troubleshooting.md`](07-troubleshooting.md)
   §«fastexcel vs calamine».
 - «No puedo convertir una columna Polars Date a pandas Timestamp»: ver
   §«Zonas horarias y Datetime».
 
 ## Siguiente
 
-- Próximo tema: [`esquema-al-leer.md`](esquema-al-leer.md).
+- Próximo tema: [`03-esquema-al-leer.md`](03-esquema-al-leer.md).
 - Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/00-segmentacion-clientes/notebooks/01_comprension_datos.ipynb).

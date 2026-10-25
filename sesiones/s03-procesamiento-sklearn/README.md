@@ -13,7 +13,7 @@ que organiza esta sesión es:
 
 ## 0. Para antes de clase
 
-- [ ] Revisar [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
+- [ ] Revisar [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
 - [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_recompra.py`
       verde (20/20).
@@ -46,12 +46,12 @@ Al terminar la sesión el estudiante puede:
 | Bloque | Duración | Contenido | Documento |
 |---|---|---|---|
 | **El problema** | 15 min | AUC 0,955 que es mentira | este README §3 |
-| **A — Cohortes y fuga** | 60 min | `cohorte(ventas, cancelaciones, corte, horizonte)`; dos fugas | [`cohortes-y-fuga.md`](cohortes-y-fuga.md) |
-| **B — Pipeline sin fuga** | 60 min | `NUM_LOG`, `NUM_STD`, `CAT`; `test_sin_fuga` | [`pipelines-sin-fuga.md`](pipelines-sin-fuga.md) |
-| **C — Modelos y umbral** | 90 min | Logreg / árbol / bosque / regla; tabla de umbrales; curva de profundidad | [`modelos-y-umbral.md`](modelos-y-umbral.md) |
-| **D — Artefacto y registro** | 45 min | `models/recompra_v1/metadatos.json`; guard de versión | [`artefacto-y-registro.md`](artefacto-y-registro.md) |
-| **E — LLM como transformador** (opcional) | 60 min | 12 categorías cerradas; FakeLLM; caché; comparación vs. regla | [`llm-transformador.md`](llm-transformador.md) |
-| **Taller** | 90 min | Aplicación a dataset propio | [`taller.md`](taller.md) |
+| **A — Cohortes y fuga** | 60 min | `cohorte(ventas, cancelaciones, corte, horizonte)`; dos fugas | [`01-cohortes-y-fuga.md`](01-cohortes-y-fuga.md) |
+| **B — Pipeline sin fuga** | 60 min | `NUM_LOG`, `NUM_STD`, `CAT`; `test_sin_fuga` | [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) |
+| **C — Modelos y umbral** | 90 min | Logreg / árbol / bosque / regla; tabla de umbrales; curva de profundidad | [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) |
+| **D — Artefacto y registro** | 45 min | `models/recompra_v1/metadatos.json`; guard de versión | [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) |
+| **E — LLM como transformador** (opcional) | 60 min | 12 categorías cerradas; FakeLLM; caché; comparación vs. regla | [`05-llm-transformador.md`](05-llm-transformador.md) |
+| **Taller** | 90 min | Aplicación a dataset propio | [`06-taller.md`](06-taller.md) |
 
 ## 3. El problema (antes de las herramientas)
 
@@ -80,14 +80,14 @@ Las tres preguntas motivan los bloques A, B y D.
 
 ## 4. Materiales y artefactos
 
-- [`cohortes-y-fuga.md`](cohortes-y-fuga.md) — `cohorte(...)` y las dos fugas.
-- [`pipelines-sin-fuga.md`](pipelines-sin-fuga.md) — `construir_preprocesador` + `test_sin_fuga`.
-- [`modelos-y-umbral.md`](modelos-y-umbral.md) — 3 modelos + regla + tabla de umbrales.
-- [`artefacto-y-registro.md`](artefacto-y-registro.md) — `guardar()` / `cargar()` + Tabla 7.
-- [`llm-transformador.md`](llm-transformador.md) — `texto_llm`, `llm_clientes`, prompt, caché.
-- [`taller.md`](taller.md) — aplicación a dataset propio.
-- [`troubleshooting.md`](troubleshooting.md) — errores reales ya vistos.
-- [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
+- [`01-cohortes-y-fuga.md`](01-cohortes-y-fuga.md) — `cohorte(...)` y las dos fugas.
+- [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) — `construir_preprocesador` + `test_sin_fuga`.
+- [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) — 3 modelos + regla + tabla de umbrales.
+- [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) — `guardar()` / `cargar()` + Tabla 7.
+- [`05-llm-transformador.md`](05-llm-transformador.md) — `texto_llm`, `llm_clientes`, prompt, caché.
+- [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
+- [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales ya vistos.
+- [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 
 **Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `06_particion_y_fuga`, `07_ingenieria_caracteristicas`,
@@ -117,25 +117,25 @@ uv run python scripts/figuras_u3.py
 uv run jupyter lab notebooks/
 ```
 
-> Windows: ver [`troubleshooting.md`](troubleshooting.md).
+> Windows: ver [`07-troubleshooting.md`](07-troubleshooting.md).
 
 ## 6. Autoverificación
 
 1. ¿Por qué `cohorte` **termina con** `.sort("Customer ID")`? ¿Qué
    rompe si no está?
-   _(ver [`cohortes-y-fuga.md`](cohortes-y-fuga.md) §4.)_
+   _(ver [`01-cohortes-y-fuga.md`](01-cohortes-y-fuga.md) §4.)_
 2. ¿Qué comprueba `tests/pipelines/test_sin_fuga.py` y por qué usa dos
    cohortes con medias de `recencia` muy distintas?
-   _(ver [`pipelines-sin-fuga.md`](pipelines-sin-fuga.md) §3.)_
+   _(ver [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) §3.)_
 3. ¿Por qué 0,3 es un umbral razonable para el equipo de marketing y
    0,5 no?
-   _(ver [`modelos-y-umbral.md`](modelos-y-umbral.md) §4.)_
+   _(ver [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) §4.)_
 4. ¿Qué pasa si `metadatos.json` dice `sklearn: "1.9.0"` y el entorno
    tiene `1.9.1`?
-   _(ver [`artefacto-y-registro.md`](artefacto-y-registro.md) §3.)_
+   _(ver [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) §3.)_
 5. ¿Por qué `FakeLLM` es el cliente por defecto en el cuaderno 08 y no
    el cliente real?
-   _(ver [`llm-transformador.md`](llm-transformador.md) §2.)_
+   _(ver [`05-llm-transformador.md`](05-llm-transformador.md) §2.)_
 
 ## 7. Alternativas con criterio (2026-10-19)
 
@@ -158,7 +158,7 @@ uv run jupyter lab notebooks/
 
 ## 9. Cierre y puente
 
-- **Tarea:** terminar [`taller.md`](taller.md) y producir
+- **Tarea:** terminar [`06-taller.md`](06-taller.md) y producir
   `models/<tu_proyecto>_v1/metadatos.json`.
 - **Puente a S04:** _«Tenemos un modelo serializado y una ficha. ¿Cómo
   monta esto una app que un usuario de negocio pueda abrir y usar? La

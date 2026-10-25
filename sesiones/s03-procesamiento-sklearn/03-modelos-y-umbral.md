@@ -160,12 +160,12 @@ uv run pytest -m slow -k profundidad projects/00-segmentacion-clientes/tests/tes
 
 ## Si falla
 
-- «Mis métricas del bosque difieren en 0,003»: ver [`troubleshooting.md`](troubleshooting.md)
+- «Mis métricas del bosque difieren en 0,003»: ver [`07-troubleshooting.md`](07-troubleshooting.md)
   §«4 cifras del bosque difieren».
 - «El árbol no da curva en forma de U»: puede ser una semilla distinta.
   Comprueba `SEMILLA = 42` en `config.py`.
 
 ## Siguiente
 
-- Próximo tema: [`artefacto-y-registro.md`](artefacto-y-registro.md).
+- Próximo tema: [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md).
 - Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).
