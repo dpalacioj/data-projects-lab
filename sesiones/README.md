@@ -9,7 +9,7 @@ es la aplicación independiente; `troubleshooting.md` responde a los
 errores reales que ya vimos; `checklist-dia-de-clase.md` es lo que se
 revisa 15 minutos antes de entrar al aula.
 
-**Las sesiones no duplican código.** Enlazan a `projects/segmentacion-clientes/`,
+**Las sesiones no duplican código.** Enlazan a `projects/00-segmentacion-clientes/`,
 a `tutorials/` y a `docs/specs/`. Cuando una cifra cambia en el proyecto,
 cambia en una sola parte.
 
@@ -17,10 +17,18 @@ cambia en una sola parte.
 
 | Sesión | Unidad | RAE | Estado | Guión |
 |---|---|---|---|---|
-| **S01** · Objetivo de análisis y CRISP-DM | U1 | 1.1 (introducción) | 🟡 placeholder | [s01-objetivo-crisp-dm/](s01-objetivo-crisp-dm/) |
+| **S01** · Encuadre del curso: CRISP-DM como columna vertebral | U1 | 1.1 | 📄 marco (no presencial) | [s01-objetivo-crisp-dm/](s01-objetivo-crisp-dm/) |
 | **S02** · Exploración de datos con Polars | U2 | 1.1 | 🟢 completa | [s02-exploracion-polars/](s02-exploracion-polars/) |
 | **S03** · Procesamiento, pipelines, modelos y LLM | U3 | 2.1 | 🟢 completa | [s03-procesamiento-sklearn/](s03-procesamiento-sklearn/) |
-| **S04** · Aplicación y MLOps | U4 | 3.1 / 4.1 | 🟡 placeholder | [s04-app-mlops/](s04-app-mlops/) |
+| **S04** · Aplicación: del modelo al entregable | U4 | 3.1/4.1 | 📄 marco (trabajo autónomo) | [s04-app-mlops/](s04-app-mlops/) |
+
+> **S01 y S04 son marco, no sesiones presenciales.** S01 la lees la
+> primera semana; mapea las 6 fases de CRISP-DM a dónde se practica cada
+> una. S04 la trabajas al final del módulo sobre tu propia app, apoyado
+> en el proyecto [`projects/04-reconocimiento-imagenes/`](../projects/04-reconocimiento-imagenes/)
+> como ejemplo canónico.
+>
+> **S02 y S03 son las sesiones presenciales con guión completo.**
 
 > Las sesiones completas (S02, S03) se grabaron contra el commit `main`
 > del día de la grabación. Si una cifra no coincide, se re-captura la

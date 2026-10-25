@@ -1,47 +1,87 @@
-# Sesión S01 · Objetivo de análisis y CRISP-DM — Guía para el instructor
+# S01 · Encuadre del curso: CRISP-DM como columna vertebral
 
-> **Estado: 🟡 placeholder.** El esqueleto está en pie; el contenido falta. S02 cubre parcialmente la fase 1 de CRISP-DM aplicada al caso de recompra (ver `s02/crisp-dm-fase1.md`). Esta S01 debería ampliarse a la introducción general al módulo.
+> Revisión: **2026-10-25** · Unidad U1 · RAE 1.1 · Estado: **marco (no placeholder)**
 
-> Revisión: **2026-10-19** · Spec que implementa: pendiente de redacción · Proyecto que soporta: todo `projects/`, con énfasis en la discusión transversal.
+Este archivo **no** es un guión de 4 horas. Es el **mapa** que un
+estudiante lee en la primera semana para entender qué recorre el
+módulo y por qué CRISP-DM aparece una y otra vez.
 
-**No asumas que un contenido sin fecha sigue siendo correcto.** La pregunta
-que organiza esta sesión será:
-
-> _(Pendiente. Posible dirección: «¿cómo decides qué proyecto hacer y por
-> qué, antes de abrir el IDE?»)_
+El contenido profundo de cada fase vive en las sesiones y proyectos
+correspondientes (ver tabla). Esta página es la aguja que apunta.
 
 ---
 
-## TODO para completar
+## ¿Qué es CRISP-DM?
 
-- [ ] Escribir [`introduccion-modulo.md`](introduccion-modulo.md): mapa
-      de las 4 unidades; qué cubre cada una; a qué RAE responde.
-- [ ] Escribir [`crisp-dm-completo.md`](crisp-dm-completo.md): las 6
-      fases, no solo la 1. Chapman et al. (2000) como fuente primaria.
-      Shmueli et al. como complemento.
-- [ ] Escribir [`tipos-de-analitica.md`](tipos-de-analitica.md):
-      descriptiva, diagnóstica, predictiva, prescriptiva, con un
-      ejemplo del repo por tipo.
-- [ ] Escribir [`caso-de-uso-vs-caso-de-negocio.md`](caso-de-uso-vs-caso-de-negocio.md):
-      la trampa de empezar por la técnica.
-- [ ] Escribir [`taller.md`](taller.md): escribir el objetivo de
-      análisis de un dataset propio con los 6 campos CRISP-DM.
-- [ ] Escribir [`troubleshooting.md`](troubleshooting.md): errores
-      típicos al definir el objetivo.
-- [ ] Escribir [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
-- [ ] Reemplazar este README por una versión completa siguiendo
-      [`_templates/GUION_SESION.md`](../_templates/GUION_SESION.md).
+**CRISP-DM** (*Cross-Industry Standard Process for Data Mining*, Chapman
+et al., 2000) es un marco de referencia que describe un proyecto de
+ciencia de datos como **seis fases iterativas**, no como una línea
+recta:
 
-## Material transversal mientras tanto
+1. **Comprensión del negocio** — Formular el objetivo del análisis.
+2. **Comprensión de los datos** — Diagnosticar qué hay, qué falta, qué miente.
+3. **Preparación de los datos** — Limpiar, construir variables, dejar la tabla modelable.
+4. **Modelado** — Entrenar, comparar, ajustar.
+5. **Evaluación** — ¿Resolvimos el problema de negocio, no solo el técnico?
+6. **Despliegue** — Entregar algo que alguien pueda usar.
 
-- Cuaderno [`00_objetivo_de_analisis.ipynb`](../../projects/segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb)
-  con ficha CRISP-DM fase 1 aplicada al caso de recompra.
-- Sección «Para discutir en clase» en el mismo cuaderno (preguntas de
-  reflexión desde fuentes primarias CRISP-DM).
+Es **cíclico**: cuando la fase 3 descubre un supuesto roto, se vuelve a
+la 1. Esto es sano, no un fracaso.
 
-## Puente al próximo
+---
 
-**S02** aterriza esta discusión a Online Retail II: cómo se traduce un
-objetivo de negocio a decisiones concretas de limpieza y EDA. S01
-debería dejar al estudiante listo para preguntar «¿qué dato me falta?»
-antes de pedir «¿qué modelo uso?».
+## Por qué este curso lo usa como columna vertebral
+
+Porque **la mayoría de los proyectos de ciencia de datos no fracasan por
+el modelo** — fracasan en las fases 1 y 2 (objetivo mal definido, datos
+mal entendidos) y en la 6 (nadie recoge el entregable). Un curso que
+solo cubriera "modelado" dejaría fuera exactamente el 80% del trabajo
+real.
+
+Este módulo recorre explícitamente las fases 1 a 5 sobre un caso real
+(Online Retail II), y practica la fase 6 (entregable) sobre un proyecto
+distinto (CNN sobre Fashion-MNIST).
+
+---
+
+## Mapa: dónde se practica cada fase
+
+| Fase CRISP-DM | Dónde se trabaja | Material |
+|---|---|---|
+| **1. Negocio** | Discusión guiada en S02 + taller individual | [`s02-exploracion-polars/crisp-dm-fase1.md`](../s02-exploracion-polars/crisp-dm-fase1.md) · [`segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb) |
+| **2. Datos** | S02 completa | [`s02-exploracion-polars/`](../s02-exploracion-polars/) · notebooks 01-05 del caso guía |
+| **3. Preparación** | S03 (parte 1) | [`s03-procesamiento-sklearn/pipelines-sin-fuga.md`](../s03-procesamiento-sklearn/pipelines-sin-fuga.md) · notebooks 06-07 del caso guía |
+| **4. Modelado** | S03 (parte 2) | [`s03-procesamiento-sklearn/modelos-y-umbral.md`](../s03-procesamiento-sklearn/modelos-y-umbral.md) · notebooks 08-10 del caso guía |
+| **5. Evaluación** | S03 (cierre) + taller | [`s03-procesamiento-sklearn/taller.md`](../s03-procesamiento-sklearn/taller.md) |
+| **6. Entrega** | Proyecto CNN (notebook → modular → Streamlit → FastAPI) | [`projects/04-reconocimiento-imagenes/`](../../projects/04-reconocimiento-imagenes/) |
+
+> **Nota.** No hay sesión aparte "S01 de 4 horas sobre CRISP-DM". La
+> fase 1 se trabaja al inicio de S02 porque CRISP-DM solo cobra sentido
+> **sobre un caso concreto**. Explicar las 6 fases en abstracto, sin
+> datos sobre la mesa, no deja aprendizaje.
+
+---
+
+## Los seis campos de la fase 1 (los que hay que llenar antes de abrir Jupyter)
+
+Esta es la operacionalización de la fase 1 que el curso usa. Ver detalle
+en [`crisp-dm-fase1.md`](../s02-exploracion-polars/crisp-dm-fase1.md).
+
+1. **Problema de negocio** (dos líneas, en lenguaje del dueño del proceso).
+2. **Pregunta de negocio** (en voz del área que la hará).
+3. **Objetivo de análisis** (lo que el equipo técnico va a construir).
+4. **Criterio de éxito analítico** (Silhouette, AUC, F1, MAPE...).
+5. **Criterio de éxito de negocio** (tasa de contacto, revenue, retención).
+6. **Riesgos** (lo que puede impedir que llegue a producción).
+
+Si una fila está en blanco, no se arranca. Esta es la regla que
+distingue un proyecto bien formulado de uno que entrega un AUC 0,82 y
+muere en el cajón.
+
+---
+
+## Para la clase
+
+Esta página es lectura de **la primera semana**, antes de S02. No se
+dicta "en clase": se asume que el estudiante llega habiéndola leído.
+Durante S02 se cita como marco cuando aparece la fase 1.
