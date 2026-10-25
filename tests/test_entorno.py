@@ -21,12 +21,15 @@ def test_estructura_minima_existe() -> None:
         "sesiones/s01-objetivo-crisp-dm/README.md",
         "sesiones/s02-exploracion-polars/README.md",
         "sesiones/s03-procesamiento-sklearn/README.md",
-        "sesiones/s04-app-mlops/README.md",
-        "projects/segmentacion-clientes/README.md",
+        "projects/README.md",
+        "projects/00-segmentacion-clientes/README.md",
+        "projects/04-reconocimiento-imagenes/README.md",
         "docs/specs/SPEC_segmentacion-clientes_polars.md",
         "scripts/smoke_test.py",
         "pyproject.toml",
         "Makefile",
+        "tutorials/README.md",
+        "tutorials/01-git-flujo-de-trabajo.md",
     ]
     faltantes = [r for r in rutas_requeridas if not (RAIZ / r).exists()]
     assert not faltantes, f"Rutas que las sesiones asumen presentes y no estan: {faltantes}"
