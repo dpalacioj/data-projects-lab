@@ -1,11 +1,11 @@
-# SPEC — `projects/segmentacion-clientes` como recurso de la Unidad 2 (Polars)
+# SPEC — `projects/00-segmentacion-clientes` como recurso de la Unidad 2 (Polars)
 
-**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/segmentacion-clientes/`
+**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/`
 **Propósito:** convertir el proyecto existente en el recurso de referencia de la Unidad 2 (RAE1.1), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
 **Estado:** especificación para implementar en una sesión posterior. Nada de lo descrito aquí está hecho todavía.
 **Fecha límite sugerida:** antes de grabar el videotutorial (la producción de insumos pasa a Competencias y Medios Digitales el 11 de diciembre de 2026).
 **Orden de implementación:** **1 de 3.** Esta spec va primero. Después vienen `SPEC_procesamiento_U3.md` (2 de 3, que incluye `SPEC_llm_transformador.md`) y `SPEC_material_nicolas.md` (3 de 3). La U3 depende de lo que esta spec deja: `src/segmentacion/data/`, el Parquet, `cancelaciones.parquet` y `HALLAZGOS.md`.
-**Ubicación en el repositorio:** las specs viven en `docs/specs/` (raíz del repo). Los scripts de referencia (`figuras_u2.py`, y luego `caso_recompra.py` y `figuras_u3.py`) se copian a `projects/segmentacion-clientes/scripts/`.
+**Ubicación en el repositorio:** las specs viven en `docs/specs/` (raíz del repo). Los scripts de referencia (`figuras_u2.py`, y luego `caso_recompra.py` y `figuras_u3.py`) se copian a `projects/00-segmentacion-clientes/scripts/`.
 
 ---
 
@@ -68,7 +68,7 @@ Calculadas el 16 de octubre de 2026 con Polars 2.0.0 sobre `online_retail_II.xls
 ### 5.1 Estructura objetivo
 
 ```
-projects/segmentacion-clientes/
+projects/00-segmentacion-clientes/
 ├── README.md                     # + sección "Objetivo de negocio, objetivo de análisis, criterio de éxito" (Tabla 2 del OVA)
 ├── HALLAZGOS.md                  # NUEVO · tabla hallazgo | evidencia | decisión (Tabla 7 del OVA)
 ├── GUIA_LECTURA.md               # actualizar orden y tiempos; marcar 00–05 = Unidad 2, 06+ = Unidad 3
@@ -166,7 +166,7 @@ def matriz_dia_hora(df) -> pl.DataFrame
 ### 5.5 Configuración del repositorio que esta spec debe dejar lista
 
 - `pyproject.toml` raíz: la dependencia base está fijada en `scikit-learn>=1.3.0,<1.6.0`. Subirla a `scikit-learn>=1.9` (las guías citan 1.9.1 y la U3 verifica la versión al cargar modelos); comprobar que `titanic`, `meli` y `regresion-automoviles` siguen importando.
-- `[tool.pytest.ini_options]` raíz apunta a `testpaths = ["tests"]` (no existe) y a `--cov=src`. Cambiar a `testpaths = ["projects/segmentacion-clientes/tests"]`, registrar el marcador `slow` y ajustar `--cov` al paquete `segmentacion` (o quitar la cobertura de `addopts`).
+- `[tool.pytest.ini_options]` raíz apunta a `testpaths = ["tests"]` (no existe) y a `--cov=src`. Cambiar a `testpaths = ["projects/00-segmentacion-clientes/tests"]`, registrar el marcador `slow` y ajustar `--cov` al paquete `segmentacion` (o quitar la cobertura de `addopts`).
 - Python del proyecto: `.python-version` = 3.11. Las cifras se calcularon con Python 3.13; si alguna difiere en 3.11, reportarlo (no debería: no dependen del intérprete).
 - `scripts/figuras_u2.py` llega con copias propias de las funciones de limpieza: tras el paso 2 debe importarlas de `segmentacion.data.limpieza` (una sola fuente de verdad).
 

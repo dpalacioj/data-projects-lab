@@ -1,6 +1,6 @@
 # Sesión S02 · Exploración de datos con Polars — Guía para el instructor
 
-> Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11, fg-data-profiling 4.20, skimpy 0.0.21 · Spec que implementa: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Proyecto que soporta: [`projects/segmentacion-clientes/`](../../projects/segmentacion-clientes/).
+> Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11, fg-data-profiling 4.20, skimpy 0.0.21 · Spec que implementa: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Proyecto que soporta: [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
 
 **No asumas que un contenido sin fecha sigue siendo correcto.** La pregunta
 que organiza esta sesión es:
@@ -15,9 +15,9 @@ que organiza esta sesión es:
 
 - [ ] Revisar [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
-- [ ] `uv run python projects/segmentacion-clientes/scripts/descargar_datos.py`
+- [ ] `uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py`
       (verifica el hash SHA-256 del zip de UCI 502).
-- [ ] `uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_referencia.py`
+- [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py`
       verde (confirma que el día de hoy las cifras de §4 de la spec se
       reproducen contra el Parquet real).
 
@@ -85,7 +85,7 @@ Estas tres preguntas motivan los tres bloques siguientes.
 - [`troubleshooting.md`](troubleshooting.md) — errores reales que vimos.
 - [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md) — 15 minutos antes.
 
-**Cuadernos del proyecto** (`projects/segmentacion-clientes/notebooks/`):
+**Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `00_objetivo_de_analisis`, `01_comprension_datos`, `02_limpieza`,
 `03_variables_cliente`, `04_eda`, `05_eda_automatizado`.
 
@@ -100,8 +100,8 @@ Estas tres preguntas motivan los tres bloques siguientes.
 ```bash
 # desde la raíz del repositorio
 uv sync --extra segmentacion-clientes --extra dev
-uv run python projects/segmentacion-clientes/scripts/descargar_datos.py
-cd projects/segmentacion-clientes
+uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py
+cd projects/00-segmentacion-clientes
 uv run jupyter lab notebooks/
 ```
 

@@ -1,6 +1,6 @@
 # Modelos y umbral de decisión
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §9. Cuaderno: [`09_modelos_y_pipelines.ipynb`](../../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb). Código: [`src/segmentacion/models/entrenar.py`](../../projects/segmentacion-clientes/src/segmentacion/models/entrenar.py) + [`evaluation/{metricas,umbral}.py`](../../projects/segmentacion-clientes/src/segmentacion/evaluation/).
+> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §9. Cuaderno: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb). Código: [`src/segmentacion/models/entrenar.py`](../../projects/00-segmentacion-clientes/src/segmentacion/models/entrenar.py) + [`evaluation/{metricas,umbral}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/evaluation/).
 
 ## La pregunta
 
@@ -140,13 +140,13 @@ un retailer más distribuido, revisitarías.
 
 ```bash
 # Reproduce las métricas del §9
-uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_recompra.py
+uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_recompra.py
 
 # Reproduce la tabla de umbrales
-uv run pytest -m slow -k umbrales projects/segmentacion-clientes/tests/test_cifras_recompra.py
+uv run pytest -m slow -k umbrales projects/00-segmentacion-clientes/tests/test_cifras_recompra.py
 
 # Reproduce la curva de profundidad
-uv run pytest -m slow -k profundidad projects/segmentacion-clientes/tests/test_cifras_recompra.py
+uv run pytest -m slow -k profundidad projects/00-segmentacion-clientes/tests/test_cifras_recompra.py
 ```
 
 ## Lo que **no** hagas
@@ -168,4 +168,4 @@ uv run pytest -m slow -k profundidad projects/segmentacion-clientes/tests/test_c
 ## Siguiente
 
 - Próximo tema: [`artefacto-y-registro.md`](artefacto-y-registro.md).
-- Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).
+- Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).

@@ -80,7 +80,7 @@ rho = rfm.select(pl.corr("frec", "monetario", method="spearman")).item()
 Mídelo tú:
 
 ```bash
-cd projects/segmentacion-clientes
+cd projects/00-segmentacion-clientes
 uv run python -c "
 import time, polars as pl, pandas as pd
 ruta = 'data/raw/online_retail_II.parquet'
@@ -119,4 +119,4 @@ Tres pruebas que el estudiante hace solo:
 ## Siguiente
 
 - Próximo tema: [`esquema-al-leer.md`](esquema-al-leer.md).
-- Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/segmentacion-clientes/notebooks/01_comprension_datos.ipynb).
+- Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/00-segmentacion-clientes/notebooks/01_comprension_datos.ipynb).

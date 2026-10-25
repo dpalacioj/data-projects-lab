@@ -1,6 +1,6 @@
 # Pipeline sin fuga — qué aprende cada bloque
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §4 (Tabla 8). Cuaderno: [`07_ingenieria_caracteristicas.ipynb`](../../projects/segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb). Código: [`src/segmentacion/pipelines/preprocesamiento.py`](../../projects/segmentacion-clientes/src/segmentacion/pipelines/preprocesamiento.py).
+> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §4 (Tabla 8). Cuaderno: [`07_ingenieria_caracteristicas.ipynb`](../../projects/00-segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb). Código: [`src/segmentacion/pipelines/preprocesamiento.py`](../../projects/00-segmentacion-clientes/src/segmentacion/pipelines/preprocesamiento.py).
 
 ## La pregunta
 
@@ -111,7 +111,7 @@ En el cuaderno 07 se visualiza el efecto del `log1p` sobre `monetario`.
 La prueba crítica:
 
 ```bash
-uv run pytest projects/segmentacion-clientes/tests/pipelines/test_sin_fuga.py
+uv run pytest projects/00-segmentacion-clientes/tests/pipelines/test_sin_fuga.py
 ```
 
 Construye dos cohortes inventadas con medias de `recencia` **muy
@@ -158,4 +158,4 @@ columnas; incluirlas requiere la caché del LLM poblada.
 ## Siguiente
 
 - Próximo tema: [`modelos-y-umbral.md`](modelos-y-umbral.md).
-- Cuaderno asociado: [`07_ingenieria_caracteristicas.ipynb`](../../projects/segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb).
+- Cuaderno asociado: [`07_ingenieria_caracteristicas.ipynb`](../../projects/00-segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb).

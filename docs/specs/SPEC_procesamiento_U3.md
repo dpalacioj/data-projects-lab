@@ -1,10 +1,10 @@
 # SPEC — Procesamiento modular para la Unidad 3 (ingeniería de características, modelos y pipelines con scikit-learn)
 
-**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/segmentacion-clientes/` (continuación de la U2). Referencias de solo lectura: `projects/temporal-split/`, `tutorials/03-tecnicas-preprocesamiento.md`.
+**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/` (continuación de la U2). Referencias de solo lectura: `projects/d2-temporal-split/`, `tutorials/07-tecnicas-preprocesamiento.md`.
 **Propósito:** implementar en el repositorio el caso supervisado y la modularización que el OVA de la Unidad 3 ya describe (RAE2.1: pipelines que previenen la fuga de datos y garantizan reproducibilidad), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
 **Estado:** decisiones tomadas el 16 de octubre de 2026 (§10). El OVA está redactado contra este diseño. El código del caso existe como dos scripts de referencia (`caso_recompra.py`, `figuras_u3.py`) que hay que descomponer en el paquete sin cambiar los resultados.
 **Orden de implementación:** **2 de 3.** Requiere que `SPEC_segmentacion-clientes_polars.md` (U2) esté implementada: usa `segmentacion.data.limpieza`, `features/rfm.py` con fecha de corte, el Parquet y `cancelaciones.parquet`. El subtema LLM (§5) se implementa según `SPEC_llm_transformador.md`, que es la fuente de verdad para ese módulo.
-**Ubicación:** esta spec en `docs/specs/`; `caso_recompra.py` y `figuras_u3.py` en `projects/segmentacion-clientes/scripts/`.
+**Ubicación:** esta spec en `docs/specs/`; `caso_recompra.py` y `figuras_u3.py` en `projects/00-segmentacion-clientes/scripts/`.
 
 ---
 
@@ -88,8 +88,8 @@ Mapa completo de numeración en `SPEC_segmentacion-clientes_polars.md` §5.4.
 
 | Cuaderno | Contenido | Usa / reemplaza |
 |---|---|---|
-| `06_particion_y_fuga` | Cohortes A y B; la demostración de la fuga temporal en la recencia (0,795 vs 0,955); fuga en el preprocesamiento (186,9 vs 168,7) | Ideas de `projects/temporal-split/` |
-| `07_ingenieria_caracteristicas` | `ColumnTransformer` de la Tabla 4 del OVA; qué aprende cada transformador en `fit` | Reemplaza `legacy/05_preprocessing_pipelines`; resume (no copia) `tutorials/03` |
+| `06_particion_y_fuga` | Cohortes A y B; la demostración de la fuga temporal en la recencia (0,795 vs 0,955); fuga en el preprocesamiento (186,9 vs 168,7) | Ideas de `projects/d2-temporal-split/` |
+| `07_ingenieria_caracteristicas` | `ColumnTransformer` de la Tabla 4 del OVA; qué aprende cada transformador en `fit` | Reemplaza `legacy/05_preprocessing_pipelines`; resume (no copia) `tutorials/07` |
 | `08_llm_como_transformador` | `SPEC_llm_transformador.md` con `FakeLLM` | Nuevo |
 | `09_modelos_y_pipelines` | Tres modelos + regla; métricas, umbrales, importancia; curva de profundidad; validación cruzada y `GridSearchCV`; `guardar()` | Secuencia de métricas adaptada según `SPEC_material_nicolas.md` |
 | `10_segmentacion_no_supervisada` | k-means y DBSCAN sobre el preprocesador | Fusiona `legacy/06`, `07` y `08`; luego se borra `legacy/` |
@@ -106,7 +106,7 @@ Los scripts `caso_recompra.py` y `figuras_u3.py` quedan, al final, como envoltor
 - [ ] Los cuadernos 06–10 se ejecutan en orden con `nbconvert --execute` sin errores.
 - [ ] `scripts/figuras_u3.py` produce las figuras 3, 5, 6 y 7 con los mismos títulos del OVA.
 - [ ] `pydantic>=2` y `scikit-learn>=1.9` declarados en el extra `segmentacion-clientes`.
-- [ ] `tutorials/03-tecnicas-preprocesamiento.md` enlaza a los cuadernos 07 y 09 en lugar de duplicar código.
+- [ ] `tutorials/07-tecnicas-preprocesamiento.md` enlaza a los cuadernos 07 y 09 en lugar de duplicar código.
 - [ ] Ningún módulo de `features/` importa pandas.
 
 ## 8. Riesgos

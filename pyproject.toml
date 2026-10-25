@@ -60,6 +60,17 @@ segmentacion-clientes = [
     "pydantic>=2.0",
 ]
 
+# Proyecto Reconocimiento de Imágenes (CNN + transfer learning)
+reconocimiento-imagenes = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "pillow>=10.0",
+    "streamlit>=1.50.0",
+    "fastapi>=0.120.0",
+    "uvicorn>=0.30.0",
+    "python-multipart>=0.0.9",
+]
+
 # Extras temáticos
 interpretability = [
     "shap>=0.45.0",
@@ -93,7 +104,7 @@ dev = [
 
 # Instalación completa
 all = [
-    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,interpretability,optimization,experiment,web,dev]",
+    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
 ]
 
 [project.urls]
@@ -117,13 +128,14 @@ target-version = "py311"
 # Ruff en esta spec cubre el paquete, cuadernos, scripts y tests de la Unidad 2;
 # el resto de proyectos tiene lint pre-existente que se saneara en otra tanda.
 extend-exclude = [
-    "projects/titanic",
-    "projects/clasificador-meli",
-    "projects/prediccion-precios-automoviles",
-    "projects/ejercicio-preprocesamiento",
-    "projects/promociones_usuarios",
-    "projects/temporal-split",
-    "projects/threholds-example",
+    "projects/01-titanic",
+    "projects/02-clasificador-meli",
+    "projects/03-prediccion-precios-automoviles",
+    "projects/d1-ejercicio-preprocesamiento",
+    "projects/d2-temporal-split",
+    "projects/d4-umbrales-ejemplo",
+    "projects/d3-promociones-usuarios",
+    "projects/04-reconocimiento-imagenes",
     "tutorials",
 ]
 
@@ -137,8 +149,8 @@ ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
 # scripts de referencia tienen matplotlib.use("Agg") antes de los imports.
-"projects/segmentacion-clientes/scripts/caso_recompra.py" = ["E402"]
-"projects/segmentacion-clientes/scripts/figuras_u3.py" = ["E402"]
+"projects/00-segmentacion-clientes/scripts/caso_recompra.py" = ["E402"]
+"projects/00-segmentacion-clientes/scripts/figuras_u3.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -147,8 +159,8 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "projects/segmentacion-clientes/tests"]
-pythonpath = ["projects/segmentacion-clientes/src"]
+testpaths = ["tests", "projects/00-segmentacion-clientes/tests"]
+pythonpath = ["projects/00-segmentacion-clientes/src"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
 addopts = "-v"

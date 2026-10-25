@@ -1,6 +1,6 @@
 # CRISP-DM Fase 1 — Objetivo de análisis
 
-> Spec: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Cuaderno: [`00_objetivo_de_analisis.ipynb`](../../projects/segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).
+> Spec: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Cuaderno: [`00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).
 
 ## La pregunta
 
@@ -87,4 +87,4 @@ no se puede medir».
 ## Siguiente
 
 - Próximo tema: [`polars-vs-pandas.md`](polars-vs-pandas.md).
-- Cuaderno asociado: [`00_objetivo_de_analisis.ipynb`](../../projects/segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).
+- Cuaderno asociado: [`00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).

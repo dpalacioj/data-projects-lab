@@ -74,7 +74,7 @@ Si no sale, el Parquet se generó mal; se regenera con `scripts/descargar_datos.
 La prueba automática que lo garantiza:
 
 ```bash
-uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_referencia.py::test_facturas_que_empiezan_por_C
+uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py::test_facturas_que_empiezan_por_C
 ```
 
 Debe decir `== 19_494` (sin tolerancia, es un conteo). Si da 0, el
@@ -100,4 +100,4 @@ esquema no se aplicó. Si da otro número, el archivo cambió (ver §Si falla).
 ## Siguiente
 
 - Próximo tema: [`limpieza-5-reglas.md`](limpieza-5-reglas.md).
-- Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/segmentacion-clientes/notebooks/01_comprension_datos.ipynb).
+- Cuaderno asociado: [`01_comprension_datos.ipynb`](../../projects/00-segmentacion-clientes/notebooks/01_comprension_datos.ipynb).

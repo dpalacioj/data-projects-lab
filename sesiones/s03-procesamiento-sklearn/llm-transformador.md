@@ -1,6 +1,6 @@
 # Un LLM como transformador — con esquema cerrado, caché y línea base
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md). Cuaderno: [`08_llm_como_transformador.ipynb`](../../projects/segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb). Código: [`src/segmentacion/features/{texto_llm,llm_clientes}.py`](../../projects/segmentacion-clientes/src/segmentacion/features/).
+> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md). Cuaderno: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb). Código: [`src/segmentacion/features/{texto_llm,llm_clientes}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/features/).
 
 ## La pregunta
 
@@ -155,8 +155,8 @@ el pipeline final.
 
 ```bash
 # Todas sin red
-uv run pytest projects/segmentacion-clientes/tests/features/test_texto_llm.py
-uv run pytest projects/segmentacion-clientes/tests/features/test_llm_clientes.py
+uv run pytest projects/00-segmentacion-clientes/tests/features/test_texto_llm.py
+uv run pytest projects/00-segmentacion-clientes/tests/features/test_llm_clientes.py
 ```
 
 Siete pruebas:
@@ -174,7 +174,7 @@ Siete pruebas:
 ## Auditoría: no se nombra al proveedor
 
 ```bash
-grep -riE "deepseek|openai|groq|anthropic|ollama" projects/segmentacion-clientes \
+grep -riE "deepseek|openai|groq|anthropic|ollama" projects/00-segmentacion-clientes \
     --include="*.py" --include="*.ipynb" --include="*.md" \
   | grep -v "cliente_openai_compatible" \
   | grep -v "README.md" \
@@ -192,7 +192,7 @@ El único paso manual del flujo LLM: etiquetar a mano las 200
 descripciones del fixture.
 
 ```bash
-uv run python projects/segmentacion-clientes/scripts/generar_gold.py
+uv run python projects/00-segmentacion-clientes/scripts/generar_gold.py
 # Luego: abrir tests/fixtures/categorias_gold.csv y rellenar la columna `categoria`.
 ```
 
@@ -222,4 +222,4 @@ regla y, luego, al LLM.
 ## Siguiente
 
 - [`taller.md`](taller.md).
-- Cuaderno asociado: [`08_llm_como_transformador.ipynb`](../../projects/segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb).
+- Cuaderno asociado: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb).

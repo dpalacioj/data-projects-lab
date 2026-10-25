@@ -26,7 +26,7 @@ jobs:
         run: python3 scripts/smoke_test.py
 
       - name: Lint
-        run: uv run ruff check projects/segmentacion-clientes/
+        run: uv run ruff check projects/00-segmentacion-clientes/
 
       - name: Tests rapidos
         run: uv run pytest -m "not slow"

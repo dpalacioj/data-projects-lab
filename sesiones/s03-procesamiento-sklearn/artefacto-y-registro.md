@@ -1,6 +1,6 @@
 # Artefacto y registro — contratos para U4
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §7 (Tabla 7). Código: [`src/segmentacion/models/registro.py`](../../projects/segmentacion-clientes/src/segmentacion/models/registro.py).
+> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §7 (Tabla 7). Código: [`src/segmentacion/models/registro.py`](../../projects/00-segmentacion-clientes/src/segmentacion/models/registro.py).
 
 ## La pregunta
 
@@ -136,7 +136,7 @@ alguno).
 ## Verificación
 
 ```bash
-uv run pytest projects/segmentacion-clientes/tests/models/test_registro.py
+uv run pytest projects/00-segmentacion-clientes/tests/models/test_registro.py
 ```
 
 Cinco pruebas:
@@ -171,4 +171,4 @@ Cinco pruebas:
 
 - Próximo tema: [`llm-transformador.md`](llm-transformador.md) (opcional).
 - Si saltas el LLM: [`taller.md`](taller.md).
-- Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).
+- Cuaderno asociado: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb).

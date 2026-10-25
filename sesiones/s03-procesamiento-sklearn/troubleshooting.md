@@ -108,7 +108,7 @@ sync` actualizó sklearn.
 1. Re-entrenar con el entorno actual:
    ```bash
    uv run jupyter nbconvert --to notebook --execute \
-       projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb \
+       projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb \
        --output /tmp/exec09.ipynb
    ```
    Esto re-genera `models/recompra_v1/metadatos.json` con la versión

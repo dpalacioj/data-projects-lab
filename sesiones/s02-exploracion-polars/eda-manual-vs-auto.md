@@ -87,12 +87,12 @@ El HTML queda gitignored (2,2 MB) para no inflar el repo.
 
 ```bash
 # Las 32 cifras del §4 reproducidas sobre el parquet real
-uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_referencia.py
+uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py
 
 # Las 4 figuras del OVA con la paleta correcta
-uv run python projects/segmentacion-clientes/scripts/figuras_u2.py \
-    projects/segmentacion-clientes/data/raw/online_retail_II.parquet \
-    projects/segmentacion-clientes/reports/figures
+uv run python projects/00-segmentacion-clientes/scripts/figuras_u2.py \
+    projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet \
+    projects/00-segmentacion-clientes/reports/figures
 ```
 
 Debe imprimir:
@@ -147,6 +147,6 @@ fuga del cuaderno 06.
 ## Siguiente
 
 - Taller: [`taller.md`](taller.md).
-- Cuadernos asociados: [`04_eda.ipynb`](../../projects/segmentacion-clientes/notebooks/04_eda.ipynb),
-  [`03_variables_cliente.ipynb`](../../projects/segmentacion-clientes/notebooks/03_variables_cliente.ipynb),
-  [`05_eda_automatizado.ipynb`](../../projects/segmentacion-clientes/notebooks/05_eda_automatizado.ipynb).
+- Cuadernos asociados: [`04_eda.ipynb`](../../projects/00-segmentacion-clientes/notebooks/04_eda.ipynb),
+  [`03_variables_cliente.ipynb`](../../projects/00-segmentacion-clientes/notebooks/03_variables_cliente.ipynb),
+  [`05_eda_automatizado.ipynb`](../../projects/00-segmentacion-clientes/notebooks/05_eda_automatizado.ipynb).

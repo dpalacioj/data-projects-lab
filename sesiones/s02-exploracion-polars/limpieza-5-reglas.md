@@ -1,6 +1,6 @@
 # Las 5 reglas de limpieza como funciones separadas
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §5.3. Código: [`src/segmentacion/data/limpieza.py`](../../projects/segmentacion-clientes/src/segmentacion/data/limpieza.py).
+> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §5.3. Código: [`src/segmentacion/data/limpieza.py`](../../projects/00-segmentacion-clientes/src/segmentacion/data/limpieza.py).
 
 ## La pregunta
 
@@ -90,13 +90,13 @@ Dos pruebas, dos velocidades:
 
 1. **Rápida** (sin disco, 6 filas inventadas):
    ```bash
-   uv run pytest projects/segmentacion-clientes/tests/test_limpieza.py
+   uv run pytest projects/00-segmentacion-clientes/tests/test_limpieza.py
    ```
    Debe pasar en < 1 s.
 
 2. **Lenta** (sobre el parquet real, 20 asserts):
    ```bash
-   uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_referencia.py
+   uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py
    ```
    Reproduce las cifras del §4 de la spec: conteos con tolerancia 0,
    correlaciones con tolerancia 1e-3, media de `Price` con 5e-3
@@ -104,7 +104,7 @@ Dos pruebas, dos velocidades:
 
 ## HALLAZGOS.md como contrato con U3
 
-El cuaderno 04 (EDA) deja [`HALLAZGOS.md`](../../projects/segmentacion-clientes/HALLAZGOS.md)
+El cuaderno 04 (EDA) deja [`HALLAZGOS.md`](../../projects/00-segmentacion-clientes/HALLAZGOS.md)
 con 7 filas: hallazgo + evidencia + decisión. Cada fila es un contrato
 con la Unidad 3:
 
@@ -141,4 +141,4 @@ Vive en el parquet `cancelaciones.parquet` y espera a U3.
 ## Siguiente
 
 - Próximo tema: [`eda-manual-vs-auto.md`](eda-manual-vs-auto.md).
-- Cuaderno asociado: [`02_limpieza.ipynb`](../../projects/segmentacion-clientes/notebooks/02_limpieza.ipynb).
+- Cuaderno asociado: [`02_limpieza.ipynb`](../../projects/00-segmentacion-clientes/notebooks/02_limpieza.ipynb).

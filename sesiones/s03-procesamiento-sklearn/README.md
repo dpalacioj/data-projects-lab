@@ -1,6 +1,6 @@
 # Sesión S03 · Procesamiento, pipelines, modelos y LLM — Guía para el instructor
 
-> Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11 · Spec que implementa: [`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) + [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md) · Proyecto que soporta: [`projects/segmentacion-clientes/`](../../projects/segmentacion-clientes/).
+> Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11 · Spec que implementa: [`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) + [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md) · Proyecto que soporta: [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
 
 **No asumas que un contenido sin fecha sigue siendo correcto.** La pregunta
 que organiza esta sesión es:
@@ -15,7 +15,7 @@ que organiza esta sesión es:
 
 - [ ] Revisar [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
-- [ ] `uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_recompra.py`
+- [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_recompra.py`
       verde (20/20).
 - [ ] Si vas a enseñar el bloque LLM: `.env` con las tres variables
       (`LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODELO`) o decidir que la
@@ -89,7 +89,7 @@ Las tres preguntas motivan los bloques A, B y D.
 - [`troubleshooting.md`](troubleshooting.md) — errores reales ya vistos.
 - [`checklist-dia-de-clase.md`](checklist-dia-de-clase.md).
 
-**Cuadernos del proyecto** (`projects/segmentacion-clientes/notebooks/`):
+**Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `06_particion_y_fuga`, `07_ingenieria_caracteristicas`,
 `08_llm_como_transformador` (opcional), `09_modelos_y_pipelines`,
 `10_segmentacion_no_supervisada`.
@@ -107,7 +107,7 @@ Las tres preguntas motivan los bloques A, B y D.
 ```bash
 # desde la raíz del repositorio
 uv sync --extra segmentacion-clientes --extra dev
-cd projects/segmentacion-clientes
+cd projects/00-segmentacion-clientes
 # Si vienes de S02 ya está hecho; si no:
 uv run python scripts/descargar_datos.py
 # Caso de referencia:

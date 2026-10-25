@@ -1,6 +1,6 @@
 # SPEC — `features/texto_llm.py`: un modelo de lenguaje como transformador de características (agnóstico al proveedor)
 
-**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/segmentacion-clientes/src/segmentacion/features/`
+**Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/src/segmentacion/features/`
 **Unidad que lo usa:** Unidad 3, subtema 3.2 (Figura 9 y recuadros del OVA; pódcast 2)
 **Propósito:** implementar el ejemplo del OVA como un módulo real, pequeño y probado, que categoriza las 5 305 descripciones únicas de producto de Online Retail II con un LLM y produce una variable por cliente. El módulo sirve para **enseñar buenas prácticas** (caché, esquema cerrado, inyección de dependencias, línea base, pruebas sin red), no para presumir del modelo.
 **Proveedor:** agnóstico. David lo correrá con DeepSeek; el código no debe nombrar ningún proveedor fuera de un único adaptador opcional.

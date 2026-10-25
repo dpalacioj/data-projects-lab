@@ -20,7 +20,7 @@ uv sync --extra segmentacion-clientes   # ya incluye fastexcel>=0.11
 Si sigue lento, pasa a Parquet una vez:
 
 ```bash
-uv run python projects/segmentacion-clientes/scripts/descargar_datos.py
+uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py
 # A partir de aquí, siempre leer desde Parquet.
 ```
 

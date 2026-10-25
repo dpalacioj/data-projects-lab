@@ -1,7 +1,7 @@
 # SPEC — Integrar el material de Nicolás Gómez Giraldo en `data-projects-lab`
 
 **Fuente:** `github.com/nicolasggiraldo/especializacion-udem-2026-01` (sin licencia declarada; 2 PDF, 4 cuadernos)
-**Destino:** `dpalacioj/data-projects-lab` · nuevas carpetas `tutorials/` y `projects/segmentacion-clientes/notebooks/`
+**Destino:** `dpalacioj/data-projects-lab` · nuevas carpetas `tutorials/` y `projects/00-segmentacion-clientes/notebooks/`
 **Propósito:** aprovechar lo que su material hace bien —la secuencia explicativa de métricas y sobreajuste, el ejercicio de datos sucios, la lectura de nulos estructurales en House Prices, la base de pipelines— sin duplicar contenidos, sin romper la coherencia (Polars en U2, caso Online Retail II en U2–U4) y respetando autoría.
 **Estado:** especificación; requiere su autorización antes de copiar texto o código.
 **Orden de implementación:** **3 de 3.** Va al final: las filas marcadas «U2» se apoyan en los cuadernos 00 y 01 de `SPEC_segmentacion-clientes_polars.md`, y las marcadas «U3» en el cuaderno 09 de `SPEC_procesamiento_U3.md`. Sin autorización de Nicolás, solo se ejecuta lo que el §5 permite sin su material (estructura del tutorial 02b y fusión del tutorial 05 redactada desde fuentes primarias).
@@ -21,9 +21,9 @@ El repositorio de Nicolás no tiene archivo `LICENSE`, de modo que por defecto t
 | Material de Nicolás | Valor | Transformación | Destino en `data-projects-lab` | Unidad |
 |---|---|---|---|---|
 | `sesion_2_crisp_dm.pdf` | Secuencia por fases con ejemplos de churn y preguntas de discusión | No se copia (es presentación). Sus **preguntas de discusión** («¿en qué fase fallan más los proyectos?», «¿qué riesgos ven?») se incorporan como preguntas de reflexión en el cuaderno 00 | `notebooks/00_objetivo_de_analisis.ipynb` (sección «Para discutir en clase») | U2 |
-| `sesion_3_preparacion_de_datos*.ipynb` — bloque de datos sucios (Bogotá/Bta/bogotá, precios negativos, fechas en dos formatos) | Ejercicio perfecto para enseñar reglas de limpieza | Reescribir en **Polars**; convertir en ejercicio con enunciado y solución separados (patrón de `ejercicio-preprocesamiento`) | `tutorials/02b-limpieza-datos-sucios-polars/` con `01_ejercicio.ipynb` y `02_solucion.ipynb` | U2 |
+| `sesion_3_preparacion_de_datos*.ipynb` — bloque de datos sucios (Bogotá/Bta/bogotá, precios negativos, fechas en dos formatos) | Ejercicio perfecto para enseñar reglas de limpieza | Reescribir en **Polars**; convertir en ejercicio con enunciado y solución separados (patrón de `ejercicio-preprocesamiento`) | `tutorials/04-limpieza-datos-sucios-polars/` con `01_ejercicio.ipynb` y `02_solucion.ipynb` | U2 |
 | `sesion_3_*` — House Prices: lectura de nulos estructurales («no hay garaje» ≠ dato faltante) | Mejor ejemplo del repositorio sobre semántica de los nulos | Reescribir en Polars sobre **Online Retail II** (descripción nula = inventario; cliente nulo = venta sin registro). Si se mantiene House Prices, citar De Cock (2011) y verificar licencia de los datos | Sección «Nulos que no son faltantes» en `notebooks/01_comprension_datos.ipynb` | U2 |
-| `sesion_6_modelo.ipynb` — métricas de regresión y clasificación, matriz de confusión, ROC, sobreajuste, sesgo-varianza, regularización | Secuencia didáctica clara y completa; fórmulas en LaTeX | Reutilizar la **secuencia y las fórmulas**; reescribir el texto; reemplazar imágenes de terceros (GeeksforGeeks, Wikipedia) por figuras propias generadas desde el caso de recompra (`figuras_u3.py`); añadir precisión media y umbral | `tutorials/05-metricas_ml_regresion_vs_clasificacion.md` (fusionar con el tutorial existente de David, que ya cubre lo mismo: queda **un solo** tutorial) y `notebooks/09_modelos_y_pipelines.ipynb` | U3 |
+| `sesion_6_modelo.ipynb` — métricas de regresión y clasificación, matriz de confusión, ROC, sobreajuste, sesgo-varianza, regularización | Secuencia didáctica clara y completa; fórmulas en LaTeX | Reutilizar la **secuencia y las fórmulas**; reescribir el texto; reemplazar imágenes de terceros (GeeksforGeeks, Wikipedia) por figuras propias generadas desde el caso de recompra (`figuras_u3.py`); añadir precisión media y umbral | `tutorials/09-metricas-ml-regresion-vs-clasificacion.md` (fusionar con el tutorial existente de David, que ya cubre lo mismo: queda **un solo** tutorial) y `notebooks/09_modelos_y_pipelines.ipynb` | U3 |
 | `sesion_7_pipelines.ipynb` — código de `Pipeline` sin texto | Base de código correcta | Escribir la explicación que falta; migrar al caso de recompra con `ColumnTransformer` | `notebooks/09_modelos_y_pipelines.ipynb` (sección «Pipeline de principio a fin») | U3 |
 | `sesion_1_intro_bi.pdf` — tipos de analítica (descriptiva, diagnóstica, predictiva, prescriptiva) y fechas de entregas de 2026-01 | Contexto de BI útil para el RAE1 (UC1) | Tabla comparativa reescrita, con cita a una fuente primaria por verificar; las fechas no se usan | Recuadro en `notebooks/00_objetivo_de_analisis.ipynb` | U2 |
 
@@ -45,10 +45,10 @@ tutorials/
 ├── 02-configuracion-proyecto-uv.md               (existente)
 ├── 02b-limpieza-datos-sucios-polars/              NUEVO (adaptado de sesión 3)
 │   ├── README.md · 01_ejercicio.ipynb · 02_solucion.ipynb
-├── 03-tecnicas-preprocesamiento.md               (existente; enlazar a notebooks U3 en lugar de duplicar código)
-├── 05-metricas_ml_regresion_vs_clasificacion.md  (existente; FUSIONAR con sesión 6: fórmulas + figuras propias)
+├── 07-tecnicas-preprocesamiento.md               (existente; enlazar a notebooks U3 en lugar de duplicar código)
+├── 09-metricas-ml-regresion-vs-clasificacion.md  (existente; FUSIONAR con sesión 6: fórmulas + figuras propias)
 └── ...
-projects/segmentacion-clientes/notebooks/
+projects/00-segmentacion-clientes/notebooks/
 ├── 00_objetivo_de_analisis.ipynb                  (U2; preguntas de discusión de sesiones 1 y 2)
 ├── 01_comprension_datos.ipynb                     (U2; sección de nulos estructurales)
 ├── 06_particion_y_fuga.ipynb                      (U3)
@@ -61,7 +61,7 @@ projects/segmentacion-clientes/notebooks/
 ## 5. Plan
 
 1. Mensaje a Nicolás (autorización + propuesta de `LICENSE`). Sin respuesta positiva, solo se adopta la **estructura** de su secuencia, redactada desde fuentes primarias (Hastie et al., 2009; scikit-learn), que es lo que hoy ya hacen los OVA.
-2. `tutorials/02b-limpieza-datos-sucios-polars/` (medio día).
+2. `tutorials/04-limpieza-datos-sucios-polars/` (medio día).
 3. Fusión del tutorial 05 con la sesión 6 (medio día): un solo documento, figuras propias.
 4. Cuaderno 09 con la secuencia métricas → sobreajuste → pipeline sobre el caso de recompra (un día; depende de `SPEC_procesamiento_U3.md`).
 5. Preguntas de discusión en el cuaderno 00 (una hora).

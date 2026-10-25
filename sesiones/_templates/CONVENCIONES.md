@@ -89,7 +89,7 @@
 
 ## Ruff y pre-commit
 
-- Ruff format cubre `projects/segmentacion-clientes/**` (no formatea el
+- Ruff format cubre `projects/00-segmentacion-clientes/**` (no formatea el
   resto para no entrar en lint pre-existente). Mismo criterio para
   `nbstripout`: solo cuadernos del proyecto U2+U3.
 - Pre-commit obligatorio: `uv run pre-commit install` tras clonar.

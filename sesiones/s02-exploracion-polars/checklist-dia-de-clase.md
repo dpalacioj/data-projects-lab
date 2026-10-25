@@ -11,35 +11,35 @@
 
 ## Datos
 
-- [ ] `projects/segmentacion-clientes/data/raw/online_retail_II.parquet`
+- [ ] `projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet`
       existe (6,5 MB). Si no:
       ```bash
-      uv run python projects/segmentacion-clientes/scripts/descargar_datos.py
+      uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py
       ```
 - [ ] Hash del zip coincide con `SHA256_ZIP` en `descargar_datos.py`
       (el script lo verifica al correr; si falla, re-captura).
 
 ## Pruebas
 
-- [ ] `uv run pytest projects/segmentacion-clientes/tests/test_limpieza.py
-      projects/segmentacion-clientes/tests/test_rfm.py` verde en < 5 s.
-- [ ] `uv run pytest -m slow projects/segmentacion-clientes/tests/test_cifras_referencia.py`
+- [ ] `uv run pytest projects/00-segmentacion-clientes/tests/test_limpieza.py
+      projects/00-segmentacion-clientes/tests/test_rfm.py` verde en < 5 s.
+- [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py`
       verde en < 10 s (32 asserts).
 
 ## Cuadernos
 
 - [ ] `uv run jupyter nbconvert --to notebook --execute
-      projects/segmentacion-clientes/notebooks/01_comprension_datos.ipynb
+      projects/00-segmentacion-clientes/notebooks/01_comprension_datos.ipynb
       --output /tmp/nb01.ipynb` pasa.
 - [ ] Igual para `02_limpieza`, `04_eda`, `03_variables_cliente`,
       `05_eda_automatizado`.
 
 ## Figuras y perfil
 
-- [ ] `uv run python projects/segmentacion-clientes/scripts/figuras_u2.py
-      projects/segmentacion-clientes/data/raw/online_retail_II.parquet
-      projects/segmentacion-clientes/reports/figures` deja 4 PNG.
-- [ ] `uv run python projects/segmentacion-clientes/scripts/perfil.py`
+- [ ] `uv run python projects/00-segmentacion-clientes/scripts/figuras_u2.py
+      projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet
+      projects/00-segmentacion-clientes/reports/figures` deja 4 PNG.
+- [ ] `uv run python projects/00-segmentacion-clientes/scripts/perfil.py`
       deja `reports/perfil_muestra.html` (2,2 MB).
 
 ## Narrativa
