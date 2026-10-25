@@ -98,20 +98,55 @@ que necesite.
 
 ---
 
-## Las sesiones
+## Las sesiones y las clases
 
-| # | Tema | Estado |
+El repo organiza el material en **4 sesiones conceptuales** (una por
+unidad del microcurrículo). El módulo se dicta en **8 clases presenciales
+de 4 horas** (32 horas de interacción + 16 de trabajo autónomo por unidad).
+Dos clases por sesión conceptual:
+
+| Sesión | Unidad | Clases presenciales | Material |
+|---|---|---|---|
+| S01 · Encuadre + CRISP-DM | U1 | Clase 1 y 2 | [`sesiones/s01-objetivo-crisp-dm/`](sesiones/s01-objetivo-crisp-dm/) |
+| S02 · Exploración con Polars | U2 | Clase 3 y 4 | [`sesiones/s02-exploracion-polars/`](sesiones/s02-exploracion-polars/) |
+| S03 · Procesamiento, pipelines, modelos | U3 | Clase 5 y 6 | [`sesiones/s03-procesamiento-sklearn/`](sesiones/s03-procesamiento-sklearn/) |
+| S04 · Aplicación y entregable | U4 | Clase 7 y 8 | [`sesiones/s04-app-mlops/`](sesiones/s04-app-mlops/) + [`projects/04-reconocimiento-imagenes/`](projects/04-reconocimiento-imagenes/) |
+
+### Calendario detallado (8 clases × 4 horas)
+
+El desglose asume que una clase de 4 horas no es monólogo: hay
+calentamiento, pausa, taller en vivo y Q&A. Los tiempos son
+aproximados; la realidad varía según la cohorte.
+
+| Clase | Unidad | De qué va | Material del repo | Desglose aproximado de las 4h |
+|---|---|---|---|---|
+| **1** | U1 | Encuadre del curso + ambiente + git | S01 + tutoriales 00 y 01 | 30' bienvenida y presentaciones · 1h30' qué es CRISP-DM y por qué · 15' break · 1h taller: `make setup` + primer commit en una rama · 45' Q&A y asignación de tarea |
+| **2** | U1 | Formulación individual: aterrizar los 6 campos de CRISP-DM fase 1 | S01 + notebook `00_objetivo_de_analisis.ipynb` del caso guía | 20' repaso + dudas · 1h30' trabajo guiado llenando la ficha de fase 1 sobre un caso propio · 15' break · 1h30' presentación corta de cada ficha + feedback entre pares · 25' cierre |
+| **3** | U2 | Exploración: carga, perfilado, limpieza con Polars | S02 (bloques 1-3) + notebooks 01-03 del caso guía | 20' calentamiento + preguntas pendientes · 2h teoría + práctica (perfilado y 5 reglas de limpieza) · 15' break · 1h taller individual sobre un dataset propio · 25' Q&A |
+| **4** | U2 | EDA (manual vs. automatizado) + construcción de la cohorte | S02 (bloques 4-5) + notebooks 04-05 + demo [`d1-ejercicio-preprocesamiento`](projects/d1-ejercicio-preprocesamiento/) | 20' revisión del taller · 1h30' EDA + preparación de variables RFM · 15' break · 1h30' taller: construir la cohorte sobre un dataset propio · 25' cierre |
+| **5** | U3 | Partición temporal, pipelines sin fuga, feature engineering | S03 (bloques 1-3) + notebooks 06-07 + demo [`d2-temporal-split`](projects/d2-temporal-split/) | 20' arranque · 2h teoría + práctica (particiones A/B, `ColumnTransformer`, fuga temporal) · 15' break · 1h taller · 25' Q&A |
+| **6** | U3 | Modelos, métricas, umbral y guardado del artefacto | S03 (bloques 4-6) + notebooks 09-10 + demo [`d4-umbrales-ejemplo`](projects/d4-umbrales-ejemplo/) | 20' repaso · 2h entrenamiento, comparación de modelos, tabla de umbrales · 15' break · 1h taller individual · 25' cierre |
+| **7** | U4 | Del modelo al entregable: Streamlit, FastAPI, Gradio | S04 + [`projects/04-reconocimiento-imagenes/`](projects/04-reconocimiento-imagenes/) + [`projects/03-prediccion-precios-automoviles/`](projects/03-prediccion-precios-automoviles/) | 20' arranque · 1h30' demo en vivo del flujo notebook → paquete → app · 15' break · 1h30' taller: envolver un modelo propio en Streamlit · 25' Q&A |
+| **8** | U4 | Taller final: presentaciones del entregable individual + cierre | Entregable propio + proyecto 04 como referencia | 20' arranque · 2h30' presentaciones (≈15' por estudiante) · 15' break · 45' feedback cruzado y cierre del módulo |
+
+### Si estudias por tu cuenta (sin asistir a las clases)
+
+Si usas el repo como material autodidacta, un ritmo razonable es ~5 horas
+por semana durante 6-7 semanas:
+
+| Semana | Qué cubres | Material |
 |---|---|---|
-| S01 | Encuadre: CRISP-DM como columna vertebral | 📄 marco (lectura, no presencial) |
-| S02 | Exploración de datos con Polars | 🟢 completa |
-| S03 | Procesamiento, pipelines y modelos | 🟢 completa |
-| S04 | Aplicación: del modelo al entregable | 📄 marco (trabajo autónomo sobre el proyecto 04) |
+| **1** | Fundamentos: ambiente, git, uv, Makefile | Tutoriales 00-03 + S01 completa |
+| **2** | Exploración de datos (parte 1) | S02 bloques 1-3 + notebooks 00-03 del caso guía |
+| **3** | Exploración de datos (parte 2) | S02 bloques 4-5 + notebooks 04-05 + demo d1 |
+| **4** | Procesamiento y pipelines sin fuga | S03 bloques 1-3 + notebooks 06-07 + demo d2 |
+| **5** | Modelos, métricas, umbrales | S03 bloques 4-6 + notebooks 09-10 + demo d4 |
+| **6** | Aplicación: notebook → paquete → app | S04 + proyecto 04 (CNN) corrido completo |
+| **7** | Entregable propio | Aplicas lo aprendido sobre un dataset tuyo |
 
-S01 y S04 son documentos de marco, no sesiones de 4 horas. S01 la lees
-antes de arrancar; S04 la practicas al final sobre tu propia app. S02 y
-S03 son las sesiones presenciales con guión completo.
-
-Detalle en [`sesiones/README.md`](sesiones/README.md).
+Si tienes más tiempo o quieres contrastar enfoques, abre después los
+proyectos didácticos 01 (titanic, AutoML) y 03 (automóviles, MLflow +
+FastAPI). Son material histórico pero útiles.
 
 ---
 
