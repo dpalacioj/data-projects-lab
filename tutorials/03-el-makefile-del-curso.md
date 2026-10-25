@@ -182,7 +182,7 @@ archivo y copia el comando que te interesa:
 | `make smoke` | `python3 scripts/smoke_test.py` |
 | `make test` | `uv run pytest` |
 | `make test-slow` | `uv run pytest -m slow` |
-| `make lint` | `uv run ruff check projects/segmentacion-clientes/` |
+| `make lint` | `uv run ruff check projects/00-segmentacion-clientes/` |
 | `make clean` | Borra a mano `__pycache__/`, `.pytest_cache/`, `.ruff_cache/`, `.mypy_cache/` |
 
 ---

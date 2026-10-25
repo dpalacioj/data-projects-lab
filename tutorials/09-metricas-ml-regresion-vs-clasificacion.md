@@ -133,7 +133,7 @@ Dos métricas que **integran sobre todos los umbrales**:
 > (generada por `scripts/figuras_u3.py`) muestra ambas curvas con las
 > marcas de umbral `0,3` y `0,5`.
 
-![ROC y PR](../projects/segmentacion-clientes/reports/figures/g_roc_pr.png)
+![ROC y PR](../projects/00-segmentacion-clientes/reports/figures/g_roc_pr.png)
 
 ### Qué métrica elegir
 
@@ -153,7 +153,7 @@ test como una curva en forma de U.
 > AUC(A) crece monótonamente con la profundidad del árbol (de 0,696 a
 > 1,000); AUC(B) crece al principio y **cae** después de profundidad 4.
 
-![Sobreajuste](../projects/segmentacion-clientes/reports/figures/g_sobreajuste.png)
+![Sobreajuste](../projects/00-segmentacion-clientes/reports/figures/g_sobreajuste.png)
 
 ### Cómo detectarlo
 
@@ -166,7 +166,7 @@ test como una curva en forma de U.
   Un salto así de grande sin cambio de arquitectura es casi siempre
   fuga, no mejora real.
 
-![Fuga](../projects/segmentacion-clientes/reports/figures/g_fuga.png)
+![Fuga](../projects/00-segmentacion-clientes/reports/figures/g_fuga.png)
 
 ## Qué métrica usar y cuándo
 
@@ -204,13 +204,13 @@ donde todas estas métricas se calculan de verdad:
 
 Flujo completo en los cuadernos:
 
-- [`06_particion_y_fuga.ipynb`](../projects/segmentacion-clientes/notebooks/06_particion_y_fuga.ipynb)
+- [`06_particion_y_fuga.ipynb`](../projects/00-segmentacion-clientes/notebooks/06_particion_y_fuga.ipynb)
   — cómo construir cohortes sin fuga.
-- [`09_modelos_y_pipelines.ipynb`](../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
+- [`09_modelos_y_pipelines.ipynb`](../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
   — las métricas aplicadas con pipelines reproducibles y curva de
   profundidad; importancias del bosque:
 
-![Importancia](../projects/segmentacion-clientes/reports/figures/g_importancia.png)
+![Importancia](../projects/00-segmentacion-clientes/reports/figures/g_importancia.png)
 
 ---
 

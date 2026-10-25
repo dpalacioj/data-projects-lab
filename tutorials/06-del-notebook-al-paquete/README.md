@@ -66,6 +66,6 @@ no es cosmético, y mostrar **cómo** se ve el resultado final.
 ## Qué sigue
 
 Si terminaste el taller, el patrón "paquete + notebook que importa" ya es tuyo.
-Un buen siguiente paso es abrir [`projects/segmentacion-clientes/`](../../projects/segmentacion-clientes/)
+Un buen siguiente paso es abrir [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/)
 y ver cómo se aplica el mismo patrón sobre un dataset real (Online Retail II)
 en el caso guía del módulo.

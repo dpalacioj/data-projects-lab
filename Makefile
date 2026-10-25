@@ -2,7 +2,7 @@
 # `make` sin argumentos muestra esta ayuda.
 #
 # Si este archivo te parece denso (que son @, .PHONY, $(MAKEFILE_LIST)...),
-# lee tutorials/02c-el-makefile-del-curso.md: explica cada linea.
+# lee tutorials/03-el-makefile-del-curso.md: explica cada linea.
 
 .DEFAULT_GOAL := help
 .PHONY: help setup setup-caso smoke test lint clean
@@ -31,7 +31,7 @@ test-slow:  ## Corre los tests que requieren los datos reales descargados.
 	uv run pytest -m slow
 
 lint:  ## Corre ruff sobre el codigo del caso guia.
-	uv run ruff check projects/segmentacion-clientes/
+	uv run ruff check projects/00-segmentacion-clientes/
 
 clean:  ## Borra caches de python y de pytest.
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} +

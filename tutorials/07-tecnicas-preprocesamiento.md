@@ -5,9 +5,9 @@
 > dentro de un `ColumnTransformer` con prevención de fuga, revisa los
 > cuadernos del proyecto `segmentacion-clientes`:
 >
-> - [`07_ingenieria_caracteristicas.ipynb`](../projects/segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb)
+> - [`07_ingenieria_caracteristicas.ipynb`](../projects/00-segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb)
 >   — qué aprende cada bloque del preprocesador (`NUM_LOG`, `NUM_STD`, `CAT`).
-> - [`09_modelos_y_pipelines.ipynb`](../projects/segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
+> - [`09_modelos_y_pipelines.ipynb`](../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb)
 >   — pipeline completo (preprocesador + modelo) con validación cruzada,
 >   umbrales y serialización con `metadatos.json`.
 >

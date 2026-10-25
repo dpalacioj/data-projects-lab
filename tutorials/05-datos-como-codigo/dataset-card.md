@@ -6,7 +6,7 @@
 > [taller](taller.md).
 >
 > **Fecha de esta ficha:** 2026-10-20. Las cifras están medidas sobre el
-> parquet procesado por `projects/segmentacion-clientes/scripts/descargar_datos.py`,
+> parquet procesado por `projects/00-segmentacion-clientes/scripts/descargar_datos.py`,
 > no estimadas.
 
 Se documenta el dato con el mismo rigor con el que se documenta el modelo. No
@@ -122,12 +122,12 @@ Del dataset bruto, el caso guía deriva:
 
 ```bash
 # Descargar el parquet
-uv run python projects/segmentacion-clientes/scripts/descargar_datos.py
+uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py
 
 # Las cifras citadas (1 067 371 filas, 8 columnas, nulos por columna)
 uv run python -c "
 import polars as pl
-df = pl.read_parquet('projects/segmentacion-clientes/data/raw/online_retail_II.parquet')
+df = pl.read_parquet('projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet')
 print(df.shape)
 print(df.null_count())
 "

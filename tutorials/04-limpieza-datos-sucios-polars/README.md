@@ -1,7 +1,7 @@
-# Tutorial 02b: Limpieza de datos sucios en Polars
+# Tutorial 04: Limpieza de datos sucios en Polars
 
 > Patrón del repositorio: **ejercicio + solución separados**. Imita la
-> estructura de `projects/ejercicio-preprocesamiento/` sobre un dataset
+> estructura de `projects/d1-ejercicio-preprocesamiento/` sobre un dataset
 > sintético inventado específicamente para este taller (nada se toma
 > de datasets externos).
 
@@ -32,7 +32,7 @@ inspeccionar cada paso.
 ## Cómo ejecutarlo
 
 ```bash
-cd tutorials/02b-limpieza-datos-sucios-polars
+cd tutorials/04-limpieza-datos-sucios-polars
 uv run python data_sinteticos.py          # genera datos_sucios.csv
 uv run jupyter lab 01_ejercicio.ipynb      # resolver el ejercicio
 uv run jupyter lab 02_solucion.ipynb       # consultar la solución
@@ -43,5 +43,5 @@ El CSV sintético es pequeño (200 filas, ~15 KB) y se puede commitear.
 ## Para después
 
 Una vez cómodo con este tutorial, el flujo real sobre Online Retail II
-está en `projects/segmentacion-clientes/notebooks/02_limpieza.ipynb`
+está en `projects/00-segmentacion-clientes/notebooks/02_limpieza.ipynb`
 (mismo patrón, pero sobre el dataset de la Unidad 2 del módulo).
