@@ -66,10 +66,31 @@ Fuera de la ruta mínima. Léelos si te interesa el tema.
 
 ## Convenciones
 
-- Si un tutorial tiene su propia carpeta (`04-…/`, `05-…/`), el `README.md`
-  interno es el punto de entrada.
-- Cada tutorial declara su prerrequisito. Si asumes algo que no está, es un
-  error del material: avisa.
+### ¿Por qué unos tutoriales son archivos sueltos y otros son carpetas?
+
+Regla simple: **si solo hay texto, es un `.md` suelto. Si hay código
+ejecutable o datos que acompañan, se envuelve en una carpeta.**
+
+- **Archivos sueltos** (p. ej. `01-git-flujo-de-trabajo.md`,
+  `03-el-makefile-del-curso.md`, `07-tecnicas-preprocesamiento.md`): son
+  tutoriales de solo texto. Lees y entiendes; no hay nada que correr.
+- **Carpetas** (p. ej. `00-…/`, `04-…/`, `05-…/`, `06-…/`): el tutorial
+  trae **archivos de apoyo** que tienen que vivir junto al `README.md`.
+  Cuatro casos hoy:
+
+  | Carpeta | Qué trae además del README |
+  |---|---|
+  | `00-ambientes-venv-conda-uv/` | Un notebook + `pyproject.toml`, `environment.yml`, `requirements.txt` y `uv.lock` para probar el mismo notebook en tres gestores de ambiente distintos |
+  | `04-limpieza-datos-sucios-polars/` | Notebook de **ejercicio** + notebook de **solución** + CSV sintético + script que lo genera |
+  | `05-datos-como-codigo/` | Un tema contado en tres `.md` temáticos + un notebook + un `taller.md` |
+  | `06-del-notebook-al-paquete/` | Notebook + un **mini-paquete Python de ejemplo** (`paquete/` con `src/`, `pyproject.toml`, `tests/`) que el estudiante va construyendo |
+
+### Otras convenciones
+
+- Si un tutorial tiene su propia carpeta, el `README.md` interno es el
+  punto de entrada.
+- Cada tutorial declara su prerrequisito. Si asumes algo que no está, es
+  un error del material: avisa.
 
 ---
 
