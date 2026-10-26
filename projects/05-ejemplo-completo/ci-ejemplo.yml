@@ -1,0 +1,41 @@
+# Plantilla de CI para que la copies a TU propio repositorio.
+#
+# NO esta en .github/workflows/ a proposito: este archivo es demostracion,
+# no se ejecuta aqui. Copia este archivo a `.github/workflows/ci.yml` en
+# tu repo del trabajo final y adaptalo.
+#
+# Que hace:
+#   - Clona tu codigo.
+#   - Instala uv y Python 3.11.
+#   - Sincroniza dependencias.
+#   - Corre linter y tests.
+#   - Reporta verde o rojo al PR.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Instalar Python 3.11
+        run: uv python install 3.11
+
+      - name: Sincronizar dependencias
+        run: uv sync --dev
+
+      - name: Lint (ruff)
+        run: uv run ruff check src/ tests/
+
+      - name: Tests (pytest)
+        run: uv run pytest
