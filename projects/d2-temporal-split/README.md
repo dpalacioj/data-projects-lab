@@ -225,25 +225,30 @@ for i in range(window_size, len(df)):
 
 ## 🚀 Cómo Usar Este Proyecto
 
-### Requisitos
+### Paso 1 — Instala las dependencias
+
+Las de esta demo ya vienen con la base del repo. Desde la **raíz del repo**:
 
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn
+uv sync --extra dev
 ```
 
-### Ejecución
+### Paso 2 — Abre el notebook
 
-1. Navegar a la carpeta:
 ```bash
 cd projects/d2-temporal-split
+uv run jupyter lab data_leakage_temporal.ipynb
 ```
 
-2. Abrir el notebook:
-```bash
-jupyter notebook data_leakage_temporal.ipynb
-```
+### Paso 3 — Qué hacer en clase
 
-3. Ejecutar las celdas y observar las diferencias entre ambos enfoques.
+Ejecuta las celdas en orden y observa cómo las métricas del split
+aleatorio son artificialmente optimistas comparadas con las del split
+temporal.
+
+**Objetivo pedagógico (20 min):** entender que el *shuffle* del split
+aleatorio es correcto en datos iid, pero rompe la realidad en datos
+con componente temporal.
 
 ## 📝 Contenido del Notebook
 

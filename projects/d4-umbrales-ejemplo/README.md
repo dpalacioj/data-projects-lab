@@ -77,25 +77,33 @@ De todos los casos positivos reales, ¿cuántos capturamos?
 
 ## 🚀 Cómo usar este proyecto
 
-### Requisitos
+### Paso 1 — Instala las dependencias
+
+Esta demo usa LightGBM, que no está en la base. Desde la **raíz del repo**:
 
 ```bash
-pip install lightgbm scikit-learn pandas matplotlib seaborn jupyter
+uv add lightgbm --dev           # añade LightGBM al grupo dev del repo
+uv sync --extra dev
 ```
 
-### Ejecución
+(Alternativa simple: `uv run --with lightgbm jupyter lab umbral_clasificacion.ipynb`
+desde esta carpeta, sin modificar `pyproject.toml`.)
 
-1. Navegar a la carpeta del proyecto:
+### Paso 2 — Abre el notebook
+
 ```bash
 cd projects/d4-umbrales-ejemplo
+uv run jupyter lab umbral_clasificacion.ipynb
 ```
 
-2. Abrir el notebook:
-```bash
-jupyter notebook umbral_clasificacion.ipynb
-```
+### Paso 3 — Qué hacer en clase
 
-3. Ejecutar las celdas secuencialmente.
+Ejecuta las celdas secuencialmente. Observa cómo cambia la relación
+precision/recall al mover el umbral de 0.1 a 0.9.
+
+**Objetivo pedagógico (20 min):** romper el reflejo de usar siempre 0.5
+y entender que el umbral se elige con el equipo de negocio según el
+costo de falsos positivos vs. falsos negativos.
 
 ## 📊 Contenido del Notebook
 
