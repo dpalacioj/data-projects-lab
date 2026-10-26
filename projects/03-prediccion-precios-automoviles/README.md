@@ -2,9 +2,12 @@
 
 ## Documentación Rápida
 
-- **[QUICKSTART.md](QUICKSTART.md)** - Comandos directos para empezar en 5 minutos
 - **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Guía completa de solución de problemas
 - **Script de verificación:** `uv run python test_setup.py` - Verifica que todo funcione
+
+> El quickstart se removió como archivo separado. Toda la receta de
+> instalación y uso está integrada en las secciones de este README
+> ("Instalación y Configuración" y "Uso del Proyecto" más abajo).
 
 ## Descripción del Proyecto
 
