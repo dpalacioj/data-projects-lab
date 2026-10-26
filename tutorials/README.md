@@ -67,6 +67,7 @@ Fuera de la ruta mínima. Léelos si te interesa el tema.
 | 90 | [`90-configuracion-inicial-claude-code.md`](90-configuracion-inicial-claude-code.md) | Cómo configurar Claude Code como asistente de desarrollo |
 | 91 | [`91-introduccion-mcp.md`](91-introduccion-mcp.md) | Qué es MCP (Model Context Protocol) y para qué sirve |
 | 92 | [`92-recursos-herramientas-ia.md`](92-recursos-herramientas-ia.md) | Catálogo de herramientas de IA útiles para el curso |
+| 93 | [`93-fine-tuning-y-por-que-en-otra-instancia.md`](93-fine-tuning-y-por-que-en-otra-instancia.md) | Qué es fine-tuning, cuándo tiene sentido, por qué el training vive en otra máquina. Caso: Caficulbot (asistente offline con Gemma-3n) |
 
 ---
 
