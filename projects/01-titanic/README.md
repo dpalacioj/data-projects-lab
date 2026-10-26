@@ -254,8 +254,51 @@ uv pip install -e ".[all]"
 uv run jupyter lab
 
 # Navegar a projects/01-titanic/
-# Ejecutar en orden: 01 → 02 → 04/05 → 06 → 07
+# Ejecutar en orden: 01 → 02 → 06 → 07
+# Los AutoML (04 y 05) requieren un entorno aparte, ver seccion abajo.
 ```
+
+### Ejecutar 04_AutoML_PyCaret y 05_AutoML_FLAML en un entorno aislado
+
+**Por que**: el `.venv` del monorepo tiene `scikit-learn >= 1.9` porque
+el proyecto 00 lo exige. **PyCaret** depende de `sklearn.utils._print_elapsed_time`
+(API privada removida en sklearn 1.6) y **FLAML 2.3.x** aun no implementa
+`__sklearn_tags__` en `LGBMEstimator`, requerido por sklearn 1.6+.
+Resultado: ambos cuadernos fallan al importar en el `.venv` compartido.
+
+**Que hacer**: crear un venv aparte, solo para estos dos cuadernos, con
+`scikit-learn==1.5.*`. No hace falta tocar nada del monorepo.
+
+```bash
+# Desde la raiz del repo (data-projects-lab/):
+cd projects/01-titanic
+
+# 1. Crear un venv dedicado con uv (python 3.11)
+uv venv .venv-automl --python 3.11
+
+# 2. Activarlo
+source .venv-automl/bin/activate        # macOS/Linux
+# .venv-automl\Scripts\activate         # Windows
+
+# 3. Instalar las deps compatibles
+uv pip install "scikit-learn==1.5.*" "pandas>=2.1" "numpy>=1.26" \
+               "matplotlib>=3.8" "jupyter" "ipykernel" \
+               "pycaret>=3.3" "flaml[automl]>=2.3.6" "plotly>=5.5"
+
+# 4. Registrar este venv como un kernel de Jupyter visible desde el .venv del monorepo
+python -m ipykernel install --user --name titanic-automl --display-name "Python (titanic-automl)"
+
+# 5. Desactivar y volver al .venv del monorepo
+deactivate
+```
+
+Despues, en Jupyter: abrir `04_AutoML_PyCaret.ipynb` o `05_AutoML_FLAML.ipynb`,
+y en el menu **Kernel → Change Kernel** seleccionar
+**Python (titanic-automl)**. Ejecutar normalmente.
+
+> El venv `.venv-automl` queda ignorado por git gracias al patron `.venv*`
+> del `.gitignore`. Si en el futuro PyCaret y FLAML se actualizan para
+> sklearn >= 1.6, este paso deja de ser necesario.
 
 ### Ejecutar Streamlit App
 
