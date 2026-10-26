@@ -1,3 +1,9 @@
+---
+title: Taller
+parent: "05 · Datos como código"
+grand_parent: Tutoriales
+nav_order: 3
+---
 # Taller 02d — Dataset card + contrato de datos de tu proyecto
 
 > Se puede terminar en la clase o quedar como tarea. **Entregable:** dos

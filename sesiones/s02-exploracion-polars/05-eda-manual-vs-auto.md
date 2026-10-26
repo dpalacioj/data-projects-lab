@@ -1,3 +1,9 @@
+---
+title: "05 · EDA manual vs. automatizado"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 5
+---
 # EDA manual vs. automatizado
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §4 (cifras). Cuadernos 04 y 05 del proyecto.

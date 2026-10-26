@@ -1,3 +1,9 @@
+---
+title: "07 · Troubleshooting"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 7
+---
 # Troubleshooting S02 — Errores reales ya vistos
 
 > Entradas registradas tras implementar la Unidad 2 contra `main` del día. Si tu error no está aquí, abre un issue con el stack completo.

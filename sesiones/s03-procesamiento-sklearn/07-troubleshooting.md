@@ -1,3 +1,9 @@
+---
+title: "07 · Troubleshooting"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 7
+---
 # Troubleshooting S03 — Errores reales ya vistos
 
 > Entradas registradas tras implementar la Unidad 3 contra `main` del día.

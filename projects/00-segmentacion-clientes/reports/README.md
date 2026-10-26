@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # reports/ — Artefactos de referencia del caso de recompra
 
 Esta carpeta guarda los **outputs** del caso guía: cifras y cohortes que las

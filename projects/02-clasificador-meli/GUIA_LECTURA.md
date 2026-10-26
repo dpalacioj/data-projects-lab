@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Guía de Lectura: Clasificador MeLi
 
 ## Objetivo

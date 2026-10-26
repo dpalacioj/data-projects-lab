@@ -1,3 +1,8 @@
+---
+title: "D1 · Preprocesamiento"
+parent: Proyectos
+nav_order: 10
+---
 # Ejercicio: Comparación de Técnicas de Preprocesamiento
 
 ## Descripción

@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Diccionario de Datos - Dataset MercadoLibre
 
 ## Descripción de Variables

@@ -1,3 +1,9 @@
+---
+title: "06 · Taller"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 6
+---
 # Taller S03 — Aplicación independiente
 
 > Entregable: ver §4. Tiempo estimado: 8-12 horas de trabajo autónomo.

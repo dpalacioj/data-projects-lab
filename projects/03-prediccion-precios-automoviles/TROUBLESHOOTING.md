@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Guía de Solución de Problemas
 
 Esta guía te ayudará a resolver los problemas más comunes al usar este proyecto.

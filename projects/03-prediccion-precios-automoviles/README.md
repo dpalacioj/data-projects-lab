@@ -1,3 +1,8 @@
+---
+title: "03 · Predicción de precios de autos"
+parent: Proyectos
+nav_order: 3
+---
 # Predicción de Precios de Automóviles Usados
 
 ## Documentación Rápida

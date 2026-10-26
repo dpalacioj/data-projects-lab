@@ -1,3 +1,9 @@
+---
+title: Contratos de datos
+parent: "05 · Datos como código"
+grand_parent: Tutoriales
+nav_order: 1
+---
 # Contratos de datos: los tres niveles
 
 > **Pandera** es la librería que usamos aquí para expresar contratos. Instala con

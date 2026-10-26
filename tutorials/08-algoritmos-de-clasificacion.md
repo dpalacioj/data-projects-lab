@@ -1,3 +1,8 @@
+---
+title: "08 · Algoritmos de clasificación"
+parent: Tutoriales
+nav_order: 10
+---
 # Tutorial: Métricas de Evaluación y Probabilidades en Algoritmos de Clasificación
 
 ## Introducción

@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Archivos de Prueba para Streamlit UI
 
 Este directorio contiene archivos de prueba para probar la UI de Streamlit del Clasificador MercadoLibre.

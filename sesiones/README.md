@@ -1,3 +1,8 @@
+---
+title: Sesiones
+nav_order: 2
+has_children: true
+---
 # Sesiones del módulo Proyecto I
 
 > Revisión: **2026-10-19** · Versión del repo: ver `git log main..HEAD` · Módulo: Especialización en Ciencia de Datos e IA (Universidad de Medellín).

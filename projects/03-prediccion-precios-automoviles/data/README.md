@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Estructura de Datos
 
 Este directorio sigue la convención de **cookiecutter-data-science** para organizar datos en diferentes etapas de procesamiento.

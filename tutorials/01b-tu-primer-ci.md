@@ -1,3 +1,8 @@
+---
+title: "01b · Tu primer CI"
+parent: Tutoriales
+nav_order: 2
+---
 # Tutorial 01b · Construye tu primer repo con CI desde cero
 
 > Pre-requisito: haber leído el [tutorial 01 de git](01-git-flujo-de-trabajo.md). Tener `uv` instalado.

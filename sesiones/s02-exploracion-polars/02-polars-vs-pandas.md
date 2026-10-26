@@ -1,3 +1,9 @@
+---
+title: "02 · Polars vs. pandas"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 2
+---
 # Polars vs pandas — cuándo cada uno
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md).

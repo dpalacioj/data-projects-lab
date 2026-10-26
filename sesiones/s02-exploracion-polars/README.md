@@ -1,3 +1,9 @@
+---
+title: "S02 · Exploración con Polars"
+parent: Sesiones
+nav_order: 2
+has_children: true
+---
 # Sesión S02 · Exploración de datos con Polars — Guía para el instructor
 
 > Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11, fg-data-profiling 4.20, skimpy 0.0.21 · Spec que implementa: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Proyecto que soporta: [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).

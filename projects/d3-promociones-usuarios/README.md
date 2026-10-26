@@ -1,3 +1,8 @@
+---
+title: "D3 · Target de promociones"
+parent: Proyectos
+nav_order: 12
+---
 # d3 · Construcción de target: ¿a quién le damos una promoción?
 
 > Demo corta (~20 min). Cubre un solo concepto: **cómo se construye la

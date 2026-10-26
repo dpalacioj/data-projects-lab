@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Ejemplos de Uso de la API
 
 Esta carpeta contiene ejemplos para probar la API de predicción de precios de automóviles.

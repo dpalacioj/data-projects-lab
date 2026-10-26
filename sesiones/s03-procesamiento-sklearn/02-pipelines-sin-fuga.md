@@ -1,3 +1,9 @@
+---
+title: "02 · Pipelines sin fuga"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 2
+---
 # Pipeline sin fuga — qué aprende cada bloque
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §4 (Tabla 8). Cuaderno: [`07_ingenieria_caracteristicas.ipynb`](../../projects/00-segmentacion-clientes/notebooks/07_ingenieria_caracteristicas.ipynb). Código: [`src/segmentacion/pipelines/preprocesamiento.py`](../../projects/00-segmentacion-clientes/src/segmentacion/pipelines/preprocesamiento.py).

@@ -1,3 +1,8 @@
+---
+title: "03 · Makefile"
+parent: Tutoriales
+nav_order: 5
+---
 # Tutorial 02c — El `Makefile` del curso, explicado línea por línea
 
 > Pre-requisito: haber hecho el [tutorial 00](00-ambientes-venv-conda-uv/) y tener el ambiente del curso montado.

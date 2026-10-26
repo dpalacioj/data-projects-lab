@@ -1,3 +1,8 @@
+---
+title: "01 · Git y GitHub"
+parent: Tutoriales
+nav_order: 1
+---
 # Tutorial — Git y GitHub: el flujo de trabajo del curso
 
 > Revisión: **2026-10-25** · Pre-requisito: una cuenta de GitHub creada. Nada más.

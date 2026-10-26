@@ -1,3 +1,8 @@
+---
+title: "04 · Limpieza con Polars"
+parent: Tutoriales
+nav_order: 6
+---
 # Tutorial 04: Limpieza de datos sucios en Polars
 
 > Patrón del repositorio: **ejercicio + solución separados**. Imita la

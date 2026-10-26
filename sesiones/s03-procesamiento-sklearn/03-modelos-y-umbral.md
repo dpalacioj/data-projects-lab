@@ -1,3 +1,9 @@
+---
+title: "03 · Modelos y umbral"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 3
+---
 # Modelos y umbral de decisión
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §9. Cuaderno: [`09_modelos_y_pipelines.ipynb`](../../projects/00-segmentacion-clientes/notebooks/09_modelos_y_pipelines.ipynb). Código: [`src/segmentacion/models/entrenar.py`](../../projects/00-segmentacion-clientes/src/segmentacion/models/entrenar.py) + [`evaluation/{metricas,umbral}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/evaluation/).

@@ -1,3 +1,8 @@
+---
+title: "09 · Métricas regresión vs. clasificación"
+parent: Tutoriales
+nav_order: 11
+---
 # Tutorial 05: Métricas de regresión y clasificación
 
 > Reescrito desde **fuentes primarias**:

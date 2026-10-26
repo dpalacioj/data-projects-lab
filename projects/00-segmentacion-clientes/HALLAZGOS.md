@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # HALLAZGOS — Unidad 2 (Online Retail II)
 
 Hallazgos consolidados de los cuadernos 01-04. Cada fila es un vinculo

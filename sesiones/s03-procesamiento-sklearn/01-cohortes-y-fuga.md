@@ -1,3 +1,9 @@
+---
+title: "01 · Cohortes y fuga"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 1
+---
 # Cohortes temporales y las dos fugas
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §4 y §9. Cuaderno: [`06_particion_y_fuga.ipynb`](../../projects/00-segmentacion-clientes/notebooks/06_particion_y_fuga.ipynb). Código: [`src/segmentacion/features/cohortes.py`](../../projects/00-segmentacion-clientes/src/segmentacion/features/cohortes.py).

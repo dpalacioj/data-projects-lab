@@ -1,3 +1,8 @@
+---
+title: "92 · Recursos de IA (opcional)"
+parent: Tutoriales
+nav_order: 92
+---
 # Recursos y Herramientas de IA
 
 Guía práctica de plataformas, servicios y herramientas para estudiantes de IA y Data Science.

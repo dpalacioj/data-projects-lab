@@ -1,3 +1,8 @@
+---
+title: Tutoriales
+nav_order: 3
+has_children: true
+---
 # Tutoriales — índice y orden de lectura
 
 > Revisión: **2026-10-25**

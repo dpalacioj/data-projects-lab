@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Datos — segmentacion-clientes
 
 Los datos crudos **no se versionan** en este repositorio. El script

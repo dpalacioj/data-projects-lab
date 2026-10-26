@@ -1,3 +1,9 @@
+---
+title: "08 · Checklist del día de clase"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 8
+---
 # Checklist S03 — 15 minutos antes de entrar al aula
 
 ## Entorno

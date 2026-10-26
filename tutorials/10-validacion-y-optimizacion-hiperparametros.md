@@ -1,3 +1,8 @@
+---
+title: "10 · Validación e hiperparámetros"
+parent: Tutoriales
+nav_order: 12
+---
 # Tutorial: Validación Cruzada y Optimización de Hiperparámetros
 
 ## Índice

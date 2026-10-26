@@ -1,3 +1,8 @@
+---
+title: "D2 · Split temporal"
+parent: Proyectos
+nav_order: 11
+---
 # Data Leakage Temporal: Train/Test Split Correcto
 
 ## 📚 Descripción

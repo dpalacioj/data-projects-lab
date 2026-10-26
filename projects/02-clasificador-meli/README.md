@@ -1,3 +1,8 @@
+---
+title: "02 · Clasificador Mercado Libre"
+parent: Proyectos
+nav_order: 2
+---
 # Clasificador de Productos Mercado Libre
 
 Proyecto de Machine Learning para clasificar automáticamente si un producto de MercadoLibre es nuevo o usado basándose en sus características.

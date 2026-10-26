@@ -1,3 +1,9 @@
+---
+title: "03 · Esquema al leer"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 3
+---
 # Declarar el esquema al leer
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §5.2.

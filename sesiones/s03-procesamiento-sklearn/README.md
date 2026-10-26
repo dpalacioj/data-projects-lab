@@ -1,3 +1,9 @@
+---
+title: "S03 · Procesamiento, pipelines, modelos"
+parent: Sesiones
+nav_order: 3
+has_children: true
+---
 # Sesión S03 · Procesamiento, pipelines, modelos y LLM — Guía para el instructor
 
 > Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11 · Spec que implementa: [`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) + [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md) · Proyecto que soporta: [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).

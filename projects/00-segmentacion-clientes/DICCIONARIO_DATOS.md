@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Diccionario de Datos
 
 ## Dataset Original — Online Retail II (UCI ML Repository, ID 502)

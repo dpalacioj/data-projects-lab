@@ -1,3 +1,9 @@
+---
+title: "05 · LLM como transformador"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 5
+---
 # Un LLM como transformador — con esquema cerrado, caché y línea base
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md). Cuaderno: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb). Código: [`src/segmentacion/features/{texto_llm,llm_clientes}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/features/).

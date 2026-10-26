@@ -1,3 +1,8 @@
+---
+title: "91 · MCP (opcional)"
+parent: Tutoriales
+nav_order: 91
+---
 # Guía Simple: ¿Qué son los MCP?
 
 **Para personas sin conocimientos técnicos de IA**

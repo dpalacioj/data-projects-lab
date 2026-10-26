@@ -1,3 +1,7 @@
+---
+title: Trabajo final
+nav_order: 5
+---
 # Trabajo final del módulo Proyecto I
 
 Este documento describe **qué se espera que entregues** al final del

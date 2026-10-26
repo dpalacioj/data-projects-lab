@@ -1,3 +1,8 @@
+---
+title: "D4 · Umbrales y ROC"
+parent: Proyectos
+nav_order: 13
+---
 # Umbrales de Clasificación
 
 ## 📚 Descripción

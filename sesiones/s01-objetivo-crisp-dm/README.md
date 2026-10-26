@@ -1,3 +1,8 @@
+---
+title: "S01 · Encuadre CRISP-DM"
+parent: Sesiones
+nav_order: 1
+---
 # S01 · Encuadre del curso: CRISP-DM como columna vertebral
 
 > Revisión: **2026-10-25** · Unidad U1 · RAE 1.1 · Estado: **marco (no placeholder)**

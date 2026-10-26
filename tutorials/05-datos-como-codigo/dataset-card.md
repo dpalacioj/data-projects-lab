@@ -1,3 +1,9 @@
+---
+title: Dataset card
+parent: "05 · Datos como código"
+grand_parent: Tutoriales
+nav_order: 2
+---
 # Dataset card — Online Retail II (ejemplo lleno)
 
 > Esta dataset card documenta el caso guía del repositorio. **Al mismo tiempo

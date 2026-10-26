@@ -1,3 +1,8 @@
+---
+title: "07 · Preprocesamiento"
+parent: Tutoriales
+nav_order: 9
+---
 # Tutorial: Técnicas de Preprocesamiento en Machine Learning
 
 > **Caso aplicado sobre Online Retail II (Unidad 3 del módulo Proyecto I):**

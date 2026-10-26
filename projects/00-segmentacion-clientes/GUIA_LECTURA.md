@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Guía de Lectura: Segmentación de Clientes
 
 > Guía ordenada por **Unidad del módulo**. Dedica el tiempo sugerido a

@@ -1,3 +1,9 @@
+---
+title: "05 · Datos como código"
+parent: Tutoriales
+nav_order: 7
+has_children: true
+---
 # Tutorial 02d — Datos como código: dataset card + contratos ejecutables
 
 > Pre-requisito: tener el ambiente del curso montado ([tutorial 00](../00-ambientes-venv-conda-uv/)).

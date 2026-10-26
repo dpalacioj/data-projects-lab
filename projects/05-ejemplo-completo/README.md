@@ -1,3 +1,8 @@
+---
+title: "05 · Ejemplo completo (plantilla trabajo final)"
+parent: Proyectos
+nav_order: 5
+---
 # 05 · Ejemplo Completo — clasificador de vinos end-to-end
 
 > Proyecto de referencia para el **trabajo final**. Muestra en pequeño lo

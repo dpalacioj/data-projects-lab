@@ -1,3 +1,8 @@
+---
+title: "90 · Claude Code (opcional)"
+parent: Tutoriales
+nav_order: 90
+---
 # Tutorial 1: Configuración Inicial del Entorno de Desarrollo con IA
 
 ## 🎯 Objetivo del Tutorial

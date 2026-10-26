@@ -1,3 +1,9 @@
+---
+title: "06 · Taller"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 6
+---
 # Taller S02 — Aplicación independiente
 
 > Entregable: lo que pide §4 de este documento. Tiempo estimado: 4-6 horas de trabajo autónomo.

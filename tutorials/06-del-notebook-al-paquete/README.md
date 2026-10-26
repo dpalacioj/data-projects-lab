@@ -1,3 +1,9 @@
+---
+title: "06 · Del notebook al paquete"
+parent: Tutoriales
+nav_order: 8
+has_children: true
+---
 # Tutorial 02e — Del notebook al paquete: el mismo analisis, tres veces
 
 > Pre-requisito: ambiente del curso montado ([tutorial 00](../00-ambientes-venv-conda-uv/)).

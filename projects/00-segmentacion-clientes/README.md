@@ -1,3 +1,8 @@
+---
+title: "00 · Segmentación de Clientes (caso guía)"
+parent: Proyectos
+nav_order: 0
+---
 # Segmentación de Clientes con Aprendizaje No Supervisado
 
 Proyecto educativo que implementa un flujo completo de **segmentación de clientes**

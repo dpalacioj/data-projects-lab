@@ -1,3 +1,9 @@
+---
+title: Taller
+parent: "06 · Del notebook al paquete"
+grand_parent: Tutoriales
+nav_order: 1
+---
 # Taller 02e — Convierte tu notebook en paquete
 
 > Se puede terminar en clase o quedar como tarea.

@@ -1,3 +1,9 @@
+---
+title: "04 · Las 5 reglas de limpieza"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 4
+---
 # Las 5 reglas de limpieza como funciones separadas
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §5.3. Código: [`src/segmentacion/data/limpieza.py`](../../projects/00-segmentacion-clientes/src/segmentacion/data/limpieza.py).

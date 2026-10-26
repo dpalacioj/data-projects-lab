@@ -1,3 +1,8 @@
+---
+title: "02 · Proyecto con uv"
+parent: Tutoriales
+nav_order: 4
+---
 # Tutorial: Configuración de Proyecto con uv
 
 ## 📚 Introducción

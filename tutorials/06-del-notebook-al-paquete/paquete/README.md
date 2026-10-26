@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 # Paquete `analisis-ventas` (estado 3 del tutorial)
 
 Paquete minimo que acompaña al tutorial. Se instala en modo editable:

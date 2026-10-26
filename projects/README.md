@@ -1,3 +1,8 @@
+---
+title: Proyectos
+nav_order: 4
+has_children: true
+---
 # Proyectos
 
 Las carpetas tienen un prefijo numérico (`00-`, `01-`, ..., `d1-`, `d2-`...)

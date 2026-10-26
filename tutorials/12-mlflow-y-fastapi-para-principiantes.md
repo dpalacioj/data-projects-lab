@@ -1,3 +1,8 @@
+---
+title: "12 · MLflow y FastAPI"
+parent: Tutoriales
+nav_order: 14
+---
 # MLFlow y FastAPI para Principiantes
 
 ## Introducción

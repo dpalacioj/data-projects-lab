@@ -1,3 +1,8 @@
+---
+title: "04 · Reconocimiento de imágenes (CNN)"
+parent: Proyectos
+nav_order: 4
+---
 # Reconocimiento de imágenes — CNN sobre Fashion-MNIST
 
 > Proyecto didáctico. Mismo patrón de los proyectos tabulares del

@@ -1,3 +1,9 @@
+---
+title: "04 · Artefacto y registro"
+parent: "S03 · Procesamiento, pipelines, modelos"
+grand_parent: Sesiones
+nav_order: 4
+---
 # Artefacto y registro — contratos para U4
 
 > Fecha de referencia: **2026-10-19**. Spec: [`SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) §7 (Tabla 7). Código: [`src/segmentacion/models/registro.py`](../../projects/00-segmentacion-clientes/src/segmentacion/models/registro.py).

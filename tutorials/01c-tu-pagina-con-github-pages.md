@@ -1,3 +1,8 @@
+---
+title: "01c · GitHub Pages"
+parent: Tutoriales
+nav_order: 3
+---
 # Tutorial 01c · Tu página web con GitHub Pages (sin crear contenido nuevo)
 
 > Pre-requisito: haber hecho el tutorial [01 (git)](01-git-flujo-de-trabajo.md).

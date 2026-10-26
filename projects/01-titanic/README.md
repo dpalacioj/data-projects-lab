@@ -1,3 +1,8 @@
+---
+title: "01 · Titanic"
+parent: Proyectos
+nav_order: 1
+---
 # 🚢 Proyecto Titanic: Predicción de Supervivencia
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)

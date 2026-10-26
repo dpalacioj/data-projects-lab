@@ -1,3 +1,8 @@
+---
+title: "11 · Interpretabilidad"
+parent: Tutoriales
+nav_order: 13
+---
 # Tutorial: Interpretabilidad de Modelos de Machine Learning
 
 ## Índice

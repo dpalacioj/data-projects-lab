@@ -1,3 +1,7 @@
+---
+title: Inicio
+nav_order: 1
+---
 # Proyecto I — Laboratorio de Proyectos de Datos
 
 Material de clase del módulo **Proyecto I** de la Especialización en

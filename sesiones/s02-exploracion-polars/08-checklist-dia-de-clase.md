@@ -1,3 +1,9 @@
+---
+title: "08 · Checklist del día de clase"
+parent: "S02 · Exploración con Polars"
+grand_parent: Sesiones
+nav_order: 8
+---
 # Checklist S02 — 15 minutos antes de entrar al aula
 
 > El objetivo es que, si la red se cae, puedas seguir con lo que tienes en disco.
