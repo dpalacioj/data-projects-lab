@@ -1,0 +1,58 @@
+# Configuracion de GitHub Pages (Jekyll).
+#
+# Convierte este repositorio en un sitio web navegable que renderiza
+# los .md como paginas HTML. No duplica contenido: usa los README que
+# ya existen.
+#
+# Explicado linea por linea en tutorials/01c-tu-pagina-con-github-pages.md
+
+title: Proyecto I — Laboratorio de Proyectos de Datos
+description: Especialización en Ciencia de Datos e IA · Universidad de Medellín
+theme: jekyll-theme-cayman
+
+# Jekyll procesa por defecto todo el repositorio. Aqui le decimos que
+# ignore lo que NO es contenido pedagogico (codigo, datos, caches,
+# modelos, configs). Lo que queda son README y .md.
+exclude:
+  # Notebooks y codigo Python
+  - "**/*.ipynb"
+  - "**/*.py"
+  - "**/__pycache__/"
+
+  # Datos y modelos (binarios o CSV)
+  - "**/*.csv"
+  - "**/*.joblib"
+  - "**/*.pth"
+  - "**/*.parquet"
+  - "**/*.xlsx"
+  - "**/*.jsonlines"
+  - "**/*.gz"
+  - "**/*.zip"
+
+  # Subcarpetas tipicas de los proyectos (contienen codigo/datos)
+  - "**/src/"
+  - "**/app/"
+  - "**/tests/"
+  - "**/data/"
+  - "**/models/"
+  - "**/reports/"
+  - "**/notebooks/"
+  - "**/scripts/"
+  - "**/mlruns/"
+
+  # Carpetas de nivel raiz que no son contenido para el estudiante
+  - datasets/
+  - imagenes/
+  - tests/
+  - scripts/
+  - docs/specs/
+
+  # Configuracion del proyecto Python
+  - uv.lock
+  - pyproject.toml
+  - Makefile
+
+  # Dotfiles explicitos (algunos ya los excluye Jekyll por default)
+  - .gitignore
+  - .gitattributes
+  - .python-version

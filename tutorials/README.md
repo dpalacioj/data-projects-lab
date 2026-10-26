@@ -22,6 +22,7 @@ mínima.
 | 00 | [`00-ambientes-venv-conda-uv/`](00-ambientes-venv-conda-uv/) | Qué es un ambiente de Python, por qué `uv` y no otros | Ninguno |
 | 01 | [`01-git-flujo-de-trabajo.md`](01-git-flujo-de-trabajo.md) | Clonar, rama, commit, PR, qué hace CI | Una cuenta de GitHub |
 | 01b | [`01b-tu-primer-ci.md`](01b-tu-primer-ci.md) | Construye tu propio repo con CI desde cero (teoría + práctica) | Tutorial 01 |
+| 01c | [`01c-tu-pagina-con-github-pages.md`](01c-tu-pagina-con-github-pages.md) | Publica tu repo como sitio web con GitHub Pages, sin crear contenido nuevo | Tutorial 01 |
 | 02 | [`02-configuracion-proyecto-uv.md`](02-configuracion-proyecto-uv.md) | Cómo se estructura un proyecto con `uv` | Tutoriales 00 y 01 |
 | 03 | [`03-el-makefile-del-curso.md`](03-el-makefile-del-curso.md) | Por qué un `Makefile` ahorra memoria y errores | Tutorial 02 |
 
