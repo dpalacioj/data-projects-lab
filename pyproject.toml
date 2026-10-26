@@ -60,6 +60,16 @@ segmentacion-clientes = [
     "pydantic>=2.0",
 ]
 
+# Proyecto Ejemplo Completo (clasificador tabular con flujo end-to-end)
+# Es el proyecto que el estudiante toma de referencia para su trabajo final.
+ejemplo-completo = [
+    "streamlit>=1.50.0",
+    "fastapi>=0.120.0",
+    "uvicorn>=0.30.0",
+    "pydantic>=2.0",
+    "joblib>=1.3.0",
+]
+
 # Proyecto Reconocimiento de Imágenes (CNN + transfer learning)
 reconocimiento-imagenes = [
     "torch>=2.2",
@@ -104,7 +114,7 @@ dev = [
 
 # Instalación completa
 all = [
-    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
+    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,ejemplo-completo,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
 ]
 
 [project.urls]
@@ -151,6 +161,11 @@ ignore = ["E501"]
 # scripts de referencia tienen matplotlib.use("Agg") antes de los imports.
 "projects/00-segmentacion-clientes/scripts/caso_recompra.py" = ["E402"]
 "projects/00-segmentacion-clientes/scripts/figuras_u3.py" = ["E402"]
+# El notebook del proyecto 05 manipula sys.path antes de importar
+# (patron sys.path.insert + import, didactico). E402 e I001 son esperables.
+"projects/05-ejemplo-completo/notebooks/*.ipynb" = ["E402", "I001", "F401"]
+# Las apps de proyecto 05 tambien ajustan sys.path para importar desde src/
+"projects/05-ejemplo-completo/app/*.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -159,8 +174,8 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "projects/00-segmentacion-clientes/tests"]
-pythonpath = ["projects/00-segmentacion-clientes/src"]
+testpaths = ["tests", "projects/00-segmentacion-clientes/tests", "projects/05-ejemplo-completo/tests"]
+pythonpath = ["projects/00-segmentacion-clientes/src", "projects/05-ejemplo-completo/src"]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
 addopts = "-v"

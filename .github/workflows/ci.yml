@@ -20,13 +20,13 @@ jobs:
         run: uv python install 3.11
 
       - name: Sincronizar dependencias
-        run: uv sync --extra segmentacion-clientes --extra dev
+        run: uv sync --extra segmentacion-clientes --extra ejemplo-completo --extra dev
 
       - name: Diagnostico (smoke)
         run: python3 scripts/smoke_test.py
 
       - name: Lint
-        run: uv run ruff check projects/00-segmentacion-clientes/
+        run: uv run ruff check projects/00-segmentacion-clientes/ projects/05-ejemplo-completo/
 
       - name: Tests rapidos
         run: uv run pytest -m "not slow"

@@ -33,14 +33,22 @@ estás aprendiendo.
 | **02** | [`02-clasificador-meli/`](02-clasificador-meli/) | Clasificación supervisada en un dataset de productos de Mercado Libre | XGBoost, Pydantic | Medio |
 | **03** | [`03-prediccion-precios-automoviles/`](03-prediccion-precios-automoviles/) | Regresión con modularización sencilla, tracking de experimentos y serving | MLflow, FastAPI, Gradio, Streamlit | Medio-avanzado |
 | **04** | [`04-reconocimiento-imagenes/`](04-reconocimiento-imagenes/) | Fashion-MNIST con CNN. Es el ejemplo canónico del flujo "notebook paso a paso → paquete `src/` → Streamlit → FastAPI" | PyTorch, torchvision, Streamlit, FastAPI | Avanzado |
+| **05** | [`05-ejemplo-completo/`](05-ejemplo-completo/) | **Plantilla del trabajo final.** Clasificador tabular (Wine) con la receta mínima: `src/` modular, `Makefile` propio, tests, `app/` con Streamlit + FastAPI, plantilla de CI | sklearn, Streamlit, FastAPI | Básico-medio |
 
 El **patrón de modularización** que el curso quiere que entiendas se ve
-mejor en el 03 y en el 04: un archivo por responsabilidad (`config.py`,
-`data.py`, `model.py`, `train.py`, `predict.py`). Nada mágico, nada grande.
+mejor en el 03, el 04 y el 05: un archivo por responsabilidad (`config.py`,
+`data.py`, `features.py`, `model.py`, `train.py`, `predict.py`). Nada
+mágico, nada grande.
 
 El 00 (caso guía) tiene una modularización mayor porque es un proyecto
 real con subdominios. Empieza por los didácticos pequeños y vuelve al
 caso guía ya calentado.
+
+> El **05** es la plantilla específica del trabajo final. Trae además
+> un `Makefile` propio, carpeta `tests/` y un `ci-ejemplo.yml` listo
+> para copiar a tu propio repo. Si estás arrancando tu entregable,
+> empieza clonando su estructura. Detalle de qué se espera entregar en
+> [`trabajo-final/README.md`](../trabajo-final/README.md).
 
 ---
 
@@ -79,6 +87,7 @@ uv sync --extra titanic --extra dev                   # para el 01
 uv sync --extra meli --extra dev                      # para el 02
 uv sync --extra regresion-automoviles --extra dev     # para el 03
 uv sync --extra reconocimiento-imagenes --extra dev   # para el 04
+uv sync --extra ejemplo-completo --extra dev          # para el 05
 ```
 
 Las demos (`d1-` a `d4-`) corren con la base del repo. No tienen extra

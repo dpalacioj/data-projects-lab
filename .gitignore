@@ -51,6 +51,11 @@ projects/04-reconocimiento-imagenes/data/
 # Modelos entrenados grandes del proyecto CNN
 projects/04-reconocimiento-imagenes/models/*.pth
 
+# Modelos entrenados del proyecto 05 (ejemplo-completo)
+projects/05-ejemplo-completo/models/*.joblib
+projects/05-ejemplo-completo/reports/*.png
+projects/05-ejemplo-completo/reports/*.html
+
 # Configuración local
 .env
 .env.local

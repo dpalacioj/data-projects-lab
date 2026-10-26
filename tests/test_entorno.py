@@ -24,6 +24,8 @@ def test_estructura_minima_existe() -> None:
         "projects/README.md",
         "projects/00-segmentacion-clientes/README.md",
         "projects/04-reconocimiento-imagenes/README.md",
+        "projects/05-ejemplo-completo/README.md",
+        "trabajo-final/README.md",
         "docs/specs/SPEC_segmentacion-clientes_polars.md",
         "scripts/smoke_test.py",
         "pyproject.toml",

@@ -106,6 +106,7 @@ En este orden. No es un calendario, es la secuencia que tiene sentido.
 4. [`tutorials/01b-tu-primer-ci.md`](tutorials/01b-tu-primer-ci.md) — hands-on: construye tu propio repo con CI desde cero. Teoría de qué es, por qué, y práctica paso a paso con diagramas. Es el que más dudas quita.
 5. [`sesiones/s01-objetivo-crisp-dm/README.md`](sesiones/s01-objetivo-crisp-dm/README.md) — el encuadre del curso: CRISP-DM y dónde se practica cada fase.
 6. [`sesiones/README.md`](sesiones/README.md) — mapa de las sesiones de clase.
+7. [`trabajo-final/README.md`](trabajo-final/README.md) — qué vas a entregar al final del módulo (léelo temprano para saber hacia dónde vas).
 
 De ahí en adelante, cada sesión te lleva a los tutoriales y proyectos
 que necesite.
@@ -188,6 +189,7 @@ en el orden que yo los enseño:
 02-clasificador-meli           XGBoost
 03-prediccion-precios-autos    Modularización + MLflow + FastAPI
 04-reconocimiento-imagenes     CNN + Streamlit + FastAPI (cierra el flujo)
+05-ejemplo-completo            Plantilla del trabajo final (clasificador tabular + CI + Makefile propio)
 d1-ejercicio-preprocesamiento  Demo: pipelines sin fuga
 d2-temporal-split              Demo: split temporal
 d3-promociones-usuarios        Demo: construcción de target
@@ -200,6 +202,12 @@ El detalle con "cuándo abrir cada uno" está en
 El proyecto **04-reconocimiento-imagenes** es el que cierra el ciclo que
 S04 pide: notebook paso a paso → código modular en `src/` → app Streamlit
 → API FastAPI. Si quieres ver *cómo se entrega un modelo*, es ese.
+
+El proyecto **05-ejemplo-completo** es la plantilla específica del
+**trabajo final del módulo**. Trae todo lo del 04 más `tests/`,
+`Makefile` propio y una plantilla de CI (`ci-ejemplo.yml`) lista para
+copiar a tu propio repositorio. Si tu proyecto final es tabular, cloná
+su estructura y adaptala a tu problema.
 
 ---
 
@@ -247,6 +255,7 @@ No tienes que configurar el CI de este repo. Ya está.
 | `scripts/` | Herramientas sueltas. Hoy solo `smoke_test.py` |
 | `datasets/` | Datasets de proyectos legacy. Los del caso guía no se versionan |
 | `imagenes/` | Figuras usadas en tutoriales |
+| `trabajo-final/` | Especificación del entregable final del módulo |
 
 En la raíz: `pyproject.toml` y `uv.lock` declaran y fijan dependencias;
 `Makefile` es la lista de comandos (`make` sin argumentos los muestra).
