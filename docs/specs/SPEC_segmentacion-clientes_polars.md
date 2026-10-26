@@ -2,7 +2,7 @@
 
 **Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/`
 **Propósito:** convertir el proyecto existente en el recurso de referencia de la Unidad 2 (RAE1.1), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
-**Estado:** especificación para implementar en una sesión posterior. Nada de lo descrito aquí está hecho todavía.
+**Estado:** especificación **ejecutada**. Las referencias a `notebooks/legacy/` describen el estado intermedio de la migración; la carpeta ya fue eliminada tras consolidar los cuadernos de clustering en `10_segmentacion_no_supervisada.ipynb`.
 **Fecha límite sugerida:** antes de grabar el videotutorial (la producción de insumos pasa a Competencias y Medios Digitales el 11 de diciembre de 2026).
 **Orden de implementación:** **1 de 3.** Esta spec va primero. Después vienen `SPEC_procesamiento_U3.md` (2 de 3, que incluye `SPEC_llm_transformador.md`) y `SPEC_material_nicolas.md` (3 de 3). La U3 depende de lo que esta spec deja: `src/segmentacion/data/`, el Parquet, `cancelaciones.parquet` y `HALLAZGOS.md`.
 **Ubicación en el repositorio:** las specs viven en `docs/specs/` (raíz del repo). Los scripts de referencia (`figuras_u2.py`, y luego `caso_recompra.py` y `figuras_u3.py`) se copian a `projects/00-segmentacion-clientes/scripts/`.

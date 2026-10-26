@@ -2,7 +2,7 @@
 
 **Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/` (continuación de la U2). Referencias de solo lectura: `projects/d2-temporal-split/`, `tutorials/07-tecnicas-preprocesamiento.md`.
 **Propósito:** implementar en el repositorio el caso supervisado y la modularización que el OVA de la Unidad 3 ya describe (RAE2.1: pipelines que previenen la fuga de datos y garantizan reproducibilidad), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
-**Estado:** decisiones tomadas el 16 de octubre de 2026 (§10). El OVA está redactado contra este diseño. El código del caso existe como dos scripts de referencia (`caso_recompra.py`, `figuras_u3.py`) que hay que descomponer en el paquete sin cambiar los resultados.
+**Estado:** decisiones tomadas el 16 de octubre de 2026 (§10) y **ejecutadas**. Los cuadernos 06-10 ya existen; las menciones a `legacy/05_preprocessing_pipelines`, `legacy/06`, `07` y `08` describen el estado intermedio: `notebooks/legacy/` ya fue eliminada.
 **Orden de implementación:** **2 de 3.** Requiere que `SPEC_segmentacion-clientes_polars.md` (U2) esté implementada: usa `segmentacion.data.limpieza`, `features/rfm.py` con fecha de corte, el Parquet y `cancelaciones.parquet`. El subtema LLM (§5) se implementa según `SPEC_llm_transformador.md`, que es la fuente de verdad para ese módulo.
 **Ubicación:** esta spec en `docs/specs/`; `caso_recompra.py` y `figuras_u3.py` en `projects/00-segmentacion-clientes/scripts/`.
 

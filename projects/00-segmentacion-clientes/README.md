@@ -144,11 +144,11 @@ segmentacion-clientes/
 │   ├── 03_variables_cliente.ipynb         # construir_rfm con fecha_corte
 │   ├── 04_eda.ipynb                       # Cuartiles, Tukey, correlaciones
 │   ├── 05_eda_automatizado.ipynb          # skimpy + fg-data-profiling
-│   └── legacy/
-│       ├── 05_preprocessing_pipelines.ipynb      # ↓ en migración a U3
-│       ├── 06_clustering_kmeans.ipynb
-│       ├── 07_clustering_dbscan.ipynb
-│       └── 08_model_comparison_and_interpretation.ipynb
+│   ├── 06_particion_y_fuga.ipynb          # Cohortes A/B, fuga temporal
+│   ├── 07_ingenieria_caracteristicas.ipynb # ColumnTransformer de la Tabla 4
+│   ├── 08_llm_como_transformador.ipynb    # FakeLLM + categorias semanticas
+│   ├── 09_modelos_y_pipelines.ipynb       # Regresion/Arbol/Bosque + umbral
+│   └── 10_segmentacion_no_supervisada.ipynb # k-means + DBSCAN + perfiles
 │
 ├── scripts/
 │   ├── descargar_datos.py     # Descarga + SHA-256 + xlsx → parquet
@@ -163,13 +163,13 @@ segmentacion-clientes/
 │   │   ├── cargar.py             # ESQUEMA, leer_excel_con_esquema, leer_parquet
 │   │   ├── limpieza.py           # quitar_duplicados, separar_cancelaciones,
 │   │   │                         # exigir_cliente, filtrar_validas, preparar_ventas
-│   │   └── loader.py             # (pandas, lo usa el legacy)
+│   │   └── loader.py             # (pandas, lo usa la app Streamlit)
 │   ├── eda/
 │   │   └── resumen.py            # cuartiles, cercas_tukey, asociaciones, etc.
 │   ├── features/
 │   │   ├── rfm.py                # construir_rfm(ventas, fecha_corte)
-│   │   └── preprocessing.py      # Pipeline sklearn (legacy / U3)
-│   ├── models/{clustering,profiling}.py   # Sin cambios (legacy / U3)
+│   │   └── preprocessing.py      # Pipeline sklearn (la usa la app Streamlit)
+│   ├── models/{clustering,profiling}.py   # K-Means/DBSCAN + perfiles (cuaderno 10 + app)
 │   ├── utils/logger.py
 │   └── visualization/plots.py
 │

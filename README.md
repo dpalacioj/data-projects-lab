@@ -263,7 +263,7 @@ No tienes que configurar el CI de este repo. Ya está.
 | `projects/` | Casos de código, numerados por nivel |
 | `docs/specs/` | Contratos de cifras del caso guía (ancla de los tests `-m slow`) |
 | `scripts/` | Herramientas sueltas. Hoy solo `smoke_test.py` |
-| `datasets/` | Datasets de proyectos legacy. Los del caso guía no se versionan |
+| `datasets/` | Datasets versionados de proyectos (p. ej. Meli). Los del caso guía no se versionan |
 | `imagenes/` | Figuras usadas en tutoriales |
 | `trabajo-final/` | Especificación del entregable final del módulo |
 

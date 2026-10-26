@@ -20,9 +20,8 @@ K-Means, DBSCAN e interpretación de segmentos.
   [`data/README.md`](data/README.md).
 - **Stack U2:** Polars 2.x para todo el flujo; pandas solo en el perfil
   HTML (cuaderno 05) sobre una muestra.
-- **Stack U3 (pendiente):** scikit-learn >= 1.9, pipelines, clustering.
-- **Demo:** Streamlit interactivo (reemplaza su insumo con la salida
-  de U3 cuando esté lista).
+- **Stack U3:** scikit-learn >= 1.9, pipelines, clustering.
+- **Demo:** Streamlit interactivo (consume la salida de U3).
 
 ---
 
@@ -123,23 +122,18 @@ notebooks/05_eda_automatizado.ipynb
 
 ---
 
-## Unidad 3 (06-10) — pendiente, próxima SPEC
+## Unidad 3 (06-10) — ~5 horas
 
 Los cuadernos 06-10 nacen de `SPEC_procesamiento_U3.md` y reutilizan,
 sin cambios de firma, el paquete `segmentacion` y los Parquet que deja
-U2. Mientras llegan, los cuadernos actuales en `notebooks/legacy/` están
-**en migración**:
+U2.
 
-```
-notebooks/legacy/05_preprocessing_pipelines.ipynb  →  07_ingenieria_caracteristicas
-notebooks/legacy/06_clustering_kmeans.ipynb        →  10_segmentacion_no_supervisada
-notebooks/legacy/07_clustering_dbscan.ipynb        →  10_segmentacion_no_supervisada
-notebooks/legacy/08_model_comparison_and_interpretation.ipynb → 10_segmentacion_no_supervisada
-```
-
-Si quieres ejecutarlos hoy, siguen funcionando: ya se actualizaron sus
-`import` tras renombrar el paquete. Pero están congelados a la lógica
-pandas original; U3 los reemplaza.
+- `06_particion_y_fuga` — cohortes A/B y demostración de la fuga temporal.
+- `07_ingenieria_caracteristicas` — `ColumnTransformer` (Tabla 4 del OVA).
+- `08_llm_como_transformador` — `FakeLLM` + categorías semánticas.
+- `09_modelos_y_pipelines` — regresión, árbol, bosque; umbral y validación.
+- `10_segmentacion_no_supervisada` — k-means + DBSCAN sobre el preprocesador
+  de U3 (consolida los tres cuadernos de clustering del flujo pandas original).
 
 ---
 
@@ -162,11 +156,11 @@ uv run python scripts/perfil.py                     # HTML de perfil
 | `src/segmentacion/config.py` | Rutas y constantes. |
 | `src/segmentacion/data/cargar.py` | `ESQUEMA`, `leer_excel_con_esquema`, `leer_parquet`. |
 | `src/segmentacion/data/limpieza.py` | 5 reglas + `preparar_ventas`. |
-| `src/segmentacion/data/loader.py` | Loader pandas (lo usan los legacy). |
+| `src/segmentacion/data/loader.py` | Loader pandas (lo consume la app Streamlit). |
 | `src/segmentacion/eda/resumen.py` | `cuartiles`, `cercas_tukey`, `asociaciones`, `ventas_por_mes`, `matriz_dia_hora`. |
 | `src/segmentacion/features/rfm.py` | `construir_rfm(ventas, fecha_corte)`. |
-| `src/segmentacion/features/preprocessing.py` | Pipelines sklearn (legacy / U3). |
-| `src/segmentacion/models/{clustering,profiling}.py` | Clustering y perfiles (legacy / U3). |
+| `src/segmentacion/features/preprocessing.py` | Pipeline sklearn (lo consume la app Streamlit). |
+| `src/segmentacion/models/{clustering,profiling}.py` | K-Means/DBSCAN y perfiles (cuaderno 10 y app). |
 | `tests/test_limpieza.py` / `test_rfm.py` | Rápidos, con filas inventadas. |
 | `tests/test_cifras_referencia.py` | `@pytest.mark.slow`, cifras del OVA. |
 | `scripts/figuras_u2.py` | Figuras 6-9 del OVA (reproducibles). |

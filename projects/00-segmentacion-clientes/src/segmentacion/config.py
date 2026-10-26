@@ -78,7 +78,7 @@ HORIZONTE = 90
 SEMILLA = 42  # unica semilla del paquete; alias historico: RANDOM_STATE
 
 # ---------------------------------------------------------------------------
-# Hiperparámetros y semillas (U2 legacy)
+# Hiperparámetros de clustering (los usa el cuaderno 10 y la app Streamlit)
 # ---------------------------------------------------------------------------
 RANDOM_STATE = SEMILLA
 
