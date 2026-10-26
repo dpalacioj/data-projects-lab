@@ -4,15 +4,37 @@
 # los .md como paginas HTML. No duplica contenido: usa los README que
 # ya existen.
 #
-# Explicado linea por linea en tutorials/01c-tu-pagina-con-github-pages.md
+# Tema: just-the-docs (sidebar + prev/next + busqueda).
+# Explicacion linea por linea en tutorials/01c-tu-pagina-con-github-pages.md
 
 title: Proyecto I — Laboratorio de Proyectos de Datos
 description: Especialización en Ciencia de Datos e IA · Universidad de Medellín
-theme: jekyll-theme-cayman
 
-# Jekyll procesa por defecto todo el repositorio. Aqui le decimos que
-# ignore lo que NO es contenido pedagogico (codigo, datos, caches,
-# modelos, configs). Lo que queda son README y .md.
+# Tema de documentacion con sidebar, prev/next al pie de cada pagina,
+# busqueda, breadcrumbs. Lo usan Jupyter Book, Fastai, muchos sitios de docs.
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+# Config del tema
+color_scheme: light         # cambia a 'dark' para modo oscuro
+search_enabled: true
+heading_anchors: true
+nav_sort: case_insensitive  # ordena el sidebar alfabeticamente ignorando mayusculas
+
+# Enlace al repo de GitHub en el header del sitio
+aux_links:
+  "Ver en GitHub":
+    - "https://github.com/dpalacioj/data-projects-lab"
+aux_links_new_tab: true
+
+# Footer custom
+footer_content: "Material del modulo Proyecto I · Universidad de Medellin · Licencia MIT · <a href='https://github.com/dpalacioj/data-projects-lab'>Codigo fuente</a>"
+
+# ---------------------------------------------------------------------------
+# Lo que Jekyll ignora al construir el sitio.
+# Archivos de codigo, datos, modelos, y configs no son contenido pedagogico.
+# ---------------------------------------------------------------------------
 exclude:
   # Notebooks y codigo Python
   - "**/*.ipynb"

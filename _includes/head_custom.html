@@ -1,0 +1,30 @@
+<!--
+  Comportamiento personalizado del sitio:
+  Los enlaces DENTRO del contenido (no los del sidebar ni prev/next) se
+  abren en una pestaña nueva, para que el lector no pierda su lugar.
+
+  Esto incluye los links a otros README/tutoriales que aparezcan en
+  medio de un texto, pero NO afecta:
+    - El sidebar de navegacion a la izquierda.
+    - Los botones prev/next al pie de la pagina.
+    - Los enlaces de la ruta (breadcrumbs).
+    - Los enlaces #seccion dentro de la misma pagina.
+-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var contentLinks = document.querySelectorAll('.main-content a[href]');
+  contentLinks.forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (!href) return;
+    // No tocar enlaces #ancla dentro de la misma pagina
+    if (href.startsWith('#')) return;
+    // No tocar enlaces que ya son navegacion (prev/next, breadcrumbs, nav lateral)
+    if (a.closest('nav')) return;
+    if (a.closest('.site-nav')) return;
+    if (a.closest('.breadcrumb-nav')) return;
+    // Abrir en nueva pestaña con rel seguro
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
+});
+</script>

@@ -86,12 +86,35 @@ Con esto, Jekyll ya hace lo siguiente:
 **Pero** procesa TODO el repo por defecto: tus `.ipynb`, tu `src/`, tus
 datos, tus modelos. Eso es ruido. Por eso añadimos un `exclude:`.
 
+### Dos familias de temas: landing vs. documentación
+
+Antes de darte el `_config.yml` completo, decide qué quieres:
+
+| Tipo | Para qué sirve | Cómo se ve |
+|---|---|---|
+| **Landing** (p. ej. `jekyll-theme-cayman`) | Una sola página larga con todo | Página web clásica con header grande |
+| **Documentación** (p. ej. `just-the-docs`) | Material educativo con muchas páginas | Sidebar fijo + prev/next + búsqueda, estilo libro navegable |
+
+Para el curso usamos **`just-the-docs`** porque el estudiante va a
+navegar entre tutoriales, sesiones y proyectos como si fueran
+capítulos de un libro, con botones prev/next al pie de cada página.
+
 ### Versión recomendada para un proyecto de ciencia de datos
 
 ```yaml
 title: Mi Proyecto
 description: Breve descripción
-theme: jekyll-theme-cayman
+
+# Tema de documentacion (requiere remote_theme + plugin)
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+# Config del tema
+color_scheme: light         # 'dark' para modo oscuro
+search_enabled: true
+heading_anchors: true
+nav_sort: case_insensitive
 
 exclude:
   # Notebooks y codigo
@@ -128,13 +151,41 @@ exclude:
 | `theme` | Estilo visual. GitHub ofrece [~10 temas gratuitos](https://pages.github.com/themes/). "Cayman" es limpio y popular |
 | `exclude` | Lista de archivos/carpetas que Jekyll NO procesa. Usa patrones *glob*: `**/` significa "cualquier profundidad", `*.py` significa "cualquier archivo .py" |
 
-**Temas alternativos** (reemplaza en `theme:` y empuja; se actualiza en 1 min):
+**Temas de landing** (reemplaza con `theme: jekyll-theme-xxx` sin `remote_theme`):
 
 - `jekyll-theme-cayman` — limpio, header con gradiente azul.
 - `jekyll-theme-minimal` — minimalista, blanco y negro.
 - `jekyll-theme-slate` — oscuro.
 - `jekyll-theme-architect` — tipografía marcada.
-- `jekyll-theme-tactile` — compacto.
+
+**Temas de documentación** (reemplaza en `remote_theme:`):
+
+- `just-the-docs/just-the-docs` — el que usa este curso. Sidebar + prev/next + búsqueda.
+- `pmarsceill/just-the-docs` — otra copia del mismo, por si la anterior cae.
+
+### Abrir links del cuerpo del texto en pestaña nueva
+
+Si quieres que los enlaces dentro del contenido abran en una pestaña
+nueva (para que el lector no pierda su lugar), crea un archivo
+`_includes/head_custom.html` con un pequeño script JavaScript:
+
+```html
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.main-content a[href]').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    if (a.closest('nav')) return;  // deja intacta la navegacion
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
+});
+</script>
+```
+
+Jekyll inyecta `_includes/head_custom.html` en el `<head>` de cada
+página automáticamente. Los links en sidebar, prev/next y breadcrumbs
+siguen navegando en la misma pestaña (es lo que quieres).
 
 ### Línea por línea: qué significa cada `exclude`
 
