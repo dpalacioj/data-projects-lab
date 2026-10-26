@@ -30,6 +30,16 @@ cambia en una sola parte.
 >
 > **S02 y S03 son las sesiones presenciales con guión completo.**
 
+### Cómo se mapean a las clases presenciales
+
+El módulo son **8 clases presenciales de 4 horas** (dos por sesión
+conceptual: U1 = clase 1 y 2, U2 = clase 3 y 4, U3 = clase 5 y 6,
+U4 = clase 7 y 8). El calendario detallado con desglose de las 4h por
+clase está en el [README raíz del repo](../README.md#calendario-detallado-8-clases--4-horas).
+
+**Clase 8** es la presentación del entregable final; la especificación
+de qué entregar está en [`trabajo-final/README.md`](../trabajo-final/README.md).
+
 > Las sesiones completas (S02, S03) se grabaron contra el commit `main`
 > del día de la grabación. Si una cifra no coincide, se re-captura la
 > **spec** correspondiente en `docs/specs/`, no la prueba del repo (ver

@@ -21,7 +21,7 @@ Es el proyecto del curso. Las sesiones S02 y S03 trabajan sobre él.
 
 ---
 
-## Didácticos completos (prefijos `01-` a `04-`)
+## Didácticos completos (prefijos `01-` a `05-`)
 
 Cuatro proyectos autocontenidos, en orden de dificultad. Cada uno recorre
 un flujo entero: datos → modelo → entregable. Léelos en este orden si
