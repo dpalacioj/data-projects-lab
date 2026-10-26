@@ -1,10 +1,6 @@
----
-title: "Guía rápida: GitHub Pages"
-author: "Especialización en Ciencia de Datos e IA · Universidad de Medellín"
-date: "2026-10"
----
-
 # Guía rápida: GitHub Pages
+
+> Especialización en Ciencia de Datos e IA · Universidad de Medellín · 2026-10
 
 **Cómo publicar tu repositorio como sitio web en 10 minutos.**
 
