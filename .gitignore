@@ -27,7 +27,8 @@ logs/
 *.log.*
 
 # IDEs
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 *.swp
 *.swo

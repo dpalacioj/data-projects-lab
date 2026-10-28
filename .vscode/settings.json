@@ -1,0 +1,9 @@
+{
+  "python.analysis.extraPaths": [
+    "projects/00-segmentacion-clientes/src",
+    "projects/02-clasificador-meli",
+    "projects/03-prediccion-precios-automoviles/src",
+    "projects/04-reconocimiento-imagenes/src",
+    "projects/05-ejemplo-completo/src"
+  ]
+}
