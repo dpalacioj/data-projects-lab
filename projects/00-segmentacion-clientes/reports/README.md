@@ -31,8 +31,8 @@ uv run python projects/00-segmentacion-clientes/scripts/caso_recompra.py
 
 Si una cifra de `resultados.json` cambia, hay dos opciones honestas:
 
-1. **Alguna lógica cambió** (preprocesador, split, modelo): se actualiza la
-   `docs/specs/` correspondiente y los `.md` de sesión que la citen.
+1. **Alguna lógica cambió** (preprocesador, split, modelo): se actualizan
+   los `.md` de sesión que citen la cifra.
 2. **Nada debía cambiar**: hay un bug. Se investiga antes de aceptar la cifra.
 
 Nunca se maquilla el JSON para que coincida con el código.

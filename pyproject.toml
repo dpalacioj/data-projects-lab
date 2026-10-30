@@ -135,7 +135,7 @@ bypass-selection = true
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-# Ruff en esta spec cubre el paquete, cuadernos, scripts y tests de la Unidad 2;
+# Esta configuracion de Ruff cubre el paquete, cuadernos, scripts y tests de la Unidad 2;
 # el resto de proyectos tiene lint pre-existente que se saneara en otra tanda.
 extend-exclude = [
     "projects/01-titanic",

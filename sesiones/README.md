@@ -14,9 +14,9 @@ práctica + verificación); `taller.md` es la aplicación individual;
 `troubleshooting.md` responde a los errores reales que ya vimos;
 `checklist-dia-de-clase.md` es lo que conviene revisar antes de la clase.
 
-**Las sesiones no duplican código.** Enlazan a `projects/00-segmentacion-clientes/`,
-a `tutorials/` y a `docs/specs/`. Cuando una cifra cambia en el proyecto,
-cambia en una sola parte.
+**Las sesiones no duplican código.** Enlazan a `projects/00-segmentacion-clientes/`
+y a `tutorials/`. Cuando una cifra cambia en el proyecto, cambia en una
+sola parte.
 
 ## Mapa del módulo
 
@@ -46,8 +46,8 @@ clase está en el [README raíz del repo](../README.md#calendario-detallado-8-cl
 de qué entregar está en [`trabajo-final/README.md`](../trabajo-final/README.md).
 
 > Las sesiones completas (S02, S03) se grabaron contra el commit `main`
-> del día de la grabación. Si una cifra no coincide, se re-captura la
-> **spec** correspondiente en `docs/specs/`, no la prueba del repo (ver
+> del día de la grabación. Si una cifra no coincide, se re-captura el
+> material del curso, no la prueba del repo (ver
 > `_templates/CONVENCIONES.md`).
 
 ## Cómo leer una sesión

@@ -1,6 +1,6 @@
 """Construccion de variables por cliente (RFM extendido) en Polars.
 
-Firma citada por la spec `SPEC_segmentacion-clientes_polars.md` (seccion 5.3):
+Firma publica:
 
     construir_rfm(ventas, fecha_corte: datetime) -> pl.DataFrame
 
@@ -9,8 +9,7 @@ Solo se usan ventas con `InvoiceDate < fecha_corte`. Columnas devueltas:
 `productos_distintos`.
 
 En la Unidad 2 la fecha de corte es `max(InvoiceDate) + 1 dia` (snapshot). La
-Unidad 3 reutiliza esta misma funcion con cortes anteriores a los que define en
-`SPEC_procesamiento_U3.md`, sin cambios de firma.
+Unidad 3 reutiliza esta misma funcion con cortes anteriores, sin cambios de firma.
 """
 
 from __future__ import annotations

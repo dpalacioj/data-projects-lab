@@ -1,13 +1,13 @@
 """Etiqueta supervisada `recompra` para la Unidad 3.
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firma publica:
 
     etiqueta_recompra(ventas, fecha_corte, horizonte_dias=90) -> pl.DataFrame
 
 Un cliente queda etiquetado con `recompra = 1` si realiza al menos una compra
 en el intervalo `[fecha_corte, fecha_corte + horizonte_dias)`. Esta ventana
-define el problema de la spec de la Unidad 3 ("¿el cliente vuelve a comprar en los 90 dias
-siguientes al corte?").
+define el problema de la Unidad 3 ("¿el cliente vuelve a comprar en los 90
+dias siguientes al corte?").
 """
 
 from __future__ import annotations

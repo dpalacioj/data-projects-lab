@@ -1,25 +1,25 @@
-"""Verifica las cifras de la seccion 9 del SPEC_procesamiento_U3.
+"""Verifica las cifras de referencia del caso recompra (Unidad 3).
 
 Marcado como `slow`: requiere `data/raw/online_retail_II.parquet`. Si una
 cifra no coincide:
 
     1. no modifiques esta prueba;
     2. verifica que no haya cambiado el hash del zip (`scripts/descargar_datos.py`);
-    3. reporta la discrepancia; actualizar el material del curso y la spec se decide a mano.
+    3. reporta la discrepancia; actualizar el material del curso se decide a mano.
 
 Tolerancias: **0** en conteos exactos, **0,001** en metricas, salvo 4 cifras
 del bosque aleatorio (importancia, curva de profundidad, precision test B y
 `n_senialados @ 0,3`) que usan **5e-3** y **±20** respectivamente.
 
-**Discrepancia conocida (16-10-2026):** las 4 cifras del bosque en §9 fueron
+**Discrepancia conocida (16-10-2026):** las 4 cifras del bosque fueron
 capturadas con un ambiente ligeramente distinto al actual (probablemente
 sklearn 1.9.0, no 1.9.1 que corre hoy; o distinto orden de hilos del BLAS).
 `scripts/caso_recompra.py` reproduce EXACTAMENTE lo que produce el paquete;
-la discrepancia es entre la spec y lo observado hoy, no entre el paquete y
-la spec. La relajacion es la mitad del ultimo decimal mostrado (half-LSD)
-para la metrica, y una ventana de ±20 para el conteo. Si al grabar el
-videotutorial las cifras de la spec no coinciden, se reporta y se re-captura
-la §9 con el ambiente del dia de la grabacion.
+la discrepancia es entre la cifra de referencia del material y lo observado
+hoy, no entre el paquete y esa cifra. La relajacion es la mitad del ultimo
+decimal mostrado (half-LSD) para la metrica, y una ventana de ±20 para el
+conteo. Si al grabar el videotutorial las cifras no coinciden, se reporta
+y se re-captura con el ambiente del dia de la grabacion.
 """
 
 from __future__ import annotations

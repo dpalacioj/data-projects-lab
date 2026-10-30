@@ -120,7 +120,7 @@ Del dataset bruto, el caso guía deriva:
 - **RFM** (Recencia, Frecuencia, Monto): tres variables agregadas por cliente,
   construidas a corte temporal, en `src/segmentacion/features/rfm.py`.
 - Cohortes A y B: dos cortes temporales distintos para probar robustez
-  temporal. Especificadas en `docs/specs/SPEC_procesamiento_U3.md`.
+  temporal, construidas en `src/segmentacion/features/cohortes.py`.
 
 ---
 

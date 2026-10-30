@@ -1,8 +1,7 @@
 # Sesión SXX · «Nombre de la sesión»
 
 Última revisión: YYYY-MM-DD. Versiones verificadas: Python 3.11,
-_(añadir las que apliquen)_. La sesión implementa
-[`docs/specs/<SPEC_...>.md`](../../docs/specs/) y se apoya en
+_(añadir las que apliquen)_. La sesión se apoya en
 [`projects/<proyecto>/`](../../projects/).
 
 La pregunta que organiza la sesión es:

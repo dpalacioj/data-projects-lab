@@ -50,25 +50,26 @@ es un gotcha conocido.
 
 ---
 
-## Las cifras no coinciden con la spec
+## Las cifras no coinciden
 
-**Síntoma:** `uv run pytest -m slow` rojo. Alguno de los conteos de §4
-está fuera (tolerancia 0).
+**Síntoma:** `uv run pytest -m slow` rojo. Alguno de los conteos de
+referencia está fuera (tolerancia 0).
 
 **Causa posible:**
 
 1. **Hash del zip cambió.** UCI re-publicó el archivo. Verifica con
    `sha256sum data/raw/online_retail_II.zip` contra la constante
    `SHA256_ZIP` en `scripts/descargar_datos.py`. Si no coincide, el
-   archivo es nuevo; la spec está desactualizada.
-2. **Versión de Polars.** La spec se escribió con Polars 2.0.0. Un
-   bump mayor (3.x) podría cambiar la semántica de `unique()` o
+   archivo es nuevo; las cifras del material del curso están
+   desactualizadas.
+2. **Versión de Polars.** Las cifras se capturaron con Polars 2.0.0.
+   Un bump mayor (3.x) podría cambiar la semántica de `unique()` o
    `n_unique()`.
-3. **Python** 3.11 vs 3.13: no debería afectar las cifras del §4
+3. **Python** 3.11 vs 3.13: no debería afectar las cifras
    (son conteos deterministas).
 
 **Qué hacer:** reporta la discrepancia en el PR; no ajustes la prueba.
-Decide con el instructor si se actualiza la spec y el material del curso, o si se
+Decide con el instructor si se actualiza el material del curso o si se
 revierte el entorno.
 
 ---

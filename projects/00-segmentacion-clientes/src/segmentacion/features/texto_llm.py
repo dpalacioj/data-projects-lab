@@ -1,13 +1,13 @@
 """Un LLM como transformador de caracteristicas de producto (subtema 3.2 del curso).
 
-Firmas citadas por `SPEC_llm_transformador.md`:
+Firmas publicas:
 
     categorizar_descripciones(descripciones, *, cache, cliente, lote=50, reintentos=2) -> pl.DataFrame
     proporcion_gasto_por_categoria(ventas, categorias, corte) -> pl.DataFrame
     regla_palabras_clave(descripciones) -> pl.DataFrame
     evaluar(categorias, gold) -> dict
 
-Principios (seccion 1 de la spec LLM) que el modulo materializa:
+Principios que el modulo materializa:
 
 1. Una llamada por valor unico, con cache persistente (Parquet versionado).
 2. Salida validada contra 12 categorias cerradas (Pydantic + Literal).
@@ -29,7 +29,7 @@ from typing import Literal, Protocol, get_args
 import polars as pl
 from pydantic import BaseModel, Field, ValidationError
 
-# 12 categorias cerradas (incluye `accesorios`, como pide la spec y el usuario).
+# 12 categorias cerradas (incluye `accesorios`, por acuerdo del caso guia).
 CATEGORIAS = Literal[
     "iluminacion",
     "cocina",

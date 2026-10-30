@@ -17,8 +17,8 @@ nav_order: 6
 3. Mínimo dos cohortes temporales (A y B) y una regla por recencia (u
    otra variable observable) como línea base.
 4. Pipeline sin fuga obligatorio (verificable con un test).
-5. Modelo serializado con `metadatos.json` siguiendo la Tabla 7 de la
-   spec de la Unidad 3.
+5. Modelo serializado con `metadatos.json` siguiendo los 10 campos
+   obligatorios de la ficha del caso guía.
 
 ## Entrega
 

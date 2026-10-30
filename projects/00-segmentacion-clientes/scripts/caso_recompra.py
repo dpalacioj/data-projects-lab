@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Caso supervisado U3: envoltorio del paquete `segmentacion`.
 
-Este script reproduce §9 de `SPEC_procesamiento_U3.md` llamando a los
-modulos del paquete (`features`, `pipelines`, `models`, `evaluation`); su
-unica responsabilidad es orquestar y escribir las salidas en `reports/`.
+Este script reproduce el caso de recompra llamando a los modulos del
+paquete (`features`, `pipelines`, `models`, `evaluation`); su unica
+responsabilidad es orquestar y escribir las salidas en `reports/`.
 
 Uso:
     uv run python scripts/caso_recompra.py

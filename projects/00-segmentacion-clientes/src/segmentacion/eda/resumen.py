@@ -1,6 +1,6 @@
 """Resumenes de EDA en Polars para la Unidad 2.
 
-Funciones citadas por la spec (seccion 2.2):
+Funciones publicas:
 
 - `cuartiles(df, col)`                -> dict con min/Q1/mediana/Q3/max/media.
 - `cercas_tukey(df, col, k=1.5)`      -> `(inferior, superior, fraccion_fuera)`.

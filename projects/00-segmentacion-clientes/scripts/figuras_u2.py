@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Figuras 6 a 9 de la spec de la Unidad 2 (Online Retail II, Chen 2019, CC BY 4.0).
+"""Figuras 6 a 9 de referencia de la Unidad 2 (Online Retail II, Chen 2019, CC BY 4.0).
 
 Uso:
     uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/figures
 
 Requiere: polars>=2.0, fastexcel, matplotlib. Las cifras impresas al final son las
-de referencia; si cambian, hay que actualizar el material del curso y la spec.
+de referencia; si cambian, hay que actualizar el material del curso.
 
 Las reglas de limpieza y la lectura con esquema viven en el paquete
 `segmentacion.data` (una sola fuente de verdad); este script solo las orquesta

@@ -1,6 +1,6 @@
 """Metricas y helpers de demostracion de fuga para la Unidad 3.
 
-Firmas citadas por `SPEC_procesamiento_U3.md` §4:
+Firmas publicas:
 
     evaluar_clasificacion(y, p, umbral) -> dict
     regla_recencia(X, dias=90)
@@ -102,7 +102,7 @@ def fuga_escalado(
     """Compara `StandardScaler.fit(A ∪ B)` con `StandardScaler.fit(A)`.
 
     Devuelve la media de la primera columna de `columnas_num_std`
-    (`recencia` por convencion). La spec lo reporta como 186,9 vs 168,7.
+    (`recencia` por convencion). Las cifras de referencia son 186,9 vs 168,7.
     """
     sc_todo = StandardScaler().fit(
         np.vstack([XA[columnas_num_std].to_numpy(), XB[columnas_num_std].to_numpy()])

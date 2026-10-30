@@ -8,9 +8,8 @@ has_children: true
 
 Última revisión: 2026-10-19. Versiones verificadas: Python 3.11.14,
 Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11, fg-data-profiling 4.20,
-skimpy 0.0.21. La sesión implementa
-[`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md)
-y se apoya en [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
+skimpy 0.0.21. La sesión se apoya en
+[`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
 
 La pregunta que organiza la sesión es:
 
@@ -27,7 +26,7 @@ La pregunta que organiza la sesión es:
 - [ ] `uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py`
       (verifica el hash SHA-256 del zip de UCI 502).
 - [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py`
-      verde (confirma que el día de hoy las cifras de §4 de la spec se
+      verde (confirma que el día de hoy las cifras de referencia se
       reproducen contra el Parquet real).
 
 ## 1. Objetivos de aprendizaje
@@ -85,7 +84,7 @@ Estas tres preguntas motivan los tres bloques siguientes.
 
 ## 4. Materiales y artefactos
 
-- [`01-crisp-dm-fase1.md`](01-crisp-dm-fase1.md) — ficha de objetivo (Tabla 2 de la spec).
+- [`01-crisp-dm-fase1.md`](01-crisp-dm-fase1.md) — ficha de objetivo del caso guía.
 - [`02-polars-vs-pandas.md`](02-polars-vs-pandas.md) — cuándo cada uno.
 - [`03-esquema-al-leer.md`](03-esquema-al-leer.md) — `schema_overrides` y por qué.
 - [`04-limpieza-5-reglas.md`](04-limpieza-5-reglas.md) — las 5 funciones + HALLAZGOS.
@@ -101,8 +100,8 @@ Estas tres preguntas motivan los tres bloques siguientes.
 **Módulos del paquete** (`src/segmentacion/`):
 `data/cargar.py`, `data/limpieza.py`, `features/rfm.py`, `eda/resumen.py`.
 
-**Scripts**: `descargar_datos.py` (SHA-256), `figuras_u2.py` (4 figuras de la spec),
-`perfil.py` (HTML del perfil).
+**Scripts**: `descargar_datos.py` (SHA-256), `figuras_u2.py` (4 figuras
+de referencia de la Unidad 2), `perfil.py` (HTML del perfil).
 
 ## 5. Quick start (macOS/Linux)
 

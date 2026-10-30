@@ -11,9 +11,9 @@ nav_exclude: true
 **Total de filas:** 1 067 371 (exactas, antes de limpieza).
 
 **Tipo declarado en la lectura:** el proyecto declara el esquema al leer
-el archivo (sección 2.1 de la spec). La convención vive en
-`segmentacion.data.cargar.ESQUEMA` y se aplica tanto desde Excel como
-desde Parquet. Las columnas no listadas en `ESQUEMA` las infiere Polars.
+el archivo. La convención vive en `segmentacion.data.cargar.ESQUEMA` y
+se aplica tanto desde Excel como desde Parquet. Las columnas no listadas
+en `ESQUEMA` las infiere Polars.
 
 | Columna | Tipo declarado en la lectura | Tipo real (post-lectura) | Descripción | Notas |
 |---|---|---|---|---|
@@ -86,7 +86,7 @@ El **snapshot date** es la fecha de referencia para calcular `Recency`.
 
 ---
 
-## Tamaño exacto tras limpieza (contrato con la spec)
+## Tamaño exacto tras limpieza (verificado por los tests `-m slow`)
 
 Secuencia de `preparar_ventas`:
 

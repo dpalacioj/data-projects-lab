@@ -6,7 +6,7 @@ nav_order: 5
 ---
 # Un LLM como transformador — con esquema cerrado, caché y línea base
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md). Cuaderno: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb). Código: [`src/segmentacion/features/{texto_llm,llm_clientes}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/features/).
+> Fecha de referencia: **2026-10-19**. Cuaderno: [`08_llm_como_transformador.ipynb`](../../projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb). Código: [`src/segmentacion/features/{texto_llm,llm_clientes}.py`](../../projects/00-segmentacion-clientes/src/segmentacion/features/).
 
 ## La pregunta
 
@@ -58,7 +58,7 @@ CATEGORIAS = Literal[
 ```
 
 Elegidas por volumen y accionabilidad para marketing. **12 es el número
-de la spec; no se añade una decimotercera sin re-captura.**
+acordado del caso guía; no se añade una decimotercera sin re-captura.**
 
 ### El esquema de respuesta
 

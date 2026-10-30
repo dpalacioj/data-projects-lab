@@ -6,7 +6,7 @@ nav_order: 5
 ---
 # EDA manual vs. automatizado
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §4 (cifras). Cuadernos 04 y 05 del proyecto.
+> Fecha de referencia: **2026-10-19**. Cuadernos 04 y 05 del proyecto.
 
 ## La pregunta
 
@@ -92,10 +92,10 @@ El HTML queda gitignored (2,2 MB) para no inflar el repo.
 ## Verificación
 
 ```bash
-# Las 32 cifras del §4 reproducidas sobre el parquet real
+# Las 32 cifras de referencia reproducidas sobre el parquet real
 uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py
 
-# Las 4 figuras de la spec con la paleta correcta
+# Las 4 figuras de referencia con la paleta correcta
 uv run python projects/00-segmentacion-clientes/scripts/figuras_u2.py \
     projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet \
     projects/00-segmentacion-clientes/reports/figures
@@ -146,9 +146,9 @@ fuga del cuaderno 06.
 
 - «Mi perfil HTML da `ModuleNotFoundError: fg_data_profiling`»: el
   paquete se importa como `data_profiling`. Ver [`07-troubleshooting.md`](07-troubleshooting.md).
-- «La correlación Spearman no coincide con el spec»: verifica que
-  trabajas sobre las 779 425 filas válidas (post-`preparar_ventas`),
-  no sobre el crudo.
+- «La correlación Spearman no coincide con el valor de referencia»:
+  verifica que trabajas sobre las 779 425 filas válidas
+  (post-`preparar_ventas`), no sobre el crudo.
 
 ## Siguiente
 

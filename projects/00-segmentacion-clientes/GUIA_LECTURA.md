@@ -123,9 +123,8 @@ notebooks/05_eda_automatizado.ipynb
 
 ## Unidad 3 (06-10) — ~5 horas
 
-Los cuadernos 06-10 nacen de `SPEC_procesamiento_U3.md` y reutilizan,
-sin cambios de firma, el paquete `segmentacion` y los Parquet que deja
-U2.
+Los cuadernos 06-10 cubren la Unidad 3 y reutilizan, sin cambios de
+firma, el paquete `segmentacion` y los Parquet que deja U2.
 
 - `06_particion_y_fuga` — cohortes A/B y demostración de la fuga temporal.
 - `07_ingenieria_caracteristicas` — `ColumnTransformer` para variables numéricas y categóricas.
@@ -140,7 +139,7 @@ U2.
 
 ```bash
 uv run pytest                                       # rápido (test_limpieza, test_rfm)
-uv run pytest -m slow                               # cifras de referencia (§4 de la spec)
+uv run pytest -m slow                               # cifras de referencia (U2)
 uv run python scripts/descargar_datos.py            # descarga + hash
 uv run python scripts/figuras_u2.py <parquet> <out> # Figuras 6-9
 uv run python scripts/perfil.py                     # HTML de perfil
@@ -161,7 +160,7 @@ uv run python scripts/perfil.py                     # HTML de perfil
 | `src/segmentacion/features/preprocessing.py` | Pipeline sklearn (lo consume la app Streamlit). |
 | `src/segmentacion/models/{clustering,profiling}.py` | K-Means/DBSCAN y perfiles (cuaderno 10 y app). |
 | `tests/test_limpieza.py` / `test_rfm.py` | Rápidos, con filas inventadas. |
-| `tests/test_cifras_referencia.py` | `@pytest.mark.slow`, cifras de referencia de la spec. |
+| `tests/test_cifras_referencia.py` | `@pytest.mark.slow`, cifras de referencia U2. |
 | `scripts/figuras_u2.py` | Figuras reproducibles del EDA (6-9). |
 | `scripts/perfil.py` | HTML del perfil (CI / sin Jupyter). |
 | `HALLAZGOS.md` | Hallazgos de U2 → insumo de U3. |

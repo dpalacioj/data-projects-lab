@@ -1,15 +1,15 @@
 """`ColumnTransformer` para la cohorte de recompra (U3).
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firma publica:
 
     construir_preprocesador(num_log=NUM_LOG, num_std=NUM_STD, cat=CAT) -> ColumnTransformer
 
-Reglas (Tabla 8 de la spec): todo `fit` ocurre dentro del `Pipeline`, despues de
+Regla del proyecto: todo `fit` ocurre dentro del `Pipeline`, despues de
 la particion. Las medias que aprende el `StandardScaler` son las de la
 cohorte A, no las de A ∪ B (lo verifica `tests/pipelines/test_sin_fuga.py`).
 
-El modulo recibe pandas (la frontera Polars -> sklearn: ver §4 "Polars hasta
-la matriz de variables; scikit-learn desde ahi").
+El modulo recibe pandas (la frontera Polars -> sklearn: "Polars hasta la
+matriz de variables; scikit-learn desde ahi").
 """
 
 from __future__ import annotations

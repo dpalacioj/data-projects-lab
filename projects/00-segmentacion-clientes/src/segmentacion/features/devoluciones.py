@@ -1,6 +1,6 @@
 """Variable `tasa_devolucion` por cliente para la Unidad 3.
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firma publica:
 
     tasa_devolucion(cancelaciones, frecuencia_por_cliente, fecha_corte) -> pl.DataFrame
 

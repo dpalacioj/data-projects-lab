@@ -1,6 +1,6 @@
 """Cohorte supervisada de clientes para la Unidad 3.
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firma publica:
 
     cohorte(ventas, cancelaciones, corte, horizonte=90) -> pl.DataFrame
 

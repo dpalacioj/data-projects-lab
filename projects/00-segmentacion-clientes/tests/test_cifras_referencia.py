@@ -1,4 +1,4 @@
-"""Verifica las cifras de la seccion 4 del SPEC_segmentacion-clientes_polars.
+"""Verifica las cifras de referencia de la Unidad 2 (Online Retail II).
 
 Marcado como `slow`: requiere `data/raw/online_retail_II.parquet`. El fixture
 `parquet_real` (en `conftest.py`) hace `skip` si el archivo no existe.
@@ -8,7 +8,7 @@ Tolerancias: 0 en conteos exactos, 1e-3 en correlaciones y fracciones.
 Si alguna cifra NO coincide:
     1. no modifiques esta prueba;
     2. verifica que no haya cambiado el hash del zip (`descargar_datos.py`);
-    3. reporta la discrepancia; actualizar el material del curso y la spec se decide a mano.
+    3. reporta la discrepancia; actualizar el material del curso se decide a mano.
 """
 
 from __future__ import annotations
@@ -72,7 +72,7 @@ def test_facturas_que_empiezan_por_C(crudo: pl.DataFrame) -> None:
 
 
 def test_facturas_no_numericas(crudo: pl.DataFrame) -> None:
-    # Spec: facturas no numericas (C + A) = 19 500. "No empieza por digito".
+    # Cifra de referencia: facturas no numericas (C + A) = 19 500. "No empieza por digito".
     no_num = crudo.filter(~pl.col("Invoice").str.contains(r"^\d")).height
     assert no_num == 19_500
 
@@ -91,7 +91,7 @@ def test_price_negativo(crudo: pl.DataFrame) -> None:
 
 
 def test_stockcode_no_estandar(crudo: pl.DataFrame) -> None:
-    # Spec: no `^\d{5}` (sin anclaje final: no empieza con 5 digitos).
+    # Cifra de referencia: no `^\d{5}` (sin anclaje final: no empieza con 5 digitos).
     assert crudo.filter(~pl.col("StockCode").str.contains(r"^\d{5}")).height == 6_093
 
 
@@ -100,7 +100,7 @@ def test_paises_unicos(crudo: pl.DataFrame) -> None:
 
 
 def test_clientes_unicos(crudo: pl.DataFrame) -> None:
-    # n_unique incluye el valor null como una categoria; spec reporta 5 943.
+    # n_unique incluye el valor null como una categoria; cifra de referencia 5 943.
     assert crudo.select(pl.col("Customer ID").n_unique()).item() == 5_943
 
 
@@ -148,7 +148,7 @@ def test_price_q3(ventas: pl.DataFrame) -> None:
 
 
 def test_price_media(ventas: pl.DataFrame) -> None:
-    # La spec reporta la media con dos decimales (3,22). Tolerancia = media-LSD.
+    # La cifra de referencia se reporta con dos decimales (3,22). Tolerancia = media-LSD.
     assert ventas["Price"].mean() == pytest.approx(3.22, abs=5e-3)
 
 

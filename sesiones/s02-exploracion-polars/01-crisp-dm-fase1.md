@@ -6,7 +6,7 @@ nav_order: 1
 ---
 # CRISP-DM Fase 1 — Objetivo de análisis
 
-> Spec: [`docs/specs/SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) · Cuaderno: [`00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).
+> Cuaderno: [`00_objetivo_de_analisis.ipynb`](../../projects/00-segmentacion-clientes/notebooks/00_objetivo_de_analisis.ipynb).
 
 ## La pregunta
 

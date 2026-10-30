@@ -1,9 +1,8 @@
 """`segmentacion.pipelines.preprocesamiento` no filtra informacion de B al ajustar sobre A.
 
-Verifica la regla citada por `SPEC_procesamiento_U3.md` §4 (Tabla 8):
-
-> Todo `fit` ocurre dentro del `Pipeline` y despues de la particion. Tras
-> `pipe.fit(X_A)`, las medias del `StandardScaler` son las de A, no las de A ∪ B.
+Regla del proyecto: todo `fit` ocurre dentro del `Pipeline` y despues de
+la particion. Tras `pipe.fit(X_A)`, las medias del `StandardScaler` son
+las de A, no las de A ∪ B.
 """
 
 from __future__ import annotations

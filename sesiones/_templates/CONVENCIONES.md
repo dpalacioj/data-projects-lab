@@ -1,7 +1,6 @@
 # Convenciones del repositorio
 
-Última revisión: 2026-10-19. Si algo aquí contradice una spec de
-`docs/specs/`, **manda la spec**.
+Última revisión: 2026-10-19.
 
 ## Idioma
 
@@ -13,19 +12,19 @@
 
 ## Fechas
 
-- Toda guía (`.md`), ficha de modelo (`metadatos.json`), spec (`docs/specs/`)
-  y resumen de resultados declara **fecha** y **versiones verificadas**
+- Toda guía (`.md`), ficha de modelo (`metadatos.json`) y resumen de
+  resultados declara **fecha** y **versiones verificadas**
   (Python, Polars, scikit-learn, Pydantic).
 - Cuando un número se vuelve «cita» (p. ej. `AUC = 0,785`), se registra
-  en una spec o en un `HALLAZGOS.md`. **El código no inventa número; el
-  código reproduce.**
+  en un `HALLAZGOS.md` o en una prueba `@pytest.mark.slow`. **El código
+  no inventa número; el código reproduce.**
 
 ## Fuente de verdad
 
 - **Una** por tipo de artefacto. Si existen un script y un cuaderno que
   calculan lo mismo, uno importa del otro; no se repite el cálculo.
-- Las cifras de referencia viven en la spec (`docs/specs/`) y las
-  verifica una prueba `@pytest.mark.slow` del repo.
+- Las cifras de referencia las verifica una prueba `@pytest.mark.slow`
+  del repo.
 
 ## Reproducibilidad
 
@@ -75,9 +74,9 @@
 ## Modelos
 
 - Artefacto en `models/<nombre>_v<N>/`: `pipeline.joblib` (gitignored) +
-  `metadatos.json` (versionado) con los 10 campos de la Tabla 7 de la spec
-  de la Unidad 3. `cargar()` falla con `VersionIncompatible` si cambia la versión de
-  scikit-learn.
+  `metadatos.json` (versionado) con los 10 campos obligatorios de
+  metadatos del modelo. `cargar()` falla con `VersionIncompatible` si
+  cambia la versión de scikit-learn.
 
 ## LLMs
 

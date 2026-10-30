@@ -67,7 +67,6 @@ exclude:
   - imagenes/
   - tests/
   - scripts/
-  - docs/specs/
   - docs/material-estudiante/
 
   # Configuracion del proyecto Python

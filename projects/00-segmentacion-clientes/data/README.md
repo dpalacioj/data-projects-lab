@@ -54,9 +54,9 @@ Deja los tres archivos en `data/raw/` (todos ignorados por git).
 | `online_retail_II.zip` | 45,6 MB | `572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb` |
 
 **Fecha de descarga de referencia:** 2026-10-16 (con la que se calcularon
-las cifras de la sección 4 de `docs/specs/SPEC_segmentacion-clientes_polars.md`).
+las cifras de referencia de la Unidad 2).
 
 Si UCI vuelve a publicar el archivo, el hash cambiará y
 `scripts/descargar_datos.py` saldrá con código `2`. En ese caso: investigar
-el nuevo contenido, actualizar `SHA256_ZIP` **y** las cifras de la spec y
-del material del curso al mismo tiempo. No se actualiza una sola cosa.
+el nuevo contenido, actualizar `SHA256_ZIP` **y** las cifras del material
+del curso al mismo tiempo. No se actualiza una sola cosa.

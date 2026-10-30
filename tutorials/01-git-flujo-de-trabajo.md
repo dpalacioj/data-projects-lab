@@ -246,8 +246,8 @@ Ejemplo de descripción buena:
 - Añade test de contrato en `tests/test_features.py`.
 
 ## Por qué
-La spec `docs/specs/rfm.md` pide esta columna para el modelo de recompra.
-Sin ella, el pipeline de la sesión S03 no corre.
+El modelo de recompra necesita esta columna; sin ella el pipeline de la
+sesión S03 no corre.
 
 ## Cómo probarlo
 ```bash

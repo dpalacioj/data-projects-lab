@@ -16,12 +16,12 @@ nav_order: 7
 `test_bosque_test_B`, `test_tabla_umbrales_bosque`,
 `test_curva_profundidad` o `test_importancia_bosque`.
 
-**Causa:** las 4 cifras del bosque en §9 fueron capturadas con un
+**Causa:** las 4 cifras del bosque fueron capturadas con un
 ambiente ligeramente distinto al actual (probablemente sklearn 1.9.0
 vs 1.9.1 que corre hoy, u orden distinto de hilos del BLAS). El
 `scripts/caso_recompra.py` del repo reproduce exactamente lo que
-produce el paquete; la discrepancia es entre la spec y el entorno
-actual, no entre paquete y spec.
+produce el paquete; la discrepancia es entre las cifras del material
+del curso y el entorno actual, no entre paquete y cifras.
 
 **Decisión del equipo (2026-10-19):** se relajó la tolerancia a `5e-3`
 para esas 4 cifras y una ventana de ±20 para `n_senialados @ 0,3`,

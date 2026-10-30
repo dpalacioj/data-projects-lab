@@ -90,9 +90,9 @@ Las métricas derivadas:
 
 Si el 95 % de los casos son negativos, un modelo que predice **siempre
 negativo** tiene accuracy 95 %. Es **inútil** para detectar positivos.
-En U3 del módulo (caso recompra, §9 de la spec), la clase mayoritaria
-en la cohorte B tiene accuracy **0,573**: ese es el "mínimo honesto"
-que cualquier modelo debe superar.
+En U3 del módulo (caso recompra), la clase mayoritaria en la cohorte B
+tiene accuracy **0,573**: ese es el "mínimo honesto" que cualquier
+modelo debe superar.
 
 ## Precisión vs. Recall: la decisión del umbral
 

@@ -183,8 +183,7 @@ próximos 90 días?**
 
 El caso vive en [`projects/00-segmentacion-clientes/`](projects/00-segmentacion-clientes/)
 y las sesiones S02 y S03 trabajan sobre él. Si solo abres un proyecto,
-abre ese. Los contratos de cifras (qué número tiene que salir en cada
-paso) están en [`docs/specs/`](docs/specs/).
+abre ese.
 
 ---
 
@@ -261,7 +260,6 @@ No tienes que configurar el CI de este repo. Ya está.
 | `sesiones/` | Guiones de clase. S02 y S03 completas; S01 y S04 son documentos de marco |
 | `tutorials/` | Temas sueltos, numerados por orden lógico de lectura |
 | `projects/` | Casos de código, numerados por nivel |
-| `docs/specs/` | Contratos de cifras del caso guía (ancla de los tests `-m slow`) |
 | `scripts/` | Herramientas sueltas. Hoy solo `smoke_test.py` |
 | `datasets/` | Datasets versionados de proyectos (p. ej. Meli). Los del caso guía no se versionan |
 | `imagenes/` | Figuras usadas en tutoriales |

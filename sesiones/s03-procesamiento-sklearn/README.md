@@ -7,10 +7,8 @@ has_children: true
 # Sesión S03 · Procesamiento, pipelines, modelos y LLM
 
 Última revisión: 2026-10-19. Versiones verificadas: Python 3.11.14,
-Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11. La sesión implementa
-[`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md)
-y [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md),
-y se apoya en [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
+Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11. La sesión se apoya en
+[`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
 
 La pregunta que organiza la sesión es:
 
@@ -92,7 +90,7 @@ Las tres preguntas motivan los bloques A, B y D.
 - [`01-cohortes-y-fuga.md`](01-cohortes-y-fuga.md) — `cohorte(...)` y las dos fugas.
 - [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) — `construir_preprocesador` + `test_sin_fuga`.
 - [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) — 3 modelos + regla + tabla de umbrales.
-- [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) — `guardar()` / `cargar()` + Tabla 7.
+- [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) — `guardar()` / `cargar()` + ficha de metadatos.
 - [`05-llm-transformador.md`](05-llm-transformador.md) — `texto_llm`, `llm_clientes`, prompt, caché.
 - [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
 - [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales ya vistos.
@@ -108,8 +106,9 @@ Las tres preguntas motivan los bloques A, B y D.
 `pipelines/preprocesamiento.py`, `models/{entrenar, registro}.py`,
 `evaluation/{metricas, umbral}.py`.
 
-**Scripts**: `caso_recompra.py` (envoltorio), `figuras_u3.py` (4 figuras de la spec),
-`generar_gold.py` (fixture para evaluar el LLM).
+**Scripts**: `caso_recompra.py` (envoltorio), `figuras_u3.py` (4 figuras
+de referencia de la Unidad 3), `generar_gold.py` (fixture para evaluar
+el LLM).
 
 ## 5. Quick start (macOS/Linux)
 
@@ -162,7 +161,7 @@ uv run jupyter lab notebooks/
 | Calcular variables antes de partir | Fuga silenciosa | Calcular después, con un `pipeline.fit(X_train, y_train)` que incluya transformadores |
 | `fit_transform(A ∪ B)` | Ya viste B al calibrar | `fit(A)` → `transform(B)` |
 | `random_state=None` por "ciencia" | No reproducible → no se puede comparar | `random_state=SEMILLA` siempre |
-| Serializar solo `pipeline.joblib` | U4 no sabe qué columnas espera | `metadatos.json` con las 10 campos de la Tabla 7 |
+| Serializar solo `pipeline.joblib` | U4 no sabe qué columnas espera | `metadatos.json` con los 10 campos obligatorios de la ficha de modelo |
 | Nombrar al proveedor del LLM | Rompe el `grep -r` de la auditoría | Solo el adaptador y el README nombran proveedores |
 
 ## 9. Cierre y puente

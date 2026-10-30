@@ -1,6 +1,6 @@
 """Tabla de metricas por umbral para la Unidad 3.
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firma publica:
 
     tabla_umbrales(y, p, umbrales=(0.3, 0.4, 0.5, 0.6))
 """

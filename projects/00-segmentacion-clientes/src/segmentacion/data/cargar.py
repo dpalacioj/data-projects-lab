@@ -1,7 +1,7 @@
 """Lectura del dataset Online Retail II con esquema declarado.
 
 Expone:
-- `ESQUEMA`: columnas que deben leerse con tipo explicito, segun la spec.
+- `ESQUEMA`: columnas que deben leerse con tipo explicito.
 - `leer_excel_con_esquema(ruta)`: concatena las hojas del Excel aplicando
   los overrides de esquema.
 - `leer_parquet(ruta, lazy=False)`: lectura eager o lazy del Parquet.

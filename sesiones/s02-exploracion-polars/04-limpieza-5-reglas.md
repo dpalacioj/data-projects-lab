@@ -6,7 +6,7 @@ nav_order: 4
 ---
 # Las 5 reglas de limpieza como funciones separadas
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md) §5.3. Código: [`src/segmentacion/data/limpieza.py`](../../projects/00-segmentacion-clientes/src/segmentacion/data/limpieza.py).
+> Fecha de referencia: **2026-10-19**. Código: [`src/segmentacion/data/limpieza.py`](../../projects/00-segmentacion-clientes/src/segmentacion/data/limpieza.py).
 
 ## La pregunta
 
@@ -33,7 +33,7 @@ exigir_cliente         ─┤  preparar_ventas(df)  →  (ventas, cancelaciones)
 filtrar_validas        ─┘
 ```
 
-**Secuencia esperada** (contrato con la spec §4):
+**Secuencia esperada** (verificada por los tests `-m slow`):
 
 | Paso | Filas tras aplicar |
 |---|---|
@@ -49,8 +49,8 @@ Y en paralelo: 19 104 cancelaciones a `data/processed/cancelaciones.parquet`
 ## Teoría
 
 Las 5 funciones aceptan tanto `pl.DataFrame` como `pl.LazyFrame`
-(`Frame = pl.DataFrame | pl.LazyFrame`). La razón es la lección de la
-spec: _«cuadernos eager, scripts lazy»_.
+(`Frame = pl.DataFrame | pl.LazyFrame`). La razón es la convención del
+proyecto: _«cuadernos eager, scripts lazy»_.
 
 - **Eager** (`pl.DataFrame`): el estudiante ve las filas tras cada paso.
 - **Lazy** (`pl.LazyFrame`): el optimizador reordena, fusiona y
@@ -104,9 +104,9 @@ Dos pruebas, dos velocidades:
    ```bash
    uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py
    ```
-   Reproduce las cifras del §4 de la spec: conteos con tolerancia 0,
+   Reproduce las cifras de referencia: conteos con tolerancia 0,
    correlaciones con tolerancia 1e-3, media de `Price` con 5e-3
-   (half-LSD de la precisión de la spec).
+   (half-LSD de la precisión reportada).
 
 ## HALLAZGOS.md como contrato con U3
 
@@ -139,7 +139,7 @@ Vive en el parquet `cancelaciones.parquet` y espera a U3.
 ## Si falla
 
 - «Mi secuencia no da 779 425»: ver [`07-troubleshooting.md`](07-troubleshooting.md)
-  §«Las cifras no coinciden con la spec».
+  §«Las cifras no coinciden».
 - «`preparar_ventas` no loggea»: el `uv run` necesita `--extra dev`
   para pytest, pero el logger funciona sin dev. Si no sale, revisa
   nivel del logger en `utils/logger.py`.

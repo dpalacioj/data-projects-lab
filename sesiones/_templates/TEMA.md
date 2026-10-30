@@ -1,6 +1,6 @@
 # Tema — «Nombre del tema»
 
-> Spec que soporta esta sección: [`docs/specs/<SPEC_...>.md`](../../docs/specs/) · Código del proyecto: `projects/<proyecto>/<ruta>`.
+> Código del proyecto: `projects/<proyecto>/<ruta>`.
 
 ## La pregunta
 

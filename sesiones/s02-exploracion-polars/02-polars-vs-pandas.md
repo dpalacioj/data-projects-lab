@@ -6,7 +6,7 @@ nav_order: 2
 ---
 # Polars vs pandas — cuándo cada uno
 
-> Fecha de referencia: **2026-10-19**. Spec: [`SPEC_segmentacion-clientes_polars.md`](../../docs/specs/SPEC_segmentacion-clientes_polars.md).
+> Fecha de referencia: **2026-10-19**.
 
 ## La pregunta
 
@@ -28,7 +28,7 @@ dialecto debe estar en cada momento.
 
 ## Idea central
 
-Regla del proyecto (sección 5.1 de la spec):
+Regla del proyecto:
 
 > **Polars hasta la matriz de variables; scikit-learn desde ahí.**
 

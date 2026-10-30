@@ -1,6 +1,6 @@
 """Reglas de limpieza para Online Retail II, en Polars.
 
-Una funcion por regla (seccion 5.3 de `SPEC_segmentacion-clientes_polars.md`):
+Una funcion por regla:
 
 - `quitar_duplicados`
 - `separar_cancelaciones`  -> `(sin_cancelaciones, cancelaciones)`
@@ -58,7 +58,8 @@ def preparar_ventas(df: Frame, log: bool = True) -> tuple[Frame, Frame]:
     """Encadena las cuatro reglas y agrega `Importe = Quantity * Price`.
 
     Devuelve `(ventas, cancelaciones)`. Las cancelaciones se devuelven antes
-    de exigir cliente y filtrar validez, tal como lo describe la spec.
+    de exigir cliente y filtrar validez, para no perder las que no tienen
+    `Customer ID` (relevantes para `tasa_devolucion` en U3).
     """
     n0 = _height(df)
     df = df.pipe(quitar_duplicados)

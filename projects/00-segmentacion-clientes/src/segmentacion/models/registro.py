@@ -1,6 +1,6 @@
 """Registro de artefactos de modelo para la Unidad 3.
 
-Firma citada por `SPEC_procesamiento_U3.md` §4:
+Firmas publicas:
 
     guardar(pipe, ruta, metadatos)
     cargar(ruta) -> (pipe, meta)
@@ -16,7 +16,7 @@ Diseno de carpeta:
     ├── pipeline.joblib     # gitignored
     └── metadatos.json      # versionado
 
-Campos obligatorios de `metadatos` (Tabla 7 de la spec):
+Campos obligatorios de `metadatos`:
 
 - `fecha_corte` (ISO)
 - `horizonte` (dias)
@@ -57,7 +57,7 @@ CAMPOS_OBLIGATORIOS = frozenset(
 
 
 class MetadatosIncompletos(ValueError):
-    """Alguno de los campos de la Tabla 7 falta en `metadatos`."""
+    """Alguno de los campos obligatorios falta en `metadatos`."""
 
 
 class VersionIncompatible(RuntimeError):
@@ -90,7 +90,7 @@ def guardar(pipe: Pipeline, ruta: Path, metadatos: dict[str, Any]) -> None:
     faltantes = CAMPOS_OBLIGATORIOS - set(metadatos.keys())
     if faltantes:
         raise MetadatosIncompletos(
-            f"faltan campos en metadatos.json: {sorted(faltantes)} (ver Tabla 7 de la spec de la Unidad 3)."
+            f"faltan campos en metadatos.json: {sorted(faltantes)}."
         )
 
     joblib.dump(pipe, _ruta_pipeline(ruta))
