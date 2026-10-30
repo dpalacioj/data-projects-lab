@@ -42,8 +42,3 @@ Las celdas son autocontenidas: solo usan `numpy`, `matplotlib` y
 `scikit-learn` (ya en las dependencias base). No requieren datos
 externos ni API keys.
 
-## Para el docente
-
-El guión de clase (secuencia, tiempos sugeridos, puntos a enfatizar,
-preguntas típicas) vive en `docs/plan-docente/plan-clase-clustering.md`
-(y su `.pdf`), que **no** se publica en el sitio.

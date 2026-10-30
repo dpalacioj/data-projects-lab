@@ -14,7 +14,7 @@ PARQUET_REAL = PROJECT_ROOT / "data" / "raw" / "online_retail_II.parquet"
 def parquet_real() -> Path:
     """Ruta al Parquet real. Omite el test si el archivo no existe aun.
 
-    Se usa en los tests marcados `slow` que reproducen la seccion 4 del OVA.
+    Se usa en los tests marcados `slow` que reproducen la seccion 4 de la spec.
     Para generar el archivo: `uv run python scripts/descargar_datos.py`.
     """
     if not PARQUET_REAL.exists():

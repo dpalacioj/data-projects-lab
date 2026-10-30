@@ -5,7 +5,8 @@ nav_order: 0
 ---
 # Tutorial 00 — Un mismo notebook con tres ambientes: `.venv`, miniconda y uv
 
-> Revisión: **2026-10-20** · Python 3.11 · macOS M-series (los números cambian en Windows / Linux).
+Última revisión: 2026-10-20. Python 3.11 sobre macOS M-series (los
+números cambian en Windows y Linux).
 
 El objetivo de este tutorial **no es** aprender KNN. Es demostrar, con el mismo
 notebook y las mismas librerías, cómo tres gestores de ambientes distintos

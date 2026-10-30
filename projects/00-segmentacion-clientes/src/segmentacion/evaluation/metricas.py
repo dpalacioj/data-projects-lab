@@ -102,7 +102,7 @@ def fuga_escalado(
     """Compara `StandardScaler.fit(A ∪ B)` con `StandardScaler.fit(A)`.
 
     Devuelve la media de la primera columna de `columnas_num_std`
-    (`recencia` por convencion). El OVA lo reporta como 186,9 vs 168,7.
+    (`recencia` por convencion). La spec lo reporta como 186,9 vs 168,7.
     """
     sc_todo = StandardScaler().fit(
         np.vstack([XA[columnas_num_std].to_numpy(), XB[columnas_num_std].to_numpy()])

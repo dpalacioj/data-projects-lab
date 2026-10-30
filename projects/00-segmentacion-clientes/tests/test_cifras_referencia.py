@@ -8,7 +8,7 @@ Tolerancias: 0 en conteos exactos, 1e-3 en correlaciones y fracciones.
 Si alguna cifra NO coincide:
     1. no modifiques esta prueba;
     2. verifica que no haya cambiado el hash del zip (`descargar_datos.py`);
-    3. reporta la discrepancia; actualizar el OVA y la spec se decide a mano.
+    3. reporta la discrepancia; actualizar el material del curso y la spec se decide a mano.
 """
 
 from __future__ import annotations
@@ -148,7 +148,7 @@ def test_price_q3(ventas: pl.DataFrame) -> None:
 
 
 def test_price_media(ventas: pl.DataFrame) -> None:
-    # El OVA reporta la media con dos decimales (3,22). Tolerancia = media-LSD.
+    # La spec reporta la media con dos decimales (3,22). Tolerancia = media-LSD.
     assert ventas["Price"].mean() == pytest.approx(3.22, abs=5e-3)
 
 

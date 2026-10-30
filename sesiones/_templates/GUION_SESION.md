@@ -1,9 +1,11 @@
-# Sesión SXX · «Nombre de la sesión» — Guía para el instructor
+# Sesión SXX · «Nombre de la sesión»
 
-> Revisión: **YYYY-MM-DD** · Versiones verificadas: Python 3.11, _(añadir las que apliquen)_ · Spec que implementa: [`docs/specs/<SPEC_...>.md`](../../docs/specs/) · Proyecto que soporta: [`projects/<proyecto>/`](../../projects/)
+Última revisión: YYYY-MM-DD. Versiones verificadas: Python 3.11,
+_(añadir las que apliquen)_. La sesión implementa
+[`docs/specs/<SPEC_...>.md`](../../docs/specs/) y se apoya en
+[`projects/<proyecto>/`](../../projects/).
 
-**No asumas que un contenido sin fecha sigue siendo correcto.** La pregunta
-que organiza esta sesión es:
+La pregunta que organiza la sesión es:
 
 > _(Formula aquí la pregunta fundacional en una línea. No describas la
 > herramienta; describe lo que el alumno debe PODER responder al terminar.)_

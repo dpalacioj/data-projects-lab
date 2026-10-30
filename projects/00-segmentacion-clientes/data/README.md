@@ -59,4 +59,4 @@ las cifras de la sección 4 de `docs/specs/SPEC_segmentacion-clientes_polars.md`
 Si UCI vuelve a publicar el archivo, el hash cambiará y
 `scripts/descargar_datos.py` saldrá con código `2`. En ese caso: investigar
 el nuevo contenido, actualizar `SHA256_ZIP` **y** las cifras de la spec y
-del OVA al mismo tiempo. No se actualiza una sola cosa.
+del material del curso al mismo tiempo. No se actualiza una sola cosa.

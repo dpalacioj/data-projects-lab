@@ -12,9 +12,9 @@
 
 El repositorio de Nicolás no tiene archivo `LICENSE`, de modo que por defecto todos los derechos son suyos. Antes de incorporar cualquier texto, figura o código:
 
-1. Pedirle por escrito autorización para (a) adaptar su material en `data-projects-lab` bajo la licencia MIT del repositorio y (b) usarlo como insumo de los OVA de la UdeM, cuyos derechos quedan reservados a la Universidad.
+1. Pedirle por escrito autorización para (a) adaptar su material en `data-projects-lab` bajo la licencia MIT del repositorio y (b) usarlo como insumo del material del curso, cuyos derechos quedan reservados a la institución correspondiente.
 2. Proponerle que añada un `LICENSE` (MIT o CC BY 4.0) a su repositorio; eso resuelve el punto para siempre.
-3. Atribución en cada archivo derivado: encabezado `Adaptado de Gómez Giraldo (2026), github.com/nicolasggiraldo/especializacion-udem-2026-01, con autorización`. En los OVA no se cita el repositorio (criterio del módulo: fuentes primarias), pero se agradece en los créditos del EVA si él lo acepta.
+3. Atribución en cada archivo derivado: encabezado `Adaptado de Gómez Giraldo (2026), github.com/nicolasggiraldo/especializacion-udem-2026-01, con autorización`. En el material público del curso no se cita el repositorio (criterio del módulo: fuentes primarias), pero se agradece en los créditos del entorno virtual si él lo acepta.
 
 ## 2. Qué se toma, qué se transforma, dónde queda
 
@@ -32,7 +32,7 @@ El repositorio de Nicolás no tiene archivo `LICENSE`, de modo que por defecto t
 | Problema en el original | Corrección en la versión adaptada |
 |---|---|
 | `LabelEncoder` aplicado a variables explicativas | `OrdinalEncoder` (si hay orden) u `OneHotEncoder`; `LabelEncoder` solo para la etiqueta |
-| Imputación por la media sobre todo el conjunto antes de partir | Imputación dentro del `Pipeline`, tras la partición (es la Tabla 2 del OVA U3) |
+| Imputación por la media sobre todo el conjunto antes de partir | Imputación dentro del `Pipeline`, tras la partición (es la Tabla 2 de la spec de la Unidad 3) |
 | `!wget` desde un repositorio de 2025-02 y una línea `!wget !wget` | Script de descarga con hash en `scripts/`; sin comandos de shell en celdas |
 | Figuras tomadas de blogs sin licencia clara | Figuras propias (Matplotlib/Mermaid) con nota «Elaboración propia» |
 | Sin `pyproject`/dependencias | El extra `segmentacion-clientes` del `pyproject.toml` raíz cubre todo |
@@ -60,7 +60,7 @@ projects/00-segmentacion-clientes/notebooks/
 
 ## 5. Plan
 
-1. Mensaje a Nicolás (autorización + propuesta de `LICENSE`). Sin respuesta positiva, solo se adopta la **estructura** de su secuencia, redactada desde fuentes primarias (Hastie et al., 2009; scikit-learn), que es lo que hoy ya hacen los OVA.
+1. Mensaje a Nicolás (autorización + propuesta de `LICENSE`). Sin respuesta positiva, solo se adopta la **estructura** de su secuencia, redactada desde fuentes primarias (Hastie et al., 2009; scikit-learn), que es lo que hoy ya hace el material del curso.
 2. `tutorials/04-limpieza-datos-sucios-polars/` (medio día).
 3. Fusión del tutorial 05 con la sesión 6 (medio día): un solo documento, figuras propias.
 4. Cuaderno 09 con la secuencia métricas → sobreajuste → pipeline sobre el caso de recompra (un día; depende de `SPEC_procesamiento_U3.md`).
@@ -78,5 +78,5 @@ projects/00-segmentacion-clientes/notebooks/
 ## 7. Qué NO se hace
 
 - No se copian las presentaciones PDF ni sus imágenes.
-- No se citan los cuadernos de Nicolás en los OVA como fuente bibliográfica (criterio del módulo: fuentes primarias verificables).
+- No se citan los cuadernos de Nicolás en el material público del curso como fuente bibliográfica (criterio del módulo: fuentes primarias verificables).
 - No se mantiene el dataset House Prices como caso del módulo: el hilo es Online Retail II.

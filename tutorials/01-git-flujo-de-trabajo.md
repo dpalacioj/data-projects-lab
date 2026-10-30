@@ -5,7 +5,8 @@ nav_order: 1
 ---
 # Tutorial — Git y GitHub: el flujo de trabajo del curso
 
-> Revisión: **2026-10-25** · Pre-requisito: una cuenta de GitHub creada. Nada más.
+Última revisión: 2026-10-25. Prerrequisito: una cuenta de GitHub creada.
+Nada más.
 
 Este tutorial **no** es una referencia completa de git. Es la ruta mínima para
 que puedas:

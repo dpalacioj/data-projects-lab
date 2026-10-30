@@ -5,7 +5,7 @@ has_children: true
 ---
 # Tutoriales — índice y orden de lectura
 
-> Revisión: **2026-10-25**
+Última revisión: 2026-10-25.
 
 Los tutoriales son material transversal. No reemplazan a las
 [sesiones](../sesiones/) (que son el guión de clase), sino que las apoyan: cada

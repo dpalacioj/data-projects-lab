@@ -5,8 +5,6 @@ nav_order: 1
 ---
 # S01 · Encuadre del curso: CRISP-DM como columna vertebral
 
-> Revisión: **2026-10-25** · Unidad U1 · RAE 1.1 · Estado: **marco (no placeholder)**
-
 Este archivo **no** es un guión de 4 horas. Es el **mapa** que un
 estudiante lee en la primera semana para entender qué recorre el
 módulo y por qué CRISP-DM aparece una y otra vez.

@@ -1,15 +1,15 @@
 # SPEC — `features/texto_llm.py`: un modelo de lenguaje como transformador de características (agnóstico al proveedor)
 
 **Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/src/segmentacion/features/`
-**Unidad que lo usa:** Unidad 3, subtema 3.2 (Figura 9 y recuadros del OVA; pódcast 2)
-**Propósito:** implementar el ejemplo del OVA como un módulo real, pequeño y probado, que categoriza las 5 305 descripciones únicas de producto de Online Retail II con un LLM y produce una variable por cliente. El módulo sirve para **enseñar buenas prácticas** (caché, esquema cerrado, inyección de dependencias, línea base, pruebas sin red), no para presumir del modelo.
+**Unidad que lo usa:** Unidad 3, subtema 3.2 (Figura 9 y recuadros de la spec; pódcast 2)
+**Propósito:** implementar el ejemplo del curso como un módulo real, pequeño y probado, que categoriza las 5 305 descripciones únicas de producto de Online Retail II con un LLM y produce una variable por cliente. El módulo sirve para **enseñar buenas prácticas** (caché, esquema cerrado, inyección de dependencias, línea base, pruebas sin red), no para presumir del modelo.
 **Proveedor:** agnóstico. David lo correrá con DeepSeek; el código no debe nombrar ningún proveedor fuera de un único adaptador opcional.
 **Estado:** especificación; nada implementado.
 **Orden de implementación:** parte de **2 de 3** (`SPEC_procesamiento_U3.md`). Se implementa después de `pipelines/preprocesamiento.py` y antes del cuaderno 09. Esta spec es la fuente de verdad para el módulo LLM; si `SPEC_procesamiento_U3.md` §5 dice algo distinto, manda esta.
 
 ---
 
-## 1. Principios de diseño (los que el OVA enuncia y el código debe cumplir)
+## 1. Principios de diseño (los que la spec enuncia y el código debe cumplir)
 
 | # | Principio | Consecuencia en el código |
 |---|---|---|
@@ -31,7 +31,7 @@ import polars as pl
 from pydantic import BaseModel, Field
 
 CATEGORIAS = Literal["iluminacion", "cocina", "textil", "papeleria", "decoracion", "bolsas",
-                     "juguetes", "jardin", "navidad", "accesorios", "cargo_no_producto", "otro"]   # 12, como dice el OVA
+                     "juguetes", "jardin", "navidad", "accesorios", "cargo_no_producto", "otro"]   # 12, como define la spec
 CATEGORIAS_LISTA: list[str] = list(get_args(CATEGORIAS))
 
 class Categoria(BaseModel):
@@ -111,7 +111,7 @@ PROP_CAT = [f"prop_{c}" for c in CATEGORIAS_LISTA]          # 12 columnas en [0,
 ColumnTransformer([..., ("prop", "passthrough", PROP_CAT)])  # ya están acotadas; no se escalan
 ```
 
-- Se compara el AUC del bosque **con y sin** las 12 columnas, en la cohorte B, una sola vez. El OVA no promete que mejore; el cuaderno reporta lo que dé.
+- Se compara el AUC del bosque **con y sin** las 12 columnas, en la cohorte B, una sola vez. El curso no promete que mejore; el cuaderno reporta lo que dé.
 
 ## 7. Pruebas (todas sin red)
 
@@ -139,4 +139,4 @@ ColumnTransformer([..., ("prop", "passthrough", PROP_CAT)])  # ya están acotada
 |---|---|
 | El LLM cambia de versión y las categorías cambian | La caché versionada congela el resultado; recalcular es una decisión explícita con `--recalcular` |
 | Clave de API en el repositorio | Pre-commit `detect-private-key` + revisión; variable de entorno obligatoria |
-| El ejemplo desplaza el foco de la unidad | Un subtema, un cuaderno, evaluación obligatoria contra la línea base; el OVA ya lo encuadra como «un transformador más» |
+| El ejemplo desplaza el foco de la unidad | Un subtema, un cuaderno, evaluación obligatoria contra la línea base; el curso ya lo encuadra como «un transformador más» |

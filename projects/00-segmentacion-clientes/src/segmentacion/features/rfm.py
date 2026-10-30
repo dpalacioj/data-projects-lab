@@ -1,6 +1,6 @@
 """Construccion de variables por cliente (RFM extendido) en Polars.
 
-Firma citada por el OVA y por `SPEC_segmentacion-clientes_polars.md` (seccion 5.3):
+Firma citada por la spec `SPEC_segmentacion-clientes_polars.md` (seccion 5.3):
 
     construir_rfm(ventas, fecha_corte: datetime) -> pl.DataFrame
 

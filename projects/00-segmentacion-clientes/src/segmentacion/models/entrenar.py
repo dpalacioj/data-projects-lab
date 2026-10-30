@@ -2,10 +2,10 @@
 
 Firmas citadas por `SPEC_procesamiento_U3.md` §4:
 
-    MODELOS = {...}  # tres modelos del OVA
+    MODELOS = {...}  # tres modelos del curso
     entrenar(pipeline, X, y, cv) -> dict
 
-Los nombres y los hiperparametros son los del OVA (seccion 6, Figura 8) y no
+Los nombres y los hiperparametros son los de la spec (seccion 6, Figura 8) y no
 se cambian: regresion logistica, arbol de decision con profundidad 4, bosque
 aleatorio con 300 arboles y hoja minima 5. La semilla es `config.SEMILLA`.
 """

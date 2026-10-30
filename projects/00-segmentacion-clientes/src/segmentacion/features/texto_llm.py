@@ -1,4 +1,4 @@
-"""Un LLM como transformador de caracteristicas de producto (subtema 3.2 del OVA).
+"""Un LLM como transformador de caracteristicas de producto (subtema 3.2 del curso).
 
 Firmas citadas por `SPEC_llm_transformador.md`:
 
@@ -29,7 +29,7 @@ from typing import Literal, Protocol, get_args
 import polars as pl
 from pydantic import BaseModel, Field, ValidationError
 
-# 12 categorias cerradas (incluye `accesorios`, como pide el OVA y el usuario).
+# 12 categorias cerradas (incluye `accesorios`, como pide la spec y el usuario).
 CATEGORIAS = Literal[
     "iluminacion",
     "cocina",

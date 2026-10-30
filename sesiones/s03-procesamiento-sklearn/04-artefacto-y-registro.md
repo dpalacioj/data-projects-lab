@@ -44,7 +44,7 @@ models/recompra_v1/
 y, con eso, sabe qué pasarle a `pipeline.joblib`. Si cambia la versión
 de scikit-learn, `cargar()` falla con un mensaje que explica qué pasó.
 
-Los 10 campos obligatorios (Tabla 7 del OVA):
+Los 10 campos obligatorios (Tabla 7 de la spec):
 
 ```json
 {

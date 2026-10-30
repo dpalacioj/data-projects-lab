@@ -95,7 +95,7 @@ El HTML queda gitignored (2,2 MB) para no inflar el repo.
 # Las 32 cifras del §4 reproducidas sobre el parquet real
 uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py
 
-# Las 4 figuras del OVA con la paleta correcta
+# Las 4 figuras de la spec con la paleta correcta
 uv run python projects/00-segmentacion-clientes/scripts/figuras_u2.py \
     projects/00-segmentacion-clientes/data/raw/online_retail_II.parquet \
     projects/00-segmentacion-clientes/reports/figures
@@ -104,7 +104,7 @@ uv run python projects/00-segmentacion-clientes/scripts/figuras_u2.py \
 Debe imprimir:
 `cerca Tukey Price=7.50 (8.40%); pearson=-0.005; spearman=-0.428; sabado=400`.
 
-## Pearson vs. Spearman: el ejemplo del OVA
+## Pearson vs. Spearman: el ejemplo del curso
 
 - Pearson mide **asociación lineal** sobre valores crudos.
 - Spearman mide **asociación monótona** sobre rangos.

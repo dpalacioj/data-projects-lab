@@ -6,7 +6,7 @@ nav_exclude: true
 Hallazgos consolidados de los cuadernos 01-04. Cada fila es un vinculo
 entre lo que observamos (evidencia reproducible), lo que decidimos y
 donde se materializa. Esta tabla es insumo directo de la Unidad 3
-(seccion 7 del OVA).
+(seccion 7 de la spec).
 
 | Hallazgo | Evidencia reproducible | Decision |
 |---|---|---|

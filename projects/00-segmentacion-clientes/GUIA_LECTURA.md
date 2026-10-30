@@ -25,7 +25,7 @@ K-Means, DBSCAN e interpretación de segmentos.
 
 ---
 
-## Unidad 2 (00-05) — RAE 1.1 · ~4 horas
+## Unidad 2 (00-05) — ~4 horas
 
 Orden recomendado: **00 → 01 → 02 → 04 → 03 → 05**. El EDA (04) usa el
 Parquet de ventas que deja el 02; el 03 (RFM) depende del 02 pero no
@@ -53,8 +53,7 @@ notebooks/01_comprension_datos.ipynb
 
 **Qué aprenderás:**
 - Lectura con `polars.read_parquet` y esquema declarado al leer.
-- Diagnóstico de nulos, duplicados, cancelaciones y rangos sospechosos
-  — Tabla 4 del OVA reproducida.
+- Diagnóstico de nulos, duplicados, cancelaciones y rangos sospechosos.
 
 ---
 
@@ -129,7 +128,7 @@ sin cambios de firma, el paquete `segmentacion` y los Parquet que deja
 U2.
 
 - `06_particion_y_fuga` — cohortes A/B y demostración de la fuga temporal.
-- `07_ingenieria_caracteristicas` — `ColumnTransformer` (Tabla 4 del OVA).
+- `07_ingenieria_caracteristicas` — `ColumnTransformer` para variables numéricas y categóricas.
 - `08_llm_como_transformador` — `FakeLLM` + categorías semánticas.
 - `09_modelos_y_pipelines` — regresión, árbol, bosque; umbral y validación.
 - `10_segmentacion_no_supervisada` — k-means + DBSCAN sobre el preprocesador
@@ -141,7 +140,7 @@ U2.
 
 ```bash
 uv run pytest                                       # rápido (test_limpieza, test_rfm)
-uv run pytest -m slow                               # cifras de §4 del OVA
+uv run pytest -m slow                               # cifras de referencia (§4 de la spec)
 uv run python scripts/descargar_datos.py            # descarga + hash
 uv run python scripts/figuras_u2.py <parquet> <out> # Figuras 6-9
 uv run python scripts/perfil.py                     # HTML de perfil
@@ -162,8 +161,8 @@ uv run python scripts/perfil.py                     # HTML de perfil
 | `src/segmentacion/features/preprocessing.py` | Pipeline sklearn (lo consume la app Streamlit). |
 | `src/segmentacion/models/{clustering,profiling}.py` | K-Means/DBSCAN y perfiles (cuaderno 10 y app). |
 | `tests/test_limpieza.py` / `test_rfm.py` | Rápidos, con filas inventadas. |
-| `tests/test_cifras_referencia.py` | `@pytest.mark.slow`, cifras del OVA. |
-| `scripts/figuras_u2.py` | Figuras 6-9 del OVA (reproducibles). |
+| `tests/test_cifras_referencia.py` | `@pytest.mark.slow`, cifras de referencia de la spec. |
+| `scripts/figuras_u2.py` | Figuras reproducibles del EDA (6-9). |
 | `scripts/perfil.py` | HTML del perfil (CI / sin Jupyter). |
 | `HALLAZGOS.md` | Hallazgos de U2 → insumo de U3. |
 

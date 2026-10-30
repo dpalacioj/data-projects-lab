@@ -17,8 +17,8 @@ nav_order: 6
 3. Mínimo dos cohortes temporales (A y B) y una regla por recencia (u
    otra variable observable) como línea base.
 4. Pipeline sin fuga obligatorio (verificable con un test).
-5. Modelo serializado con `metadatos.json` siguiendo la Tabla 7 del
-   OVA U3.
+5. Modelo serializado con `metadatos.json` siguiendo la Tabla 7 de la
+   spec de la Unidad 3.
 
 ## Entrega
 
@@ -97,7 +97,7 @@ pruebas sin red.
 ## Entregables opcionales
 
 - Modelo adicional (XGBoost, LightGBM) comparado contra los tres del
-  OVA.
+  curso.
 - Análisis de drift: AUC esperado vs. AUC observado en un conjunto
   posterior a B.
 - Figuras análogas a `g_fuga.png`, `g_sobreajuste.png`, `g_roc_pr.png`,

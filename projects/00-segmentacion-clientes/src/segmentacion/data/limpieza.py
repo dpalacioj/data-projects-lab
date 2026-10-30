@@ -58,7 +58,7 @@ def preparar_ventas(df: Frame, log: bool = True) -> tuple[Frame, Frame]:
     """Encadena las cuatro reglas y agrega `Importe = Quantity * Price`.
 
     Devuelve `(ventas, cancelaciones)`. Las cancelaciones se devuelven antes
-    de exigir cliente y filtrar validez, tal como lo describe el OVA.
+    de exigir cliente y filtrar validez, tal como lo describe la spec.
     """
     n0 = _height(df)
     df = df.pipe(quitar_duplicados)

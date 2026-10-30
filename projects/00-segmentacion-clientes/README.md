@@ -61,7 +61,7 @@ Preguntas concretas que el proyecto busca responder:
 
 ## Objetivo de negocio, objetivo de análisis y criterio de éxito
 
-Reproduce la **Tabla 2** del OVA de la Unidad 2 — la misma matriz que
+Reproduce la **Tabla 2** de la spec de la Unidad 2 — la misma matriz que
 usamos para alinear negocio y análisis antes de tocar código.
 
 | Campo | Contenido |
@@ -71,7 +71,7 @@ usamos para alinear negocio y análisis antes de tocar código.
 | **Objetivo de análisis** | Construir segmentos no supervisados de clientes basados en RFM extendido, estables entre K-Means y DBSCAN, acompañados de una ficha accionable por segmento. |
 | **Criterio de éxito analítico** | Silhouette ≥ 0,35 y más del 70 % de los clientes concentrados en 3-5 segmentos interpretables. |
 | **Criterio de éxito de negocio** | Que marketing adopte las fichas de acción (medible en U4 por tasa de contacto por segmento). |
-| **Riesgo principal** | Que el pipeline no sea reproducible el día de grabación. Mitigación: `scripts/figuras_u2.py` y `tests/test_cifras_referencia.py` fallan si cambia alguna cifra del OVA. |
+| **Riesgo principal** | Que el pipeline no sea reproducible el día de grabación. Mitigación: `scripts/figuras_u2.py` y `tests/test_cifras_referencia.py` fallan si cambia alguna cifra de referencia. |
 | **Datos y licencia** | Online Retail II (UCI 502, Chen 2019, CC BY 4.0). Procedencia, hash y procedimiento en [`data/README.md`](data/README.md). |
 
 El cuaderno `00_objetivo_de_analisis.ipynb` deja esta misma tabla al
@@ -152,7 +152,7 @@ segmentacion-clientes/
 │
 ├── scripts/
 │   ├── descargar_datos.py     # Descarga + SHA-256 + xlsx → parquet
-│   ├── figuras_u2.py          # Figuras 6-9 del OVA en reports/figures/
+│   ├── figuras_u2.py          # Figuras 6-9 de la spec en reports/figures/
 │   ├── perfil.py              # Perfil HTML sobre muestra (seed=42)
 │   ├── caso_recompra.py       # Insumo de U3 (recompra 90 d)
 │   └── figuras_u3.py          # Insumo de U3 (ROC, PR, importancias)
@@ -176,7 +176,7 @@ segmentacion-clientes/
 ├── tests/
 │   ├── test_limpieza.py          # Rápido, 6 filas inventadas
 │   ├── test_rfm.py               # Rápido, corte explícito
-│   └── test_cifras_referencia.py # @pytest.mark.slow, cifras del §4 OVA
+│   └── test_cifras_referencia.py # @pytest.mark.slow, cifras del §4 de la spec
 │
 ├── app/streamlit_app.py          # Demo interactiva (consume U3 output)
 ├── models/                        # Modelos entrenados (.joblib, gitignored)
@@ -237,7 +237,7 @@ uv run python scripts/descargar_datos.py
 
 > El script descarga el `.zip` desde UCI, verifica el **SHA-256**
 > contra la constante del propio script, extrae `online_retail_II.xlsx`
-> y escribe `data/raw/online_retail_II.parquet` con el esquema del OVA.
+> y escribe `data/raw/online_retail_II.parquet` con el esquema de la spec.
 > Si el hash no coincide, se detiene (código 2). Detalles en
 > [`data/README.md`](data/README.md).
 
@@ -278,7 +278,7 @@ uv run python scripts/figuras_u3.py          # genera reports/figures/g_{fuga,so
 
 ```bash
 uv run pytest                                # rápido (sin red, sin claves de API; incluye FakeLLM del módulo LLM)
-uv run pytest -m slow                        # cifras del OVA contra el parquet real (U2 §4 + U3 §9)
+uv run pytest -m slow                        # cifras de referencia contra el parquet real (U2 §4 + U3 §9)
 ```
 
 ### Scripts auxiliares (U2)

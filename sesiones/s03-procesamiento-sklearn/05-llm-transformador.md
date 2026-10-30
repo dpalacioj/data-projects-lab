@@ -58,7 +58,7 @@ CATEGORIAS = Literal[
 ```
 
 Elegidas por volumen y accionabilidad para marketing. **12 es el número
-del OVA; no se añade una decimotercera sin re-captura.**
+de la spec; no se añade una decimotercera sin re-captura.**
 
 ### El esquema de respuesta
 
@@ -153,7 +153,7 @@ pre_ext = construir_preprocesador(incluir_prop_llm=True)
 # Entrena, calcula AUC(B), reporta la diferencia.
 ```
 
-El OVA **no** promete mejora. Se compara **una vez** y se reporta lo
+El curso **no** promete mejora. Se compara **una vez** y se reporta lo
 que dé. Si no supera a la regla por el criterio acordado, no entra en
 el pipeline final.
 

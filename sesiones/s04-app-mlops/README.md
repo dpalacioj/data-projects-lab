@@ -5,7 +5,8 @@ nav_order: 4
 ---
 # S04 · Aplicación: del modelo al entregable
 
-> Revisión: **2026-10-25** · Unidad U4 · RAE 3.1 / 4.1 · Estado: **marco (trabajo autónomo, no sesión presencial)**
+Sesión marco de trabajo autónomo (no presencial), correspondiente a la
+Unidad U4.
 
 ## De qué va esta sesión
 

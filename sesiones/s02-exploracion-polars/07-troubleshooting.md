@@ -68,7 +68,7 @@ está fuera (tolerancia 0).
    (son conteos deterministas).
 
 **Qué hacer:** reporta la discrepancia en el PR; no ajustes la prueba.
-Decide con el instructor si se actualiza la spec y el OVA, o si se
+Decide con el instructor si se actualiza la spec y el material del curso, o si se
 revierte el entorno.
 
 ---

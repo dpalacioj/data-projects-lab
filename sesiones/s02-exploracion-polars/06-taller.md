@@ -66,6 +66,6 @@ propio público, con:
 - Añadir una prueba `@pytest.mark.slow` que verifique dos cifras del
   dataset contra el archivo real.
 - Comparar la pelea Pearson-vs-Spearman en tus datos con el ejemplo del
-  OVA; discute qué dice el patrón sobre tu dominio.
+  curso; discute qué dice el patrón sobre tu dominio.
 - Generar un `scripts/figuras_tu_proyecto.py` con la paleta propia y
   dos figuras clave.

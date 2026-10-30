@@ -1,7 +1,7 @@
 # SPEC — Procesamiento modular para la Unidad 3 (ingeniería de características, modelos y pipelines con scikit-learn)
 
 **Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/` (continuación de la U2). Referencias de solo lectura: `projects/d2-temporal-split/`, `tutorials/07-tecnicas-preprocesamiento.md`.
-**Propósito:** implementar en el repositorio el caso supervisado y la modularización que el OVA de la Unidad 3 ya describe (RAE2.1: pipelines que previenen la fuga de datos y garantizan reproducibilidad), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
+**Propósito:** implementar en el repositorio el caso supervisado y la modularización que el material de la Unidad 3 ya describe (RAE2.1: pipelines que previenen la fuga de datos y garantizan reproducibilidad), de modo que el videotutorial, el material del curso y el taller apunten al mismo código y a las mismas cifras.
 **Estado:** decisiones tomadas el 16 de octubre de 2026 (§10) y **ejecutadas**. Los cuadernos 06-10 ya existen; las menciones a `legacy/05_preprocessing_pipelines`, `legacy/06`, `07` y `08` describen el estado intermedio: `notebooks/legacy/` ya fue eliminada.
 **Orden de implementación:** **2 de 3.** Requiere que `SPEC_segmentacion-clientes_polars.md` (U2) esté implementada: usa `segmentacion.data.limpieza`, `features/rfm.py` con fecha de corte, el Parquet y `cancelaciones.parquet`. El subtema LLM (§5) se implementa según `SPEC_llm_transformador.md`, que es la fuente de verdad para ese módulo.
 **Ubicación:** esta spec en `docs/specs/`; `caso_recompra.py` y `figuras_u3.py` en `projects/00-segmentacion-clientes/scripts/`.
@@ -20,7 +20,7 @@ Horas: 8 de interacción y 16 de trabajo independiente. Bibliografía del microc
 
 ## 2. Frontera Unidad 2 → Unidad 3
 
-En la U2 se diagnostica, se limpia (qué filas son ventas) y se explora; **no** se imputa, codifica ni escala. La U3 recibe `HALLAZGOS.md` como lista de instrucciones (Tabla 1 del OVA de la U3):
+En la U2 se diagnostica, se limpia (qué filas son ventas) y se explora; **no** se imputa, codifica ni escala. La U3 recibe `HALLAZGOS.md` como lista de instrucciones (Tabla 1 de la spec de la Unidad 3):
 
 | Hallazgo registrado en U2 | Qué hace la U3 con él |
 |---|---|
@@ -31,17 +31,17 @@ En la U2 se diagnostica, se limpia (qué filas son ventas) y se explora; **no** 
 | 22,8 % de líneas sin cliente | No entran al modelo por cliente; la ficha del modelo declara la cobertura |
 | Reino Unido = 91,9 % de las líneas | `pais` ∈ {UK, otro} antes de `OneHotEncoder(handle_unknown="ignore")` |
 
-Extensión opcional, **no** usada en el caso de referencia ni en el OVA: variable binaria «la factura incluye cargos de envío/ajuste» a partir de los `StockCode` no estándar.
+Extensión opcional, **no** usada en el caso de referencia ni en la spec: variable binaria «la factura incluye cargos de envío/ajuste» a partir de los `StockCode` no estándar.
 
 ## 3. Objetivos
 
 1. Un paquete `src/segmentacion/` con módulos separados por responsabilidad (`data/`, `features/`, `pipelines/`, `models/`, `evaluation/`), cada uno con pruebas de ≤ 20 filas.
 2. Un `Pipeline` de scikit-learn que encapsule imputación, transformación logarítmica, escalado y codificación, ajustado solo con la cohorte A, serializado con `joblib` + `metadatos.json` para la Unidad 4.
-3. El problema supervisado del OVA: *¿el cliente volverá a comprar en los 90 días siguientes al corte?*, con tres modelos y una regla simple como línea base. La segmentación no supervisada (k-means, DBSCAN) se conserva como segundo ejemplo (cuaderno 10).
+3. El problema supervisado del curso: *¿el cliente volverá a comprar en los 90 días siguientes al corte?*, con tres modelos y una regla simple como línea base. La segmentación no supervisada (k-means, DBSCAN) se conserva como segundo ejemplo (cuaderno 10).
 4. Las cifras de §9 reproducibles por prueba automática.
 5. El ejemplo del LLM como transformador (subtema 3.2), según `SPEC_llm_transformador.md`.
 
-## 4. Diseño de la modularización (coincide con la Figura 8 y la Tabla 8 del OVA)
+## 4. Diseño de la modularización (coincide con la Figura 8 y la Tabla 8 de la spec)
 
 ```
 src/segmentacion/
@@ -67,7 +67,7 @@ src/segmentacion/
 
 Nombres que **citan las guías** y no deben cambiar: `cohorte(ventas, cancelaciones, corte)`, `construir_preprocesador()`, `NUM_LOG`, `NUM_STD`, `CAT`, `guardar()`, `cargar()`, `src/segmentacion/pipelines/preprocesamiento.py`, `src/segmentacion/models/registro.py`, `config.py`, `tests/test_reproducibilidad.py`.
 
-Reglas (Tabla 8 del OVA) y cómo se verifican:
+Reglas (Tabla 8 de la spec) y cómo se verifican:
 
 | Regla | Verificación |
 |---|---|
@@ -89,7 +89,7 @@ Mapa completo de numeración en `SPEC_segmentacion-clientes_polars.md` §5.4.
 | Cuaderno | Contenido | Usa / reemplaza |
 |---|---|---|
 | `06_particion_y_fuga` | Cohortes A y B; la demostración de la fuga temporal en la recencia (0,795 vs 0,955); fuga en el preprocesamiento (186,9 vs 168,7) | Ideas de `projects/d2-temporal-split/` |
-| `07_ingenieria_caracteristicas` | `ColumnTransformer` de la Tabla 4 del OVA; qué aprende cada transformador en `fit` | Reemplaza `legacy/05_preprocessing_pipelines`; resume (no copia) `tutorials/07` |
+| `07_ingenieria_caracteristicas` | `ColumnTransformer` de la Tabla 4 de la spec; qué aprende cada transformador en `fit` | Reemplaza `legacy/05_preprocessing_pipelines`; resume (no copia) `tutorials/07` |
 | `08_llm_como_transformador` | `SPEC_llm_transformador.md` con `FakeLLM` | Nuevo |
 | `09_modelos_y_pipelines` | Tres modelos + regla; métricas, umbrales, importancia; curva de profundidad; validación cruzada y `GridSearchCV`; `guardar()` | Secuencia de métricas adaptada según `SPEC_material_nicolas.md` |
 | `10_segmentacion_no_supervisada` | k-means y DBSCAN sobre el preprocesador | Fusiona `legacy/06`, `07` y `08`; luego se borra `legacy/` |
@@ -101,10 +101,10 @@ Los scripts `caso_recompra.py` y `figuras_u3.py` quedan, al final, como envoltor
 - [ ] `uv run pytest` pasa sin red y sin claves de API (incluye `FakeLLM`).
 - [ ] `uv run pytest -m slow` ejecuta `tests/test_cifras_recompra.py` y reproduce §9 (tolerancia 0 en conteos; 0,001 en métricas).
 - [ ] `tests/test_reproducibilidad.py` y `tests/pipelines/test_sin_fuga.py` existen y pasan.
-- [ ] `models/recompra_v1/` contiene `pipeline.joblib` (gitignored) y `metadatos.json` (versionado) con los campos de la Tabla 7 del OVA: fecha de corte, horizonte, variables en orden, semilla, versiones (Python, scikit-learn, Polars), referencia a los datos con hash, AUC de validación, umbral acordado (0,3), fecha y autor.
+- [ ] `models/recompra_v1/` contiene `pipeline.joblib` (gitignored) y `metadatos.json` (versionado) con los campos de la Tabla 7 de la spec: fecha de corte, horizonte, variables en orden, semilla, versiones (Python, scikit-learn, Polars), referencia a los datos con hash, AUC de validación, umbral acordado (0,3), fecha y autor.
 - [ ] `cargar()` lanza un error claro si la versión de scikit-learn del entorno difiere de la de los metadatos.
 - [ ] Los cuadernos 06–10 se ejecutan en orden con `nbconvert --execute` sin errores.
-- [ ] `scripts/figuras_u3.py` produce las figuras 3, 5, 6 y 7 con los mismos títulos del OVA.
+- [ ] `scripts/figuras_u3.py` produce las figuras 3, 5, 6 y 7 con los mismos títulos de la spec.
 - [ ] `pydantic>=2` y `scikit-learn>=1.9` declarados en el extra `segmentacion-clientes`.
 - [ ] `tutorials/07-tecnicas-preprocesamiento.md` enlaza a los cuadernos 07 y 09 en lugar de duplicar código.
 - [ ] Ningún módulo de `features/` importa pandas.
@@ -115,12 +115,12 @@ Los scripts `caso_recompra.py` y `figuras_u3.py` quedan, al final, como envoltor
 |---|---|
 | El ejemplo LLM desvía la unidad hacia «IA generativa» | Un subtema, un cuaderno, evaluación obligatoria contra la línea base |
 | Costo de la llamada real | Se hace una vez y se versiona la caché; los estudiantes usan la caché |
-| Las cifras cambian al descomponer los scripts | La prueba `slow` es el contrato; si una cifra cambia, se investiga la causa antes de tocar la prueba o el OVA |
+| Las cifras cambian al descomponer los scripts | La prueba `slow` es el contrato; si una cifra cambia, se investiga la causa antes de tocar la prueba o la spec |
 | La app de la U4 depende del artefacto | `metadatos.json` es la interfaz: columnas, orden y umbral salen de ahí, no del código de la app |
 
 ## 9. Cifras de referencia del caso de recompra (16 de octubre de 2026, scikit-learn 1.9.1, Polars 2.0.0)
 
-Son las que cita el OVA de la U3; `tests/test_cifras_recompra.py` (marcado `slow`) debe reproducirlas.
+Son las cifras de referencia de la U3; `tests/test_cifras_recompra.py` (marcado `slow`) debe reproducirlas.
 
 | Métrica | Valor |
 |---|---|
@@ -143,6 +143,6 @@ Validación cruzada: `StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 ## 10. Decisiones tomadas (16 de octubre de 2026)
 
 1. **Hilo de la U3: «recompra en 90 días»** (supervisado), con la segmentación no supervisada como segundo ejemplo (cuaderno 10).
-2. **LLM: subtema 3.2 del OVA, agnóstico al proveedor**, modular y pensado para ejemplificar buenas prácticas. David lo ejecutará con DeepSeek a través del adaptador OpenAI-compatible; el repositorio no nombra proveedores fuera del adaptador. Detalle en `SPEC_llm_transformador.md`.
+2. **LLM: subtema 3.2 del curso, agnóstico al proveedor**, modular y pensado para ejemplificar buenas prácticas. David lo ejecutará con DeepSeek a través del adaptador OpenAI-compatible; el repositorio no nombra proveedores fuera del adaptador. Detalle en `SPEC_llm_transformador.md`.
 3. **Material de Nicolás: se reutiliza** la secuencia de métricas/sobreajuste y el código de pipelines, reescritos y con figuras propias, previa autorización. Dónde y cómo: `SPEC_material_nicolas.md` (3 de 3).
 4. El componente LLM **no** es obligatorio en el taller de la U3; queda como ejemplo del repositorio y tema del pódcast 2.

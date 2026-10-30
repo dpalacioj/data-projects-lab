@@ -69,7 +69,6 @@ exclude:
   - scripts/
   - docs/specs/
   - docs/material-estudiante/
-  - docs/plan-docente/
 
   # Configuracion del proyecto Python
   - uv.lock

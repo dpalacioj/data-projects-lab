@@ -4,12 +4,15 @@ parent: Sesiones
 nav_order: 3
 has_children: true
 ---
-# Sesión S03 · Procesamiento, pipelines, modelos y LLM — Guía para el instructor
+# Sesión S03 · Procesamiento, pipelines, modelos y LLM
 
-> Revisión: **2026-10-19** · Versiones verificadas: Python 3.11.14, Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11 · Spec que implementa: [`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md) + [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md) · Proyecto que soporta: [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
+Última revisión: 2026-10-19. Versiones verificadas: Python 3.11.14,
+Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11. La sesión implementa
+[`docs/specs/SPEC_procesamiento_U3.md`](../../docs/specs/SPEC_procesamiento_U3.md)
+y [`SPEC_llm_transformador.md`](../../docs/specs/SPEC_llm_transformador.md),
+y se apoya en [`projects/00-segmentacion-clientes/`](../../projects/00-segmentacion-clientes/).
 
-**No asumas que un contenido sin fecha sigue siendo correcto.** La pregunta
-que organiza esta sesión es:
+La pregunta que organiza la sesión es:
 
 > _«¿Qué garantiza que el modelo que cuelgo hoy en producción no vio
 > ninguna de las decisiones que lo van a evaluar mañana?»_ — porque esa
@@ -105,7 +108,7 @@ Las tres preguntas motivan los bloques A, B y D.
 `pipelines/preprocesamiento.py`, `models/{entrenar, registro}.py`,
 `evaluation/{metricas, umbral}.py`.
 
-**Scripts**: `caso_recompra.py` (envoltorio), `figuras_u3.py` (4 figuras del OVA),
+**Scripts**: `caso_recompra.py` (envoltorio), `figuras_u3.py` (4 figuras de la spec),
 `generar_gold.py` (fixture para evaluar el LLM).
 
 ## 5. Quick start (macOS/Linux)

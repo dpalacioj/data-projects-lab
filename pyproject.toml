@@ -180,5 +180,5 @@ python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
 addopts = "-v"
 markers = [
-    "slow: cifras del OVA de la Unidad 2 verificadas contra el parquet real (requiere data/raw/online_retail_II.parquet)",
+    "slow: cifras de referencia de la Unidad 2 verificadas contra el parquet real (requiere data/raw/online_retail_II.parquet)",
 ]

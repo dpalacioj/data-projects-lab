@@ -54,7 +54,7 @@ casi igual. El árbol sobreajusta más allá de profundidad 4.
 
 ## Teoría
 
-### Los tres modelos del OVA
+### Los tres modelos del curso
 
 ```python
 MODELOS = {
@@ -123,7 +123,7 @@ Preguntas típicas:
 - ¿Cuánto nos cuesta un falso negativo (perder al que iba a comprar)?
   → ponderamos recall.
 
-En el OVA se acuerda **umbral = 0,3** (más recall, menos precision):
+En el curso se acuerda **umbral = 0,3** (más recall, menos precision):
 marketing señala 2 093 clientes con F1 = 0,665. El umbral queda
 congelado en `metadatos.json`.
 

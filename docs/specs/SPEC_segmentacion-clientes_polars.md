@@ -1,7 +1,7 @@
 # SPEC — `projects/00-segmentacion-clientes` como recurso de la Unidad 2 (Polars)
 
 **Repositorio:** `dpalacioj/data-projects-lab` · **Carpeta:** `projects/00-segmentacion-clientes/`
-**Propósito:** convertir el proyecto existente en el recurso de referencia de la Unidad 2 (RAE1.1), de modo que el videotutorial, el OVA y el taller apunten al mismo código y a las mismas cifras.
+**Propósito:** convertir el proyecto existente en el recurso de referencia de la Unidad 2 (RAE1.1), de modo que el videotutorial, el material del curso y el taller apunten al mismo código y a las mismas cifras.
 **Estado:** especificación **ejecutada**. Las referencias a `notebooks/legacy/` describen el estado intermedio de la migración; la carpeta ya fue eliminada tras consolidar los cuadernos de clustering en `10_segmentacion_no_supervisada.ipynb`.
 **Fecha límite sugerida:** antes de grabar el videotutorial (la producción de insumos pasa a Competencias y Medios Digitales el 11 de diciembre de 2026).
 **Orden de implementación:** **1 de 3.** Esta spec va primero. Después vienen `SPEC_procesamiento_U3.md` (2 de 3, que incluye `SPEC_llm_transformador.md`) y `SPEC_material_nicolas.md` (3 de 3). La U3 depende de lo que esta spec deja: `src/segmentacion/data/`, el Parquet, `cancelaciones.parquet` y `HALLAZGOS.md`.
@@ -11,15 +11,15 @@
 
 ## 1. Contexto y problema
 
-El proyecto hoy sigue la secuencia comprensión → limpieza → features → EDA → pipelines → clustering → Streamlit, en **pandas**, con un `src/` modular, `GUIA_LECTURA.md` y `DICCIONARIO_DATOS.md`. Es la mejor base del repositorio para la Unidad 2, pero el microcurrículo exige «preparación y exploración de datos con Polars» y «herramientas para automatizar los EDA», y el OVA de la unidad ya está escrito con cifras y funciones concretas (ver §4). El proyecto debe alinearse con eso sin perder lo que ya enseña bien (decisiones justificadas, preguntas de reflexión, código en `src/`).
+El proyecto hoy sigue la secuencia comprensión → limpieza → features → EDA → pipelines → clustering → Streamlit, en **pandas**, con un `src/` modular, `GUIA_LECTURA.md` y `DICCIONARIO_DATOS.md`. Es la mejor base del repositorio para la Unidad 2, pero el microcurrículo exige «preparación y exploración de datos con Polars» y «herramientas para automatizar los EDA», y el material de la unidad ya está escrito con cifras y funciones concretas (ver §4). El proyecto debe alinearse con eso sin perder lo que ya enseña bien (decisiones justificadas, preguntas de reflexión, código en `src/`).
 
 Vínculo con las guías entregadas:
 
 | Documento de la unidad | Qué espera del repositorio |
 |---|---|
-| OVA, tema 2.1 (Tabla 3, Figuras 3 y 4, bloques de código) | Lectura con `schema_overrides`, Parquet en `data/raw/`, funciones `quitar_duplicados`, `separar_cancelaciones`, `exigir_cliente`, `filtrar_validas`, `preparar_ventas` encadenadas con `pipe` |
-| OVA, tema 2.2 (Figuras 6–9, Tablas 4, 5 y 7) | Cuartiles, ventas por mes, mapa día×hora, cercas de Tukey, Pearson vs. Spearman, agregación por cliente, `HALLAZGOS.md` |
-| OVA, tema 3 (Tabla 6) | `skim` sobre Polars y perfil HTML con `fg-data-profiling` sobre una muestra, guardado en `reports/` |
+| Material del curso, tema 2.1 (Tabla 3, Figuras 3 y 4, bloques de código) | Lectura con `schema_overrides`, Parquet en `data/raw/`, funciones `quitar_duplicados`, `separar_cancelaciones`, `exigir_cliente`, `filtrar_validas`, `preparar_ventas` encadenadas con `pipe` |
+| Material del curso, tema 2.2 (Figuras 6–9, Tablas 4, 5 y 7) | Cuartiles, ventas por mes, mapa día×hora, cercas de Tukey, Pearson vs. Spearman, agregación por cliente, `HALLAZGOS.md` |
+| Material del curso, tema 3 (Tabla 6) | `skim` sobre Polars y perfil HTML con `fg-data-profiling` sobre una muestra, guardado en `reports/` |
 | Videotutorial (guion minutado, bloques 1–6) | Cuadernos 00–05 ejecutables en orden; `tests/test_limpieza.py`; `HALLAZGOS.md` abierto para editar en vivo |
 | Taller evaluativo | Estructura que el estudiante pueda imitar: README con objetivo/criterio, `src/`, `tests/`, `HALLAZGOS.md` |
 
@@ -27,7 +27,7 @@ Vínculo con las guías entregadas:
 
 1. Portar la comprensión, limpieza, construcción de variables y EDA (cuadernos 01–04) de pandas a **Polars 2.x**, manteniendo pandas solo donde una herramienta lo exija (perfil HTML).
 2. Añadir un cuaderno inicial de **objetivo de análisis** (CRISP-DM fase 1) y uno final de **EDA automatizado**.
-3. Dejar las **cifras del OVA reproducibles** desde un script, con una prueba que las verifique.
+3. Dejar las **cifras de referencia reproducibles** desde un script, con una prueba que las verifique.
 4. Separar con claridad lo que pertenece a la Unidad 2 (00–05) de lo que pertenece a la Unidad 3 (pipelines, clustering, app), sin borrar esto último.
 
 ## 3. Fuera de alcance
@@ -38,7 +38,7 @@ Vínculo con las guías entregadas:
 
 ## 4. Cifras de referencia que el código debe reproducir
 
-Calculadas el 16 de octubre de 2026 con Polars 2.0.0 sobre `online_retail_II.xlsx` (UCI id 502, CC BY 4.0). Son las que aparecen en el OVA; si cambian al re-descargar, se actualizan **las dos cosas**: el OVA y la prueba.
+Calculadas el 16 de octubre de 2026 con Polars 2.0.0 sobre `online_retail_II.xlsx` (UCI id 502, CC BY 4.0). Son las cifras de referencia; si cambian al re-descargar, se actualizan **las dos cosas**: la spec y la prueba.
 
 | Métrica | Valor |
 |---|---|
@@ -69,8 +69,8 @@ Calculadas el 16 de octubre de 2026 con Polars 2.0.0 sobre `online_retail_II.xls
 
 ```
 projects/00-segmentacion-clientes/
-├── README.md                     # + sección "Objetivo de negocio, objetivo de análisis, criterio de éxito" (Tabla 2 del OVA)
-├── HALLAZGOS.md                  # NUEVO · tabla hallazgo | evidencia | decisión (Tabla 7 del OVA)
+├── README.md                     # + sección "Objetivo de negocio, objetivo de análisis, criterio de éxito" (Tabla 2 de la spec)
+├── HALLAZGOS.md                  # NUEVO · tabla hallazgo | evidencia | decisión (Tabla 7 de la spec)
 ├── GUIA_LECTURA.md               # actualizar orden y tiempos; marcar 00–05 = Unidad 2, 06+ = Unidad 3
 ├── DICCIONARIO_DATOS.md          # añadir columna "tipo declarado en la lectura"
 ├── data/
@@ -88,7 +88,7 @@ projects/00-segmentacion-clientes/
 │                                          # (solo imports); la U3 los reemplaza (ver §5.4)
 ├── scripts/
 │   ├── descargar_datos.py        # NUEVO · descarga zip de UCI, verifica hash, convierte a Parquet
-│   ├── figuras_u2.py             # NUEVO · genera las Figuras 6–9 del OVA en reports/figures/
+│   ├── figuras_u2.py             # NUEVO · genera las Figuras 6–9 de la spec en reports/figures/
 │   └── perfil.py                 # NUEVO · perfil HTML sobre muestra (seed=42) en reports/
 ├── src/segmentacion/             # renombrar el paquete actual `src/` → `src/segmentacion/` (importable)
 │   ├── config.py                 # rutas + FECHA_SNAPSHOT (U2) ; la U3 añade FECHA_CORTE, HORIZONTE, SEMILLA
@@ -111,13 +111,13 @@ projects/00-segmentacion-clientes/
 
 | Decisión | Alternativas | Elección y razón |
 |---|---|---|
-| Lectura del Excel | `ucimlrepo` (devuelve pandas); `pl.read_excel` con calamine/fastexcel | `pl.read_excel(sheet_id=0, schema_overrides={"Invoice": pl.Utf8, "StockCode": pl.Utf8})` — es la lección pedagógica del OVA («declarar el esquema») |
+| Lectura del Excel | `ucimlrepo` (devuelve pandas); `pl.read_excel` con calamine/fastexcel | `pl.read_excel(sheet_id=0, schema_overrides={"Invoice": pl.Utf8, "StockCode": pl.Utf8})` — es la lección pedagógica del curso («declarar el esquema») |
 | Formato intermedio | CSV; Parquet | Parquet en `data/raw/online_retail_II.parquet`; permite enseñar `scan_parquet` |
 | Dónde viven las reglas | En el cuaderno; en `src/` | En `src/segmentacion/data/limpieza.py`, una función por regla, `preparar_ventas` las encadena con `.pipe` y registra `n_antes/n_después` con `logging` |
 | Cancelaciones | Eliminar; conservar | Conservar en DataFrame aparte y escribir `data/processed/cancelaciones.parquet` (tasa de devolución = variable candidata para U3) |
 | Modo eager/lazy | Todo eager; todo lazy | Cuadernos eager (ver resultados); funciones de `src/` aceptan `pl.DataFrame` y `pl.LazyFrame` (tipado `pl.DataFrame | pl.LazyFrame`) y `scripts/` usan lazy |
 | Perfil automático | ydata-profiling; Sweetviz | `fg-data-profiling` (nombre actual del paquete) con `minimal=True` sobre `sample(n=100_000, seed=42).to_pandas()`; `skim` directo sobre Polars |
-| Gráficos | Plotly; Matplotlib | Matplotlib con paleta `#4F69CC/#ED7D31/#2E7D32`, mismos títulos que las figuras del OVA |
+| Gráficos | Plotly; Matplotlib | Matplotlib con paleta `#4F69CC/#ED7D31/#2E7D32`, mismos títulos que las figuras de la spec |
 
 ### 5.3 Contratos de las funciones clave
 
@@ -178,7 +178,7 @@ def matriz_dia_hora(df) -> pl.DataFrame
 3. `tests/test_cifras_referencia.py` contra §4 (marcado `slow`).
 4. Portar cuadernos 01 → 02 → 04 → 03 (en ese orden: el EDA depende de la limpieza, RFM es puente a U3). Regenerar con `build_notebooks.py` si se mantiene ese flujo; si no, eliminarlo del proyecto para no tener dos fuentes de verdad.
 5. Nuevos cuadernos 00 y 05.
-6. `scripts/figuras_u2.py` y `scripts/perfil.py`; comprobar que las figuras coinciden con las del OVA.
+6. `scripts/figuras_u2.py` y `scripts/perfil.py`; comprobar que las figuras coinciden con las de la spec.
 7. `HALLAZGOS.md`, README (sección de objetivo), `GUIA_LECTURA.md`, `DICCIONARIO_DATOS.md`.
 8. `pyproject.toml` raíz: extra `segmentacion-clientes`; añadir `nbstripout` a pre-commit; quitar `black` (ruff format ya cubre).
 9. Ensayo completo del guion del videotutorial con cronómetro (≤ 15 min).
@@ -190,8 +190,8 @@ def matriz_dia_hora(df) -> pl.DataFrame
 - [ ] `uv run pytest -m slow` reproduce todas las cifras de §4 (tolerancia 0 en conteos; 0,001 en correlaciones).
 - [ ] Los cuadernos 00–05 se ejecutan en orden con `uv run jupyter nbconvert --execute` sin errores y sin `!pip`/`!wget`.
 - [ ] Ningún cuaderno importa `pandas` salvo 05 (perfil HTML) y, dentro de él, solo vía `.to_pandas()` sobre una muestra.
-- [ ] `scripts/figuras_u2.py` produce `reports/figures/f4_ventas.png`, `f5_precio.png`, `f6_qty_price.png`, `f9_heatmap.png` con los mismos títulos del OVA.
-- [ ] `HALLAZGOS.md` contiene las siete filas de la Tabla 7 del OVA.
+- [ ] `scripts/figuras_u2.py` produce `reports/figures/f4_ventas.png`, `f5_precio.png`, `f6_qty_price.png`, `f9_heatmap.png` con los mismos títulos de la spec.
+- [ ] `HALLAZGOS.md` contiene las siete filas de la Tabla 7 de la spec.
 - [ ] `GUIA_LECTURA.md` separa «Unidad 2 (00–05)» de «Unidad 3 (06–10, pendiente)» con tiempos estimados; los cuadernos de `legacy/` se marcan como «en migración».
 - [ ] Los cuadernos de `legacy/` y `app/streamlit_app.py` siguen ejecutándose tras el cambio de paquete (`uv run streamlit run app/streamlit_app.py` arranca sin errores de importación).
 - [ ] `construir_rfm(ventas, fecha_corte)` existe con esa firma y solo usa ventas anteriores al corte (prueba con 5 filas, una posterior al corte).
@@ -203,7 +203,7 @@ def matriz_dia_hora(df) -> pl.DataFrame
 
 | Riesgo | Mitigación |
 |---|---|
-| UCI republica el archivo y cambian las cifras | Hash en `data/README.md`; prueba `slow` falla y avisa; actualizar OVA y spec a la vez |
+| UCI republica el archivo y cambian las cifras | Hash en `data/README.md`; prueba `slow` falla y avisa; actualizar material del curso y spec a la vez |
 | Lectura del Excel lenta en clase (~4–5 s con fastexcel; mucho más con openpyxl) | Parquet como formato de trabajo; el Excel se lee una vez en `descargar_datos.py` |
 | `fg-data-profiling` tarda minutos sobre 1 M de filas | Muestra de 100 000 filas con semilla; `minimal=True` |
 | Dos fuentes de verdad (`build_notebooks.py` vs. `.ipynb`) | Decidir una; si se conserva el generador, los `.ipynb` no se editan a mano |
@@ -211,6 +211,6 @@ def matriz_dia_hora(df) -> pl.DataFrame
 
 ## 9. Preguntas abiertas
 
-1. ¿El cuaderno 03 (RFM) se queda en la Unidad 2 como «construcción de variables para explorar» o se mueve a la Unidad 3? Propuesta: se queda, porque la Tabla 7 del OVA ya lo anuncia como puente; la función `construir_rfm` con fecha de corte es la misma que la U3 reutiliza, así que no hay duplicación.
+1. ¿El cuaderno 03 (RFM) se queda en la Unidad 2 como «construcción de variables para explorar» o se mueve a la Unidad 3? Propuesta: se queda, porque la Tabla 7 de la spec ya lo anuncia como puente; la función `construir_rfm` con fecha de corte es la misma que la U3 reutiliza, así que no hay duplicación.
 2. ¿Se publica el repositorio con los datos crudos incluidos (como hace `prediccion-precios-automoviles`) o solo con el script de descarga? Propuesta: solo script + hash, coherente con lo que enseña la Unidad 1.
 3. ¿Nombre del paquete: `segmentacion` o `segmentacion_clientes`? Propuesta: `segmentacion`.

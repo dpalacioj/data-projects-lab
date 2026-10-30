@@ -1,7 +1,7 @@
 # Convenciones del repositorio
 
-> Revisión: **2026-10-19**. Si algo aquí contradice una spec de `docs/specs/`,
-> **manda la spec**.
+Última revisión: 2026-10-19. Si algo aquí contradice una spec de
+`docs/specs/`, **manda la spec**.
 
 ## Idioma
 
@@ -24,8 +24,8 @@
 
 - **Una** por tipo de artefacto. Si existen un script y un cuaderno que
   calculan lo mismo, uno importa del otro; no se repite el cálculo.
-- Las cifras del OVA viven en la spec (`docs/specs/`) y las verifica una
-  prueba `@pytest.mark.slow` del repo.
+- Las cifras de referencia viven en la spec (`docs/specs/`) y las
+  verifica una prueba `@pytest.mark.slow` del repo.
 
 ## Reproducibilidad
 
@@ -75,8 +75,8 @@
 ## Modelos
 
 - Artefacto en `models/<nombre>_v<N>/`: `pipeline.joblib` (gitignored) +
-  `metadatos.json` (versionado) con los 10 campos de la Tabla 7 del OVA
-  U3. `cargar()` falla con `VersionIncompatible` si cambia la versión de
+  `metadatos.json` (versionado) con los 10 campos de la Tabla 7 de la spec
+  de la Unidad 3. `cargar()` falla con `VersionIncompatible` si cambia la versión de
   scikit-learn.
 
 ## LLMs

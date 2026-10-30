@@ -106,7 +106,7 @@ Dos pruebas, dos velocidades:
    ```
    Reproduce las cifras del §4 de la spec: conteos con tolerancia 0,
    correlaciones con tolerancia 1e-3, media de `Price` con 5e-3
-   (half-LSD de la precisión del OVA).
+   (half-LSD de la precisión de la spec).
 
 ## HALLAZGOS.md como contrato con U3
 

@@ -4,7 +4,7 @@ Firma citada por `SPEC_procesamiento_U3.md` §4:
 
     construir_preprocesador(num_log=NUM_LOG, num_std=NUM_STD, cat=CAT) -> ColumnTransformer
 
-Reglas (Tabla 8 del OVA): todo `fit` ocurre dentro del `Pipeline`, despues de
+Reglas (Tabla 8 de la spec): todo `fit` ocurre dentro del `Pipeline`, despues de
 la particion. Las medias que aprende el `StandardScaler` son las de la
 cohorte A, no las de A ∪ B (lo verifica `tests/pipelines/test_sin_fuga.py`).
 

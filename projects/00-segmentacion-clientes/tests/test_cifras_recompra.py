@@ -5,7 +5,7 @@ cifra no coincide:
 
     1. no modifiques esta prueba;
     2. verifica que no haya cambiado el hash del zip (`scripts/descargar_datos.py`);
-    3. reporta la discrepancia; actualizar el OVA y la spec se decide a mano.
+    3. reporta la discrepancia; actualizar el material del curso y la spec se decide a mano.
 
 Tolerancias: **0** en conteos exactos, **0,001** en metricas, salvo 4 cifras
 del bosque aleatorio (importancia, curva de profundidad, precision test B y
@@ -18,7 +18,7 @@ sklearn 1.9.0, no 1.9.1 que corre hoy; o distinto orden de hilos del BLAS).
 la discrepancia es entre la spec y lo observado hoy, no entre el paquete y
 la spec. La relajacion es la mitad del ultimo decimal mostrado (half-LSD)
 para la metrica, y una ventana de ±20 para el conteo. Si al grabar el
-videotutorial las cifras del OVA no coinciden, se reporta y se re-captura
+videotutorial las cifras de la spec no coinciden, se reporta y se re-captura
 la §9 con el ambiente del dia de la grabacion.
 """
 

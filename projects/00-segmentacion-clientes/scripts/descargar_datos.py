@@ -10,7 +10,7 @@ Deja:
     data/raw/online_retail_II.parquet
 
 Verifica integridad por SHA-256 del zip. Si el hash no coincide, se detiene
-y pide actualizar la constante SHA256_ZIP (y el OVA y la spec si procede).
+y pide actualizar la constante SHA256_ZIP (y el material del curso y la spec si procede).
 
 Fuente: https://archive.ics.uci.edu/dataset/502/online+retail+ii
 Licencia: Creative Commons Attribution 4.0 International (CC BY 4.0).
@@ -65,7 +65,7 @@ def verificar_hash(contenido: bytes, esperado: str) -> None:
         sys.exit(2)
     if observado != esperado:
         print(f"sha256 no coincide; esperado: {esperado}")
-        print("no se continua. verifica si UCI republico el archivo y actualiza OVA y spec.")
+        print("no se continua. verifica si UCI republico el archivo y actualiza el material del curso y la spec.")
         sys.exit(2)
     print("sha256 OK.")
 

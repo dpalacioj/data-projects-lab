@@ -16,7 +16,7 @@ Diseno de carpeta:
     ├── pipeline.joblib     # gitignored
     └── metadatos.json      # versionado
 
-Campos obligatorios de `metadatos` (Tabla 7 del OVA):
+Campos obligatorios de `metadatos` (Tabla 7 de la spec):
 
 - `fecha_corte` (ISO)
 - `horizonte` (dias)
@@ -90,7 +90,7 @@ def guardar(pipe: Pipeline, ruta: Path, metadatos: dict[str, Any]) -> None:
     faltantes = CAMPOS_OBLIGATORIOS - set(metadatos.keys())
     if faltantes:
         raise MetadatosIncompletos(
-            f"faltan campos en metadatos.json: {sorted(faltantes)} (ver Tabla 7 del OVA U3)."
+            f"faltan campos en metadatos.json: {sorted(faltantes)} (ver Tabla 7 de la spec de la Unidad 3)."
         )
 
     joblib.dump(pipe, _ruta_pipeline(ruta))

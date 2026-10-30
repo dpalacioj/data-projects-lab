@@ -6,7 +6,7 @@ Firma citada por `SPEC_procesamiento_U3.md` §4:
 
 Un cliente queda etiquetado con `recompra = 1` si realiza al menos una compra
 en el intervalo `[fecha_corte, fecha_corte + horizonte_dias)`. Esta ventana
-define el problema del OVA U3 ("¿el cliente vuelve a comprar en los 90 dias
+define el problema de la spec de la Unidad 3 ("¿el cliente vuelve a comprar en los 90 dias
 siguientes al corte?").
 """
 
