@@ -5,8 +5,9 @@ nav_order: 1
 ---
 # Tutorial — Git y GitHub: el flujo de trabajo del curso
 
-Última revisión: 2026-10-25. Prerrequisito: una cuenta de GitHub creada.
-Nada más.
+Última revisión: 2026-10-31. Prerrequisito: una computadora con conexión a
+internet. Todo lo demás (cuenta de GitHub, git instalado, autenticación) lo
+haces dentro de este tutorial.
 
 Este tutorial **no** es una referencia completa de git. Es la ruta mínima para
 que puedas:
@@ -18,6 +19,15 @@ que puedas:
 Si nunca has usado git, empieza aquí. Si ya has hecho `git clone` alguna vez
 pero nunca un PR, también. Si ya trabajas con PRs todos los días, puedes saltar
 al [cheatsheet de comandos](#comandos-que-vas-a-repetir-mil-veces).
+
+Las instrucciones de instalación y autenticación están sacadas de la
+documentación oficial:
+
+- Instalación de git: [Pro Git · Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+- Configuración inicial: [Pro Git · First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+- Cuenta en GitHub: [GitHub Docs · Creating an account on GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
+- Autenticación: [GitHub Docs · Caching your GitHub credentials in Git](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git)
+  y [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 ---
 
@@ -46,41 +56,342 @@ Este flujo es el estándar en empresas, en proyectos open source y en este curso
 
 ---
 
+## Antes de empezar: cuenta de GitHub y terminal
+
+Antes del Paso 0 hay dos cosas que no son git pero que git necesita.
+
+### Crear tu cuenta en GitHub
+
+Si ya tienes cuenta, salta a la siguiente sección.
+
+Fuente: [GitHub Docs · Creating an account on GitHub](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github).
+
+1. Entra a <https://github.com/signup>.
+2. Sigue las indicaciones del formulario (correo, contraseña, nombre de
+   usuario). El **nombre de usuario** aparecerá en tus commits y en la URL de
+   tu perfil (`github.com/<tu-usuario>`); elígelo pensando que es público y
+   que no vale la pena cambiarlo después.
+3. GitHub te envía un código al correo. Introdúcelo para **verificar el
+   email**. Si no verificas, no puedes hacer push.
+4. GitHub recomienda **activar 2FA (autenticación en dos factores)** desde el
+   primer día. Hazlo cuando puedas, siguiendo la [guía oficial de
+   2FA](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
+
+Usa un correo que vayas a conservar. Más adelante lo usas en `git config` y
+tiene que coincidir con el que registraste en GitHub para que los commits
+queden ligados a tu perfil.
+
+### Qué es una terminal y cómo abrirla
+
+Todas las instrucciones de git se escriben en una **terminal** (también
+llamada "consola" o "línea de comandos"). Es una ventana donde escribes
+texto, presionas <kbd>Enter</kbd> y el sistema operativo responde con más
+texto. Nada de botones.
+
+| SO | Qué abrir | Cómo |
+|---|---|---|
+| macOS | **Terminal** | <kbd>⌘</kbd> + <kbd>Espacio</kbd> → escribe `Terminal` → <kbd>Enter</kbd> |
+| Linux (Ubuntu/Debian) | **Terminal** o **GNOME Terminal** | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> |
+| Windows | **Git Bash** (lo instala Git for Windows en el Paso 0) | Menú Inicio → `Git Bash` |
+
+En Windows **recomendamos Git Bash** y no PowerShell ni CMD. Git Bash
+reproduce el entorno Unix que usan macOS y Linux, así que todos los comandos
+de este tutorial funcionan igual en los tres sistemas.
+
+Cuando una instrucción diga "en la terminal, ejecuta…" significa: copia la
+línea, pégala en esta ventana y presiona <kbd>Enter</kbd>. El símbolo `$` o
+`#` al inicio en algunos ejemplos **no se copia**: es el *prompt* del
+sistema, no parte del comando.
+
+Si nunca has navegado con la terminal, lee primero el
+[tutorial 00 — Ambientes](00-ambientes-venv-conda-uv/) donde se cubre `cd`,
+`ls`/`dir`, `pwd` y el `~` (tu carpeta de usuario).
+
+---
+
 ## Paso 0 — Instalar y configurar git (una sola vez)
 
-### Instalar
+### 0.1 Instalar git
 
-| SO | Cómo verificar | Si no está |
-|---|---|---|
-| macOS | `git --version` | `xcode-select --install` (viene con las herramientas de desarrollo) |
-| Linux | `git --version` | `sudo apt install git` (Debian/Ubuntu) o equivalente |
-| Windows | `git --version` en PowerShell | Descargar [Git for Windows](https://git-scm.com/download/win) |
+Fuente: [Pro Git · Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-### Configurar tu identidad
+Primero comprueba si ya lo tienes. Abre la terminal y ejecuta:
 
-Git firma cada commit con tu nombre y correo. Esto se hace **una sola vez** en
-tu máquina:
+```bash
+git --version
+```
+
+- Si responde algo como `git version 2.46.0`, ya está instalado: salta a
+  [0.2](#02-verificar-la-instalación).
+- Si responde "command not found" o similar, sigue las instrucciones de tu
+  sistema operativo abajo.
+
+#### macOS
+
+En macOS 10.9 (Mavericks) o posterior, al ejecutar `git --version` por
+primera vez, el sistema abre un cuadro de diálogo que ofrece instalar las
+**Xcode Command Line Tools** (incluyen git). Acepta.
+
+Si no aparece el diálogo, fuerza la instalación con:
+
+```bash
+xcode-select --install
+```
+
+Alternativa oficial: descargar el instalador desde
+<https://git-scm.com/download/mac>.
+
+#### Linux — Debian / Ubuntu
+
+```bash
+sudo apt update
+sudo apt install git-all
+```
+
+`sudo` te pedirá tu contraseña de usuario.
+
+#### Linux — Fedora / RHEL / CentOS
+
+```bash
+sudo dnf install git-all
+```
+
+Para otras distribuciones: <https://git-scm.com/download/linux>.
+
+#### Windows
+
+Descarga el instalador oficial **Git for Windows** desde
+<https://git-scm.com/download/win> y ejecútalo.
+
+El asistente hace muchas preguntas. Para este curso, en cada pantalla
+**deja los valores por defecto** salvo donde se indique lo contrario:
+
+| Pantalla | Qué hacer |
+|---|---|
+| *Select Components* | Deja marcadas las opciones por defecto (incluye **Git Bash Here** y **Git GUI Here**). |
+| *Choosing the default editor* | Elige **"Use Visual Studio Code as Git's default editor"** si tienes VS Code; si no, deja Nano. **Evita vim** si no sabes salir de vim. |
+| *Adjusting the name of the initial branch* | Elige **"Override the default branch name for new repositories"** y escribe `main`. |
+| *Adjusting your PATH environment* | Deja la opción recomendada: **"Git from the command line and also from 3rd-party software"**. |
+| *Choosing HTTPS transport backend* | Deja **OpenSSL**. |
+| *Configuring the line ending conversions* | Deja **"Checkout Windows-style, commit Unix-style line endings"**. |
+| *Configuring the terminal emulator* | Deja **MinTTY**. |
+| *Credential helper* | Deja **Git Credential Manager** (es lo que te evita escribir el token en cada push). |
+
+El instalador deja disponible **Git Bash** en el menú Inicio. Úsalo para
+todo lo que diga "terminal" en este tutorial.
+
+### 0.2 Verificar la instalación
+
+Cierra y vuelve a abrir la terminal (así toma los cambios del PATH) y
+ejecuta:
+
+```bash
+git --version
+```
+
+Debe imprimir una versión (por ejemplo `git version 2.46.0`). Si todavía
+dice "command not found":
+
+- **macOS/Linux**: cierra y abre una terminal nueva.
+- **Windows**: usa **Git Bash**, no PowerShell ni CMD.
+
+### 0.3 Configurar tu identidad
+
+Fuente: [Pro Git · First-Time Git Setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+
+Git firma cada commit con tu nombre y correo. Esto se hace **una sola vez**
+por máquina:
 
 ```bash
 git config --global user.name "Tu Nombre"
 git config --global user.email "tu-correo@dominio.com"
 ```
 
-Usa el **mismo correo** que tienes en GitHub. Si no coincide, los commits
-aparecerán en el histórico pero no estarán ligados a tu perfil de GitHub.
+Reglas:
 
-### Autenticación con GitHub
+- Usa el **mismo correo** que registraste en GitHub. Si no coincide, los
+  commits se guardan pero no aparecen asociados a tu perfil en la web de
+  GitHub.
+- El nombre puede llevar espacios (por eso van las comillas).
+- `--global` guarda la configuración en tu carpeta de usuario (`~/.gitconfig`),
+  así aplica a todos los repositorios de esta máquina.
 
-GitHub ya no acepta contraseña por línea de comandos. Dos opciones:
+### 0.4 Configurar tu editor por defecto (así no te atrapa vim)
 
-- **HTTPS + Personal Access Token (PAT)** — más fácil para empezar. Cuando
-  hagas `git push` por primera vez, pedirá usuario y "contraseña". En
-  "contraseña" pones un token creado en
-  `GitHub → Settings → Developer settings → Personal access tokens`.
-- **SSH** — más cómodo a largo plazo. Guía oficial:
-  [GitHub Docs - Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
+Algunos comandos de git (`git commit` sin `-m`, `git rebase -i`, resolver
+mergeos) abren un editor para que escribas texto. Si no configuras uno, en
+Linux y macOS abre **vim** por defecto, un editor que es muy útil pero que
+tiene fama de ser difícil de cerrar la primera vez.
 
-Para el curso, HTTPS + PAT es suficiente.
+Elige según lo que ya tengas instalado:
+
+```bash
+# VS Code (recomendado si ya lo usas)
+git config --global core.editor "code --wait"
+
+# Nano (viene preinstalado en casi todo Linux y macOS, fácil de usar)
+git config --global core.editor "nano"
+```
+
+Si no cambias nada y acabas dentro de vim por accidente: presiona
+<kbd>Esc</kbd>, escribe `:wq` y pulsa <kbd>Enter</kbd> para guardar y salir;
+o `:q!` para salir sin guardar.
+
+### 0.5 Configurar el nombre de rama por defecto
+
+Para que al crear repositorios locales la rama inicial se llame `main` (y no
+`master`, el nombre antiguo):
+
+```bash
+git config --global init.defaultBranch main
+```
+
+Esto solo afecta a repos que crees con `git init`. Al clonar este
+repositorio ya traes la rama con el nombre correcto.
+
+### 0.6 Revisar tu configuración
+
+Comprueba que quedó todo bien:
+
+```bash
+git config --list
+```
+
+Deberías ver tu `user.name`, `user.email`, `core.editor` e
+`init.defaultBranch`. Para ver un valor concreto:
+
+```bash
+git config user.name
+git config user.email
+```
+
+### 0.7 Autenticación con GitHub
+
+Al hacer `git push` por primera vez GitHub te va a pedir que demuestres que
+eres tú. **No sirve la contraseña de la web** desde 2021. Hay dos caminos
+oficiales:
+
+- **Opción A — HTTPS + Git Credential Manager + Personal Access Token (PAT).**
+  Lo recomendado para empezar en este curso. Guardas un token una vez y el
+  sistema operativo lo almacena de forma segura para los siguientes push.
+- **Opción B — SSH.** Más cómodo a largo plazo (no vence, no tienes que
+  renovar tokens). Requiere generar una llave y pegarla en GitHub.
+
+Elige **una**. Puedes cambiar de método después.
+
+#### Opción A — HTTPS + Git Credential Manager + PAT
+
+Fuente: [GitHub Docs · Caching your GitHub credentials in Git](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git).
+
+**A.1 Instalar Git Credential Manager (GCM)**
+
+- **Windows**: ya viene con Git for Windows si dejaste la opción por defecto
+  en el instalador. No haces nada.
+- **macOS**:
+  ```bash
+  brew install --cask git-credential-manager
+  ```
+  (Requiere [Homebrew](https://brew.sh/) instalado.)
+- **Linux**: sigue la [guía oficial de instalación de GCM](https://github.com/git-ecosystem/git-credential-manager/blob/main/docs/install.md).
+  Hay paquete `.deb` para Debian/Ubuntu y `.rpm` para Fedora.
+
+**A.2 Generar un Personal Access Token (PAT)**
+
+Fuente: [GitHub Docs · Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+Para el curso basta con un **classic PAT**:
+
+1. En GitHub, click en tu foto (arriba a la derecha) → **Settings**.
+2. En la barra lateral izquierda, baja hasta **Developer settings**.
+3. **Personal access tokens** → **Tokens (classic)**.
+4. **Generate new token** → **Generate new token (classic)**.
+5. Rellena:
+   - **Note**: una descripción, por ejemplo `laptop-curso-2026`.
+   - **Expiration**: 90 días es un buen compromiso. Al vencer, generas otro.
+   - **Scopes**: marca **`repo`** (es el permiso que habilita `git push` a
+     repos que te pertenecen o donde colaboras).
+6. **Generate token**. GitHub muestra el token **una sola vez**. Cópialo.
+
+Guárdalo temporalmente en algún lugar seguro (gestor de contraseñas). Si lo
+pierdes, no se puede recuperar: generas otro.
+
+**A.3 Usar el token**
+
+La primera vez que hagas `git push` (más adelante en este tutorial), GCM
+abre una ventana del navegador para autenticarte, o te pide usuario y
+"contraseña" en la terminal. En "contraseña" pegas el PAT que acabas de
+generar. GCM lo guarda en el almacén seguro del sistema (Keychain en macOS,
+Credential Manager en Windows, libsecret en Linux) y no te lo vuelve a
+pedir mientras no venza.
+
+#### Opción B — SSH
+
+Fuente: [GitHub Docs · Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
+**B.1 Generar la llave (los tres sistemas)**
+
+```bash
+ssh-keygen -t ed25519 -C "tu-correo@dominio.com"
+```
+
+Cuando pregunte dónde guardarla, presiona <kbd>Enter</kbd> para aceptar la
+ruta por defecto (`~/.ssh/id_ed25519`). Cuando pida *passphrase*, pon una
+contraseña y guárdala; o deja vacío si prefieres sin contraseña (menos
+seguro pero más cómodo).
+
+**B.2 Añadir la llave al ssh-agent**
+
+*macOS*:
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+*Linux*:
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+*Windows (PowerShell como administrador la primera vez para habilitar el servicio)*:
+
+```powershell
+Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+ssh-add $HOME\.ssh\id_ed25519
+```
+
+**B.3 Añadir la llave pública a GitHub**
+
+Copia el contenido de la llave **pública** (termina en `.pub`):
+
+```bash
+# macOS
+pbcopy < ~/.ssh/id_ed25519.pub
+
+# Linux (requiere xclip)
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+
+# Windows (Git Bash)
+cat ~/.ssh/id_ed25519.pub | clip
+```
+
+En GitHub: foto → **Settings** → **SSH and GPG keys** → **New SSH key**.
+Pega el contenido, ponle un título descriptivo (p. ej. `laptop-personal`),
+y guarda.
+
+Verifica la conexión:
+
+```bash
+ssh -T git@github.com
+```
+
+Debe responder: *"Hi `<tu-usuario>`! You've successfully authenticated…"*.
+
+Si usas SSH, al clonar en el [Paso 1](#paso-1--clonar-el-repositorio) usa la
+URL `git@github.com:...` en vez de la de HTTPS.
 
 ---
 

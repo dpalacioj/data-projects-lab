@@ -29,6 +29,7 @@ mínima.
 | 01b | [`01b-tu-primer-ci.md`](01b-tu-primer-ci.md) | Construye tu propio repo con CI desde cero (teoría + práctica) | Tutorial 01 |
 | 01c | [`01c-tu-pagina-con-github-pages.md`](01c-tu-pagina-con-github-pages.md) | Publica tu repo como sitio web con GitHub Pages, sin crear contenido nuevo | Tutorial 01 |
 | 02 | [`02-configuracion-proyecto-uv.md`](02-configuracion-proyecto-uv.md) | Cómo se estructura un proyecto con `uv` | Tutoriales 00 y 01 |
+| 02b | [`02b-modularizacion-proyecto-datos.md`](02b-modularizacion-proyecto-datos.md) | Para qué sirven `src/`, `notebooks/`, `data/`, `scripts/`, `app/`, `tests/` y por qué están separados | Tutorial 02 |
 | 03 | [`03-el-makefile-del-curso.md`](03-el-makefile-del-curso.md) | Por qué un `Makefile` ahorra memoria y errores | Tutorial 02 |
 
 ### Notebooks como lo que son: experimentación
