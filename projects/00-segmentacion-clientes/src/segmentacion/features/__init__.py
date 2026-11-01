@@ -1,5 +1,6 @@
 """Construccion de features para U2 (RFM) y U3 (cohorte supervisada)."""
 
+from segmentacion.features.clientes import construir_features_extendidas
 from segmentacion.features.cohortes import cohorte
 from segmentacion.features.devoluciones import tasa_devolucion
 from segmentacion.features.etiquetas import etiqueta_recompra
@@ -8,6 +9,7 @@ from segmentacion.features.rfm import construir_rfm
 
 __all__ = [
     "construir_rfm",
+    "construir_features_extendidas",
     "tasa_devolucion",
     "etiqueta_recompra",
     "cohorte",

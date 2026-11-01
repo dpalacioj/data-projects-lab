@@ -5,7 +5,7 @@
 # lee tutorials/03-el-makefile-del-curso.md: explica cada linea.
 
 .DEFAULT_GOAL := help
-.PHONY: help setup setup-caso smoke test lint clean app-recompra api-recompra train-recompra
+.PHONY: help setup setup-caso smoke test lint clean app-recompra api-recompra train-recompra app-segmentacion features-segmentacion
 
 help:  ## Lista los comandos disponibles.
 	@echo "Comandos disponibles:"
@@ -47,3 +47,9 @@ api-recompra:  ## Levanta la API FastAPI del caso guia (http://127.0.0.1:8000/do
 
 train-recompra:  ## Entrena models/recompra_v1/ del caso guia (requiere el parquet descargado).
 	cd projects/00-segmentacion-clientes && uv run python scripts/entrenar_recompra.py
+
+features-segmentacion:  ## Genera data/processed/features_clientes.parquet para la app no supervisada.
+	cd projects/00-segmentacion-clientes && uv run python scripts/generar_features_clientes.py
+
+app-segmentacion:  ## Levanta la app de Streamlit no supervisada (http://localhost:8501).
+	cd projects/00-segmentacion-clientes && uv run streamlit run app/streamlit_app.py
