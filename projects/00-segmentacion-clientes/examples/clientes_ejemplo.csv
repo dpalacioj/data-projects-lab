@@ -1,0 +1,7 @@
+cliente,perfil,monetario,frecuencia,productos_distintos,recencia,antiguedad,tasa_devolucion,pais
+c1,VIP activo (Alemania),12000.0,30,150,5,540,0.10,Germany
+c2,VIP estable (UK),2350.0,9,60,12,400,0.0,United Kingdom
+c3,Ocasional con devoluciones,900.0,3,25,60,300,0.33,United Kingdom
+c4,Ocasional limpio,900.0,3,25,60,300,0.0,United Kingdom
+c5,En riesgo con devoluciones,400.0,2,15,120,380,0.5,UK
+c6,Casi perdido (Francia),180.0,1,8,210,210,0.0,France

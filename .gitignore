@@ -46,6 +46,7 @@ Thumbs.db
 *.xlsx
 data/large/
 *.csv
+!projects/00-segmentacion-clientes/examples/clientes_ejemplo.csv
 
 # Datasets descargados por torchvision (FashionMNIST, MNIST, CIFAR...)
 projects/04-reconocimiento-imagenes/data/

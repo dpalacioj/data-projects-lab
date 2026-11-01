@@ -58,20 +58,6 @@ nav_order: 8
       pipe, meta = cargar(Path('projects/00-segmentacion-clientes/models/recompra_v1'))
       print('ok', meta['umbral_acordado'])"` imprime `ok 0.3`.
 
-## Si vas a enseñar el bloque LLM
-
-- [ ] `uv run pytest
-      projects/00-segmentacion-clientes/tests/features/test_texto_llm.py
-      projects/00-segmentacion-clientes/tests/features/test_llm_clientes.py`
-      verde (10 asserts).
-- [ ] `uv run jupyter nbconvert --execute
-      projects/00-segmentacion-clientes/notebooks/08_llm_como_transformador.ipynb
-      --output /tmp/nb08.ipynb` con `FakeLLM`.
-- [ ] Decisión: ¿clase con `FakeLLM` o con cliente real?
-    - Con `FakeLLM`: no requiere `.env`; demostración didáctica.
-    - Con cliente real: requiere `.env` con `LLM_BASE_URL`, `LLM_API_KEY`,
-      `LLM_MODELO`. Verifica consumo esperado.
-
 ## Narrativa
 
 - [ ] [`HALLAZGOS.md`](../../projects/00-segmentacion-clientes/HALLAZGOS.md)
@@ -86,13 +72,9 @@ Si todo lo anterior pasó:
 
 - Los cuadernos ya ejecutan desde el Parquet local.
 - El pipeline del bosque está entrenado y serializado.
-- La única caída posible es el cliente LLM real; para la clase usar
-  `FakeLLM` (sin red).
 
 ## Después de clase
 
 - [ ] Si editaste `HALLAZGOS.md`, commitea.
 - [ ] Si re-entrenaste el modelo, confirma que `metadatos.json` tiene
       la nueva fecha + autor.
-- [ ] Si corriste el cliente real, confirma que la caché actualizada
-      (`data/interim/categorias_llm.parquet`) se commitea.

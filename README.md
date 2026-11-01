@@ -145,7 +145,7 @@ aproximados; la realidad varía según la cohorte.
 | **3** | U2 | Exploración: carga, perfilado, limpieza con Polars | S02 (bloques 1-3) + notebooks 01-03 del caso guía | 20' calentamiento + preguntas pendientes · 2h teoría + práctica (perfilado y 5 reglas de limpieza) · 15' break · 1h taller individual sobre un dataset propio · 25' Q&A |
 | **4** | U2 | EDA (manual vs. automatizado) + construcción de la cohorte | S02 (bloques 4-5) + notebooks 04-05 + demo [`d1-ejercicio-preprocesamiento`](projects/d1-ejercicio-preprocesamiento/) | 20' revisión del taller · 1h30' EDA + preparación de variables RFM · 15' break · 1h30' taller: construir la cohorte sobre un dataset propio · 25' cierre |
 | **5** | U3 | Partición temporal, pipelines sin fuga, feature engineering | S03 bloques A-B + notebooks 06-07 + demo [`d2-temporal-split`](projects/d2-temporal-split/) | 20' arranque · 2h teoría + práctica (particiones A/B, `ColumnTransformer`, fuga temporal) · 15' break · 1h taller · 25' Q&A |
-| **6** | U3 | Modelos, métricas, umbral, guardado del artefacto; LLM como transformador (opcional) | S03 bloques C-E + notebook 09 + notebook 08 (LLM, opcional) + demo [`d4-umbrales-ejemplo`](projects/d4-umbrales-ejemplo/) | 20' repaso · 2h entrenamiento, comparación de modelos, tabla de umbrales, guardado con `metadatos.json` · 15' break · 1h taller individual (quien quiera, prueba el bloque E con FakeLLM) · 25' cierre |
+| **6** | U3 | Modelos, métricas, umbral, guardado del artefacto | S03 bloques C-D + notebook 09 + demo [`d4-umbrales-ejemplo`](projects/d4-umbrales-ejemplo/) | 20' repaso · 2h entrenamiento, comparación de modelos, tabla de umbrales, guardado con `metadatos.json` · 15' break · 1h taller individual · 25' cierre |
 | **7** | U4 | Del modelo al entregable: Streamlit, FastAPI, Gradio | S04 + [`projects/04-reconocimiento-imagenes/`](projects/04-reconocimiento-imagenes/) + [`projects/03-prediccion-precios-automoviles/`](projects/03-prediccion-precios-automoviles/) | 20' arranque · 1h30' demo en vivo del flujo notebook → paquete → app · 15' break · 1h30' taller: envolver un modelo propio en Streamlit · 25' Q&A |
 | **8** | U4 | Taller final: presentaciones del entregable individual + cierre | Entregable propio + proyecto 04 como referencia | 20' arranque · 2h30' presentaciones (≈15' por estudiante) · 15' break · 45' feedback cruzado y cierre del módulo |
 
@@ -160,7 +160,7 @@ por semana durante 7 semanas:
 | **2** | Exploración de datos (parte 1) | S02 bloques 1-3 + notebooks 01-03 del caso guía |
 | **3** | Exploración de datos (parte 2) | S02 bloques 4-5 + notebooks 04-05 + demo d1 |
 | **4** | Procesamiento y pipelines sin fuga | S03 bloques A-B + notebooks 06-07 + demo d2 |
-| **5** | Modelos, métricas, umbrales, artefacto, LLM (opcional) | S03 bloques C-E + notebook 09 + notebook 08 (LLM, opcional) + demo d4 |
+| **5** | Modelos, métricas, umbrales, artefacto | S03 bloques C-D + notebook 09 + demo d4 |
 | **6** | Aplicación: notebook → paquete → app | S04 + proyecto 04 (CNN) corrido completo |
 | **7** | Entregable propio | Aplicas lo aprendido sobre un dataset tuyo, usando el proyecto 05 como plantilla |
 

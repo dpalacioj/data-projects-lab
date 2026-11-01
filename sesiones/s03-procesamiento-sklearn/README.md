@@ -4,7 +4,7 @@ parent: Sesiones
 nav_order: 3
 has_children: true
 ---
-# Sesión S03 · Procesamiento, pipelines, modelos y LLM
+# Sesión S03 · Procesamiento, pipelines, modelos
 
 Última revisión: 2026-10-19. Versiones verificadas: Python 3.11.14,
 Polars 2.0.0, scikit-learn 1.9.1, Pydantic 2.11. La sesión se apoya en
@@ -24,9 +24,6 @@ La pregunta que organiza la sesión es:
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
 - [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_recompra.py`
       verde (20/20).
-- [ ] Si vas a enseñar el bloque LLM: `.env` con las tres variables
-      (`LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODELO`) o decidir que la
-      clase corre con `FakeLLM` (recomendado).
 
 ## 1. Objetivos de aprendizaje
 
@@ -45,8 +42,6 @@ Al terminar la sesión el estudiante puede:
    umbrales).
 6. **Serializar** un modelo con ficha (`metadatos.json`) que haga
    `cargar()` fallar si cambia la versión de scikit-learn.
-7. **Integrar** un LLM como un transformador más (12 categorías cerradas,
-   `FakeLLM`, caché, comparación contra una regla por palabras clave).
 
 ## 2. Organización temporal (6 h de interacción · 12 h de trabajo independiente)
 
@@ -57,7 +52,6 @@ Al terminar la sesión el estudiante puede:
 | **B — Pipeline sin fuga** | 60 min | `NUM_LOG`, `NUM_STD`, `CAT`; `test_sin_fuga` | [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) |
 | **C — Modelos y umbral** | 90 min | Logreg / árbol / bosque / regla; tabla de umbrales; curva de profundidad | [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) |
 | **D — Artefacto y registro** | 45 min | `models/recompra_v1/metadatos.json`; guard de versión | [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) |
-| **E — LLM como transformador** (opcional) | 60 min | 12 categorías cerradas; FakeLLM; caché; comparación vs. regla | [`05-llm-transformador.md`](05-llm-transformador.md) |
 | **Taller** | 90 min | Aplicación a dataset propio | [`06-taller.md`](06-taller.md) |
 
 ## 3. El problema (antes de las herramientas)
@@ -91,24 +85,23 @@ Las tres preguntas motivan los bloques A, B y D.
 - [`02-pipelines-sin-fuga.md`](02-pipelines-sin-fuga.md) — `construir_preprocesador` + `test_sin_fuga`.
 - [`03-modelos-y-umbral.md`](03-modelos-y-umbral.md) — 3 modelos + regla + tabla de umbrales.
 - [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) — `guardar()` / `cargar()` + ficha de metadatos.
-- [`05-llm-transformador.md`](05-llm-transformador.md) — `texto_llm`, `llm_clientes`, prompt, caché.
+- [`05-llm-transformador.md`](05-llm-transformador.md) — **placeholder** (módulo retirado).
 - [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
 - [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales ya vistos.
 - [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 
 **Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `06_particion_y_fuga`, `07_ingenieria_caracteristicas`,
-`08_llm_como_transformador` (opcional), `09_modelos_y_pipelines`,
+`08_llm_como_transformador` (placeholder), `09_modelos_y_pipelines`,
 `10_segmentacion_no_supervisada`.
 
 **Módulos del paquete** (`src/segmentacion/`):
-`features/{devoluciones, etiquetas, cohortes, texto_llm, llm_clientes}.py`,
+`features/{devoluciones, etiquetas, cohortes}.py`,
 `pipelines/preprocesamiento.py`, `models/{entrenar, registro}.py`,
 `evaluation/{metricas, umbral}.py`.
 
 **Scripts**: `caso_recompra.py` (envoltorio), `figuras_u3.py` (4 figuras
-de referencia de la Unidad 3), `generar_gold.py` (fixture para evaluar
-el LLM).
+de referencia de la Unidad 3).
 
 ## 5. Quick start (macOS/Linux)
 
@@ -141,9 +134,6 @@ uv run jupyter lab notebooks/
 4. ¿Qué pasa si `metadatos.json` dice `sklearn: "1.9.0"` y el entorno
    tiene `1.9.1`?
    _(ver [`04-artefacto-y-registro.md`](04-artefacto-y-registro.md) §3.)_
-5. ¿Por qué `FakeLLM` es el cliente por defecto en el cuaderno 08 y no
-   el cliente real?
-   _(ver [`05-llm-transformador.md`](05-llm-transformador.md) §2.)_
 
 ## 7. Alternativas con criterio (2026-10-19)
 
@@ -162,7 +152,6 @@ uv run jupyter lab notebooks/
 | `fit_transform(A ∪ B)` | Ya viste B al calibrar | `fit(A)` → `transform(B)` |
 | `random_state=None` por "ciencia" | No reproducible → no se puede comparar | `random_state=SEMILLA` siempre |
 | Serializar solo `pipeline.joblib` | U4 no sabe qué columnas espera | `metadatos.json` con los 10 campos obligatorios de la ficha de modelo |
-| Nombrar al proveedor del LLM | Rompe el `grep -r` de la auditoría | Solo el adaptador y el README nombran proveedores |
 
 ## 9. Cierre y puente
 

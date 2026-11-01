@@ -8,6 +8,7 @@ Uso típico desde un notebook:
     from segmentacion.config import RAW_DATA_FILE, RFM_FEATURES, RANDOM_STATE
 """
 
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -46,6 +47,8 @@ KMEANS_MODEL_FILE = MODELS_DIR / "kmeans_model.joblib"
 DBSCAN_MODEL_FILE = MODELS_DIR / "dbscan_model.joblib"
 PIPELINE_FILE = MODELS_DIR / "preprocessing_pipeline.joblib"
 SEGMENT_PROFILES_FILE = MODELS_DIR / "segment_profiles.json"
+
+RUTA_MODELO = Path(os.getenv("RUTA_MODELO", str(MODELS_DIR / "recompra_v1")))
 
 # ---------------------------------------------------------------------------
 # Variables / Features

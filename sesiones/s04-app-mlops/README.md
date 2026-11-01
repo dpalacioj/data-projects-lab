@@ -69,6 +69,16 @@ El Streamlit del caso guía (Online Retail II). Es tu referencia para ver
 cómo la Unidad 4 cierra el ciclo CRISP-DM que empezaste en U2 y U3 sobre
 el mismo caso.
 
+Para la Unidad 4 el mismo proyecto incluye las dos interfaces sobre
+`models/recompra_v1/` que consume el núcleo
+[`src/segmentacion/servicio/`](../../projects/00-segmentacion-clientes/src/segmentacion/servicio/):
+
+- **Streamlit** ([`app/recompra_streamlit.py`](../../projects/00-segmentacion-clientes/app/recompra_streamlit.py)): un cliente o un CSV; se levanta con `make app-recompra`.
+- **FastAPI** ([`api/main.py`](../../projects/00-segmentacion-clientes/api/main.py)): `GET /salud` y `POST /predecir`; se levanta con `make api-recompra`.
+
+Las dos interfaces importan el mismo `Predictor` y no cargan el artefacto
+por su cuenta — el mismo patrón del proyecto 04.
+
 ---
 
 ## Qué deberías poder responder al final

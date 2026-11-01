@@ -45,8 +45,7 @@ paquete **se importa como `data_profiling`** (sin prefijo `fg_`).
 from data_profiling import ProfileReport
 ```
 
-Está documentado en `src/segmentacion/features/texto_llm.py` también y
-es un gotcha conocido.
+Es un gotcha conocido del paquete.
 
 ---
 

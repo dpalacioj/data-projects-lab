@@ -141,57 +141,6 @@ Documentado también en S02 troubleshooting.
 
 ---
 
-## `cliente_openai_compatible` da 401
-
-**Síntoma:**
-
-```
-urllib.error.HTTPError: HTTP Error 401: Unauthorized
-```
-
-**Causa:** la variable de entorno `LLM_API_KEY` no está definida en el
-entorno activo del notebook.
-
-**Fix:**
-
-1. `cat .env` (crea el archivo desde `.env.example` si no existe).
-2. En el notebook:
-   ```python
-   import os
-   from dotenv import load_dotenv
-   load_dotenv()
-   # Ahora os.environ["LLM_API_KEY"] está disponible.
-   ```
-
-Si el entorno es un notebook corriendo en un servicio, verifica que el
-servicio exporta `.env` al proceso del kernel.
-
----
-
-## La caché del LLM no se usa en la segunda ejecución
-
-**Síntoma:** cada ejecución del cuaderno 08 vuelve a invocar al cliente.
-
-**Causas posibles:**
-
-1. **Prompt cambió.** El `prompt_hash` entra en la caché; si editaste
-   `prompts/categorizar_v1.md`, la caché queda invalidada por diseño.
-2. **Ruta de la caché.** Verifica que `cache=Path("data/interim/categorias_llm.parquet")`
-   apunta al mismo archivo. Si usas rutas relativas, el `cwd` del
-   notebook importa.
-3. **Nuevas descripciones.** La caché solo cubre las descripciones ya
-   categorizadas. Si pasas una nueva, va al cliente.
-
-**Fix:** si el prompt es el mismo, confirma con:
-
-```python
-from segmentacion.features.texto_llm import _hash_prompt
-print(_hash_prompt())
-# compara con la columna prompt_hash de data/interim/categorias_llm.parquet
-```
-
----
-
 ## Streamlit arranca pero muestra «no se encontró FEATURES_DATA_FILE»
 
 **Síntoma:** la app enseña el banner rojo con el nombre del parquet
@@ -204,22 +153,3 @@ faltante.
 construir el DataFrame según `variables_en_orden`. Mientras U4 no esté,
 puedes generar un `features_clientes.parquet` sintético o esperar.
 
----
-
-## El cuaderno 08 cae con `AttributeError: 'Series' object has no attribute '_df'`
-
-**Síntoma:** una celda del cuaderno 08 falla con ese mensaje.
-
-**Causa (ya corregida en el commit `3a1d849` del repo):** mezcla de
-Polars Series y DataFrames en un `pl.concat(..., how="horizontal")`.
-
-**Fix:** construir un `pl.DataFrame` desde listas (no desde series
-sueltas):
-
-```python
-comparacion = pl.DataFrame({
-    "Description": descripciones.to_list(),
-    "regla":        regla["categoria"].to_list(),
-    "llm":          categorias["categoria"].to_list(),
-})
-```
