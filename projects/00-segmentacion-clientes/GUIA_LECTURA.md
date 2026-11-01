@@ -135,6 +135,26 @@ firma, el paquete `segmentacion` y los Parquet que deja U2.
 
 ---
 
+## Unidad 4 — del modelo al entregable
+
+La U4 envuelve el artefacto `models/recompra_v1/` en un núcleo de
+predicción (`src/segmentacion/servicio/`) y dos interfaces que lo
+consumen sin lógica propia.
+
+- `src/segmentacion/servicio/entrada.py` — `EntradaCliente` (Pydantic),
+  mismo orden que `variables_en_orden` de los metadatos.
+- `src/segmentacion/servicio/prediccion.py` — `Predictor.desde_carpeta()`,
+  `predecir`, `predecir_lote`, `salud`.
+- `app/recompra_streamlit.py` — pantalla para el usuario de negocio
+  (`make app-recompra`).
+- `api/main.py` — API FastAPI con `/salud` y `/predecir`
+  (`make api-recompra`).
+- `scripts/entrenar_recompra.py` — entrena y guarda el artefacto.
+- `tests/servicio/` — pruebas del núcleo (rápidas) y de la API (TestClient).
+- `models/recompra_v1/MODEL_CARD.md` — ficha del modelo.
+
+---
+
 ## Pruebas y scripts
 
 ```bash
@@ -164,6 +184,15 @@ uv run python scripts/perfil.py                     # HTML de perfil
 | `scripts/figuras_u2.py` | Figuras reproducibles del EDA (6-9). |
 | `scripts/perfil.py` | HTML del perfil (CI / sin Jupyter). |
 | `HALLAZGOS.md` | Hallazgos de U2 → insumo de U3. |
+| `src/segmentacion/servicio/entrada.py` | `EntradaCliente` (Pydantic) con las 7 variables en orden. |
+| `src/segmentacion/servicio/prediccion.py` | `Predictor`: carga el artefacto una vez y predice. |
+| `app/recompra_streamlit.py` | Interfaz Streamlit del caso guía (Unidad 4). |
+| `api/main.py` | API FastAPI (`/salud`, `/predecir`) sobre el mismo `Predictor`. |
+| `scripts/entrenar_recompra.py` | Entrena y guarda `models/recompra_v1/`. |
+| `examples/clientes_ejemplo.csv` | CSV de ejemplo para la pestaña "Lista de clientes". |
+| `examples/consumir_fastapi.http` | Peticiones de ejemplo para la API. |
+| `tests/servicio/` | Pruebas del núcleo (`test_entrada`, `test_prediccion`) y de la API (`test_interfaces`). |
+| `models/recompra_v1/MODEL_CARD.md` | Ficha del modelo (uso previsto, limitaciones, licencia). |
 
 ---
 

@@ -154,10 +154,11 @@ segmentacion-clientes/
 │   ├── figuras_u2.py          # Figuras 6-9 de referencia en reports/figures/
 │   ├── perfil.py              # Perfil HTML sobre muestra (seed=42)
 │   ├── caso_recompra.py       # Insumo de U3 (recompra 90 d)
-│   └── figuras_u3.py          # Insumo de U3 (ROC, PR, importancias)
+│   ├── figuras_u3.py          # Insumo de U3 (ROC, PR, importancias)
+│   └── entrenar_recompra.py   # U4: entrena y guarda models/recompra_v1/
 │
 ├── src/segmentacion/          # Paquete importable
-│   ├── config.py                 # Rutas, FECHA_SNAPSHOT
+│   ├── config.py                 # Rutas, FECHA_SNAPSHOT, RUTA_MODELO (U4)
 │   ├── data/
 │   │   ├── cargar.py             # ESQUEMA, leer_excel_con_esquema, leer_parquet
 │   │   ├── limpieza.py           # quitar_duplicados, separar_cancelaciones,
@@ -169,16 +170,23 @@ segmentacion-clientes/
 │   │   ├── rfm.py                # construir_rfm(ventas, fecha_corte)
 │   │   └── preprocessing.py      # Pipeline sklearn (la usa la app Streamlit)
 │   ├── models/{clustering,profiling}.py   # K-Means/DBSCAN + perfiles (cuaderno 10 + app)
+│   ├── servicio/                 # U4: Predictor + EntradaCliente (nucleo de prediccion)
 │   ├── utils/logger.py
 │   └── visualization/plots.py
 │
 ├── tests/
 │   ├── test_limpieza.py          # Rápido, 6 filas inventadas
 │   ├── test_rfm.py               # Rápido, corte explícito
-│   └── test_cifras_referencia.py # @pytest.mark.slow, cifras de referencia U2
+│   ├── test_cifras_referencia.py # @pytest.mark.slow, cifras de referencia U2
+│   └── servicio/                 # U4: tests del nucleo y de las interfaces
 │
-├── app/streamlit_app.py          # Demo interactiva (consume U3 output)
+├── app/
+│   ├── streamlit_app.py          # Demo interactiva (consume U3 output)
+│   └── recompra_streamlit.py     # U4: interfaz Streamlit sobre models/recompra_v1/
+├── api/main.py                    # U4: API FastAPI sobre el mismo Predictor
+├── examples/                      # U4: CSV y .http de ejemplo
 ├── models/                        # Modelos entrenados (.joblib, gitignored)
+│   └── recompra_v1/MODEL_CARD.md  # U4: ficha del modelo (uso previsto, limitaciones)
 ├── reports/figures/               # Gráficos generados (gitignored)
 ├── HALLAZGOS.md                   # Hallazgos U2 → insumo de U3
 ├── GUIA_LECTURA.md
@@ -334,6 +342,23 @@ uv run streamlit run app/streamlit_app.py
 
 La app se abre en http://localhost:8501. En U4 consumirá
 `models/recompra_v1/metadatos.json` (contrato con la ficha del modelo).
+
+### Unidad 4: interfaces de recompra
+
+Desde la raíz del repositorio:
+
+```bash
+make app-recompra                                           # Streamlit en http://localhost:8501
+make api-recompra                                           # FastAPI en http://127.0.0.1:8000/docs
+```
+
+Para entrenar el artefacto que consumen las interfaces (requiere el parquet
+en `data/raw/online_retail_II.parquet`):
+
+```bash
+cd projects/00-segmentacion-clientes
+uv run python scripts/entrenar_recompra.py
+```
 
 ---
 
