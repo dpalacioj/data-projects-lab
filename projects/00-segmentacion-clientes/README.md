@@ -343,22 +343,121 @@ uv run streamlit run app/streamlit_app.py
 La app se abre en http://localhost:8501. En U4 consumirá
 `models/recompra_v1/metadatos.json` (contrato con la ficha del modelo).
 
-### Unidad 4: interfaces de recompra
+### Unidad 4: interfaces de recompra sobre `models/recompra_v1/`
 
-Desde la raíz del repositorio:
+La U4 **envuelve** el modelo que entrenaste en U3 (bosque aleatorio para
+predecir recompra en 90 días) en dos interfaces que comparten el mismo
+núcleo de predicción (`src/segmentacion/servicio/`):
+
+- **Streamlit** (`app/recompra_streamlit.py`) — pantalla para una persona
+  de negocio. Un cliente a la vez *o* un CSV con muchos.
+- **FastAPI** (`api/main.py`) — endpoint HTTP para que otro sistema
+  (otro equipo, un notebook de marketing, un script) consulte el modelo.
+
+Ninguna interfaz carga `pipeline.joblib` por su cuenta: ambas importan
+`Predictor` desde `segmentacion.servicio`. La ficha pública del modelo
+(uso previsto, limitaciones, licencia) está en
+[`models/recompra_v1/MODEL_CARD.md`](models/recompra_v1/MODEL_CARD.md).
+
+#### Paso 0 (una sola vez) · Entrenar el artefacto
+
+Si no tienes `models/recompra_v1/pipeline.joblib`, créalo desde la raíz
+del repositorio:
 
 ```bash
-make app-recompra                                           # Streamlit en http://localhost:8501
-make api-recompra                                           # FastAPI en http://127.0.0.1:8000/docs
+make train-recompra
 ```
 
-Para entrenar el artefacto que consumen las interfaces (requiere el parquet
-en `data/raw/online_retail_II.parquet`):
+Esto corre `scripts/entrenar_recompra.py`, que entrena el bosque
+aleatorio de la U3 y deja dos archivos en `models/recompra_v1/`:
+
+- `pipeline.joblib` — el modelo serializado (ignorado por git).
+- `metadatos.json` — la "ficha" del artefacto: columnas en orden,
+  umbral acordado, cifras (`auc_validacion`, `auc_prueba`,
+  `tabla_umbrales`), versiones y `hash` del parquet usado.
+
+> Si falla con *"no se encontró el parquet"*, primero descarga los
+> datos: `cd projects/00-segmentacion-clientes && uv run python scripts/descargar_datos.py`.
+
+#### Paso 1 · Opción A: Streamlit (para gente de negocio)
 
 ```bash
-cd projects/00-segmentacion-clientes
-uv run python scripts/entrenar_recompra.py
+make app-recompra          # abre http://localhost:8501
 ```
+
+La app tiene dos pestañas:
+
+1. **Un cliente.** Rellenas el formulario con las 7 variables (gasto
+   total, facturas, productos distintos, días desde la última compra,
+   antigüedad, tasa de devolución, país) y pulsas **Predecir**. La app
+   muestra la probabilidad de recompra en 90 días y la decisión
+   (*Contactar* / *No contactar*) con el **umbral** que elijas en la
+   barra lateral. Mover el slider del umbral cambia también los
+   indicadores de clientes señalados, precisión y recall de la cohorte
+   de prueba (vienen de `tabla_umbrales` en `metadatos.json`).
+2. **Lista de clientes.** Subes un CSV con las 7 columnas del modelo
+   (puede traer columnas extra como `cliente` o `perfil`, se preservan
+   en la salida). La app devuelve la tabla ordenada por probabilidad
+   descendente y un botón para descargar sólo las filas marcadas como
+   *contactar*.
+
+**Happy path para la demo en vivo.** El proyecto incluye
+[`examples/clientes_ejemplo.csv`](examples/clientes_ejemplo.csv) con 6
+clientes canónicos que cubren todo el espectro. Súbelo en la pestaña
+*Lista de clientes* y verás esta tabla, ya ordenada:
+
+| cliente | perfil                     | probabilidad | recompra (umbral 0,3) |
+|---------|----------------------------|-------------:|-----------------------|
+| c1      | VIP activo (Alemania)      | ≈ 0,96       | **Contactar**         |
+| c2      | VIP estable (UK)           | ≈ 0,75       | **Contactar**         |
+| c3      | Ocasional con devoluciones | ≈ 0,35       | **Contactar**         |
+| c4      | Ocasional limpio           | ≈ 0,35       | **Contactar**         |
+| c5      | En riesgo con devoluciones | ≈ 0,14       | No contactar          |
+| c6      | Casi perdido (Francia)     | ≈ 0,05       | No contactar          |
+
+Son los 6 casos de la Tabla 2 del OVA U4. Mover el slider del umbral a
+0,4 o 0,5 muestra en vivo cómo se contrae la lista de "contactar" sin
+tocar el modelo. Es el guion recomendado para la demo.
+
+#### Paso 1 · Opción B: FastAPI (para otro sistema)
+
+```bash
+make api-recompra          # abre http://127.0.0.1:8000/docs
+```
+
+Expone dos endpoints:
+
+- `GET /salud` — devuelve `{"estado": "ok", "version_modelo": ..., "sklearn": ...}` si el modelo cargó bien.
+- `POST /predecir` — recibe JSON con los 7 campos del cliente y responde
+  `{"probabilidad": ..., "recompra": true/false, "umbral": ..., "version_modelo": ...}`.
+
+La forma más cómoda de probarla es abrir **http://127.0.0.1:8000/docs**
+(el Swagger UI que FastAPI genera solo) y usar el botón *Try it out*. O
+con `curl` desde otra terminal:
+
+```bash
+curl -X POST http://127.0.0.1:8000/predecir \
+  -H "Content-Type: application/json" \
+  -d '{"monetario": 2350, "frecuencia": 9, "productos_distintos": 60,
+       "recencia": 12, "antiguedad": 400, "tasa_devolucion": 0,
+       "pais": "United Kingdom"}'
+```
+
+El archivo [`examples/consumir_fastapi.http`](examples/consumir_fastapi.http)
+tiene llamadas listas para cualquier cliente REST (extensiones de VS
+Code, PyCharm, IntelliJ).
+
+#### ¿Y si algo falla?
+
+- *"no se encontró metadatos.json"* o *"pipeline.joblib"* → corre
+  `make train-recompra`.
+- *"La versión de scikit-learn no coincide"* → pasó un `uv sync` entre
+  entrenamiento y consumo. Reentrena con `make train-recompra`.
+- El Streamlit no abre nada en el navegador → mira la terminal donde
+  lanzaste `make app-recompra`; los errores salen ahí.
+- FastAPI responde `422` → la entrada no pasó la validación de Pydantic
+  (algún campo negativo o faltante). El JSON de respuesta dice qué
+  campo y por qué.
 
 ---
 
