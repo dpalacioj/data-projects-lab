@@ -58,6 +58,9 @@ segmentacion-clientes = [
     "skimpy>=0.0.15",
     "fg-data-profiling>=0.1",
     "pydantic>=2.0",
+    "fastapi>=0.120.0",
+    "uvicorn>=0.30.0",
+    "httpx>=0.28.0",
 ]
 
 # Proyecto Ejemplo Completo (clasificador tabular con flujo end-to-end)
