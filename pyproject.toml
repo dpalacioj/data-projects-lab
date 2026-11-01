@@ -168,6 +168,8 @@ ignore = ["E501"]
 "projects/05-ejemplo-completo/app/*.py" = ["E402"]
 # La app Streamlit del caso guia ajusta sys.path antes de importar (Unidad 4).
 "projects/00-segmentacion-clientes/app/recompra_streamlit.py" = ["E402"]
+# La API FastAPI del caso guia tambien ajusta sys.path antes de importar.
+"projects/00-segmentacion-clientes/api/main.py" = ["E402"]
 
 [tool.mypy]
 python_version = "3.11"

@@ -1,0 +1,30 @@
+### Estado del servicio (api/main.py en local: uv run uvicorn api.main:app --reload)
+GET http://127.0.0.1:8000/salud
+
+### Un cliente; el umbral es opcional (sin el, se usa el acordado en los metadatos)
+POST http://127.0.0.1:8000/predecir?umbral=0.4
+Content-Type: application/json
+
+{
+  "monetario": 2350.0,
+  "frecuencia": 9,
+  "productos_distintos": 60,
+  "recencia": 12,
+  "antiguedad": 400,
+  "tasa_devolucion": 0.0,
+  "pais": "United Kingdom"
+}
+
+### Entrada invalida: FastAPI responde 422 gracias a Field(ge=0) en EntradaCliente
+POST http://127.0.0.1:8000/predecir
+Content-Type: application/json
+
+{
+  "monetario": 2350.0,
+  "frecuencia": 9,
+  "productos_distintos": 60,
+  "recencia": -3,
+  "antiguedad": 400,
+  "tasa_devolucion": 0.0,
+  "pais": "United Kingdom"
+}
