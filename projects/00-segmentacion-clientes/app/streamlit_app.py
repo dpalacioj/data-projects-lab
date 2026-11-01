@@ -56,10 +56,11 @@ def load_features() -> pd.DataFrame:
     if not FEATURES_DATA_FILE.exists():
         st.error(
             f"No se encontró {FEATURES_DATA_FILE.name}. "
-            "Genera el archivo con `make features-segmentacion` desde la raíz del repo "
-            "(equivale a `uv run python scripts/generar_features_clientes.py` desde la "
-            "carpeta del proyecto). Requiere `data/processed/ventas_validas.parquet`, "
-            "producido por el notebook 02_limpieza.ipynb."
+            "Desde la raíz del repo ejecuta en orden: "
+            "`make preparar-datos` (limpia el raw) y luego "
+            "`make features-segmentacion` (construye las features extendidas). "
+            "Ambos equivalen a `uv run python scripts/preparar_datos.py` "
+            "y `scripts/generar_features_clientes.py` desde la carpeta del proyecto."
         )
         st.stop()
     return pd.read_parquet(FEATURES_DATA_FILE)

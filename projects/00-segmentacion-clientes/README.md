@@ -240,6 +240,8 @@ source .venv/bin/activate
 
 ```bash
 uv run python scripts/descargar_datos.py
+# o, desde la raíz del repo:
+make descargar-datos
 ```
 
 > El script descarga el `.zip` desde UCI, verifica el **SHA-256**
@@ -247,6 +249,28 @@ uv run python scripts/descargar_datos.py
 > y escribe `data/raw/online_retail_II.parquet` con el esquema declarado.
 > Si el hash no coincide, se detiene (código 2). Detalles en
 > [`data/README.md`](data/README.md).
+
+### Paso 4 · Preparar los parquets de trabajo
+
+```bash
+# desde la raíz del repo
+make preparar-datos            # ventas_validas.parquet + cancelaciones.parquet
+make features-segmentacion     # features_clientes.parquet (app no supervisada)
+make train-recompra            # models/recompra_v1/ (artefacto U3 + U4)
+```
+
+Equivalentes manuales:
+
+```bash
+cd projects/00-segmentacion-clientes
+uv run python scripts/preparar_datos.py
+uv run python scripts/generar_features_clientes.py
+uv run python scripts/entrenar_recompra.py
+```
+
+Tras estos tres comandos tienes todo lo que las apps, la API y los tests
+necesitan. Los notebooks se pueden abrir en cualquier orden sin regenerar
+estos artefactos.
 
 ---
 

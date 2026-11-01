@@ -5,7 +5,7 @@
 # lee tutorials/03-el-makefile-del-curso.md: explica cada linea.
 
 .DEFAULT_GOAL := help
-.PHONY: help setup setup-caso smoke test lint clean app-recompra api-recompra train-recompra app-segmentacion features-segmentacion
+.PHONY: help setup setup-caso smoke test test-slow test-all lint clean app-recompra api-recompra train-recompra app-segmentacion features-segmentacion preparar-datos descargar-datos
 
 help:  ## Lista los comandos disponibles.
 	@echo "Comandos disponibles:"
@@ -24,11 +24,14 @@ setup-caso:  ## Instala lo necesario para el caso guia (S02/S03): segmentacion +
 smoke:  ## Diagnostica el entorno (no requiere dependencias instaladas).
 	python3 scripts/smoke_test.py
 
-test:  ## Corre los tests rapidos del caso guia.
-	uv run pytest
+test:  ## Corre los tests rapidos (excluye los marcados -m slow).
+	uv run pytest -m "not slow"
 
-test-slow:  ## Corre los tests que requieren los datos reales descargados.
+test-slow:  ## Corre los tests slow (requieren data/raw y models/recompra_v1/ reentrenado).
 	uv run pytest -m slow
+
+test-all:  ## Corre absolutamente todos los tests (rapidos + slow).
+	uv run pytest
 
 lint:  ## Corre ruff sobre el codigo del caso guia.
 	uv run ruff check projects/00-segmentacion-clientes/
@@ -48,7 +51,13 @@ api-recompra:  ## Levanta la API FastAPI del caso guia (http://127.0.0.1:8000/do
 train-recompra:  ## Entrena models/recompra_v1/ del caso guia (requiere el parquet descargado).
 	cd projects/00-segmentacion-clientes && uv run python scripts/entrenar_recompra.py
 
-features-segmentacion:  ## Genera data/processed/features_clientes.parquet para la app no supervisada.
+descargar-datos:  ## Descarga Online Retail II y lo deja en data/raw/online_retail_II.parquet.
+	cd projects/00-segmentacion-clientes && uv run python scripts/descargar_datos.py
+
+preparar-datos:  ## Limpia el raw y escribe data/processed/{ventas_validas,cancelaciones}.parquet.
+	cd projects/00-segmentacion-clientes && uv run python scripts/preparar_datos.py
+
+features-segmentacion:  ## Genera data/processed/features_clientes.parquet (requiere `make preparar-datos`).
 	cd projects/00-segmentacion-clientes && uv run python scripts/generar_features_clientes.py
 
 app-segmentacion:  ## Levanta la app de Streamlit no supervisada (http://localhost:8501).

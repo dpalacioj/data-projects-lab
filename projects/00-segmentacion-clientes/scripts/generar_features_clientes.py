@@ -40,8 +40,9 @@ def _localizar_ventas() -> Path:
     if CLEAN_DATA_FILE.exists():
         return CLEAN_DATA_FILE
     raise FileNotFoundError(
-        "No encuentro las ventas limpias. Ejecuta primero el flujo de limpieza "
-        f"(notebook 02_limpieza.ipynb) para producir {VENTAS_VALIDAS_FILE}."
+        f"No encuentro {VENTAS_VALIDAS_FILE.relative_to(PROJECT_ROOT)}. "
+        "Ejecuta primero `make preparar-datos` desde la raiz del repo "
+        "(o `uv run python scripts/preparar_datos.py` desde la carpeta del proyecto)."
     )
 
 
