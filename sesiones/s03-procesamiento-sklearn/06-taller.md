@@ -79,21 +79,6 @@ Pull request contra tu rama o repositorio propio con:
 | Reproducibilidad | 10 % | `test_reproducibilidad` pasa |
 | Narrativa | 5 % | README, HALLAZGOS actualizado, decisiones documentadas |
 
-## Bloque LLM (opcional)
-
-Si tu dominio incluye texto (nombres de producto, descripciones,
-comentarios), aplica el patrón del cuaderno 08:
-
-- 12 categorías cerradas de tu dominio.
-- Pydantic como esquema.
-- `FakeLLM` por defecto para los tests.
-- Un gold set de 100-200 filas etiquetadas a mano.
-- Regla por palabras clave como línea base.
-- Comparación con y sin las columnas del LLM en el modelo final.
-
-Bonus en la rúbrica (+10 %) si el bloque LLM está completo con
-pruebas sin red.
-
 ## Entregables opcionales
 
 - Modelo adicional (XGBoost, LightGBM) comparado contra los tres del

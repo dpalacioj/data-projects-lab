@@ -78,14 +78,6 @@
   metadatos del modelo. `cargar()` falla con `VersionIncompatible` si
   cambia la versión de scikit-learn.
 
-## LLMs
-
-- Cliente por defecto: `FakeLLM`. Tests y cuadernos corren sin red ni
-  claves. Caché versionada en `data/interim/`.
-- Un único adaptador real: `cliente_openai_compatible` por variables de
-  entorno (ver `.env.example`). **Ningún archivo nombra un proveedor
-  fuera del adaptador y del README.**
-
 ## Ruff y pre-commit
 
 - Ruff format cubre `projects/00-segmentacion-clientes/**` (no formatea el

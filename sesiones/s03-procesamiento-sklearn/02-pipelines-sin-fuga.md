@@ -129,22 +129,6 @@ distintas** (100 vs 300). Luego:
   **distinta** a `pipe.fit(A).transform(B)`. Si son iguales, el
   diseño de la prueba falló.
 
-## Opción LLM: `incluir_prop_llm`
-
-El preprocesador acepta un flag opcional:
-
-```python
-construir_preprocesador(incluir_prop_llm=True)
-```
-
-Añade un bloque `prop` con las 12 columnas `prop_<cat>` que produce
-`features.texto_llm.proporcion_gasto_por_categoria`. Son proporciones
-en [0, 1] y pasan como `passthrough` (no se escalan). Ver
-[`05-llm-transformador.md`](05-llm-transformador.md).
-
-**Default** = `False`. Las cifras del §9 se calculan sin las 12
-columnas; incluirlas requiere la caché del LLM poblada.
-
 ## Lo que **no** hagas
 
 | Anti-patrón | Por qué | Qué hacer en su lugar |

@@ -145,7 +145,7 @@ segmentacion-clientes/
 │   ├── 05_eda_automatizado.ipynb          # skimpy + fg-data-profiling
 │   ├── 06_particion_y_fuga.ipynb          # Cohortes A/B, fuga temporal
 │   ├── 07_ingenieria_caracteristicas.ipynb # ColumnTransformer de la Tabla 4
-│   ├── 08_llm_como_transformador.ipynb    # FakeLLM + categorias semanticas
+│   ├── 08_llm_como_transformador.ipynb    # Placeholder (modulo retirado)
 │   ├── 09_modelos_y_pipelines.ipynb       # Regresion/Arbol/Bosque + umbral
 │   └── 10_segmentacion_no_supervisada.ipynb # k-means + DBSCAN + perfiles
 │
@@ -266,11 +266,12 @@ Abrir los notebooks en orden: `00_objetivo_de_analisis` →
 ### Notebooks (Unidad 3)
 
 El caso supervisado "recompra en 90 días" + ingeniería de pipelines sin
-fuga. Orden recomendado: **06 → 07 → (08) → 09 → 10**.
+fuga. Orden recomendado: **06 → 07 → 09 → 10** (el cuaderno `08` quedó
+como placeholder y no se corre).
 
 - `06_particion_y_fuga`: cohortes A y B con `cohorte(ventas, cancelaciones, corte, horizonte=90)`; demostración de fuga temporal.
 - `07_ingenieria_caracteristicas`: anatomía del `ColumnTransformer`.
-- `08_llm_como_transformador` (opcional): categorización con LLM; `FakeLLM` por defecto.
+- `08_llm_como_transformador`: **placeholder** (módulo retirado del curso).
 - `09_modelos_y_pipelines`: tres modelos + regla; umbrales; importancia; curva de profundidad; `guardar()` el bosque en `models/recompra_v1/`.
 - `10_segmentacion_no_supervisada`: k-means + DBSCAN sobre el mismo preprocesador.
 
@@ -284,7 +285,7 @@ uv run python scripts/figuras_u3.py          # genera reports/figures/g_{fuga,so
 ### Pruebas
 
 ```bash
-uv run pytest                                # rápido (sin red, sin claves de API; incluye FakeLLM del módulo LLM)
+uv run pytest                                # rápido (sin red, sin claves de API)
 uv run pytest -m slow                        # cifras de referencia contra el parquet real (U2 + U3)
 ```
 
@@ -294,44 +295,6 @@ uv run pytest -m slow                        # cifras de referencia contra el pa
 uv run python scripts/figuras_u2.py data/raw/online_retail_II.parquet reports/figures
 uv run python scripts/perfil.py              # HTML en reports/perfil_muestra.html
 ```
-
-### Uso de modelos de lenguaje (opcional, cuaderno 08)
-
-El módulo `features/texto_llm.py` categoriza las ~5 300 descripciones
-únicas de producto en 12 etiquetas cerradas. El cliente por defecto es
-`FakeLLM` (sin red, lee desde `tests/fixtures/respuestas_fake.json`),
-por lo que **todos los tests y el cuaderno 08 corren sin claves ni red**.
-
-Para ejecutar con un cliente real (DeepSeek, OpenAI, Groq, Ollama local,
-etc.), configura `.env` siguiendo [`.env.example`](.env.example):
-
-```bash
-LLM_BASE_URL=https://api.ejemplo.com/v1
-LLM_API_KEY=sk-...
-LLM_MODELO=nombre-del-modelo
-```
-
-y descomenta las dos líneas marcadas en el cuaderno 08. El cliente
-`cliente_openai_compatible` cubre cualquier endpoint con formato OpenAI;
-el repositorio **no nombra ningún proveedor** fuera de este bloque y de
-este README.
-
-**Qué se envía:** solo descripciones de producto (CC BY 4.0 de UCI).
-**Qué no se envía:** ningún dato del cliente, factura, fecha, etiqueta
-o cualquier variable sensible — por diseño (ver `test_sin_fuga` del
-módulo).
-
-**Costo de la última corrida** (completar tras ejecutar el flujo con
-cliente real):
-- Fecha: _(pendiente — primera corrida)_
-- Lotes: 107 (5 305 descripciones / 50 por lote).
-- Tokens aproximados: _(pendiente)_.
-- Tiempo: _(pendiente)_.
-
-**Reproducción sin red:** la caché versionada
-`data/interim/categorias_llm.parquet` (una vez poblada) hace que una
-segunda ejecución no invoque al cliente. Para forzar un recálculo,
-borrar la caché.
 
 ### Aplicación Streamlit
 

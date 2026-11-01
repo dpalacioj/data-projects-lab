@@ -128,7 +128,7 @@ firma, el paquete `segmentacion` y los Parquet que deja U2.
 
 - `06_particion_y_fuga` — cohortes A/B y demostración de la fuga temporal.
 - `07_ingenieria_caracteristicas` — `ColumnTransformer` para variables numéricas y categóricas.
-- `08_llm_como_transformador` — `FakeLLM` + categorías semánticas.
+- `08_llm_como_transformador` — **placeholder** (módulo retirado del curso).
 - `09_modelos_y_pipelines` — regresión, árbol, bosque; umbral y validación.
 - `10_segmentacion_no_supervisada` — k-means + DBSCAN sobre el preprocesador
   de U3 (consolida los tres cuadernos de clustering del flujo pandas original).

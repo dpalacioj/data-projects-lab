@@ -24,7 +24,7 @@ sola parte.
 |---|---|---|---|
 | **S01** · Encuadre del curso: CRISP-DM como columna vertebral | U1 | marco (no presencial) | [s01-objetivo-crisp-dm/](s01-objetivo-crisp-dm/) |
 | **S02** · Exploración de datos con Polars | U2 | completa | [s02-exploracion-polars/](s02-exploracion-polars/) |
-| **S03** · Procesamiento, pipelines, modelos y LLM | U3 | completa | [s03-procesamiento-sklearn/](s03-procesamiento-sklearn/) |
+| **S03** · Procesamiento, pipelines y modelos | U3 | completa | [s03-procesamiento-sklearn/](s03-procesamiento-sklearn/) |
 | **S04** · Aplicación: del modelo al entregable | U4 | marco (trabajo autónomo) | [s04-app-mlops/](s04-app-mlops/) |
 
 **S01 y S04 son marco, no sesiones presenciales.** S01 la lees la primera
