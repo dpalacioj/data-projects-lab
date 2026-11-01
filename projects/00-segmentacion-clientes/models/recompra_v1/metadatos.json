@@ -18,10 +18,42 @@
   },
   "datos": {
     "ruta": "data/raw/online_retail_II.parquet",
-    "hash": "6994df0411eca9ef"
+    "hash": "71dd2fe0525c95f8"
   },
   "auc_validacion": 0.816,
   "umbral_acordado": 0.3,
-  "fecha": "2026-10-25",
-  "autor": "David Palacio (U3)"
+  "fecha": "2026-10-26",
+  "autor": "David Palacio (U3)",
+  "version_modelo": "recompra_v1",
+  "auc_prueba": 0.785,
+  "tabla_umbrales": [
+    {
+      "umbral": 0.3,
+      "n_senialados": 2093,
+      "precision": 0.688,
+      "recall": 0.643,
+      "f1": 0.665
+    },
+    {
+      "umbral": 0.4,
+      "n_senialados": 1653,
+      "precision": 0.751,
+      "recall": 0.554,
+      "f1": 0.638
+    },
+    {
+      "umbral": 0.5,
+      "n_senialados": 1259,
+      "precision": 0.803,
+      "recall": 0.451,
+      "f1": 0.578
+    },
+    {
+      "umbral": 0.6,
+      "n_senialados": 890,
+      "precision": 0.856,
+      "recall": 0.34,
+      "f1": 0.487
+    }
+  ]
 }

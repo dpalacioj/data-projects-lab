@@ -93,7 +93,7 @@ def guardar(pipe: Pipeline, ruta: Path, metadatos: dict[str, Any]) -> None:
             f"faltan campos en metadatos.json: {sorted(faltantes)}."
         )
 
-    joblib.dump(pipe, _ruta_pipeline(ruta))
+    joblib.dump(pipe, _ruta_pipeline(ruta), compress=3)
     _ruta_metadatos(ruta).write_text(
         json.dumps(metadatos, indent=2, ensure_ascii=False, default=str) + "\n"
     )
