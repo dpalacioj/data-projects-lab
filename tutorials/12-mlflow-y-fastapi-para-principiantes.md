@@ -45,19 +45,19 @@ model2 = RandomForest(n_estimators=100, max_depth=15)
 ```
 
 **Problemas:**
-- ❌ No recuerdas qué hiperparámetros usaste en cada modelo
-- ❌ No sabes cuál fue el mejor modelo
-- ❌ No puedes comparar fácilmente los resultados
-- ❌ Los modelos están guardados en diferentes carpetas sin orden
+- No recuerdas qué hiperparámetros usaste en cada modelo
+- No sabes cuál fue el mejor modelo
+- No puedes comparar fácilmente los resultados
+- Los modelos están guardados en diferentes carpetas sin orden
 
 #### La Solución Con MLFlow
 
 MLFlow registra automáticamente:
-- ✅ Todos los hiperparámetros que usaste
-- ✅ Todas las métricas (R², RMSE, MAE, etc.)
-- ✅ El código que ejecutaste
-- ✅ El modelo entrenado
-- ✅ La fecha y hora del experimento
+- Todos los hiperparámetros que usaste
+- Todas las métricas (R², RMSE, MAE, etc.)
+- El código que ejecutaste
+- El modelo entrenado
+- La fecha y hora del experimento
 
 ```mermaid
 graph TD
@@ -213,11 +213,11 @@ graph LR
 ```
 
 Puedes:
-- ✅ Ver todos los runs lado a lado
-- ✅ Comparar métricas entre modelos
-- ✅ Ordenar por R² para encontrar el mejor
-- ✅ Descargar el modelo de cualquier run
-- ✅ Ver exactamente qué parámetros usaste
+- Ver todos los runs lado a lado
+- Comparar métricas entre modelos
+- Ordenar por R² para encontrar el mejor
+- Descargar el modelo de cualquier run
+- Ver exactamente qué parámetros usaste
 
 ---
 
@@ -240,7 +240,7 @@ mis_modelos/
 mlruns/
 └── prediccion_precios_automoviles/
     ├── run_1: LinearRegression → R²=0.75 ❌
-    ├── run_2: RandomForest (n=50) → R²=0.85 ⚠️
+    ├── run_2: RandomForest (n=50) → R²=0.85 ⚠
     ├── run_3: RandomForest (n=100) → R²=0.95 ✅ BEST
     └── run_4: RandomForest (n=200) → R²=0.94
 ```
@@ -530,10 +530,10 @@ def predict_price(automovil: AutomovilInput):
 Abre en tu navegador: http://localhost:8000/docs
 
 Verás una interfaz interactiva (Swagger UI) donde puedes:
-- ✅ Ver todos los endpoints
-- ✅ Ver qué parámetros acepta cada uno
-- ✅ Probar la API directamente desde el navegador
-- ✅ Ver ejemplos de requests y responses
+- Ver todos los endpoints
+- Ver qué parámetros acepta cada uno
+- Probar la API directamente desde el navegador
+- Ver ejemplos de requests y responses
 
 ```mermaid
 graph TD
@@ -644,22 +644,22 @@ graph TD
 ### Sin MLFlow ni FastAPI:
 
 ```
-❌ Modelos sin organizar
-❌ No sabes cuál es el mejor
-❌ Modelo solo funciona en tu computadora
-❌ Otros no pueden usar tu modelo
-❌ Tienes que entrenar de nuevo para recordar parámetros
+Modelos sin organizar
+No sabes cuál es el mejor
+Modelo solo funciona en tu computadora
+Otros no pueden usar tu modelo
+Tienes que entrenar de nuevo para recordar parámetros
 ```
 
 ### Con MLFlow y FastAPI:
 
 ```
-✅ Todos los experimentos organizados
-✅ Fácil comparar y elegir el mejor modelo
-✅ Modelo accesible desde cualquier lugar
-✅ Cualquier lenguaje puede usar tu modelo
-✅ Todo documentado automáticamente
-✅ API lista para producción
+Todos los experimentos organizados
+Fácil comparar y elegir el mejor modelo
+Modelo accesible desde cualquier lugar
+Cualquier lenguaje puede usar tu modelo
+Todo documentado automáticamente
+API lista para producción
 ```
 
 ---

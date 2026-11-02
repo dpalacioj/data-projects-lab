@@ -490,7 +490,7 @@ graph TD
 
 **Concepto**: Convierte cada categoría única en un **número entero** (0, 1, 2, ...).
 
-⚠️ **IMPORTANTE**: Solo para la **variable objetivo (y)**, NO para características (X).
+⚠ **IMPORTANTE**: Solo para la **variable objetivo (y)**, NO para características (X).
 
 #### ¿Por qué no usar LabelEncoder en características?
 
@@ -500,9 +500,9 @@ Problema: LabelEncoder introduce orden artificial
 Categorías: ["Rojo", "Verde", "Azul"]
 LabelEncoder: [0, 1, 2]
 
-❌ El modelo pensará: Verde (1) está "entre" Rojo (0) y Azul (2)
-❌ El modelo pensará: Azul (2) > Verde (1) > Rojo (0)
-❌ Introduce relaciones matemáticas falsas
+El modelo pensará: Verde (1) está "entre" Rojo (0) y Azul (2)
+El modelo pensará: Azul (2) > Verde (1) > Rojo (0)
+Introduce relaciones matemáticas falsas
 ```
 
 #### Código con scikit-learn
@@ -556,8 +556,8 @@ Categorías con orden:
 OrdinalEncoder con categories especificadas:
 [0, 1, 2, 3]
 
-✅ El orden es correcto: 3 > 2 > 1 > 0
-✅ El modelo entiende que Posgrado > Universidad
+El orden es correcto: 3 > 2 > 1 > 0
+El modelo entiende que Posgrado > Universidad
 ```
 
 #### Código con scikit-learn
@@ -638,8 +638,8 @@ Después de OneHotEncoder:
 │   1   │   0   │   0   │
 └───────┴───────┴───────┘
 
-✅ No hay orden implícito
-✅ Cada categoría es independiente
+No hay orden implícito
+Cada categoría es independiente
 ```
 
 #### Código con scikit-learn
@@ -782,7 +782,7 @@ Resultado:
 └────────────┴──────────┘
 ```
 
-#### ⚠️ Riesgo: Target Leakage y Overfitting
+#### ⚠ Riesgo: Target Leakage y Overfitting
 
 ```mermaid
 graph TD
@@ -844,7 +844,7 @@ scores = cross_val_score(pipeline, X, y, cv=5)
 
 | Método | Variables | Dimensiones | Orden | Cardinalidad | Uso Principal |
 |--------|-----------|-------------|-------|--------------|---------------|
-| **LabelEncoder** | Target (y) | ✅ No aumenta | ⚠️ Introduce | Cualquiera | Variable objetivo |
+| **LabelEncoder** | Target (y) | ✅ No aumenta | ⚠ Introduce | Cualquiera | Variable objetivo |
 | **OrdinalEncoder** | Ordinales | ✅ No aumenta | ✅ Respeta | Cualquiera | Educación, satisfacción |
 | **OneHotEncoder** | Nominales | ❌ Aumenta mucho | ✅ No introduce | Baja-Media | Color, ciudad, género |
 | **TargetEncoder** | Nominales | ✅ No aumenta | N/A | Alta | Códigos postales, IDs |
@@ -1042,8 +1042,8 @@ x_scaled = x / max(|x|)
 
 #### Ventaja Principal
 
-✅ **Preserva la esparsidad** (mantiene los ceros como ceros)
-✅ Útil para **datos sparse** (matrices con muchos ceros)
+**Preserva la esparsidad** (mantiene los ceros como ceros)
+Útil para **datos sparse** (matrices con muchos ceros)
 
 #### Código con scikit-learn
 
@@ -1410,7 +1410,7 @@ graph TD
     A -->|>50| D[✅ Considera PCA]
 
     C -->|Sí| E[✅ PCA puede ayudar]
-    C -->|No| F[⚠️ PCA puede no ayudar]
+    C -->|No| F[⚠ PCA puede no ayudar]
 
     G{¿Necesitas<br/>interpretabilidad?} -->|Sí| H[❌ Evita PCA<br/>o usa pocas componentes]
     G -->|No| I[✅ PCA es buena opción]
@@ -1662,8 +1662,8 @@ Ver sección de [TargetEncoder](#4-targetencoder-codificación-por-objetivo).
 
 #### ¿Por qué seleccionar?
 
-- ❌ Más features ≠ mejor modelo
-- ✅ Menos features = menos overfitting, más rápido
+- Más features ≠ mejor modelo
+- Menos features = menos overfitting, más rápido
 
 #### Métodos
 
@@ -2069,7 +2069,7 @@ graph TD
 
 ### 2. Train-Test Split
 
-⚠️ **IMPORTANTE**: Siempre divide ANTES de preprocesar.
+⚠ **IMPORTANTE**: Siempre divide ANTES de preprocesar.
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -2090,7 +2090,7 @@ X_train, X_test = train_test_split(X_scaled)  # Data leakage!
 
 ### 3. Usar Pipelines
 
-✅ **Ventajas**:
+**Ventajas**:
 - Evita data leakage
 - Código más limpio
 - Fácil de reproducir

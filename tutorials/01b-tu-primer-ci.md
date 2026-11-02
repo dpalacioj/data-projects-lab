@@ -313,7 +313,7 @@ Espera ~30 segundos. Luego:
 
 ```
 All checks have passed
-✅ ci / test — Successful in 45s
+ci / test — Successful in 45s
 ```
 
 Click en ese link y verás el log paso a paso, con cada `step` y su
@@ -339,7 +339,7 @@ Vuelve a GitHub al PR (lo verás actualizado automático):
 
 ```
 Some checks were not successful
-❌ ci / test — Failing after 42s. See details.
+ci / test — Failing after 42s. See details.
 
 [Merge pull request]  <-- aparece bloqueado o con advertencia
 ```
@@ -384,7 +384,7 @@ Some checks haven't completed yet
 ### Cuando CI pasa:
 
 ```
-✅ All checks have passed
+All checks have passed
    ci / test — Successful in 45s
 
 [Merge pull request]  (botón verde)
@@ -393,7 +393,7 @@ Some checks haven't completed yet
 ### Cuando CI falla:
 
 ```
-❌ Some checks were not successful
+Some checks were not successful
    ci / test — Failing after 42s. See details.
 
 [Merge pull request]  (botón amarillo con advertencia)

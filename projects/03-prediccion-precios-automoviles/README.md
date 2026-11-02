@@ -214,9 +214,9 @@ uv run mlflow ui
 Abrir en navegador: http://localhost:5000
 
 **Características del script:**
-- ✅ Detecta automáticamente si el puerto 5000 está ocupado
-- ✅ Ofrece detener procesos anteriores de MLFlow
-- ✅ Completamente portable (funciona para cualquier usuario)
+- Detecta automáticamente si el puerto 5000 está ocupado
+- Ofrece detener procesos anteriores de MLFlow
+- Completamente portable (funciona para cualquier usuario)
 
 **Nota:** El notebook `02_training.ipynb` imprime automáticamente las instrucciones al ejecutarse
 

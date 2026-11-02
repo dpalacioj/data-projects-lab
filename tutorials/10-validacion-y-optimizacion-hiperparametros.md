@@ -22,10 +22,10 @@ nav_order: 12
 
 El **ajuste de hiperparámetros** (hyperparameter tuning o fine-tuning) es el proceso de encontrar la configuración óptima de un modelo de machine learning. Este tutorial explica:
 
-- ✅ Qué son los hiperparámetros y cómo difieren de los parámetros
-- ✅ Cómo validar modelos correctamente
-- ✅ Diferentes estrategias para buscar los mejores hiperparámetros
-- ✅ Herramientas modernas para optimización eficiente
+- Qué son los hiperparámetros y cómo difieren de los parámetros
+- Cómo validar modelos correctamente
+- Diferentes estrategias para buscar los mejores hiperparámetros
+- Herramientas modernas para optimización eficiente
 
 ### El Problema
 
@@ -33,7 +33,7 @@ El **ajuste de hiperparámetros** (hyperparameter tuning o fine-tuning) es el pr
 graph TD
     A[Entrenar modelo con<br/>hiperparámetros aleatorios] --> B{¿Buen<br/>rendimiento?}
     B -->|No| C[❌ Modelo pobre]
-    B -->|Por suerte| D[⚠️ Puede ser overfitting]
+    B -->|Por suerte| D[⚠ Puede ser overfitting]
 
     E[Optimizar hiperparámetros<br/>sistemáticamente] --> F[Validación cruzada]
     F --> G[Buscar mejor<br/>configuración]
@@ -73,7 +73,7 @@ mindmap
 | **Cómo se obtienen** | El algoritmo los **ajusta automáticamente** usando los datos | El usuario debe **especificarlos manualmente** |
 | **¿Cuándo se definen?** | **Durante** el entrenamiento | **Antes** del entrenamiento |
 | **Ejemplos** | Pesos de red neuronal, coeficientes de regresión, vectores de soporte en SVM | Learning rate, número de árboles, profundidad máxima, C en SVM |
-| **¿Se guardan en el modelo?** | ✅ Sí | ⚠️ Se guardan pero como configuración |
+| **¿Se guardan en el modelo?** | ✅ Sí | ⚠ Se guardan pero como configuración |
 | **¿Se pueden modificar después?** | ❌ No sin reentrenar | ✅ Sí, pero requiere reentrenar |
 
 ---
@@ -228,9 +228,9 @@ score = model.score(X_test, y_test)
 
 **Problemas**:
 
-1. ⚠️ El resultado depende de la **suerte** del split
-2. ⚠️ 20% de datos "desperdiciados" (solo para test)
-3. ⚠️ No sabes si el modelo **generaliza bien** o tuvo suerte
+1. ⚠ El resultado depende de la **suerte** del split
+2. ⚠ 20% de datos "desperdiciados" (solo para test)
+3. ⚠ No sabes si el modelo **generaliza bien** o tuvo suerte
 
 ```mermaid
 graph LR
@@ -278,9 +278,9 @@ graph TD
 
 **Ventajas**:
 
-✅ Usa **todos los datos** para entrenamiento y validación
-✅ Resultados más **confiables** (promedio de K experimentos)
-✅ Detecta **overfitting** si hay gran varianza entre folds
+Usa **todos los datos** para entrenamiento y validación
+Resultados más **confiables** (promedio de K experimentos)
+Detecta **overfitting** si hay gran varianza entre folds
 
 ---
 
@@ -377,12 +377,12 @@ print(f"Accuracy promedio: {scores.mean():.3f} (+/- {scores.std():.3f})")
 ```
 Dataset desbalanceado: 90% Clase A, 10% Clase B
 
-❌ K-Fold regular puede crear:
+K-Fold regular puede crear:
    Fold 1: 100% Clase A (sin Clase B)
    Fold 2: 95% Clase A, 5% Clase B
    ...
 
-✅ Stratified K-Fold mantiene proporciones:
+Stratified K-Fold mantiene proporciones:
    Fold 1: 90% Clase A, 10% Clase B
    Fold 2: 90% Clase A, 10% Clase B
    ...
@@ -484,12 +484,12 @@ print(f"Accuracy promedio: {scores.mean():.3f}")
 **Problema**: Con series temporales, **NO puedes mezclar los datos**. El futuro no puede predecir el pasado.
 
 ```
-❌ K-Fold regular (mezcla datos):
+K-Fold regular (mezcla datos):
 [Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
 Fold 1: Train [Ene, Mar, May, Jul, Sep, Nov]  Test [Feb, Abr, Jun, Ago, Oct, Dic]
                      ↑ Usa datos del futuro para predecir el pasado ❌
 
-✅ Time Series Split (respeta orden):
+Time Series Split (respeta orden):
 [Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
 Fold 1: Train [Ene, Feb, Mar]          Test [Abr]
 Fold 2: Train [Ene, Feb, Mar, Abr]     Test [May]
@@ -550,10 +550,10 @@ for i, (train_index, test_index) in enumerate(tscv.split(X)):
 ```
 Dataset: Pacientes con múltiples visitas
 
-❌ K-Fold regular:
+K-Fold regular:
    Paciente A: Visita 1 (Train), Visita 2 (Test)  ← Data leakage!
 
-✅ Group K-Fold:
+Group K-Fold:
    Paciente A: Todas sus visitas en Train
    Paciente B: Todas sus visitas en Test
 ```
@@ -883,7 +883,7 @@ graph TD
 └─ Iteración 4: Entrenar con 6400 muestras
    └─ Elegir el mejor
 
-✅ Ahorro: ~75% de entrenamientos vs GridSearch
+Ahorro: ~75% de entrenamientos vs GridSearch
 ```
 
 #### Código con scikit-learn
@@ -937,9 +937,9 @@ graph LR
     A --> C[RandomizedSearchCV<br/>Muestreo]
     A --> D[HalvingSearchCV<br/>Eliminación Progresiva]
 
-    B --> B1[Lento ⏱️⏱️⏱️<br/>Completo ✅]
-    C --> C1[Rápido ⏱️<br/>Bueno ⚠️]
-    D --> D1[Medio ⏱️⏱️<br/>Eficiente 🚀]
+    B --> B1[Lento ⏱⏱⏱<br/>Completo ✅]
+    C --> C1[Rápido ⏱<br/>Bueno ⚠]
+    D --> D1[Medio ⏱⏱<br/>Eficiente 🚀]
 
     style B fill:#ffcccc
     style C fill:#ffffcc
@@ -950,10 +950,10 @@ graph LR
 
 | Método | Velocidad | Cobertura | Mejor Para | Complejidad |
 |--------|-----------|-----------|------------|-------------|
-| **GridSearchCV** | ⏱️⏱️⏱️ Muy lento | ✅ 100% del grid | Espacios pequeños, pocos hiper | 🟢 Simple |
-| **RandomizedSearchCV** | ⏱️⏱️ Rápido | ⚠️ Muestreo aleatorio | Espacios grandes, continuos | 🟡 Media |
-| **HalvingGridSearchCV** | ⏱️⏱️ Medio | ✅ 100% del grid (eficiente) | Espacios medianos | 🟡 Media |
-| **HalvingRandomSearchCV** | ⏱️ Muy rápido | ⚠️ Muestreo aleatorio (eficiente) | Espacios muy grandes | 🟡 Media |
+| **GridSearchCV** | ⏱⏱⏱ Muy lento | ✅ 100% del grid | Espacios pequeños, pocos hiper | 🟢 Simple |
+| **RandomizedSearchCV** | ⏱⏱ Rápido | ⚠ Muestreo aleatorio | Espacios grandes, continuos | 🟡 Media |
+| **HalvingGridSearchCV** | ⏱⏱ Medio | ✅ 100% del grid (eficiente) | Espacios medianos | 🟡 Media |
+| **HalvingRandomSearchCV** | ⏱ Muy rápido | ⚠ Muestreo aleatorio (eficiente) | Espacios muy grandes | 🟡 Media |
 
 ### Ejemplo de Tiempos
 
@@ -1337,10 +1337,10 @@ predictions = optuna_search.predict(X_test)
 
 | Método | Estrategia | Velocidad | Eficiencia | Flexibilidad | Complejidad | Mejor Para |
 |--------|-----------|-----------|-----------|--------------|-------------|------------|
-| **GridSearchCV** | Exhaustiva | ⏱️⏱️⏱️ | ⭐⭐ | 🔧 | 🟢 Simple | Espacios pequeños, reproducibilidad |
-| **RandomizedSearchCV** | Aleatoria | ⏱️⏱️ | ⭐⭐⭐ | 🔧🔧 | 🟢 Simple | Espacios grandes, exploración |
-| **HalvingSearchCV** | Eliminación | ⏱️⏱️ | ⭐⭐⭐⭐ | 🔧 | 🟡 Media | Balance velocidad/cobertura |
-| **Optuna** | Bayesiana | ⏱️ | ⭐⭐⭐⭐⭐ | 🔧🔧🔧 | 🟡 Media | Espacios complejos, máxima eficiencia |
+| **GridSearchCV** | Exhaustiva | ⏱⏱⏱ | ⭐⭐ | 🔧 | 🟢 Simple | Espacios pequeños, reproducibilidad |
+| **RandomizedSearchCV** | Aleatoria | ⏱⏱ | ⭐⭐⭐ | 🔧🔧 | 🟢 Simple | Espacios grandes, exploración |
+| **HalvingSearchCV** | Eliminación | ⏱⏱ | ⭐⭐⭐⭐ | 🔧 | 🟡 Media | Balance velocidad/cobertura |
+| **Optuna** | Bayesiana | ⏱ | ⭐⭐⭐⭐⭐ | 🔧🔧🔧 | 🟡 Media | Espacios complejos, máxima eficiencia |
 
 ### Diagrama de Decisión
 

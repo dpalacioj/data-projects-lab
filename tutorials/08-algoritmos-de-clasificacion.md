@@ -365,10 +365,10 @@ MCC = (71×147 - 15×29) / √[(71+15)(71+29)(147+15)(147+29)]
 ```
 
 **Interpretación:**
-- ✅ **Accuracy 83%**: Modelo preciso en general
-- ✅ **Precision 83%**: Cuando predecimos "sobrevive", acertamos 8 de cada 10 veces
-- ⚠️ **Recall 71%**: Nos perdimos el 29% de los sobrevivientes (29 personas)
-- ✅ **MCC 0.58**: Modelo aprende patrones reales (no es azar)
+- **Accuracy 83%**: Modelo preciso en general
+- **Precision 83%**: Cuando predecimos "sobrevive", acertamos 8 de cada 10 veces
+- ⚠ **Recall 71%**: Nos perdimos el 29% de los sobrevivientes (29 personas)
+- **MCC 0.58**: Modelo aprende patrones reales (no es azar)
 
 **Decisión**: Si el objetivo es **salvar vidas**, deberíamos aumentar el Recall (bajar umbral) aunque perdamos algo de Precision.
 

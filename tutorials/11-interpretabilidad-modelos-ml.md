@@ -93,10 +93,10 @@ mindmap
 Modelo: Predicción de riesgo de enfermedad cardíaca
 Predicción: "Alto riesgo (85%)"
 
-❌ Sin interpretabilidad:
+Sin interpretabilidad:
    "Tiene 85% de riesgo" → El médico no sabe qué factores considerar
 
-✅ Con interpretabilidad:
+Con interpretabilidad:
    "85% de riesgo PORQUE:
    - Colesterol: +25%
    - Presión arterial: +30%
@@ -112,10 +112,10 @@ Predicción: "Alto riesgo (85%)"
 Modelo: Aprobación de préstamo
 Predicción: "RECHAZADO"
 
-❌ Sin interpretabilidad:
+Sin interpretabilidad:
    "Préstamo denegado" → Cliente frustrado, posible demanda
 
-✅ Con interpretabilidad:
+Con interpretabilidad:
    "Denegado PORQUE:
    - Historial crediticio insuficiente (-40%)
    - Ratio deuda/ingreso alto (-35%)
@@ -130,10 +130,10 @@ Predicción: "RECHAZADO"
 Modelo: Predicción de abandono de clientes (churn)
 Predicción: "Cliente probablemente abandonará"
 
-❌ Sin interpretabilidad:
+Sin interpretabilidad:
    "Churn probable" → ¿Qué hacer?
 
-✅ Con interpretabilidad:
+Con interpretabilidad:
    "Churn probable PORQUE:
    - Baja frecuencia de uso (-30%)
    - No abre emails (-25%)
@@ -186,9 +186,9 @@ Variables:
 └─────────────────┴──────────────────┘
 
 Interpretación:
-✅ La ubicación es el factor más determinante (40%)
-✅ El tamaño también es muy importante (30%)
-⚠️ El color de la fachada casi no importa (5%)
+La ubicación es el factor más determinante (40%)
+El tamaño también es muy importante (30%)
+⚠ El color de la fachada casi no importa (5%)
 ```
 
 ---
@@ -537,9 +537,9 @@ Probabilidad base de aprobación: 50%
                                     Predicción: 85% APROBADO ✅
 
 Interpretación:
-✅ Ingreso alto es el factor MÁS importante (+25%)
-✅ Buen historial crediticio también ayuda mucho (+15%)
-⚠️ No tener propiedad es un factor negativo (-10%)
+Ingreso alto es el factor MÁS importante (+25%)
+Buen historial crediticio también ayuda mucho (+15%)
+⚠ No tener propiedad es un factor negativo (-10%)
 ```
 
 ---
@@ -1150,13 +1150,13 @@ Explicación para el cliente:
 Su solicitud fue RECHAZADA porque:
 
 Factores negativos:
-❌ Historial crediticio bajo (580) → -30%
-❌ Ingresos insuficientes ($35k/año) → -20%
-❌ Sin propiedad → -15%
+Historial crediticio bajo (580) → -30%
+Ingresos insuficientes ($35k/año) → -20%
+Sin propiedad → -15%
 
 Factores positivos:
-✅ Años de empleo (5 años) → +10%
-✅ Ahorros ($8k) → +5%
+Años de empleo (5 años) → +10%
+Ahorros ($8k) → +5%
 
 Recomendación:
 Para mejorar sus posibilidades:
@@ -1258,14 +1258,14 @@ Probabilidad de renuncia: 82%
 Análisis SHAP:
 
 Factores de riesgo:
-❌ Satisfacción baja (3/10) → +35%
-❌ Salario 15% bajo vs mercado → +25%
-❌ 4 años sin promoción → +18%
-❌ Horas extra frecuentes → +10%
+Satisfacción baja (3/10) → +35%
+Salario 15% bajo vs mercado → +25%
+4 años sin promoción → +18%
+Horas extra frecuentes → +10%
 
 Factores de retención:
-✅ Buen ambiente con equipo → -5%
-✅ Beneficios competitivos → -3%
+Buen ambiente con equipo → -5%
+Beneficios competitivos → -3%
 
 Plan de acción personalizado:
 1. [URGENTE] Conversación salarial
