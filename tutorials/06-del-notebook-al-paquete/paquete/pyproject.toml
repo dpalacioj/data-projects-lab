@@ -1,7 +1,7 @@
 [project]
 name = "analisis-ventas"
 version = "0.1.0"
-description = "Paquete de demostracion del tutorial 02e: calcular el precio promedio ponderado de ventas."
+description = "Paquete de demostracion del tutorial 06: calcular el precio promedio ponderado de ventas."
 requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.1",

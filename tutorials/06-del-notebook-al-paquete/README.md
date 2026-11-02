@@ -4,7 +4,7 @@ parent: Tutoriales
 nav_order: 8
 has_children: true
 ---
-# Tutorial 02e — Del notebook al paquete: el mismo analisis, tres veces
+# Tutorial 06 — Del notebook al paquete: el mismo analisis, tres veces
 
 > Pre-requisito: ambiente del curso montado ([tutorial 00](../00-ambientes-venv-conda-uv/)).
 > Dependencia extra: ninguna; usa pandas y numpy que ya vienen en la base.
@@ -46,11 +46,11 @@ al scope de este curso (pre-MLOps).
 1. Abre [`01-tres-estados.ipynb`](01-tres-estados.ipynb). Ya trae outputs
    commiteados; léelo primero sin ejecutar para ver qué pasa.
 2. Ejecútalo tú mismo. En el estado 3, el notebook instala el paquete local
-   con `pip install -e paquete/`. Si te molesta modificar tu entorno, hazlo en
-   un `.venv` del tutorial.
+   con `uv pip install -e paquete/`. El `-e` lo deja en modo editable, así
+   los cambios en `src/analisis_ventas/` se reflejan al instante.
 3. Abre los archivos del paquete y léelos. Son pequeños a propósito: la
    totalidad del "código de negocio" cabe en menos de 100 líneas.
-4. Corre los tests: `pytest paquete/tests/` (desde esta carpeta).
+4. Corre los tests: `uv run pytest paquete/tests/` (desde esta carpeta).
 5. Haz el [taller](taller.md): aplica el patrón a un notebook tuyo.
 
 ---
@@ -58,9 +58,10 @@ al scope de este curso (pre-MLOps).
 ## Qué NO cubre este tutorial
 
 - **No** cubre `uv`, `Makefile` ni gestión de ambientes. Eso está en los
-  tutoriales [00](../00-ambientes-venv-conda-uv/) y [02c](../02c-el-makefile-del-curso.md).
+  tutoriales [00](../00-ambientes-venv-conda-uv/) y
+  [03](../03-el-makefile-del-curso.md).
 - **No** cubre contratos de datos ni dataset cards. Eso es el
-  [tutorial 02d](../02d-datos-como-codigo/).
+  [tutorial 05](../05-datos-como-codigo/).
 - **No** cubre CI, pre-commit hooks ni devcontainer. Esas son piezas de MLOps
   que no están en este curso.
 

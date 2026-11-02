@@ -20,5 +20,5 @@ Tests:
 
 ```bash
 cd ..  # vuelve al tutorial
-pytest paquete/tests/
+uv run pytest paquete/tests/
 ```

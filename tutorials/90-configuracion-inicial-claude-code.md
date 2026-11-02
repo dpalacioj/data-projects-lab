@@ -177,6 +177,6 @@ graph LR
 
 ---
 
-**Siguiente Tutorial**: [02-configuracion-uv.md](./02-configuracion-uv.md) - Gestión moderna de paquetes Python con UV
+**Siguiente Tutorial**: [02-configuracion-proyecto-uv.md](./02-configuracion-proyecto-uv.md) — gestión moderna de paquetes Python con `uv`.
 
 > 💬 **Tip**: Este documento fue creado con la ayuda de Claude Code. ¡Es meta-programación en acción!

@@ -58,8 +58,8 @@ src/models/train_model.py               [Pipeline]
 
 **Ejecutar:**
 ```bash
-python train.py              # Entrenamiento base
-python train.py --optimize   # Con optimización
+uv run python train.py              # Entrenamiento base
+uv run python train.py --optimize   # Con optimización
 ```
 
 ### 5. Despliegue
@@ -74,7 +74,7 @@ ui/streamlit_app.py
 
 **Ejecutar:**
 ```bash
-streamlit run ui/streamlit_app.py
+uv run streamlit run ui/streamlit_app.py
 ```
 
 ---
@@ -108,7 +108,7 @@ git lfs pull
 **"ModuleNotFoundError: No module named 'src'"**
 ```bash
 cd projects/02-clasificador-meli
-python train.py
+uv run python train.py
 ```
 
 ---

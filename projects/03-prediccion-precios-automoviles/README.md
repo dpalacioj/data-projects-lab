@@ -207,8 +207,8 @@ cd prediccion-precios-automoviles
 
 **Opción 2 - Comando manual:**
 ```bash
-cd prediccion-precios-automoviles
-mlflow ui
+cd projects/03-prediccion-precios-automoviles
+uv run mlflow ui
 ```
 
 Abrir en navegador: http://localhost:5000

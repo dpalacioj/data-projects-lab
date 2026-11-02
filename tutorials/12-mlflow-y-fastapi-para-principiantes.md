@@ -189,8 +189,8 @@ MLFlow creó un registro completo que incluye:
 MLFlow incluye una interfaz web donde puedes ver todos tus experimentos:
 
 ```bash
-# Ejecutar en terminal
-mlflow ui
+# Ejecutar en terminal (desde la raíz del repo)
+uv run mlflow ui
 ```
 
 Luego abres: http://localhost:5000
@@ -379,7 +379,8 @@ def health_check():
 #### 1. Iniciar el servidor:
 
 ```bash
-uvicorn app_fastapi:app --reload --host 0.0.0.0 --port 8000
+# Desde la carpeta del proyecto 03 (donde está app_fastapi.py)
+uv run uvicorn app_fastapi:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Ahora tu API está corriendo en: http://localhost:8000

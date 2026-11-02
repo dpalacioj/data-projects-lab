@@ -4,10 +4,13 @@ parent: Tutoriales
 nav_order: 7
 has_children: true
 ---
-# Tutorial 02d — Datos como código: dataset card + contratos ejecutables
+# Tutorial 05 — Datos como código: dataset card + contratos ejecutables
 
 > Pre-requisito: tener el ambiente del curso montado ([tutorial 00](../00-ambientes-venv-conda-uv/)).
-> Dependencia extra para este tutorial: `uv pip install pandera` (o `pip install pandera` si usas `.venv`).
+> Dependencia extra para este tutorial: `pandera`. La forma limpia de
+> incluirla solo mientras corres los ejemplos de este tutorial es
+> lanzar Jupyter con `uv run --with pandera jupyter lab` (no toca el
+> `pyproject.toml` del repo).
 
 Un modelo que entrena sin errores y sirve predicciones aparentemente razonables
 **no es evidencia de que el dato sigue siendo el mismo**. Este tutorial muestra

@@ -37,7 +37,7 @@ Alguien que no te conoce lo lee y debe poder responder:
 - ¿Cómo lo corro?
 - ¿Qué resultado puedo esperar?
 
-Si tu README no responde esas 4 preguntas, no te lo acepto.
+Si tu README no responde esas 4 preguntas, el entregable no está listo.
 
 ### 2. Datos documentados
 

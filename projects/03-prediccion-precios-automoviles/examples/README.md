@@ -10,8 +10,8 @@ Esta carpeta contiene ejemplos para probar la API de predicción de precios de a
 **Inicia la API primero:**
 
 ```bash
-cd prediccion-precios-automoviles
-python app_fastapi.py
+cd projects/03-prediccion-precios-automoviles
+uv run python app_fastapi.py
 ```
 
 La API debería estar corriendo en: http://localhost:8000
@@ -40,11 +40,9 @@ La API debería estar corriendo en: http://localhost:8000
 **Archivo:** `test_api.py`
 
 ```bash
-# Instalar requests si no lo tienes
-pip install requests
-
-# Ejecutar script
-python examples/test_api.py
+# `requests` ya viene en el extra regresion-automoviles (es transitivo de
+# fastapi/gradio). Si corres desde la raíz del repo:
+uv run python projects/03-prediccion-precios-automoviles/examples/test_api.py
 ```
 
 **Ventajas:**
