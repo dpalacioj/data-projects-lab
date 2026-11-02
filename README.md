@@ -8,17 +8,51 @@ permalink: /
 Material de clase del módulo **Proyecto I** de la Especialización en
 Ciencia de Datos e Inteligencia Artificial, Universidad de Medellín.
 
+- **Sitio navegable:** <https://dpalacioj.github.io/data-projects-lab/>
+- **Código fuente:** <https://github.com/dpalacioj/data-projects-lab>
+- Última revisión: **2026-11-02** · Python 3.11 · gestor `uv`.
+
 Este módulo no es de MLOps. Las piezas pesadas (orquestación, despliegue
 en la nube, monitoreo) se ven en el módulo siguiente. Aquí practicamos
-la disciplina previa: formular bien el objetivo, mirar los datos con
+la disciplina previa: **formular bien el objetivo, mirar los datos con
 honestidad, construir pipelines sin fuga, entrenar modelos reproducibles
-y dejar un entregable que otra persona pueda recoger sin pedir ayuda.
+y dejar un entregable que otra persona pueda recoger sin pedir ayuda.**
 
 Si llegas por primera vez, lee este README hasta el final antes de abrir
 nada. No asume que ya sabes `uv`, ni git, ni `Makefile`. Es más corto
 que una clase.
 
-Última revisión: **2026-10-25** · Python 3.11 · gestor `uv`.
+---
+
+## Qué vas a entregar al final del módulo
+
+Un repositorio en GitHub con un proyecto de datos **tuyo** que un
+compañero pueda clonar, correr y entender sin pedirte ayuda. En
+concreto: README que explique el problema, datos documentados, código
+modularizado en `src/`, una app (Streamlit o FastAPI) que exponga el
+modelo, tests que corran en CI y un commit verde al momento de
+presentar. La especificación completa está en
+[`trabajo-final/README.md`](trabajo-final/README.md); la plantilla
+mínima que puedes clonar es
+[`projects/05-ejemplo-completo/`](projects/05-ejemplo-completo/).
+
+> Léelo temprano — en la semana 1. Saber hacia dónde vas cambia la
+> forma en que lees todo lo demás.
+
+---
+
+## Qué conocimientos previos asume
+
+- **Python básico**: funciones, listas, `pandas` o similar. No tienes
+  que ser experto; sí tienes que haber escrito algún script.
+- **Terminal elemental**: moverte con `cd`, `ls`, correr un comando. Si
+  nunca has abierto una terminal, el
+  [tutorial 01](tutorials/01-git-flujo-de-trabajo.md) te acompaña.
+- **No asumimos**: experiencia con git, con `uv`, con `Makefile`, con
+  CI, ni con apps web. Todo eso lo construimos aquí.
+
+Si vienes de otro lenguaje (Java, R, SQL) y nunca escribiste Python,
+dedica una tarde a un tutorial introductorio antes de empezar.
 
 ---
 
@@ -91,6 +125,24 @@ make smoke       # verifica que todo quedó bien
 `uv run python scripts/smoke_test.py`.)
 
 No sigas hasta que `make smoke` salga limpio.
+
+> Con buena conexión, `make setup` toma ~3 minutos la primera vez.
+> Las siguientes son casi instantáneas gracias al caché global de `uv`.
+
+### Comprueba el flujo completo en 5 minutos
+
+Una vez que `make smoke` esté verde, corre el flujo del caso guía end-to-end
+para confirmar que todo está conectado:
+
+```bash
+make setup-caso              # instala el extra del caso guía
+make descargar-datos         # Online Retail II (~6 MB)
+make preparar-datos          # genera data/processed/*.parquet
+make test                    # 75 tests en ~5 segundos
+```
+
+Si los 4 comandos salen limpios, tu entorno quedó listo para S02 y S03.
+Si alguno falla, revisa [cuándo pedir ayuda](#cuándo-pedir-ayuda) más abajo.
 
 ### Aprende git antes de tocar código
 
@@ -189,16 +241,17 @@ abre ese.
 
 ## Los demás proyectos
 
-Los proyectos están numerados por nivel. Un `ls projects/` los muestra
-en el orden que yo los enseño:
+Los proyectos están numerados por nivel. Son **cinco proyectos
+didácticos completos** (00 a 05) y **cuatro demos cortas** (d1 a d4).
+Un `ls projects/` los muestra en el orden en que se enseñan:
 
 ```
-00-segmentacion-clientes       Caso guía
-01-titanic                     AutoML, primer contacto
-02-clasificador-meli           XGBoost
+00-segmentacion-clientes       Caso guía (Online Retail II)
+01-titanic                     AutoML, primer contacto con sklearn
+02-clasificador-meli           XGBoost sobre datos reales
 03-prediccion-precios-autos    Modularización + MLflow + FastAPI
 04-reconocimiento-imagenes     CNN + Streamlit + FastAPI (cierra el flujo)
-05-ejemplo-completo            Plantilla del trabajo final (clasificador tabular + CI + Makefile propio)
+05-ejemplo-completo            Plantilla del trabajo final
 d1-ejercicio-preprocesamiento  Demo: pipelines sin fuga
 d2-temporal-split              Demo: split temporal
 d3-promociones-usuarios        Demo: construcción de target
@@ -215,8 +268,16 @@ S04 pide: notebook paso a paso → código modular en `src/` → app Streamlit
 El proyecto **05-ejemplo-completo** es la plantilla específica del
 **trabajo final del módulo**. Trae todo lo del 04 más `tests/`,
 `Makefile` propio y una plantilla de CI (`ci-ejemplo.yml`) lista para
-copiar a tu propio repositorio. Si tu proyecto final es tabular, cloná
-su estructura y adaptala a tu problema.
+copiar a tu propio repositorio. Si tu proyecto final es tabular, clona
+su estructura y adáptala a tu problema.
+
+Los proyectos **01 (Titanic) y 03 (automóviles)** son material previo
+que se mantiene porque muestran enfoques complementarios: **01** cubre
+AutoML (PyCaret, FLAML) que te sirve si tu dataset es muy chico o
+quieres un baseline rápido; **03** muestra MLflow para tracking de
+experimentos y Gradio como alternativa a Streamlit. No son parte del
+camino mínimo, pero vale la pena abrirlos cuando te choques con esos
+temas en tu propio proyecto.
 
 ---
 
@@ -276,22 +337,49 @@ Un solo `pyproject.toml` en la raíz. Las dependencias base (pandas, numpy,
 sklearn, matplotlib, jupyter) son lo que **cualquier** sesión necesita.
 Cada proyecto declara sus dependencias específicas como **extra**:
 
-```bash
-uv sync --extra dev                                   # base del curso
-uv sync --extra segmentacion-clientes --extra dev     # + caso guía (S02/S03)
-uv sync --extra reconocimiento-imagenes --extra dev   # + proyecto 04 (CNN)
-uv sync --extra titanic                               # + proyecto 01
-uv sync --extra regresion-automoviles                 # + proyecto 03
-```
+| Comando | Instala |
+|---|---|
+| `uv sync --extra dev` | Base del curso + herramientas de desarrollo (pytest, ruff, mypy, ipython) |
+| `uv sync --extra segmentacion-clientes --extra dev` | Caso guía (S02/S03): Polars 2.x, Streamlit, FastAPI, data-profiling |
+| `uv sync --extra reconocimiento-imagenes --extra dev` | Proyecto 04: PyTorch, torchvision, Streamlit, FastAPI |
+| `uv sync --extra ejemplo-completo --extra dev` | Plantilla del trabajo final (proyecto 05) |
+| `uv sync --extra titanic --extra dev` | Proyecto 01: FLAML (AutoML), Streamlit, Plotly |
+| `uv sync --extra meli --extra dev` | Proyecto 02: XGBoost, Pydantic |
+| `uv sync --extra regresion-automoviles --extra dev` | Proyecto 03: MLflow, Gradio, FastAPI, LightGBM |
+| `uv sync --extra all` | Todo lo anterior (útil para CI o para explorar varios proyectos) |
 
-Los nombres de los extras no llevan prefijo numérico (son nombres
-lógicos, no de carpeta). La lista completa está en
-[`projects/README.md`](projects/README.md).
+**Extras temáticos** (opcionales, se combinan con los de proyecto):
+`interpretability` (SHAP, LIME), `optimization` (Optuna), `experiment`
+(MLflow, Weights & Biases), `web` (Streamlit, Plotly, Gradio).
+
+Los nombres de los extras **no** llevan prefijo numérico (son nombres
+lógicos, no de carpeta). La definición completa vive en el
+`pyproject.toml` raíz.
 
 **Por qué así.** El proyecto 03 trae MLflow y Gradio (deps pesadas); el 04
 trae PyTorch (más pesado todavía). Un estudiante que solo necesita Polars
 no debería descargar 2 GB para arrancar. Los extras por proyecto
 mantienen la base ligera.
+
+---
+
+## Cuándo pedir ayuda
+
+Antes de preguntar en clase o abrir un issue, revisa en este orden:
+
+1. **El troubleshooting de la sesión en la que estés trabajando.** S02 y
+   S03 tienen su propio archivo con los errores reales que ya hemos
+   visto:
+   [`sesiones/s02-exploracion-polars/07-troubleshooting.md`](sesiones/s02-exploracion-polars/07-troubleshooting.md),
+   [`sesiones/s03-procesamiento-sklearn/07-troubleshooting.md`](sesiones/s03-procesamiento-sklearn/07-troubleshooting.md).
+2. **Corre `make smoke` otra vez.** La mitad de los problemas son
+   "olvidé correr `uv sync` después de un `git pull`".
+3. **Lee el error completo** — no solo la última línea. Python suele
+   decirte en qué línea de qué archivo falló.
+4. **Busca en issues cerrados del repo:** <https://github.com/dpalacioj/data-projects-lab/issues?q=is%3Aissue>.
+5. **Si nada de lo anterior aplica**, abre un issue nuevo pegando: el
+   comando exacto que corriste, el error completo, tu SO y la salida de
+   `uv --version` y `python3 --version`.
 
 ---
 
