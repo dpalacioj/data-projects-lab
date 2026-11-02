@@ -92,7 +92,7 @@ Desde la raíz del repositorio `data-projects-lab`:
 
 ```bash
 # Instalar dependencias del proyecto de regresión
-uv sync --extra regresion-automoviles
+uv sync --extra regresion-automoviles --extra dev
 ```
 
 Esto instalará automáticamente:
@@ -539,7 +539,7 @@ Este proyecto es una base educativa que puede extenderse:
 
 ### Error: ModuleNotFoundError
 **Causa:** Dependencias no instaladas
-**Solución:** Desde la raíz del repositorio, ejecutar `uv sync --extra regresion-automoviles`
+**Solución:** Desde la raíz del repositorio, ejecutar `uv sync --extra regresion-automoviles --extra dev`
 
 ### Error: Puerto ocupado (Gradio/FastAPI)
 **Causa:** Otra aplicación está usando el puerto

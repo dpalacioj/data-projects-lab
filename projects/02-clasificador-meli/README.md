@@ -100,8 +100,11 @@ ls -lh ../../datasets/MLA_100k.jsonlines
 **Opción A: Con uv (recomendado)**
 ```bash
 # Desde la raíz del repositorio data-projects-lab/
-uv sync
+uv sync --extra meli --extra dev
 ```
+
+El extra `meli` trae `xgboost`, `pydantic`, `joblib` y `scipy`. El extra
+`dev` trae `jupyter`, `pytest` y `ruff`.
 ---
 
 ## Uso Rápido

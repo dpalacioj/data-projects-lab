@@ -240,12 +240,15 @@ Categóricos:
 # Desde la raíz del repositorio
 cd data-projects-lab
 
-# Instalar dependencias base
-uv sync
-
-# Instalar dependencias opcionales (AutoML, interpretabilidad)
-uv pip install -e ".[all]"
+# Instalar deps base + extra del proyecto titanic + extra de desarrollo
+uv sync --extra titanic --extra dev
 ```
+
+> **AutoML (notebooks 04 y 05)**: PyCaret y FLAML aún no son compatibles
+> con `scikit-learn >= 1.6`. Para esos dos cuadernos necesitarás un
+> `.venv-automl` aparte — las instrucciones están en la sección
+> siguiente. El resto del proyecto (notebooks 01, 02, 06, 07, app
+> Streamlit) corre perfectamente con el `.venv` principal.
 
 ### Ejecutar Notebooks
 

@@ -84,27 +84,31 @@ De todos los casos positivos reales, ¿cuántos capturamos?
 
 ### Paso 1 — Instala las dependencias
 
-Esta demo usa LightGBM, que no está en la base. Desde la **raíz del repo**:
+Esta demo usa **LightGBM**, que no viene en la base del curso. La forma
+más limpia de correrla sin modificar el `pyproject.toml` del repo es
+pedirle a `uv` que agregue LightGBM solo para esta corrida:
 
 ```bash
-uv add lightgbm --dev           # añade LightGBM al grupo dev del repo
-uv sync --extra dev
-```
-
-(Alternativa simple: `uv run --with lightgbm jupyter lab umbral_clasificacion.ipynb`
-desde esta carpeta, sin modificar `pyproject.toml`.)
-
-### Paso 2 — Abre el notebook
-
-```bash
+# Desde la carpeta de la demo
 cd projects/d4-umbrales-ejemplo
-uv run jupyter lab umbral_clasificacion.ipynb
+uv run --with lightgbm jupyter lab umbral_clasificacion.ipynb
 ```
 
-### Paso 3 — Qué hacer en clase
+`uv run --with lightgbm` descarga LightGBM a un ambiente temporal
+cacheado y lanza Jupyter con él disponible. No toca `pyproject.toml`
+ni `uv.lock`, así que no interfiere con el resto del curso.
 
-Ejecuta las celdas secuencialmente. Observa cómo cambia la relación
-precision/recall al mover el umbral de 0.1 a 0.9.
+> Si prefieres que LightGBM quede siempre disponible, agrégalo al
+> `pyproject.toml` del repo (en el extra `experiment`, por ejemplo) y
+> corre `uv sync --extra experiment --extra dev`. No es necesario para
+> esta demo.
+
+### Paso 2 — Qué hacer con el notebook
+
+Jupyter se abrió en el navegador apuntando a `umbral_clasificacion.ipynb`.
+Ejecuta las celdas secuencialmente (menú **Run → Run All Cells**) y
+observa cómo cambia la relación precision/recall al mover el umbral de
+0.1 a 0.9.
 
 **Objetivo pedagógico (20 min):** romper el reflejo de usar siempre 0.5
 y entender que el umbral se elige con el equipo de negocio según el
