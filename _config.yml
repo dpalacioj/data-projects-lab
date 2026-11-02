@@ -17,10 +17,19 @@ plugins:
   - jekyll-remote-theme
 
 # Config del tema
-color_scheme: light         # cambia a 'dark' para modo oscuro
+# color_scheme define el tema por defecto; el usuario puede alternar
+# claro/oscuro con el boton de la barra superior (ver _includes/head_custom.html).
+# La preferencia se guarda en localStorage y persiste entre visitas.
+color_scheme: light
 search_enabled: true
 heading_anchors: true
 nav_sort: case_insensitive  # ordena el sidebar alfabeticamente ignorando mayusculas
+
+# Diagramas Mermaid renderizados por el navegador.
+# just-the-docs los soporta nativamente: cualquier bloque ```mermaid
+# dentro de un .md se renderiza como SVG en el sitio publicado.
+mermaid:
+  version: "10.9.1"
 
 # Enlace al repo de GitHub en el header del sitio
 aux_links:
@@ -68,6 +77,11 @@ exclude:
   - tests/
   - scripts/
   - docs/material-estudiante/
+
+  # Material de preparacion interna (no se publica para el estudiante)
+  - sesiones/_templates/
+  - sesiones/s02-exploracion-polars/08-checklist-dia-de-clase.md
+  - sesiones/s03-procesamiento-sklearn/08-checklist-dia-de-clase.md
 
   # Configuracion del proyecto Python
   - uv.lock

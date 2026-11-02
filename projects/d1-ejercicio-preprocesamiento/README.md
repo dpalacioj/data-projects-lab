@@ -64,9 +64,7 @@ ejercicio-preprocesamiento/
 └── 02_solucion_preprocesamiento.ipynb         # Solución comentada
 ```
 
-## Cómo Usar
-
-### Estudiantes
+## Cómo usar
 
 1. Abre `01_ejercicio_preprocesamiento.ipynb`.
 2. Lee el contexto y el enunciado.
@@ -74,31 +72,24 @@ ejercicio-preprocesamiento/
 4. Intenta responder las preguntas de reflexión sin mirar la solución.
 5. Compara con `02_solucion_preprocesamiento.ipynb`.
 
-### Profesores
-
-- El ejercicio está pensado para una sesión de **2 horas**.
-- Puedes pedirles que entreguen la tabla de comparación final + un
-  párrafo justificando la mejor configuración.
-- Variantes posibles para evaluar:
-  - Cambiar el dataset (German Credit, Heart Disease).
-  - Pedir que agreguen un escalador robusto (`RobustScaler`).
-  - Pedir feature selection adicional (`SelectKBest`).
+Tiempo estimado: ~2 horas de trabajo autónomo.
 
 ## Requisitos
 
 ```bash
 # Desde la raíz del repositorio
-uv sync
+uv sync --extra dev
 ```
 
-Las dependencias base (pandas, numpy, scikit-learn, matplotlib, seaborn,
-jupyter) son suficientes para este ejercicio. No requiere extras.
+Las dependencias base del curso (pandas, numpy, scikit-learn,
+matplotlib, seaborn) más `jupyter` (que viene en el extra `dev`) son
+suficientes para este ejercicio. No requiere extras de proyecto.
 
 ## Ejecución
 
 ```bash
 cd projects/d1-ejercicio-preprocesamiento
-jupyter lab 01_ejercicio_preprocesamiento.ipynb
+uv run jupyter lab 01_ejercicio_preprocesamiento.ipynb
 ```
 
 ## Resultados Esperados

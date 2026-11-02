@@ -61,11 +61,13 @@ uv init --name data-projects-lab --no-readme
 ```
 data-projects-lab/
 ├── pyproject.toml       # Configuración del proyecto
-├── .python-version      # Versión de Python (ej: 3.12)
-├── tutorials/          
-├── projects/           
-├── examples/           
-└── datasets/           
+├── .python-version      # Versión de Python (ej: 3.11)
+├── uv.lock              # Lockfile generado por uv
+├── Makefile             # Atajos de comandos (ver tutorial 03)
+├── tutorials/
+├── sesiones/
+├── projects/
+└── datasets/
 ```
 
 ## 📝 Paso 3: Configurar pyproject.toml
@@ -113,14 +115,34 @@ uv add jupyter notebook ipykernel
 uv add python-dotenv tqdm
 ```
 
-### Dependencias de desarrollo (solo para desarrollo)
-```bash
-# Herramientas de desarrollo
-uv add --dev pytest pytest-cov
-uv add --dev black isort flake8
-uv add --dev mypy
-uv add --dev ipdb  # Debugger para notebooks
+### Dependencias de desarrollo (grupo opcional `dev`)
+
+En este repositorio las herramientas de desarrollo viven en un **extra**
+llamado `dev` (no en un `[dependency-groups]` ni en `[tool.uv]`). Para
+agregarlas al `pyproject.toml` manualmente, se declaran así:
+
+```toml
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",       # linter y formateador rápido (reemplaza a black + isort + flake8)
+    "mypy>=1.0.0",
+    "ipython>=8.0.0",
+]
 ```
+
+Luego se instalan con:
+
+```bash
+uv sync --extra dev
+```
+
+> El curso usa **`ruff`** como linter y formateador — es la herramienta
+> moderna que reemplaza a `black`, `isort` y `flake8` en una sola
+> dependencia escrita en Rust. Si en otro proyecto ves `flake8` o
+> `black`, no están "mal", pero `ruff` cubre lo mismo y es ~100× más
+> rápido.
 
 ### El pyproject.toml resultante
 ```toml
@@ -153,21 +175,26 @@ dependencies = [
 Homepage = "https://github.com/tu-usuario/data-projects-lab"
 Repository = "https://github.com/tu-usuario/data-projects-lab.git"
 
-[tool.uv]
-dev-dependencies = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "black>=23.0.0",
-    "isort>=5.12.0",
-    "flake8>=6.0.0",
-    "mypy>=1.5.0",
-    "ipdb>=0.13.13"
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "ipython>=8.0.0",
 ]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 ```
+
+> **Nota sobre extras.** El `pyproject.toml` real del repositorio usa
+> además extras por proyecto (`segmentacion-clientes`,
+> `reconocimiento-imagenes`, `titanic`, etc.). Por eso en el curso se
+> ve `uv sync --extra segmentacion-clientes --extra dev` y no un simple
+> `uv sync`. El tutorial 02b (`02b-modularizacion-proyecto-datos.md`)
+> explica por qué.
 
 ## 🔒 Paso 5: El archivo uv.lock
 

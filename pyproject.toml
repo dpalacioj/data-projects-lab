@@ -173,6 +173,10 @@ ignore = ["E501"]
 "projects/00-segmentacion-clientes/app/recompra_streamlit.py" = ["E402"]
 # La API FastAPI del caso guia tambien ajusta sys.path antes de importar.
 "projects/00-segmentacion-clientes/api/main.py" = ["E402"]
+# Scripts de preparacion de datos ajustan sys.path antes de importar
+# `segmentacion.*`; el patron es didactico (correr sin instalar el paquete).
+"projects/00-segmentacion-clientes/scripts/preparar_datos.py" = ["E402", "I001"]
+"projects/00-segmentacion-clientes/scripts/generar_features_clientes.py" = ["E402", "I001"]
 
 [tool.mypy]
 python_version = "3.11"

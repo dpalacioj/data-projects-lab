@@ -3,7 +3,7 @@ title: "03 · Makefile"
 parent: Tutoriales
 nav_order: 5
 ---
-# Tutorial 02c — El `Makefile` del curso, explicado línea por línea
+# Tutorial 03 — El `Makefile` del curso, explicado línea por línea
 
 > Pre-requisito: haber hecho el [tutorial 00](00-ambientes-venv-conda-uv/) y tener el ambiente del curso montado.
 
@@ -70,7 +70,9 @@ recordar.
 ### 3. `.PHONY: ...`
 
 ```makefile
-.PHONY: help setup setup-caso smoke test lint clean
+.PHONY: help setup setup-caso smoke test test-slow test-all lint clean \
+        app-recompra api-recompra train-recompra \
+        app-segmentacion features-segmentacion preparar-datos descargar-datos
 ```
 
 `.PHONY` le dice a Make: "estos nombres NO son archivos, son solo etiquetas
@@ -185,10 +187,22 @@ archivo y copia el comando que te interesa:
 | `make setup` | `uv sync --extra dev` |
 | `make setup-caso` | `uv sync --extra segmentacion-clientes --extra dev` |
 | `make smoke` | `python3 scripts/smoke_test.py` |
-| `make test` | `uv run pytest` |
+| `make test` | `uv run pytest -m "not slow"` |
 | `make test-slow` | `uv run pytest -m slow` |
+| `make test-all` | `uv run pytest` |
 | `make lint` | `uv run ruff check projects/00-segmentacion-clientes/` |
 | `make clean` | Borra a mano `__pycache__/`, `.pytest_cache/`, `.ruff_cache/`, `.mypy_cache/` |
+| `make descargar-datos` | `cd projects/00-segmentacion-clientes && uv run python scripts/descargar_datos.py` |
+| `make preparar-datos` | `cd projects/00-segmentacion-clientes && uv run python scripts/preparar_datos.py` |
+| `make features-segmentacion` | `cd projects/00-segmentacion-clientes && uv run python scripts/generar_features_clientes.py` |
+| `make train-recompra` | `cd projects/00-segmentacion-clientes && uv run python scripts/entrenar_recompra.py` |
+| `make app-recompra` | `cd projects/00-segmentacion-clientes && uv run streamlit run app/recompra_streamlit.py` |
+| `make api-recompra` | `cd projects/00-segmentacion-clientes && uv run uvicorn api.main:app --reload` |
+| `make app-segmentacion` | `cd projects/00-segmentacion-clientes && uv run streamlit run app/streamlit_app.py` |
+
+> Los últimos siete solo tienen sentido una vez entres a la Unidad 3 o
+> a la Unidad 4 del caso guía. Si todavía estás en U2, el único que
+> necesitarás es `make descargar-datos`.
 
 ---
 

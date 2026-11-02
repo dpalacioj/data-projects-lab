@@ -1,30 +1,122 @@
 <!--
   Comportamiento personalizado del sitio:
-  Los enlaces DENTRO del contenido (no los del sidebar ni prev/next) se
-  abren en una pestaña nueva, para que el lector no pierda su lugar.
 
-  Esto incluye los links a otros README/tutoriales que aparezcan en
-  medio de un texto, pero NO afecta:
-    - El sidebar de navegacion a la izquierda.
-    - Los botones prev/next al pie de la pagina.
-    - Los enlaces de la ruta (breadcrumbs).
-    - Los enlaces #seccion dentro de la misma pagina.
+  1) Los enlaces DENTRO del contenido (no los del sidebar ni prev/next)
+     se abren en una pestaña nueva, para que el lector no pierda su
+     lugar. Esto incluye los links a otros README/tutoriales que
+     aparezcan en medio de un texto, pero NO afecta:
+       - El sidebar de navegacion a la izquierda.
+       - Los botones prev/next al pie de la pagina.
+       - Los enlaces de la ruta (breadcrumbs).
+       - Los enlaces #seccion dentro de la misma pagina.
+
+  2) Toggle claro/oscuro en la barra superior.
+     - just-the-docs expone `jtd.setTheme('light' | 'dark')` para
+       alternar paletas en vivo sin recargar la pagina.
+     - El boton se inserta en `.aux-nav` (donde ya vive "Ver en GitHub")
+       la primera vez que el DOM esta listo.
+     - La preferencia del usuario se guarda en `localStorage` con la
+       clave `jtd-color-scheme`, y se restaura en cargas posteriores.
+     - Si el usuario nunca ha elegido manualmente, se respeta
+       `prefers-color-scheme` del sistema operativo.
 -->
+<style>
+  /* Boton del toggle: compacto, redondo, consistente con los aux_links. */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: inherit;
+    line-height: 1.6;
+  }
+  .theme-toggle:hover {
+    background: rgba(128, 128, 128, 0.12);
+  }
+</style>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var contentLinks = document.querySelectorAll('.main-content a[href]');
-  contentLinks.forEach(function(a) {
-    var href = a.getAttribute('href');
-    if (!href) return;
-    // No tocar enlaces #ancla dentro de la misma pagina
-    if (href.startsWith('#')) return;
-    // No tocar enlaces que ya son navegacion (prev/next, breadcrumbs, nav lateral)
-    if (a.closest('nav')) return;
-    if (a.closest('.site-nav')) return;
-    if (a.closest('.breadcrumb-nav')) return;
-    // Abrir en nueva pestaña con rel seguro
-    a.setAttribute('target', '_blank');
-    a.setAttribute('rel', 'noopener noreferrer');
+(function() {
+  var STORAGE_KEY = 'jtd-color-scheme';
+
+  // Resuelve el tema inicial: preferencia guardada > SO > "light".
+  function resolveInitialScheme() {
+    var saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (_) {}
+    if (saved === 'dark' || saved === 'light') return saved;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+
+  // Aplica el tema cuando `jtd` ya existe (el script del tema lo expone global).
+  function applyScheme(scheme) {
+    if (window.jtd && typeof window.jtd.setTheme === 'function') {
+      window.jtd.setTheme(scheme);
+    }
+  }
+
+  // Inserta el boton en la barra superior y conecta el click.
+  function insertToggle() {
+    var aux = document.querySelector('.aux-nav .aux-nav-list') ||
+              document.querySelector('.aux-nav');
+    if (!aux || document.getElementById('theme-toggle-btn')) return;
+
+    var btn = document.createElement('button');
+    btn.id = 'theme-toggle-btn';
+    btn.className = 'theme-toggle';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Cambiar entre modo claro y oscuro');
+    btn.setAttribute('title', 'Cambiar entre modo claro y oscuro');
+
+    function render() {
+      var current = (window.jtd && window.jtd.getTheme && window.jtd.getTheme()) || 'light';
+      btn.textContent = current === 'dark' ? '☀️ Claro' : '🌙 Oscuro';
+    }
+
+    btn.addEventListener('click', function() {
+      var current = (window.jtd && window.jtd.getTheme && window.jtd.getTheme()) || 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      applyScheme(next);
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (_) {}
+      render();
+    });
+
+    // Si just-the-docs usa <li> dentro de .aux-nav, respetamos la estructura.
+    if (aux.tagName === 'UL') {
+      var li = document.createElement('li');
+      li.className = 'aux-nav-list-item';
+      li.appendChild(btn);
+      aux.appendChild(li);
+    } else {
+      aux.appendChild(btn);
+    }
+
+    render();
+  }
+
+  // Enlaces del contenido: abrir en pestaña nueva.
+  function openContentLinksInNewTab() {
+    var contentLinks = document.querySelectorAll('.main-content a[href]');
+    contentLinks.forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (!href) return;
+      if (href.startsWith('#')) return;
+      if (a.closest('nav')) return;
+      if (a.closest('.site-nav')) return;
+      if (a.closest('.breadcrumb-nav')) return;
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    applyScheme(resolveInitialScheme());
+    insertToggle();
+    openContentLinksInNewTab();
   });
-});
+})();
 </script>

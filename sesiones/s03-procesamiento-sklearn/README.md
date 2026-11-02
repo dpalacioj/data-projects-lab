@@ -18,9 +18,8 @@ La pregunta que organiza la sesión es:
 
 ---
 
-## 0. Para antes de clase
+## 0. Para antes de empezar
 
-- [ ] Revisar [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
 - [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_recompra.py`
       verde (20/20).
@@ -88,7 +87,6 @@ Las tres preguntas motivan los bloques A, B y D.
 - [`05-llm-transformador.md`](05-llm-transformador.md) — **placeholder** (módulo retirado).
 - [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
 - [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales ya vistos.
-- [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 
 **Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `06_particion_y_fuga`, `07_ingenieria_caracteristicas`,

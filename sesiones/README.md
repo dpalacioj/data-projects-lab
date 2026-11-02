@@ -8,11 +8,11 @@ has_children: true
 Módulo de la Especialización en Ciencia de Datos e IA (Universidad de
 Medellín). Última revisión: 2026-10-19.
 
-Cada sesión está organizada así: el `README.md` es el guión (encuadre,
-tiempos, bloques, cierre); los `.md` temáticos son el material (teoría +
-práctica + verificación); `taller.md` es la aplicación individual;
-`troubleshooting.md` responde a los errores reales que ya vimos;
-`checklist-dia-de-clase.md` es lo que conviene revisar antes de la clase.
+Cada sesión está organizada así: el `README.md` es la hoja de ruta
+(encuadre, tiempos, bloques, cierre); los `.md` temáticos son el
+material (teoría + práctica + verificación); `taller.md` es la
+aplicación individual; `troubleshooting.md` responde a los errores
+reales que ya vimos.
 
 **Las sesiones no duplican código.** Enlazan a `projects/00-segmentacion-clientes/`
 y a `tutorials/`. Cuando una cifra cambia en el proyecto, cambia en una
@@ -45,26 +45,16 @@ clase está en el [README raíz del repo](../README.md#calendario-detallado-8-cl
 **Clase 8** es la presentación del entregable final; la especificación
 de qué entregar está en [`trabajo-final/README.md`](../trabajo-final/README.md).
 
-> Las sesiones completas (S02, S03) se grabaron contra el commit `main`
-> del día de la grabación. Si una cifra no coincide, se re-captura el
-> material del curso, no la prueba del repo (ver
-> `_templates/CONVENCIONES.md`).
+> Las sesiones completas (S02, S03) se congelaron contra el commit
+> `main` de la fecha de última revisión. Si una cifra no coincide, el
+> flujo es volver a correr los cuadernos del caso guía: el código
+> reproduce; el repo no persigue cifras sueltas.
 
 ## Cómo leer una sesión
 
-1. Abrir el `README.md` de la sesión. Es el guión.
+1. Abrir el `README.md` de la sesión. Es la hoja de ruta.
 2. Mirar la tabla de bloques (duraciones y archivos asociados).
 3. Para cada bloque, abrir el `.md` temático correspondiente y los
    cuadernos/scripts del proyecto que enlaza.
 4. `taller.md` → aplicación individual; `troubleshooting.md` →
    consulta cuando algo falla.
-
-## Para crear una sesión nueva
-
-1. Copiar `_templates/GUION_SESION.md` a `sXX-nombre/README.md`.
-2. Para cada tema, copiar `_templates/TEMA.md` a `sXX-nombre/<tema>.md`.
-3. Llenar `taller.md`, `troubleshooting.md`, `checklist-dia-de-clase.md`.
-4. Actualizar la tabla de arriba.
-
-Las convenciones de estilo, naming y commits están en
-[`_templates/CONVENCIONES.md`](_templates/CONVENCIONES.md).

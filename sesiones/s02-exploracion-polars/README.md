@@ -19,15 +19,14 @@ La pregunta que organiza la sesión es:
 
 ---
 
-## 0. Para antes de clase
+## 0. Para antes de empezar
 
-- [ ] Revisar [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md).
 - [ ] `uv sync --extra segmentacion-clientes --extra dev`.
 - [ ] `uv run python projects/00-segmentacion-clientes/scripts/descargar_datos.py`
       (verifica el hash SHA-256 del zip de UCI 502).
 - [ ] `uv run pytest -m slow projects/00-segmentacion-clientes/tests/test_cifras_referencia.py`
-      verde (confirma que el día de hoy las cifras de referencia se
-      reproducen contra el Parquet real).
+      verde (confirma que las cifras de referencia se reproducen
+      contra el Parquet real).
 
 ## 1. Objetivos de aprendizaje
 
@@ -91,7 +90,6 @@ Estas tres preguntas motivan los tres bloques siguientes.
 - [`05-eda-manual-vs-auto.md`](05-eda-manual-vs-auto.md) — Tukey, correlaciones, skim, profiling.
 - [`06-taller.md`](06-taller.md) — aplicación a dataset propio.
 - [`07-troubleshooting.md`](07-troubleshooting.md) — errores reales que vimos.
-- [`08-checklist-dia-de-clase.md`](08-checklist-dia-de-clase.md) — 15 minutos antes.
 
 **Cuadernos del proyecto** (`projects/00-segmentacion-clientes/notebooks/`):
 `00_objetivo_de_analisis`, `01_comprension_datos`, `02_limpieza`,
@@ -153,7 +151,7 @@ Orden recomendado de los cuadernos:
 | `pd.read_excel(ruta)` sin dtype | El motor adivina y pierde 19 494 cancelaciones silenciosamente | `pl.read_excel(ruta, schema_overrides={"Invoice": pl.Utf8, "StockCode": pl.Utf8, "Customer ID": pl.Int64})` |
 | Imputar la mediana a `Customer ID` | Inventas realidad; cambias la cardinalidad de clientes | `exigir_cliente` + declarar la pérdida en `HALLAZGOS.md` |
 | `!pip install polars` en una celda | Rompe el `uv.lock`; nada reproducible | Declararlo en `pyproject.toml`; `uv sync` |
-| Guardar outputs del cuaderno en Git | Diffs ilegibles; CI roja; cuadernos pesan 30 MB | `nbstripout` como hook de pre-commit |
+| Commitear cuadernos sin ejecutar en el repo del curso | El lector del sitio ve celdas vacías; no entiende qué debería producir | Ejecutar antes del commit (`Run All`) y conservar los outputs; usar `nbstripout` solo si trabajas en tu propio repo privado con muchas iteraciones |
 | Calcular Tukey "a ojo" sobre `Price` sin corte | 10 953,50 £ domina el gráfico y sesga la lectura | `log1p` **antes** del Tukey, o cerca inferior en escala original |
 
 ## 9. Cierre y puente

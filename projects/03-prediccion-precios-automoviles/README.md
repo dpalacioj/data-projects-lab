@@ -162,7 +162,7 @@ Este notebook realiza un análisis exhaustivo usando Plotly para visualizaciones
 
 **Ejecutar:**
 ```bash
-jupyter notebook notebooks/01_eda.ipynb
+uv run jupyter notebook notebooks/01_eda.ipynb
 ```
 
 ### 2. Entrenamiento de Modelos con MLFlow
@@ -192,7 +192,7 @@ Este notebook entrena y compara dos modelos de regresión:
 
 **Ejecutar:**
 ```bash
-jupyter notebook notebooks/02_training.ipynb
+uv run jupyter notebook notebooks/02_training.ipynb
 ```
 
 El mejor modelo se guarda en `models/`
@@ -413,13 +413,13 @@ print(f"Precio predicho: {result['precio_formateado']}")
 
 ### Paso 1: Explorar Datos
 ```bash
-jupyter notebook notebooks/01_eda.ipynb
+uv run jupyter notebook notebooks/01_eda.ipynb
 # Ejecutar todas las celdas y analizar visualizaciones
 ```
 
 ### Paso 2: Entrenar Modelo
 ```bash
-jupyter notebook notebooks/02_training.ipynb
+uv run jupyter notebook notebooks/02_training.ipynb
 # Ejecutar todas las celdas
 ```
 

@@ -721,7 +721,9 @@ rojos al pie. El mensaje de error del CI suele ser muy específico.
 
 Con git listo, el flujo del curso es:
 
-- **Tutorial 02 (`02-configuracion-proyecto-uv.md`)** → cómo se estructura un proyecto Python con `uv`.
-- **Tutorial 02c (`02c-el-makefile-del-curso.md`)** → por qué automatizamos comandos con `make`.
+- **Tutorial 01b** ([`01b-tu-primer-ci.md`](01b-tu-primer-ci.md)) → construye tu propio repo con CI desde cero. Es el que termina de aterrizar qué pasa cuando abres un PR.
+- **Tutorial 01c** ([`01c-tu-pagina-con-github-pages.md`](01c-tu-pagina-con-github-pages.md)) → publica tu repo como sitio web con GitHub Pages (opcional pero útil para el entregable).
+- **Tutorial 02** ([`02-configuracion-proyecto-uv.md`](02-configuracion-proyecto-uv.md)) → cómo se estructura un proyecto Python con `uv`.
+- **Tutorial 03** ([`03-el-makefile-del-curso.md`](03-el-makefile-del-curso.md)) → por qué automatizamos comandos con `make`.
 
 Vuelve al [índice de tutoriales](README.md) para ver la ruta completa.
