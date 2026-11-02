@@ -38,7 +38,7 @@ aux_links:
 aux_links_new_tab: true
 
 # Footer custom
-footer_content: "Material del modulo Proyecto I · Elaborado por <strong>David Palacio Jimenez, MEng</strong> para la Universidad de Medellin · Licencia MIT · <a href='https://github.com/dpalacioj/data-projects-lab'>Codigo fuente</a> · <a href='https://www.linkedin.com/in/davidpalacioj/' target='_blank'>LinkedIn</a>"
+footer_content: "Material elaborado por <strong>David Palacio Jimenez, MEng</strong> · Licencia MIT · <a href='https://github.com/dpalacioj/data-projects-lab'>Codigo fuente</a> · <a href='https://www.linkedin.com/in/davidpalacioj/' target='_blank'>LinkedIn</a>"
 
 # ---------------------------------------------------------------------------
 # Lo que Jekyll ignora al construir el sitio.

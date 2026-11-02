@@ -28,49 +28,49 @@
 -->
 <style>
   /*
-    ----- Toggle flotante en la barra superior derecha -----
-    Posicionado al lado izquierdo del "Ver en GitHub" del aux-nav para
-    quedar en linea con el resto de la barra sin encimarse.
-    En mobile (<= 800px) el aux-nav se colapsa, asi que movemos el toggle
-    a la esquina inferior derecha para no quedar flotando en el aire.
+    ----- Toggle solo-icono, flotante en esquina inferior derecha -----
+    Formato redondo de 40x40 px, solo con el icono (luna / sol). No tiene
+    texto, asi que no colisiona con "Ver en GitHub" del aux-nav. Esta en
+    la esquina inferior derecha, patron estandar en sitios de docs
+    modernos (Vercel, Linear, Supabase, etc).
   */
   #theme-toggle-btn {
     position: fixed !important;
-    top: 18px !important;
-    right: 200px !important;
+    bottom: 20px !important;
+    right: 20px !important;
     z-index: 2147483647 !important;
+    width: 40px !important;
+    height: 40px !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 6px !important;
+    justify-content: center !important;
     background: #111827 !important;
     color: #f9fafb !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 999px !important;
-    padding: 5px 11px !important;
-    font-size: 12px !important;
-    font-weight: 500 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
     font-family: inherit !important;
     cursor: pointer !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
     transition: transform 0.15s ease, background 0.15s ease !important;
   }
   #theme-toggle-btn:hover {
     background: #1f2937 !important;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
   #theme-toggle-btn:focus-visible {
     outline: 2px solid #3b82f6 !important;
     outline-offset: 2px !important;
   }
   @media (max-width: 800px) {
-    /* El aux-nav del tema se oculta en pantallas chicas; devolvemos el
-       toggle a una esquina para que no quede flotando. */
     #theme-toggle-btn {
-      top: auto !important;
-      bottom: 18px !important;
-      right: 18px !important;
-      padding: 8px 14px !important;
-      font-size: 13px !important;
+      bottom: 14px !important;
+      right: 14px !important;
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 16px !important;
     }
   }
 
@@ -256,9 +256,15 @@
 
   function setButtonLabel(btn) {
     var current = document.documentElement.getAttribute('data-theme') || 'light';
-    btn.innerHTML = current === 'dark'
-      ? '<span aria-hidden="true">&#9728;</span><span>Modo claro</span>'
-      : '<span aria-hidden="true">&#9790;</span><span>Modo oscuro</span>';
+    if (current === 'dark') {
+      btn.innerHTML = '<span aria-hidden="true">&#9728;</span>';
+      btn.setAttribute('title', 'Cambiar a modo claro');
+      btn.setAttribute('aria-label', 'Cambiar a modo claro');
+    } else {
+      btn.innerHTML = '<span aria-hidden="true">&#9790;</span>';
+      btn.setAttribute('title', 'Cambiar a modo oscuro');
+      btn.setAttribute('aria-label', 'Cambiar a modo oscuro');
+    }
   }
 
   function createToggle() {
