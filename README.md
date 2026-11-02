@@ -383,6 +383,22 @@ Antes de preguntar en clase o abrir un issue, revisa en este orden:
 
 ---
 
+## Autor
+
+Material elaborado por **David Palacio Jiménez, MEng** (Magíster en
+Ingeniería Analítica) para el módulo *Proyecto I* de la Especialización
+en Ciencia de Datos e Inteligencia Artificial, Universidad de Medellín.
+
+- GitHub: [@dpalacioj](https://github.com/dpalacioj)
+- LinkedIn: [davidpalacioj](https://www.linkedin.com/in/davidpalacioj/)
+
+Si reutilizas o adaptas el material en otro curso, agradezco mantener
+la atribución original. Para citar formalmente, mira
+[`CITATION.cff`](CITATION.cff) o usa el botón **"Cite this repository"**
+que GitHub muestra en la portada del repo.
+
+---
+
 ## Licencia
 
 MIT. Ver [`LICENSE`](LICENSE).

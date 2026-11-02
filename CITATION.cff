@@ -1,0 +1,31 @@
+# Metadata estandar para "Cite this repository" en GitHub.
+# Spec: https://citation-file-format.github.io/
+cff-version: 1.2.0
+message: "Si usas este material en un curso, charla o publicacion, por favor citalo como:"
+title: "Proyecto I — Laboratorio de Proyectos de Datos"
+abstract: >-
+  Material de clase del modulo Proyecto I de la Especializacion en Ciencia de
+  Datos e Inteligencia Artificial, Universidad de Medellin. Cubre CRISP-DM,
+  exploracion con Polars, pipelines sin fuga con scikit-learn, modelos
+  tabulares, y despliegue de prototipos con Streamlit y FastAPI.
+type: software
+authors:
+  - family-names: "Palacio Jiménez"
+    given-names: "David"
+    name-suffix: "MEng"
+    affiliation: "Universidad de Medellín"
+    orcid: ""
+    website: "https://www.linkedin.com/in/davidpalacioj/"
+repository-code: "https://github.com/dpalacioj/data-projects-lab"
+url: "https://dpalacioj.github.io/data-projects-lab/"
+license: MIT
+date-released: "2026-11-02"
+keywords:
+  - "ciencia de datos"
+  - "educacion"
+  - "CRISP-DM"
+  - "scikit-learn"
+  - "polars"
+  - "mlops"
+  - "streamlit"
+  - "fastapi"
