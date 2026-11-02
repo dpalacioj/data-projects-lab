@@ -9,13 +9,13 @@ nav_order: 91
 
 ---
 
-## 🤔 ¿Qué es MCP en una frase?
+## ¿Qué es MCP en una frase?
 
 **MCP (Model Context Protocol)** es como un "puerto USB universal" que permite que las inteligencias artificiales (como Claude) se conecten a tus aplicaciones y datos.
 
 ---
 
-## 🔌 Una Analogía Simple
+## Una Analogía Simple
 
 ### Antes de MCP (el problema):
 
@@ -38,7 +38,7 @@ Ahora imagina que TODOS tus aparatos usan el mismo tipo de puerto USB-C. Solo ne
 
 ---
 
-## 🎯 ¿Para Qué Sirve MCP?
+## ¿Para Qué Sirve MCP?
 
 MCP permite que una IA como Claude pueda:
 
@@ -59,7 +59,7 @@ MCP permite que una IA como Claude pueda:
 
 ---
 
-## 📖 Ejemplo del Mundo Real
+## Ejemplo del Mundo Real
 
 ### Situación: Trabajas en un proyecto de programación
 
@@ -84,7 +84,7 @@ Claude: (Se conecta automáticamente a GitHub vía MCP)
 
 ---
 
-## 🏗️ ¿Cómo Funciona? (Versión Simple)
+## 🏗 ¿Cómo Funciona? (Versión Simple)
 
 ```
 ┌─────────────────┐
@@ -115,7 +115,7 @@ Claude: (Se conecta automáticamente a GitHub vía MCP)
 
 ---
 
-## 🎁 Beneficios Principales
+## Beneficios Principales
 
 ### Para Usuarios No Técnicos:
 
@@ -143,7 +143,7 @@ Claude: (Se conecta automáticamente a GitHub vía MCP)
 
 ---
 
-## 🛠️ Componentes Básicos (Conceptos Simples)
+## Componentes Básicos (Conceptos Simples)
 
 ### 1. **Cliente MCP**
 **¿Qué es?** La aplicación que usa IA (como Claude Code)
@@ -173,7 +173,7 @@ Claude: (Se conecta automáticamente a GitHub vía MCP)
 
 ---
 
-## 💡 Casos de Uso Reales
+## Casos de Uso Reales
 
 ### 1. **Desarrollo de Software**
 ```
@@ -213,7 +213,7 @@ Servidor MCP de Home Assistant:
 
 ---
 
-## 🔒 Seguridad y Permisos
+## Seguridad y Permisos
 
 ### ¿Es Seguro?
 
@@ -243,7 +243,7 @@ Tú: [Ver archivo] [Aprobar] [Denegar]
 
 ---
 
-## 🚀 Ejemplos de Servidores MCP Populares
+## Ejemplos de Servidores MCP Populares
 
 | Servidor | ¿Qué hace? | ¿Quién lo usa? |
 |----------|------------|----------------|
@@ -257,7 +257,7 @@ Tú: [Ver archivo] [Aprobar] [Denegar]
 
 ---
 
-## 📚 Glosario Simple
+## Glosario Simple
 
 **IA / LLM**
 Una inteligencia artificial que entiende y genera texto (como Claude, ChatGPT)
@@ -336,7 +336,7 @@ npm install -g @modelcontextprotocol/server-filesystem
 
 ---
 
-## 🎓 Conclusión
+## Conclusión
 
 **MCP en resumen:**
 
@@ -351,7 +351,7 @@ No necesitas entender todos los detalles técnicos para beneficiarte de MCP. Sol
 
 ---
 
-## 📖 Recursos Adicionales
+## Recursos Adicionales
 
 **Documentación Oficial:**
 - [Model Context Protocol](https://modelcontextprotocol.io)

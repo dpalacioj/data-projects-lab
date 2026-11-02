@@ -3,7 +3,7 @@ title: "01 · Titanic"
 parent: Proyectos
 nav_order: 1
 ---
-# 🚢 Proyecto Titanic: Predicción de Supervivencia
+# Proyecto Titanic: Predicción de Supervivencia
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange.svg)](https://scikit-learn.org/)
@@ -13,20 +13,20 @@ Proyecto completo de Machine Learning end-to-end para predecir la supervivencia 
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [Descripción](#-descripción)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Pipeline del Proyecto](#-pipeline-del-proyecto)
-- [Instalación y Uso](#-instalación-y-uso)
-- [Resultados y Métricas](#-resultados-y-métricas)
-- [Interpretabilidad](#-interpretabilidad)
-- [Deployment](#-deployment)
-- [Tecnologías](#-tecnologías)
+- [Descripción](#descripción)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Pipeline del Proyecto](#pipeline-del-proyecto)
+- [Instalación y Uso](#instalación-y-uso)
+- [Resultados y Métricas](#resultados-y-métricas)
+- [Interpretabilidad](#interpretación-07_interpretacion_modelosipynb)
+- [Deployment](#deployment-08_titanic_streamlitpy)
+- [Tecnologías](#tecnologías)
 
 ---
 
-## 📖 Descripción
+## Descripción
 
 Este proyecto demuestra un **flujo completo de Machine Learning** utilizando el famoso dataset del Titanic. El objetivo es predecir si un pasajero sobrevivió al desastre basándose en características como edad, género, clase, tarifa, y número de familiares a bordo.
 
@@ -49,7 +49,7 @@ Este proyecto demuestra un **flujo completo de Machine Learning** utilizando el 
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 projects/01-titanic/
@@ -70,9 +70,9 @@ projects/01-titanic/
 
 ---
 
-## 🔄 Pipeline del Proyecto
+## Pipeline del Proyecto
 
-### 1️⃣ Descarga de Datos (`01_descarga_datos.ipynb`)
+### 1. Descarga de Datos (`01_descarga_datos.ipynb`)
 
 **Objetivo:** Obtener el dataset inicial desde OpenML
 
@@ -86,7 +86,7 @@ projects/01-titanic/
 
 ---
 
-### 2️⃣ Ajuste de Datos (`02_ajuste_datos.ipynb`)
+### 2. Ajuste de Datos (`02_ajuste_datos.ipynb`)
 
 **Objetivo:** Limpieza y preparación para modelado
 
@@ -104,7 +104,7 @@ projects/01-titanic/
 
 ---
 
-### 3️⃣ AutoML con PyCaret (`04_AutoML_PyCaret.ipynb`)
+### 3. AutoML con PyCaret (`04_AutoML_PyCaret.ipynb`)
 
 **Objetivo:** Exploración rápida de múltiples modelos
 
@@ -120,7 +120,7 @@ projects/01-titanic/
 
 ---
 
-### 4️⃣ AutoML con FLAML (`05_AutoML_FLAML.ipynb`)
+### 4. AutoML con FLAML (`05_AutoML_FLAML.ipynb`)
 
 **Objetivo:** Optimización eficiente con presupuesto de tiempo
 
@@ -142,7 +142,7 @@ projects/01-titanic/
 
 ---
 
-### 5️⃣ Entrenamiento Final (`06_entrenamiento_modelo.ipynb`)
+### 5. Entrenamiento Final (`06_entrenamiento_modelo.ipynb`)
 
 **Objetivo:** Seleccionar, optimizar y guardar el modelo de producción
 
@@ -176,7 +176,7 @@ projects/01-titanic/
 
 ---
 
-### 6️⃣ Interpretación (`07_interpretacion_modelos.ipynb`)
+### 6. Interpretación (`07_interpretacion_modelos.ipynb`)
 
 **Objetivo:** Entender qué aprende el modelo
 
@@ -193,14 +193,14 @@ projects/01-titanic/
 | **sibsp** | 3.5% | Número de hermanos/cónyuge a bordo |
 
 **Insights Clave:**
-- 💰 **Tarifa y clase** son los factores más influyentes (refleja desigualdad socioeconómica)
-- 👥 **Género** es crítico (política "mujeres y niños primero")
-- 📊 **Edad** también importante (niños fueron priorizados)
-- 👨‍👩‍👧 **Familiares** tienen menor impacto
+- **Tarifa y clase** son los factores más influyentes (refleja desigualdad socioeconómica).
+- **Género** es crítico (política "mujeres y niños primero").
+- **Edad** también importante (niños fueron priorizados).
+- **Familiares a bordo** tienen menor impacto directo que la clase.
 
 ---
 
-### 7️⃣ Deployment (`08_titanic_streamlit.py`)
+### 7. Deployment (`08_titanic_streamlit.py`)
 
 **Objetivo:** App web interactiva para predicciones en tiempo real
 
@@ -226,7 +226,7 @@ Categóricos:
 
 ---
 
-## 🚀 Instalación y Uso
+## Instalación y Uso
 
 ### Prerrequisitos
 
@@ -343,7 +343,7 @@ print(f"Sobrevive: {'Sí' if prediction[0] == 1 else 'No'}")
 
 ---
 
-## 📊 Resultados y Métricas
+## Resultados y Métricas
 
 ### Modelo Final: RandomForest_median
 
@@ -373,7 +373,7 @@ ROC-AUC:   0.728
 
 ---
 
-## 🔍 Interpretabilidad
+## Interpretabilidad
 
 ### Factores Clave de Supervivencia
 
@@ -391,7 +391,7 @@ El modelo refleja la **desigualdad socioeconómica** y las **políticas de evacu
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Arquitectura Streamlit
 
@@ -417,7 +417,7 @@ Usuario → Streamlit UI → get_user_data() → DataFrame
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 ### Librerías Principales
 
@@ -436,7 +436,7 @@ Usuario → Streamlit UI → get_user_data() → DataFrame
 
 ---
 
-## 🎓 Valor Educativo
+## Valor Educativo
 
 Este proyecto es ideal para aprender:
 
@@ -448,7 +448,7 @@ Este proyecto es ideal para aprender:
 
 ---
 
-## 📝 Próximos Pasos
+## Próximos Pasos
 
 Posibles extensiones del proyecto:
 
@@ -478,6 +478,6 @@ Este proyecto está bajo la Licencia MIT. Ver [LICENSE](../../LICENSE) para más
 
 ---
 
-⭐️ **Si este proyecto te resulta útil, considera darle una estrella al repositorio!**
+⭐ **Si este proyecto te resulta útil, considera darle una estrella al repositorio!**
 
-🚀 **¡Feliz aprendizaje!**
+**¡Feliz aprendizaje!**

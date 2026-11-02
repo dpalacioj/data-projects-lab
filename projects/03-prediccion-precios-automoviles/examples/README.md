@@ -5,7 +5,7 @@ nav_exclude: true
 
 Esta carpeta contiene ejemplos para probar la API de predicción de precios de automóviles.
 
-## 📋 Prerequisitos
+## Prerequisitos
 
 **Inicia la API primero:**
 
@@ -16,7 +16,7 @@ uv run python app_fastapi.py
 
 La API debería estar corriendo en: http://localhost:8000
 
-## 🛠️ Opciones para Probar la API
+## Opciones para Probar la API
 
 ### **Opción 1: Interfaz Interactiva de FastAPI** (Más Fácil)
 
@@ -124,7 +124,7 @@ curl -X POST "http://localhost:8000/predict" \
 
 ---
 
-## 📊 Casos de Prueba Incluidos
+## Casos de Prueba Incluidos
 
 ### 1. **Toyota SUV 2020** - Auto estándar familiar
 - Precio esperado: ~$18,000 - $20,000
@@ -143,7 +143,7 @@ curl -X POST "http://localhost:8000/predict" \
 
 ---
 
-## 🎯 Endpoints Disponibles
+## Endpoints Disponibles
 
 ### `GET /health`
 Verifica que la API está funcionando.
@@ -208,7 +208,7 @@ Realiza una predicción de precio.
 
 ---
 
-## 🧪 Crear Tus Propios Casos de Prueba
+## Crear Tus Propios Casos de Prueba
 
 ### Valores Válidos:
 
@@ -242,7 +242,7 @@ Realiza una predicción de precio.
 
 ---
 
-## ⚠️ Solución de Problemas
+## ⚠ Solución de Problemas
 
 ### Error: "Connection refused"
 **Causa:** La API no está corriendo
@@ -258,7 +258,7 @@ Realiza una predicción de precio.
 
 ---
 
-## 📚 Recursos Adicionales
+## Recursos Adicionales
 
 - **Documentación Interactiva:** http://localhost:8000/docs
 - **ReDoc:** http://localhost:8000/redoc
@@ -266,11 +266,11 @@ Realiza una predicción de precio.
 
 ---
 
-## 💡 Tips
+## Tips
 
 1. **Usa Swagger UI primero** si eres principiante
 2. **Usa el script Python** para automatizar pruebas
 3. **Usa .http files** para desarrollo diario en VSCode
 4. **Usa cURL** para scripts de CI/CD o automation
 
-¡Diviértete probando la API! 🚀
+Con cualquiera de las cuatro opciones ya tienes un cliente mínimo para la API, listo para usarse desde Python, VS Code o la terminal.

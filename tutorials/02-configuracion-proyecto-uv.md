@@ -5,18 +5,18 @@ nav_order: 4
 ---
 # Tutorial: Configuración de Proyecto con uv
 
-## 📚 Introducción
+## Introducción
 
 `uv` es una herramienta moderna y ultra-rápida para gestión de paquetes Python, escrita en Rust. Reemplaza a pip, pip-tools, pipx, poetry, pyenv, virtualenv y más, ofreciendo una experiencia unificada y eficiente.
 
 ### Ventajas de usar uv:
 - ⚡ **10-100x más rápido** que pip y pip-tools
-- 🔒 **Archivos .lock reproducibles** para garantizar consistencia
-- 🐍 **Gestión automática de versiones de Python**
-- 📦 **Resolución de dependencias inteligente**
-- 🛠️ **Todo en una herramienta** (no necesitas pip, venv, etc.)
+- **Archivos .lock reproducibles** para garantizar consistencia
+- **Gestión automática de versiones de Python**
+- **Resolución de dependencias inteligente**
+- 🛠 **Todo en una herramienta** (no necesitas pip, venv, etc.)
 
-## 🚀 Paso 1: Instalación de uv
+## Paso 1: Instalación de uv
 
 ### macOS/Linux
 ```bash
@@ -42,7 +42,7 @@ uv --version
 # Output esperado: uv 0.x.x
 ```
 
-## 📁 Paso 2: Inicializar el Proyecto
+## Paso 2: Inicializar el Proyecto
 
 ### Crear estructura del proyecto
 ```bash
@@ -70,7 +70,7 @@ data-projects-lab/
 └── datasets/
 ```
 
-## 📝 Paso 3: Configurar pyproject.toml
+## Paso 3: Configurar pyproject.toml
 
 ### Configuración básica
 ```toml
@@ -90,7 +90,7 @@ Homepage = "https://github.com/tu-usuario/data-projects-lab"
 Repository = "https://github.com/tu-usuario/data-projects-lab.git"
 ```
 
-## 📦 Paso 4: Agregar Dependencias
+## Paso 4: Agregar Dependencias
 
 ### Dependencias principales para ciencia de datos
 ```bash
@@ -196,7 +196,7 @@ build-backend = "hatchling.build"
 > `uv sync`. El tutorial 02b (`02b-modularizacion-proyecto-datos.md`)
 > explica por qué.
 
-## 🔒 Paso 5: El archivo uv.lock
+## Paso 5: El archivo uv.lock
 
 ### ¿Qué es uv.lock?
 - Archivo que **congela** todas las versiones exactas de dependencias
@@ -240,7 +240,7 @@ dependencies = [
 ...
 ```
 
-## 🔧 Paso 6: Comandos Esenciales de uv
+## Paso 6: Comandos Esenciales de uv
 
 ### Gestión de dependencias
 ```bash
@@ -289,7 +289,7 @@ source .venv/bin/activate  # Linux/macOS
 # .venv\Scripts\activate  # Windows
 ```
 
-## 🎯 Paso 7: Configurar .gitignore
+## Paso 7: Configurar .gitignore
 
 ```gitignore
 # Python
@@ -346,7 +346,7 @@ htmlcov/
 dmypy.json
 ```
 
-## 📋 Paso 8: Flujo de Trabajo Completo
+## Paso 8: Flujo de Trabajo Completo
 
 ### Para iniciar el proyecto por primera vez:
 ```bash
@@ -394,7 +394,7 @@ git commit -m "Add streamlit dependency"
 git push
 ```
 
-## 🚨 Resolución de Problemas Comunes
+## Resolución de Problemas Comunes
 
 ### Problema: "command not found: uv"
 ```bash
@@ -425,7 +425,7 @@ uv run python -m ipykernel install --user --name=data-projects-lab
 # Seleccionar el kernel en Jupyter Notebook
 ```
 
-## 📚 Recursos Adicionales
+## Recursos Adicionales
 
 - [Documentación oficial de uv](https://docs.astral.sh/uv/)
 - [uv GitHub Repository](https://github.com/astral-sh/uv)

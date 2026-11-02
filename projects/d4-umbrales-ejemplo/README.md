@@ -5,11 +5,11 @@ nav_order: 13
 ---
 # Umbrales de Clasificación
 
-## 📚 Descripción
+## Descripción
 
 Este proyecto ilustra cómo el ajuste del umbral de clasificación (threshold) afecta las predicciones y métricas de desempeño en modelos de clasificación binaria, especialmente en escenarios con clases desbalanceadas.
 
-## 🎯 Objetivo de Aprendizaje
+## Objetivo de Aprendizaje
 
 Entender que:
 - Los modelos de clasificación predicen **probabilidades**, no clases directamente
@@ -17,7 +17,7 @@ Entender que:
 - El umbral por defecto (0.5) no siempre es óptimo
 - Existe un trade-off entre Precision y Recall controlado por el umbral
 
-## 📖 Teoría: Umbral de Clasificación
+## Teoría: Umbral de Clasificación
 
 ### ¿Qué es el umbral?
 
@@ -80,7 +80,7 @@ De todos los casos positivos reales, ¿cuántos capturamos?
    - Asignar costos a FP y FN
    - Minimizar el costo total esperado
 
-## 🚀 Cómo usar este proyecto
+## Cómo usar este proyecto
 
 ### Paso 1 — Instala las dependencias
 
@@ -114,7 +114,7 @@ observa cómo cambia la relación precision/recall al mover el umbral de
 y entender que el umbral se elige con el equipo de negocio según el
 costo de falsos positivos vs. falsos negativos.
 
-## 📊 Contenido del Notebook
+## Contenido del Notebook
 
 1. **Generación de datos sintéticos** con clases desbalanceadas (90%-10%)
 2. **Entrenamiento de LightGBM** para obtener probabilidades
@@ -123,7 +123,7 @@ costo de falsos positivos vs. falsos negativos.
 5. **Análisis de la curva ROC** y selección de umbral óptimo
 6. **Comparación de resultados** entre umbrales
 
-## 🎓 Casos de Uso Reales
+## Casos de Uso Reales
 
 ### Umbral Bajo (Maximizar Recall)
 - **Diagnóstico de enfermedades**: Preferimos capturar todos los casos positivos (pocos FN)
@@ -135,7 +135,7 @@ costo de falsos positivos vs. falsos negativos.
 - **Recomendaciones críticas**: Evitar sugerencias irrelevantes
 - **Filtrado de contenido**: Reducir falsos positivos molestos
 
-## 📝 Conclusiones Clave
+## Conclusiones Clave
 
 1. El umbral de 0.5 es una convención, **no una regla universal**
 2. Clases desbalanceadas requieren ajuste de umbral casi siempre
@@ -143,23 +143,16 @@ costo de falsos positivos vs. falsos negativos.
 4. Siempre analiza Precision, Recall y la curva ROC antes de decidir
 5. El mejor umbral es el que **minimiza el costo real del error** en tu aplicación
 
-## 📚 Referencias
+## Referencias
 
 - [Scikit-learn: Precision-Recall](https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html)
 - [Google ML Crash Course: Classification](https://developers.google.com/machine-learning/crash-course/classification)
 - Provost, F., & Fawcett, T. (2001). "Robust Classification for Imprecise Environments"
 
-## 👨‍🏫 Para Instructores
+## Duración estimada
 
-Este material es ideal para:
-- Cursos de Machine Learning nivel intermedio
-- Módulos sobre métricas de clasificación
-- Talleres sobre clases desbalanceadas
-- Proyectos prácticos con datos reales desbalanceados
-
-**Duración estimada**: 45-60 minutos
+45–60 minutos de trabajo autónomo.
 
 ---
 
 **Licencia**: MIT License
-**Autor**: David Palacio Jiménez

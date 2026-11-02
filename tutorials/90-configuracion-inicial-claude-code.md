@@ -5,11 +5,11 @@ nav_order: 90
 ---
 # Tutorial 1: Configuración Inicial del Entorno de Desarrollo con IA
 
-## 🎯 Objetivo del Tutorial
+## Objetivo del Tutorial
 
 En este primer tutorial aprenderás a configurar un entorno de desarrollo moderno que integra herramientas de Inteligencia Artificial para acelerar tu productividad como desarrollador. Utilizaremos **Claude Code**, el asistente de programación de Anthropic, junto con herramientas complementarias para gestión de proyectos.
 
-## 📚 ¿Qué aprenderás?
+## ¿Qué aprenderás?
 
 - Configurar un repositorio Git desde cero
 - Integrar Claude Code con tu proyecto
@@ -17,7 +17,7 @@ En este primer tutorial aprenderás a configurar un entorno de desarrollo modern
 - Establecer permisos y configuraciones locales
 - Documentar tu proyecto para colaboración con IA
 
-## 🛠️ Herramientas que Utilizaremos
+## Herramientas que Utilizaremos
 
 | Herramienta | Propósito |
 |-------------|-----------|
@@ -27,7 +27,7 @@ En este primer tutorial aprenderás a configurar un entorno de desarrollo modern
 | **Context7** | Gestión de contexto y documentación |
 | **Docker** | Contenedorización de servicios |
 
-## 📋 Pasos Realizados
+## Pasos Realizados
 
 ### 1. Inicialización del Repositorio
 
@@ -92,7 +92,7 @@ Creamos `.claude/settings.local.json` para definir qué comandos puede ejecutar 
 }
 ```
 
-## 🔄 Estructura del Flujo de Trabajo
+## Estructura del Flujo de Trabajo
 
 ```mermaid
 graph LR
@@ -104,7 +104,7 @@ graph LR
     B --> G[Ejecución Local]
 ```
 
-## 💡 ¿Por qué esta configuración?
+## ¿Por qué esta configuración?
 
 ### Ventajas de usar Claude Code:
 1. **Automatización**: Ejecuta comandos y modifica archivos automáticamente
@@ -118,7 +118,7 @@ graph LR
 - Aprender mejores prácticas mientras programas
 - Documentar automáticamente tu código
 
-## 🚀 Próximos Pasos
+## Próximos Pasos
 
 ### Branch: `setup-uv` (Tutorial 2)
 - Configuración de gestor de paquetes UV
@@ -135,7 +135,7 @@ graph LR
 - Uso de scikit-learn
 - Evaluación y visualización de resultados
 
-## 📝 Ejercicio Práctico
+## Ejercicio Práctico
 
 1. **Verifica tu configuración**:
    ```bash
@@ -155,20 +155,20 @@ graph LR
    - Agrega una sección con tus librerías favoritas
    - Define comandos específicos para tu flujo de trabajo
 
-## 🤔 Reflexión
+## Reflexión
 
 ### Preguntas para considerar:
 1. ¿Cómo cambia tu flujo de trabajo tener un asistente de IA integrado?
 2. ¿Qué tareas repetitivas podrías automatizar con esta configuración?
 3. ¿Qué precauciones debes tener al compartir tokens de acceso?
 
-## 📚 Recursos Adicionales
+## Recursos Adicionales
 
 - [Documentación de Claude Code](https://docs.anthropic.com/claude-code)
 - [MCP Protocol Specification](https://modelcontextprotocol.org)
 - [Best Practices for AI-Assisted Development](https://github.com/anthropics/claude-code)
 
-## ⚠️ Notas de Seguridad
+## ⚠ Notas de Seguridad
 
 - **Nunca** compartas tu token de GitHub públicamente
 - **Siempre** revisa el código generado antes de ejecutarlo
@@ -179,4 +179,4 @@ graph LR
 
 **Siguiente Tutorial**: [02-configuracion-proyecto-uv.md](./02-configuracion-proyecto-uv.md) — gestión moderna de paquetes Python con `uv`.
 
-> 💬 **Tip**: Este documento fue creado con la ayuda de Claude Code. ¡Es meta-programación en acción!
+> Este tutorial se escribió con la ayuda de Claude Code; refleja el flujo que la propia herramienta deja documentado al configurar un proyecto nuevo.

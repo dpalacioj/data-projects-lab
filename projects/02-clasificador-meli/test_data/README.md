@@ -5,7 +5,7 @@ nav_exclude: true
 
 Este directorio contiene archivos de prueba para probar la UI de Streamlit del Clasificador MercadoLibre.
 
-## 📁 Archivos Disponibles
+## Archivos Disponibles
 
 ### 1. `test_products.jsonlines` (15 KB)
 **Uso:** Opción "Subir JSON" en Streamlit
@@ -37,14 +37,14 @@ Este directorio contiene archivos de prueba para probar la UI de Streamlit del C
 **Formato:** CSV con campos básicos (sin nested objects)
 **Columnas:** 19 columnas principales
 
-⚠️ **Nota:** Este CSV no incluye campos anidados como `seller_address` o `shipping`, por lo que el preprocesamiento puede no funcionar completamente.
+⚠ **Nota:** Este CSV no incluye campos anidados como `seller_address` o `shipping`, por lo que el preprocesamiento puede no funcionar completamente.
 
 ### 4. `test_products_complete.csv` (11 KB)
 **Uso:** Opción "Subir CSV" en Streamlit
 **Formato:** CSV con TODOS los campos del dataset
 **Columnas:** 48 columnas
 
-⚠️ **Nota:** Los campos anidados (dicts) están convertidos a strings. El preprocesamiento intentará parsearlos.
+⚠ **Nota:** Los campos anidados (dicts) están convertidos a strings. El preprocesamiento intentará parsearlos.
 
 ### 5. `test_products_processed.parquet` (13 KB)
 **Uso:** Solo para referencia / testing directo
@@ -55,7 +55,7 @@ Este archivo ya está preprocesado y listo para predicción directa, pero NO es 
 
 ---
 
-## 🚀 Cómo Usar en Streamlit
+## Cómo Usar en Streamlit
 
 ### Opción 1: Subir JSONLINES (Recomendado)
 1. Lanzar Streamlit: `streamlit run ui/streamlit_app.py`
@@ -73,11 +73,11 @@ Este archivo ya está preprocesado y listo para predicción directa, pero NO es 
 ### Opción 3: Subir CSV
 1. Seleccionar: **"Subir CSV"**
 2. Cargar `test_products_complete.csv`
-3. ⚠️ Puede tener problemas con campos anidados
+3. ⚠ Puede tener problemas con campos anidados
 
 ---
 
-## 📊 Productos de Prueba
+## Productos de Prueba
 
 Los 5 productos incluidos son:
 
@@ -91,7 +91,7 @@ Los 5 productos incluidos son:
 
 ---
 
-## 🔧 Regenerar Archivos de Prueba
+## Regenerar Archivos de Prueba
 
 Si necesitas regenerar estos archivos:
 
@@ -132,7 +132,7 @@ EOF
 
 ---
 
-## 📝 Notas
+## Notas
 
 - Todos los archivos contienen datos **reales** del dataset MLA_100k
 - Las predicciones deberían coincidir con las condiciones reales

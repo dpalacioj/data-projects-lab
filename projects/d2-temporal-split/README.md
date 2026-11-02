@@ -5,11 +5,11 @@ nav_order: 11
 ---
 # Data Leakage Temporal: Train/Test Split Correcto
 
-## 📚 Descripción
+## Descripción
 
 Este proyecto ilustra uno de los errores más comunes y peligrosos en machine learning aplicado a datos temporales: **usar train/test split aleatorio cuando los datos tienen una dimensión temporal**.
 
-## 🎯 Objetivo de Aprendizaje
+## Objetivo de Aprendizaje
 
 Comprender que:
 - Los datos con componente temporal requieren un split especial
@@ -17,7 +17,7 @@ Comprender que:
 - Las métricas pueden ser artificialmente optimistas si no se respeta el orden temporal
 - El desempeño real en producción puede ser mucho peor de lo esperado
 
-## 📖 Teoría: Data Leakage Temporal
+## Teoría: Data Leakage Temporal
 
 ### ¿Qué es Data Leakage?
 
@@ -68,7 +68,7 @@ Imagina que predices ventas de un producto:
 - Las predicciones son malas porque el modelo dependía de información futura
 - Desempeño real: R² = 0.65 (mediocre)
 
-## 🔧 La Solución: Split Temporal
+## La Solución: Split Temporal
 
 ### Principio Fundamental
 
@@ -107,7 +107,7 @@ Test:   ░░░░░░░░░░░░░░░░████████
                     Punto de corte
 ```
 
-## 🛠️ Herramientas para Split Temporal
+## Herramientas para Split Temporal
 
 ### 1. Split Manual (Recomendado para simplicidad)
 
@@ -150,7 +150,7 @@ Split 5: [Train: ████████░░░░] [Test: ░░░░░░
 
 Cada test siempre es posterior a su correspondiente train.
 
-## 📊 Comparación de Resultados
+## Comparación de Resultados
 
 ### Resultados Típicos
 
@@ -162,7 +162,7 @@ Cada test siempre es posterior a su correspondiente train.
 
 El split aleatorio **sobreestima** significativamente el desempeño.
 
-## 🎓 Casos de Uso Donde Esto es Crítico
+## Casos de Uso Donde Esto es Crítico
 
 1. **Predicción de ventas/demanda**
    - Forecasting de inventario
@@ -188,7 +188,7 @@ El split aleatorio **sobreestima** significativamente el desempeño.
    - Predicción de temperatura
    - Pronóstico de lluvias
 
-## ⚠️ Señales de Alerta
+## ⚠ Señales de Alerta
 
 Debes sospechar de data leakage temporal si:
 
@@ -197,7 +197,7 @@ Debes sospechar de data leakage temporal si:
 3. **Features con información futura** (ej: promedios que incluyen el valor a predecir)
 4. **Lag features calculados incorrectamente** (usando valores futuros)
 
-## 🔍 Otras Consideraciones
+## Otras Consideraciones
 
 ### Gap entre Train y Test
 
@@ -228,7 +228,7 @@ for i in range(window_size, len(df)):
     # Entrenar, predecir, evaluar
 ```
 
-## 🚀 Cómo Usar Este Proyecto
+## Cómo Usar Este Proyecto
 
 ### Paso 1 — Instala las dependencias
 
@@ -255,7 +255,7 @@ temporal.
 aleatorio es correcto en datos iid, pero rompe la realidad en datos
 con componente temporal.
 
-## 📝 Contenido del Notebook
+## Contenido del Notebook
 
 1. **Generación de datos sintéticos** de ventas con tendencia y estacionalidad
 2. **Split aleatorio (incorrecto)** y evaluación
@@ -264,7 +264,7 @@ con componente temporal.
 5. **Comparación de métricas** entre ambos enfoques
 6. **Uso de TimeSeriesSplit** para validación cruzada temporal
 
-## 💡 Conclusiones Clave
+## Conclusiones Clave
 
 1. **NUNCA uses `train_test_split` con `shuffle=True` en datos temporales**
 2. **Respeta siempre el orden cronológico**: train = pasado, test = futuro
@@ -272,27 +272,20 @@ con componente temporal.
 4. **Usa `TimeSeriesSplit`** para validación cruzada en series de tiempo
 5. **Simula producción**: tu split debe reflejar cómo usarás el modelo en la vida real
 
-## 📚 Referencias
+## Referencias
 
 - [Scikit-learn: TimeSeriesSplit](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
 - [Avoiding Data Leakage in Time Series](https://machinelearningmastery.com/data-leakage-machine-learning/)
 - [Time Series Cross-Validation](https://towardsdatascience.com/time-series-nested-cross-validation-76adba623eb9)
 
-## 👨‍🏫 Para Instructores
+## Conceptos relacionados (para profundizar después)
 
-Este material es ideal para:
-- Cursos de Machine Learning aplicado
-- Módulos sobre validación de modelos
-- Talleres sobre series de tiempo
-- Discusiones sobre buenas prácticas en ML
-
-**Duración estimada**: 60-75 minutos
-
-**Conceptos relacionados**:
 - Feature engineering temporal
 - Lag features
 - Walk-forward validation
 - Backtesting
+
+Duración estimada de la demo: 60–75 minutos.
 
 ---
 

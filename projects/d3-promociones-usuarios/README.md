@@ -8,7 +8,7 @@ nav_order: 12
 > Demo corta (~20 min). Cubre un solo concepto: **cómo se construye la
 > variable objetivo (`y`) cuando el dataset no la trae marcada**.
 
-## 📚 Descripción
+## Descripción
 
 Casi todos los tutoriales de ML asumen que ya tienes un `y` listo:
 spam/no-spam, enfermo/sano, etc. En la vida real, muchas veces **tú
@@ -21,7 +21,7 @@ valores faltantes realistas) y el target `dar_promocion` se construye a
 partir de reglas sobre `last_purchase_days`, `avg_order_value`,
 `cart_abandonment_rate` y otras variables.
 
-## 🎯 Objetivo de aprendizaje
+## Objetivo de aprendizaje
 
 Al terminar esta demo deberías poder responder:
 
@@ -31,14 +31,14 @@ Al terminar esta demo deberías poder responder:
 - ¿Cómo se interpreta `classification_report` y la matriz de confusión?
 - ¿Qué cambia al mover el umbral de clasificación?
 
-## 📂 Qué hay en la carpeta
+## Qué hay en la carpeta
 
 | Archivo | Qué trae |
 |---|---|
 | `01_mlops_intro_notebook.ipynb` | El notebook completo: generación de datos → EDA → feature engineering → split → pipeline → métricas → umbral |
 | `generador_datos.py` | Clase `UserGenerator` que crea 10 000 usuarios sintéticos y marca `dar_promocion` según reglas de negocio |
 
-## 🚀 Cómo usar esta demo
+## Cómo usar esta demo
 
 ### Paso 1 — Instala las dependencias
 
@@ -73,7 +73,7 @@ El notebook está estructurado como un recorrido corto:
 Al final hay una **actividad opcional** con 7 variaciones para que las
 pruebes tú.
 
-## 🎓 Qué debes aprender en 20 minutos
+## Qué debes aprender en 20 minutos
 
 1. El `y` no siempre viene dado. Alguien **lo construyó** con una regla.
 2. Esa regla es una decisión de negocio, no técnica. Se discute con marketing, no con el modelo.
@@ -81,7 +81,7 @@ pruebes tú.
 4. Accuracy sola engaña con clases desbalanceadas. Usa precision/recall/F1 y la matriz.
 5. El umbral por defecto (0.5) es una convención, no una ley. Se mueve según el costo de equivocarse.
 
-## 📝 Notas pedagógicas
+## Notas pedagógicas
 
 - El dataset es **sintético a propósito**. Las reglas que generan
   `dar_promocion` son conocidas; el modelo debería recuperar al menos
@@ -96,7 +96,7 @@ pruebes tú.
   profundizar en pipelines, mira
   [`d1-ejercicio-preprocesamiento/`](../d1-ejercicio-preprocesamiento/).
 
-## 📝 Actividad para después
+## Actividad para después
 
 El notebook cierra con una lista de 7 variaciones para probar por tu
 cuenta:
@@ -111,7 +111,7 @@ cuenta:
 
 Entrega: PR al repo con tu solución.
 
-## 🔗 Relación con otros materiales
+## Relación con otros materiales
 
 - Si no tienes claro qué es *data leakage*, pasa por
   [`d1-ejercicio-preprocesamiento/`](../d1-ejercicio-preprocesamiento/)

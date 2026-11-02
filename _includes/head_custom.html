@@ -1,76 +1,107 @@
 <!--
   Comportamiento personalizado del sitio:
 
-  1) Los enlaces DENTRO del contenido (no los del sidebar ni prev/next)
-     se abren en una pestaña nueva, para que el lector no pierda su
-     lugar. Esto incluye los links a otros README/tutoriales que
-     aparezcan en medio de un texto, pero NO afecta:
-       - El sidebar de navegacion a la izquierda.
-       - Los botones prev/next al pie de la pagina.
-       - Los enlaces de la ruta (breadcrumbs).
-       - Los enlaces #seccion dentro de la misma pagina.
+  1) Toggle claro/oscuro FLOTANTE, posicionado fijo en la esquina
+     superior derecha. No depende de que el remote_theme tenga un
+     aux-nav con una clase particular ni de timing con el DOM: se
+     inyecta directamente al body con position:fixed.
 
-  2) Toggle claro/oscuro en la barra superior.
-     - just-the-docs expone `jtd.setTheme('light' | 'dark')` para
-       alternar paletas en vivo sin recargar la pagina.
-     - El boton se inserta en `.aux-nav` (donde ya vive "Ver en GitHub")
-       la primera vez que el DOM esta listo.
-     - La preferencia del usuario se guarda en `localStorage` con la
-       clave `jtd-color-scheme`, y se restaura en cargas posteriores.
-     - Si el usuario nunca ha elegido manualmente, se respeta
-       `prefers-color-scheme` del sistema operativo.
+     Dos razones por las que fue flotante y no dentro de la barra:
+       - El `aux-nav` del tema vive dentro de un contenedor que a veces
+         no esta listo al momento del DOMContentLoaded.
+       - Con position:fixed el boton es visible en cualquier ancho de
+         pantalla, incluido mobile donde el aux-nav se colapsa.
+
+     La preferencia del usuario se guarda en localStorage con la clave
+     `site-color-scheme`. Si nunca ha hecho click, respetamos
+     `prefers-color-scheme` del sistema operativo.
+
+  2) Dark mode manual. just-the-docs via remote_theme solo compila el
+     stylesheet "default" (light). En vez de depender de jtd.setTheme
+     (que necesita dos stylesheets precompilados), aplicamos una capa
+     de overrides CSS cuando el <html> tiene el atributo
+     data-theme="dark".
+
+  3) Los enlaces DENTRO del contenido (no los del sidebar ni prev/next)
+     se abren en una pestaña nueva, para que el lector no pierda su
+     lugar.
 -->
 <style>
-  /* Boton del toggle: compacto, consistente con los aux_links de la barra superior. */
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid rgba(128, 128, 128, 0.35);
-    border-radius: 6px;
-    padding: 2px 10px;
-    margin-left: 8px;
-    font-size: 14px;
+  /* ----- Toggle flotante (siempre visible) ----- */
+  #theme-toggle-btn {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #1f2937;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
     cursor: pointer;
-    color: inherit;
-    line-height: 1.6;
-    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
-  .theme-toggle:hover {
-    background: rgba(128, 128, 128, 0.12);
+  #theme-toggle-btn:hover {
+    background: #f3f4f6;
+  }
+  #theme-toggle-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  @media (max-width: 600px) {
+    #theme-toggle-btn {
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
   }
 
-  /*
-    Dark mode manual: just-the-docs via remote_theme solo compila el
-    stylesheet "default" (light). En vez de depender de jtd.setTheme
-    (que necesita dos stylesheets precompilados), aplicamos una capa
-    de overrides CSS cuando el <html> tiene el atributo
-    data-theme="dark". Esto garantiza que el toggle funcione sin
-    importar la version del remote_theme instalada por GitHub Pages.
-  */
+  /* ----- Dark mode overrides ----- */
   html[data-theme="dark"] {
-    background-color: #15161a !important;
-    color: #e4e4e7 !important;
+    background-color: #0f1115 !important;
+    color: #e5e7eb !important;
     color-scheme: dark;
   }
   html[data-theme="dark"] body {
-    background-color: #15161a !important;
-    color: #e4e4e7 !important;
+    background-color: #0f1115 !important;
+    color: #e5e7eb !important;
   }
   html[data-theme="dark"] .side-bar,
   html[data-theme="dark"] .main-header {
-    background-color: #1f2026 !important;
-    border-color: #2a2b31 !important;
+    background-color: #171a21 !important;
+    border-color: #262a33 !important;
   }
-  html[data-theme="dark"] .site-title,
+  html[data-theme="dark"] .site-title {
+    color: #f3f4f6 !important;
+  }
   html[data-theme="dark"] .site-footer {
-    color: #e4e4e7 !important;
+    color: #9ca3af !important;
+  }
+  html[data-theme="dark"] .site-footer a {
+    color: #93c5fd !important;
   }
   html[data-theme="dark"] .nav-list .nav-list-item .nav-list-link {
-    color: #c7d2fe !important;
+    color: #cbd5e1 !important;
   }
-  html[data-theme="dark"] .nav-list .nav-list-item .nav-list-link:hover,
-  html[data-theme="dark"] .nav-list .nav-list-item .nav-list-link.active {
-    background-image: linear-gradient(-90deg, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0.25) 100%) !important;
+  html[data-theme="dark"] .nav-list .nav-list-item .nav-list-link:hover {
+    background-image: linear-gradient(-90deg, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
     color: #ffffff !important;
+  }
+  html[data-theme="dark"] .nav-list .nav-list-item .nav-list-link.active {
+    background-image: linear-gradient(-90deg, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0.12) 100%) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+  html[data-theme="dark"] .nav-list-expander svg {
+    color: #9ca3af !important;
   }
   html[data-theme="dark"] .main-content a {
     color: #93c5fd !important;
@@ -84,70 +115,99 @@
   html[data-theme="dark"] .main-content h4,
   html[data-theme="dark"] .main-content h5,
   html[data-theme="dark"] .main-content h6 {
-    color: #f4f4f5 !important;
-    border-color: #2a2b31 !important;
+    color: #f3f4f6 !important;
+    border-color: #262a33 !important;
+  }
+  html[data-theme="dark"] .main-content strong {
+    color: #f9fafb !important;
   }
   html[data-theme="dark"] .main-content code,
   html[data-theme="dark"] code.language-plaintext {
-    background-color: #27282f !important;
+    background-color: #1f2229 !important;
     color: #fbbf24 !important;
-    border: 1px solid #3a3b42 !important;
+    border: 1px solid #333740 !important;
   }
   html[data-theme="dark"] .main-content pre,
   html[data-theme="dark"] .main-content div.highlighter-rouge,
   html[data-theme="dark"] .main-content figure.highlight {
-    background-color: #1b1c21 !important;
-    border: 1px solid #2a2b31 !important;
+    background-color: #141720 !important;
+    border: 1px solid #262a33 !important;
   }
-  html[data-theme="dark"] .main-content pre code {
+  html[data-theme="dark"] .main-content pre code,
+  html[data-theme="dark"] .main-content .highlight code {
     background-color: transparent !important;
-    color: #e4e4e7 !important;
+    color: #e5e7eb !important;
     border: none !important;
   }
+  html[data-theme="dark"] .main-content pre .c,
+  html[data-theme="dark"] .main-content pre .c1,
+  html[data-theme="dark"] .main-content pre .cm { color: #6b7280 !important; }
+  html[data-theme="dark"] .main-content pre .k,
+  html[data-theme="dark"] .main-content pre .kd,
+  html[data-theme="dark"] .main-content pre .kn { color: #c084fc !important; }
+  html[data-theme="dark"] .main-content pre .s,
+  html[data-theme="dark"] .main-content pre .s1,
+  html[data-theme="dark"] .main-content pre .s2 { color: #86efac !important; }
+  html[data-theme="dark"] .main-content pre .n,
+  html[data-theme="dark"] .main-content pre .na,
+  html[data-theme="dark"] .main-content pre .nf { color: #e5e7eb !important; }
+  html[data-theme="dark"] .main-content pre .mi,
+  html[data-theme="dark"] .main-content pre .mf { color: #fbbf24 !important; }
   html[data-theme="dark"] .main-content table {
-    border-color: #2a2b31 !important;
+    border-color: #262a33 !important;
   }
   html[data-theme="dark"] .main-content table th {
-    background-color: #22232a !important;
-    color: #f4f4f5 !important;
-    border-color: #2a2b31 !important;
+    background-color: #1f2229 !important;
+    color: #f3f4f6 !important;
+    border-color: #262a33 !important;
   }
   html[data-theme="dark"] .main-content table td {
-    background-color: #1b1c21 !important;
-    color: #e4e4e7 !important;
-    border-color: #2a2b31 !important;
+    background-color: #141720 !important;
+    color: #e5e7eb !important;
+    border-color: #262a33 !important;
   }
   html[data-theme="dark"] .main-content blockquote {
-    background-color: #1b1c21 !important;
+    background-color: #141720 !important;
     border-left-color: #4b5563 !important;
-    color: #d4d4d8 !important;
+    color: #d1d5db !important;
   }
   html[data-theme="dark"] .main-content hr {
-    background-color: #2a2b31 !important;
-    border-color: #2a2b31 !important;
+    background-color: #262a33 !important;
+    border-color: #262a33 !important;
   }
   html[data-theme="dark"] .search-input,
   html[data-theme="dark"] .search-input-wrap {
-    background-color: #1b1c21 !important;
-    color: #e4e4e7 !important;
-    border-color: #2a2b31 !important;
+    background-color: #141720 !important;
+    color: #e5e7eb !important;
+    border-color: #262a33 !important;
+  }
+  html[data-theme="dark"] .search-input::placeholder {
+    color: #6b7280 !important;
   }
   html[data-theme="dark"] .search-results-list {
-    background-color: #1b1c21 !important;
-    color: #e4e4e7 !important;
+    background-color: #141720 !important;
+    color: #e5e7eb !important;
   }
-  html[data-theme="dark"] .site-button,
-  html[data-theme="dark"] .theme-toggle {
-    color: #e4e4e7 !important;
+  html[data-theme="dark"] .site-button {
+    color: #e5e7eb !important;
     border-color: rgba(228, 228, 231, 0.35) !important;
   }
-  html[data-theme="dark"] .theme-toggle:hover,
   html[data-theme="dark"] .site-button:hover {
     background-color: rgba(228, 228, 231, 0.08) !important;
   }
   html[data-theme="dark"] .breadcrumb-nav-list-item,
-  html[data-theme="dark"] .breadcrumb-nav-list-item a {
-    color: #a1a1aa !important;
+  html[data-theme="dark"] .breadcrumb-nav-list-item a,
+  html[data-theme="dark"] .breadcrumb-nav-list-item::before {
+    color: #9ca3af !important;
+  }
+  html[data-theme="dark"] #theme-toggle-btn {
+    background: #1f2229 !important;
+    color: #f3f4f6 !important;
+    border-color: #333740 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+  html[data-theme="dark"] #theme-toggle-btn:hover {
+    background: #262a33 !important;
   }
 </style>
 <script>
@@ -170,19 +230,16 @@
 
   function setButtonLabel(btn) {
     var current = document.documentElement.getAttribute('data-theme') || 'light';
-    btn.textContent = current === 'dark' ? '☀️ Claro' : '🌙 Oscuro';
+    btn.innerHTML = current === 'dark'
+      ? '<span aria-hidden="true">&#9728;</span><span>Modo claro</span>'
+      : '<span aria-hidden="true">&#9790;</span><span>Modo oscuro</span>';
   }
 
-  function insertToggle() {
-    if (document.getElementById('theme-toggle-btn')) return true;
-
-    var auxList = document.querySelector('.aux-nav .aux-nav-list') ||
-                  document.querySelector('.aux-nav');
-    if (!auxList) return false;
+  function createToggle() {
+    if (document.getElementById('theme-toggle-btn')) return;
 
     var btn = document.createElement('button');
     btn.id = 'theme-toggle-btn';
-    btn.className = 'theme-toggle';
     btn.type = 'button';
     btn.setAttribute('aria-label', 'Cambiar entre modo claro y oscuro');
     btn.setAttribute('title', 'Cambiar entre modo claro y oscuro');
@@ -195,17 +252,8 @@
       setButtonLabel(btn);
     });
 
-    if (auxList.tagName === 'UL') {
-      var li = document.createElement('li');
-      li.className = 'aux-nav-list-item';
-      li.appendChild(btn);
-      auxList.appendChild(li);
-    } else {
-      auxList.appendChild(btn);
-    }
-
     setButtonLabel(btn);
-    return true;
+    document.body.appendChild(btn);
   }
 
   function openContentLinksInNewTab() {
@@ -223,22 +271,13 @@
   }
 
   // Aplica el tema lo antes posible para evitar el "flash" claro antes
-  // de que el DOM este listo. document.documentElement ya existe.
+  // de que el <body> este listo. document.documentElement ya existe.
   applyScheme(resolveInitialScheme());
 
   function init() {
     applyScheme(resolveInitialScheme());
-    var inserted = insertToggle();
+    createToggle();
     openContentLinksInNewTab();
-
-    // Si por timing el aux-nav aun no estaba, reintenta hasta 3 s.
-    if (!inserted) {
-      var attempts = 0;
-      var retry = setInterval(function() {
-        attempts++;
-        if (insertToggle() || attempts > 30) clearInterval(retry);
-      }, 100);
-    }
   }
 
   if (document.readyState === 'loading') {
