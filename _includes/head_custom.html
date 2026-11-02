@@ -278,8 +278,8 @@
     });
   }
 
-  // Aplica el tema lo antes posible para evitar el "flash" claro antes
-  // de que el <body> este listo. document.documentElement ya existe.
+  /* Aplica el tema lo antes posible para evitar el flash claro antes de
+     que el body este listo. document.documentElement ya existe. */
   applyScheme(resolveInitialScheme());
 
   function init() {
@@ -294,18 +294,18 @@
     init();
   }
 
-  // Re-insertar el boton si algun script del tema lo remueve o reemplaza
-  // el body. Vigila cada 500ms durante los primeros 10 s.
+  /* Re-insertar el boton si algun script del tema lo remueve o reemplaza
+     el body. Vigila cada 500ms durante los primeros 10 s. */
   var checks = 0;
   var guard = setInterval(function() {
     checks++;
     if (!document.getElementById('theme-toggle-btn')) {
       createToggle();
     }
-    if (checks > 20) clearInterval(guard);
+    if (checks > 20) { clearInterval(guard); }
   }, 500);
 
-  // Tambien al cargar completamente (incluye imagenes y scripts asincronos).
+  /* Tambien al cargar completamente (incluye imagenes y scripts asincronos). */
   window.addEventListener('load', function() {
     createToggle();
   });
