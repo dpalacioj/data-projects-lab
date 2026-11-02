@@ -27,40 +27,46 @@
      lugar.
 -->
 <style>
-  /* ----- Toggle flotante (siempre visible) ----- */
+  /*
+    ----- Toggle flotante (siempre visible) -----
+    Esquina inferior derecha para no colisionar con el aux-nav del tema
+    (que ocupa la esquina superior derecha con el enlace "Ver en GitHub").
+    z-index muy alto para que ningun componente del tema lo tape.
+  */
   #theme-toggle-btn {
-    position: fixed;
-    top: 14px;
-    right: 18px;
-    z-index: 9999;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #ffffff;
-    color: #1f2937;
-    border: 1px solid rgba(0, 0, 0, 0.18);
-    border-radius: 999px;
-    padding: 6px 14px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 2147483647 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #111827 !important;
+    color: #f9fafb !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 999px !important;
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    font-family: inherit !important;
+    cursor: pointer !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 0.15s ease, background 0.15s ease !important;
   }
   #theme-toggle-btn:hover {
-    background: #f3f4f6;
+    background: #1f2937 !important;
+    transform: translateY(-2px);
   }
   #theme-toggle-btn:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
+    outline: 2px solid #3b82f6 !important;
+    outline-offset: 2px !important;
   }
   @media (max-width: 600px) {
     #theme-toggle-btn {
-      top: 10px;
-      right: 10px;
-      padding: 5px 10px;
-      font-size: 12px;
+      bottom: 14px !important;
+      right: 14px !important;
+      padding: 8px 14px !important;
+      font-size: 13px !important;
     }
   }
 
@@ -236,7 +242,8 @@
   }
 
   function createToggle() {
-    if (document.getElementById('theme-toggle-btn')) return;
+    if (!document.body) return false;
+    if (document.getElementById('theme-toggle-btn')) return true;
 
     var btn = document.createElement('button');
     btn.id = 'theme-toggle-btn';
@@ -254,6 +261,7 @@
 
     setButtonLabel(btn);
     document.body.appendChild(btn);
+    return true;
   }
 
   function openContentLinksInNewTab() {
@@ -285,5 +293,21 @@
   } else {
     init();
   }
+
+  // Re-insertar el boton si algun script del tema lo remueve o reemplaza
+  // el body. Vigila cada 500ms durante los primeros 10 s.
+  var checks = 0;
+  var guard = setInterval(function() {
+    checks++;
+    if (!document.getElementById('theme-toggle-btn')) {
+      createToggle();
+    }
+    if (checks > 20) clearInterval(guard);
+  }, 500);
+
+  // Tambien al cargar completamente (incluye imagenes y scripts asincronos).
+  window.addEventListener('load', function() {
+    createToggle();
+  });
 })();
 </script>
