@@ -28,15 +28,16 @@
 -->
 <style>
   /*
-    ----- Toggle flotante (siempre visible) -----
-    Esquina inferior derecha para no colisionar con el aux-nav del tema
-    (que ocupa la esquina superior derecha con el enlace "Ver en GitHub").
-    z-index muy alto para que ningun componente del tema lo tape.
+    ----- Toggle flotante en la barra superior derecha -----
+    Posicionado al lado izquierdo del "Ver en GitHub" del aux-nav para
+    quedar en linea con el resto de la barra sin encimarse.
+    En mobile (<= 800px) el aux-nav se colapsa, asi que movemos el toggle
+    a la esquina inferior derecha para no quedar flotando en el aire.
   */
   #theme-toggle-btn {
     position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
+    top: 16px !important;
+    right: 160px !important;
     z-index: 2147483647 !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -45,28 +46,47 @@
     color: #f9fafb !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 999px !important;
-    padding: 10px 18px !important;
-    font-size: 14px !important;
+    padding: 7px 14px !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
     font-family: inherit !important;
     cursor: pointer !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     transition: transform 0.15s ease, background 0.15s ease !important;
   }
   #theme-toggle-btn:hover {
     background: #1f2937 !important;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
   #theme-toggle-btn:focus-visible {
     outline: 2px solid #3b82f6 !important;
     outline-offset: 2px !important;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
+    /* El aux-nav del tema se oculta en pantallas chicas; devolvemos el
+       toggle a una esquina para que no quede flotando. */
     #theme-toggle-btn {
-      bottom: 14px !important;
-      right: 14px !important;
+      top: auto !important;
+      bottom: 18px !important;
+      right: 18px !important;
       padding: 8px 14px !important;
       font-size: 13px !important;
+    }
+  }
+
+  /*
+    ----- Respiro superior en el sidebar -----
+    Just-the-docs renderea el titulo del sitio pegado al borde superior
+    del viewport. Si el usuario tiene la barra de favoritos del browser
+    abierta, el titulo queda visualmente comprimido. Un padding-top
+    adicional da aire sin romper la navegacion.
+  */
+  .side-bar .site-header {
+    padding-top: 1.5rem !important;
+  }
+  @media (max-width: 800px) {
+    .side-bar .site-header {
+      padding-top: 0.75rem !important;
     }
   }
 
