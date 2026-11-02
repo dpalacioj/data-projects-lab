@@ -299,10 +299,17 @@ Interfaz web interactiva para realizar predicciones de forma visual.
 **Ejecutar:**
 ```bash
 cd projects/03-prediccion-precios-automoviles
-python app_gradio.py
+uv run python app_gradio.py
 ```
 
 Abrir en navegador: http://localhost:7860
+
+> **¿Por qué `cd` y no `uv run python projects/03-.../app_gradio.py` desde la raíz?**
+> Porque la app lee rutas relativas (`models/`, `data/`) y asume que
+> está parada en la carpeta del proyecto. Es la convención de esta
+> versión del 03. Los proyectos modularizados en `src/` (04 y 05)
+> arrancan desde cualquier lugar — ese salto se explica en el tutorial
+> [`02b-modularizacion-proyecto-datos.md`](../../tutorials/02b-modularizacion-proyecto-datos.md).
 
 **Captura de pantalla (conceptual):**
 - Panel izquierdo: Información general (marca, modelo, año, km)
@@ -376,7 +383,7 @@ Información del modelo cargado
 **Ejecutar API:**
 ```bash
 cd projects/03-prediccion-precios-automoviles
-uvicorn app_fastapi:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn app_fastapi:app --reload --host 0.0.0.0 --port 8000
 ```
 
 **Documentación interactiva:**
@@ -427,13 +434,13 @@ uv run jupyter notebook notebooks/02_training.ipynb
 
 **Opción A: Interfaz Gradio**
 ```bash
-python app_gradio.py
+uv run python app_gradio.py
 # Abrir http://localhost:7860
 ```
 
 **Opción B: API FastAPI**
 ```bash
-uvicorn app_fastapi:app --reload
+uv run uvicorn app_fastapi:app --reload
 # Usar curl o requests para hacer predicciones
 ```
 
@@ -550,7 +557,7 @@ Este proyecto es una base educativa que puede extenderse:
 app.launch(server_port=7861)  # Cambiar puerto
 
 # Para FastAPI
-uvicorn app_fastapi:app --port 8001  # Cambiar puerto
+uv run uvicorn app_fastapi:app --port 8001  # Cambiar puerto
 ```
 
 ## Licencia

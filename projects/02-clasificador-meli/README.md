@@ -7,48 +7,61 @@ nav_order: 2
 
 Proyecto de Machine Learning para clasificar automáticamente si un producto de MercadoLibre es nuevo o usado basándose en sus características.
 
-## Guía de Lectura para Estudiantes
+## En una línea
 
-### Por dónde empezar
+Clasificador binario (**nuevo** vs. **usado**) para publicaciones de
+MercadoLibre Argentina, entrenado con XGBoost sobre 100 000 productos.
+Accuracy ≈ 86 %, ROC-AUC ≈ 93,6 %.
 
-1. **Lee primero:** `GUIA_LECTURA.md` - Explica la estructura del proyecto y qué hace cada archivo
-2. **Entiende los datos:** `DICCIONARIO_DATOS.md` - Describe todas las variables del dataset
-3. **Explora el código:** Comienza por los notebooks en `src/notebooks/`
-4. **Prueba la aplicación:** Sigue las instrucciones de Uso Rápido más abajo
+## Qué hace el proyecto
 
-### Estructura del Proyecto
+Dado un producto con su título, precio, vendedor, métodos de pago,
+información de envío y fechas de publicación, decide si es un
+**artículo nuevo** o un **artículo usado**. Es un ejemplo de
+clasificación tabular con ingeniería de variables manual (21 features
+derivadas) y XGBoost como modelo.
+
+Lo interesante pedagógicamente no es el modelo — es ver **cómo se parte
+de un JSON Lines con campos anidados y se llega a una tabla modelable**.
+
+## Estructura del proyecto
 
 ```
-clasificador-meli/
-├── src/                    # Código fuente
-│   ├── features/           # Preprocesamiento de datos
-│   ├── models/             # Entrenamiento del modelo (código)
-│   ├── config/             # Configuraciones centralizadas
-│   ├── utils/              # Funciones auxiliares
-│   └── notebooks/          # Jupyter notebooks con EDA
-├── models/                 # Modelos entrenados (artefactos .pkl)
-├── ui/                     # Interfaz Streamlit
-├── test_data/              # Datos de prueba
-└── train.py                # Script principal para entrenar
+02-clasificador-meli/
+├── src/                     # Código fuente
+│   ├── features/            # preprocessing.py (21 features)
+│   ├── models/              # train_model.py, xgb_model.py
+│   ├── config/              # config.py (rutas, hiperparámetros)
+│   ├── utils/               # logger.py
+│   └── notebooks/           # EDA (preprocessing_eda.ipynb) + XGBoost (model_xgboost.ipynb)
+├── models/                  # Artefacto entrenado (xgb_model_v1.pkl)
+├── ui/                      # streamlit_app.py
+├── test_data/               # 5 productos de ejemplo (CSV/JSON/Parquet)
+├── train.py                 # Entrada CLI para entrenar
+├── GUIA_LECTURA.md          # Orden sugerido de archivos para leer el código
+└── DICCIONARIO_DATOS.md     # Descripción de cada campo del dataset
 ```
 
-**Nota importante:**
-- `src/models/` = código Python para entrenar
-- `models/` = archivos del modelo entrenado (.pkl)
+> **Dos carpetas `models/` — ¿por qué?**
+> `src/models/` guarda el **código** que define y entrena el modelo
+> (clases Python). `models/` guarda el **artefacto** entrenado (`.pkl`).
+> Es la convención del repo: código versus artefactos, en carpetas
+> distintas.
 
-Esta separación es una convención estándar en proyectos de ML.
+## Variables del dataset (resumen)
 
-## Descripción
+| Grupo | Columnas de ejemplo | Qué aportan |
+|---|---|---|
+| Producto | `title`, `price`, `initial_quantity`, `category_id` | Características intrínsecas |
+| Vendedor | `seller_id`, `seller_country`, `seller_state`, `seller_city` | Reputación geográfica |
+| Métodos de pago | `accepts_mercadopago`, columnas one-hot por método | Señal de confianza |
+| Envío | `shipping_free_shipping`, `shipping_mode` | Formato comercial |
+| Temporales | `year_start`, `month_start`, `days_active`, `week_day` | Antigüedad y estacionalidad |
+| Garantía | `garantia_aplica` (derivada por regex del campo `warranty`) | Nuevo vs. usado tiende a correlacionar |
 
-Clasificador binario (new/used) que predice la condición de productos usando:
-- Características del producto (precio, cantidad, vendedor)
-- Métodos de pago disponibles
-- Información de envío
-- Variables temporales (fechas de publicación)
-
-**Modelo:** XGBoost
-**Accuracy:** ~86%
-**Dataset:** 100,000 productos de MercadoLibre Argentina
+> El detalle de cada variable (tipo, valores, nulos) está en
+> [`DICCIONARIO_DATOS.md`](DICCIONARIO_DATOS.md). El orden sugerido para
+> leer el código está en [`GUIA_LECTURA.md`](GUIA_LECTURA.md).
 
 ---
 
@@ -56,14 +69,14 @@ Clasificador binario (new/used) que predice la condición de productos usando:
 
 ### Requisitos
 
-- Python 3.8+
-- Git LFS (para descargar el dataset)
+- Python 3.11 (igual que el resto del curso)
+- Git LFS (para descargar el dataset de ~316 MB)
 
 ### Paso 1: Clonar repositorio
 
 ```bash
 git clone https://github.com/dpalacioj/data-projects-lab.git
-cd data-projects-lab/projects/02-clasificador-meli
+cd data-projects-lab
 ```
 
 ### Paso 2: Instalar Git LFS (si no lo tienes)
@@ -109,25 +122,28 @@ El extra `meli` trae `xgboost`, `pydantic`, `joblib` y `scipy`. El extra
 
 ## Uso Rápido
 
+Todos los comandos de abajo asumen que estás parado en la carpeta del
+proyecto: `cd projects/02-clasificador-meli` desde la raíz del repo.
+
 ### 1. Entrenar el Modelo
 
 ```bash
 # Entrenar con configuración base
-python train.py
+uv run python train.py
 
 # Entrenar con optimización de hiperparámetros
-python train.py --optimize
+uv run python train.py --optimize
 
 # Forzar reprocesamiento desde JSON (ignora parquet)
-python train.py --from-json
+uv run python train.py --from-json
 ```
 
-El modelo se guardará en `models/xgb_model_v1.pkl`
+El modelo se guardará en `models/xgb_model_v1.pkl`.
 
 ### 2. Ejecutar UI de Streamlit
 
 ```bash
-streamlit run ui/streamlit_app.py
+uv run streamlit run ui/streamlit_app.py
 ```
 
 La aplicación se abrirá en http://localhost:8501
@@ -248,7 +264,7 @@ Los logs se muestran en consola con formato:
 
 Para probar el sistema de logging:
 ```bash
-python test_logging.py
+uv run python test_logging.py
 ```
 
 ---
@@ -265,7 +281,7 @@ python test_logging.py
 
 ## Tecnologías Utilizadas
 
-- **Python 3.8+**
+- **Python 3.11**
 - **XGBoost** - Modelo de clasificación
 - **Pandas** - Manipulación de datos
 - **NumPy** - Operaciones numéricas
@@ -292,18 +308,12 @@ El modelo fue entrenado con:
 
 ## Preguntas Frecuentes
 
-**¿Por qué hay dos carpetas models/?**
-- `src/models/` = código Python (train_model.py, xgb_model.py)
-- `models/` = archivos del modelo entrenado (.pkl, .json)
-
-Esta es una convención estándar en proyectos de ML.
-
 **¿Qué es el archivo .parquet en src/data/?**
 Es el dataset preprocesado guardado en formato Parquet (más rápido de cargar que JSON). Se genera automáticamente al entrenar.
 
 **¿Cómo agrego nuevos datos?**
 1. Agrega productos al dataset JSON
-2. Ejecuta `python train.py --from-json` para reentrenar
+2. Ejecuta `uv run python train.py --from-json` para reentrenar
 
 **¿Puedo usar otro modelo?**
 Sí. Modifica `src/models/train_model.py` para usar otro clasificador de scikit-learn o XGBoost.
@@ -312,9 +322,4 @@ Sí. Modifica `src/models/train_model.py` para usar otro clasificador de scikit-
 
 ## Licencia
 
-MIT License - Ver archivo LICENSE en la raíz del repositorio
-
----
-
-**Desarrollado para fines educativos**
-Data Projects Lab - 2025
+MIT License — ver `LICENSE` en la raíz del repositorio.

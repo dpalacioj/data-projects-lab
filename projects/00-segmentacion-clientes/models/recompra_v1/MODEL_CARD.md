@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+search_exclude: true
+---
 # Ficha del modelo · recompra_v1
 
 Estructura con base en Mitchell et al. (2019), *Model cards for model reporting*.
