@@ -911,6 +911,7 @@ all = [
     { name = "mypy" },
     { name = "openpyxl" },
     { name = "optuna" },
+    { name = "pandas" },
     { name = "pillow" },
     { name = "plotly" },
     { name = "polars" },
@@ -918,11 +919,13 @@ all = [
     { name = "pydantic" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "python-dotenv" },
     { name = "python-multipart" },
     { name = "ruff" },
     { name = "scipy" },
     { name = "shap" },
     { name = "skimpy" },
+    { name = "sqlalchemy" },
     { name = "streamlit" },
     { name = "torch" },
     { name = "torchvision" },
@@ -947,6 +950,14 @@ ejemplo-completo = [
 experiment = [
     { name = "mlflow" },
     { name = "wandb" },
+]
+ingesta-eventos = [
+    { name = "pandas" },
+    { name = "plotly" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "sqlalchemy" },
+    { name = "streamlit" },
 ]
 interpretability = [
     { name = "lime" },
@@ -1005,7 +1016,7 @@ web = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-projects-lab", extras = ["titanic", "meli", "regresion-automoviles", "segmentacion-clientes", "ejemplo-completo", "reconocimiento-imagenes", "interpretability", "optimization", "experiment", "web", "dev"], marker = "extra == 'all'" },
+    { name = "data-projects-lab", extras = ["titanic", "meli", "regresion-automoviles", "segmentacion-clientes", "ejemplo-completo", "ingesta-eventos", "reconocimiento-imagenes", "interpretability", "optimization", "experiment", "web", "dev"], marker = "extra == 'all'" },
     { name = "fastapi", marker = "extra == 'ejemplo-completo'", specifier = ">=0.120.0" },
     { name = "fastapi", marker = "extra == 'reconocimiento-imagenes'", specifier = ">=0.120.0" },
     { name = "fastapi", marker = "extra == 'regresion-automoviles'", specifier = ">=0.120.0" },
@@ -1033,17 +1044,21 @@ requires-dist = [
     { name = "openpyxl", marker = "extra == 'segmentacion-clientes'", specifier = ">=3.1.0" },
     { name = "optuna", marker = "extra == 'optimization'", specifier = ">=3.0.0" },
     { name = "pandas", specifier = ">=2.1.0" },
+    { name = "pandas", marker = "extra == 'ingesta-eventos'", specifier = ">=2.1.0" },
     { name = "pillow", marker = "extra == 'reconocimiento-imagenes'", specifier = ">=10.0" },
+    { name = "plotly", marker = "extra == 'ingesta-eventos'", specifier = ">=5.5.0" },
     { name = "plotly", marker = "extra == 'segmentacion-clientes'", specifier = ">=5.5.0" },
     { name = "plotly", marker = "extra == 'titanic'", specifier = ">=5.5.0" },
     { name = "plotly", marker = "extra == 'web'", specifier = ">=5.0.0" },
     { name = "polars", marker = "extra == 'segmentacion-clientes'", specifier = ">=2.0" },
     { name = "pyarrow", marker = "extra == 'segmentacion-clientes'", specifier = ">=14.0.0" },
     { name = "pydantic", marker = "extra == 'ejemplo-completo'", specifier = ">=2.0" },
+    { name = "pydantic", marker = "extra == 'ingesta-eventos'", specifier = ">=2.0" },
     { name = "pydantic", marker = "extra == 'meli'", specifier = ">=1.8.0" },
     { name = "pydantic", marker = "extra == 'segmentacion-clientes'", specifier = ">=2.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
+    { name = "python-dotenv", marker = "extra == 'ingesta-eventos'", specifier = ">=1.0" },
     { name = "python-multipart", marker = "extra == 'reconocimiento-imagenes'", specifier = ">=0.0.9" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
     { name = "scikit-learn", specifier = ">=1.9" },
@@ -1051,7 +1066,9 @@ requires-dist = [
     { name = "seaborn", specifier = ">=0.13.0" },
     { name = "shap", marker = "extra == 'interpretability'", specifier = ">=0.45.0" },
     { name = "skimpy", marker = "extra == 'segmentacion-clientes'", specifier = ">=0.0.15" },
+    { name = "sqlalchemy", marker = "extra == 'ingesta-eventos'", specifier = ">=2.0" },
     { name = "streamlit", marker = "extra == 'ejemplo-completo'", specifier = ">=1.50.0" },
+    { name = "streamlit", marker = "extra == 'ingesta-eventos'", specifier = ">=1.50.0" },
     { name = "streamlit", marker = "extra == 'reconocimiento-imagenes'", specifier = ">=1.50.0" },
     { name = "streamlit", marker = "extra == 'segmentacion-clientes'", specifier = ">=1.50.0" },
     { name = "streamlit", marker = "extra == 'titanic'", specifier = ">=1.50.0" },
@@ -1065,7 +1082,7 @@ requires-dist = [
     { name = "wandb", marker = "extra == 'experiment'", specifier = ">=0.15.0" },
     { name = "xgboost", marker = "extra == 'meli'", specifier = ">=1.5.0" },
 ]
-provides-extras = ["titanic", "meli", "regresion-automoviles", "segmentacion-clientes", "ejemplo-completo", "reconocimiento-imagenes", "interpretability", "optimization", "experiment", "web", "dev", "all"]
+provides-extras = ["titanic", "meli", "regresion-automoviles", "segmentacion-clientes", "ejemplo-completo", "ingesta-eventos", "reconocimiento-imagenes", "interpretability", "optimization", "experiment", "web", "dev", "all"]
 
 [[package]]
 name = "databricks-sdk"

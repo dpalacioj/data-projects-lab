@@ -1,0 +1,17 @@
+# Datos y base de datos locales (nunca se commitean).
+data/raw/*.json
+data/raw/*.json.gz
+data/db/*.db
+data/db/*.sqlite*
+
+# Secretos locales. Solo se commitea `.env.example`.
+.env
+.env.local
+
+# Caches y artefactos.
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+reports/*.png
+reports/*.html

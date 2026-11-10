@@ -73,6 +73,18 @@ ejemplo-completo = [
     "joblib>=1.3.0",
 ]
 
+# Proyecto Ingesta de Eventos de E-commerce (JSON anidado -> BD relacional)
+# Enseña: datos no tabulares + conexion a una base de datos como en produccion.
+# Backend por defecto: SQLite (cero setup). Alternativo: Postgres via DATABASE_URL.
+ingesta-eventos = [
+    "sqlalchemy>=2.0",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "streamlit>=1.50.0",
+    "plotly>=5.5.0",
+    "pandas>=2.1.0",
+]
+
 # Proyecto Reconocimiento de Imágenes (CNN + transfer learning)
 reconocimiento-imagenes = [
     "torch>=2.2",
@@ -117,7 +129,7 @@ dev = [
 
 # Instalación completa
 all = [
-    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,ejemplo-completo,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
+    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,ejemplo-completo,ingesta-eventos,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
 ]
 
 [project.urls]
@@ -169,6 +181,9 @@ ignore = ["E501"]
 "projects/05-ejemplo-completo/notebooks/*.ipynb" = ["E402", "I001", "F401"]
 # Las apps de proyecto 05 tambien ajustan sys.path para importar desde src/
 "projects/05-ejemplo-completo/app/*.py" = ["E402"]
+# El notebook y las apps del proyecto 06 ajustan sys.path antes de importar.
+"projects/06-ingesta-eventos-ecommerce/notebooks/*.ipynb" = ["E402", "I001", "F401"]
+"projects/06-ingesta-eventos-ecommerce/app/*.py" = ["E402"]
 # La app Streamlit del caso guia ajusta sys.path antes de importar (Unidad 4).
 "projects/00-segmentacion-clientes/app/recompra_streamlit.py" = ["E402"]
 # La API FastAPI del caso guia tambien ajusta sys.path antes de importar.
@@ -185,8 +200,17 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "projects/00-segmentacion-clientes/tests", "projects/05-ejemplo-completo/tests"]
-pythonpath = ["projects/00-segmentacion-clientes/src", "projects/05-ejemplo-completo/src"]
+testpaths = [
+    "tests",
+    "projects/00-segmentacion-clientes/tests",
+    "projects/05-ejemplo-completo/tests",
+    "projects/06-ingesta-eventos-ecommerce/tests",
+]
+pythonpath = [
+    "projects/00-segmentacion-clientes/src",
+    "projects/05-ejemplo-completo/src",
+    "projects/06-ingesta-eventos-ecommerce/src",
+]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]
 addopts = "-v"
