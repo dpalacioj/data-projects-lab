@@ -58,6 +58,8 @@ a abrir cuando una sesión o un proyecto los pida.
 | 09 | [`09-metricas-ml-regresion-vs-clasificacion.md`](09-metricas-ml-regresion-vs-clasificacion.md) | Al decidir cómo medir el modelo |
 | 10 | [`10-validacion-y-optimizacion-hiperparametros.md`](10-validacion-y-optimizacion-hiperparametros.md) | Cuando el modelo "funciona" y hay que ajustarlo bien |
 | 11 | [`11-interpretabilidad-modelos-ml.md`](11-interpretabilidad-modelos-ml.md) | Cuando necesitas explicar por qué el modelo predice lo que predice |
+| 14 | [`14-bases-de-datos-y-sqlalchemy.md`](14-bases-de-datos-y-sqlalchemy.md) | Cuando tus datos ya no caben en un CSV o entran varios procesos al tiempo. Base del proyecto 06 |
+| 15 | [`15-llms-locales-y-agentes.md`](15-llms-locales-y-agentes.md) | Cuando quieres integrar un LLM open source (Ollama) y entender LangChain vs LangGraph. Base del proyecto 07 |
 
 ### Complementos (90+) — opcionales, no requeridos
 
