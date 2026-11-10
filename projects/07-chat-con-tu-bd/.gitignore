@@ -1,0 +1,13 @@
+# Secretos locales.
+.env
+.env.local
+
+# Caches.
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Artefactos generados.
+reports/*.png
+reports/*.html

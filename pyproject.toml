@@ -85,6 +85,22 @@ ingesta-eventos = [
     "pandas>=2.1.0",
 ]
 
+# Proyecto Chat con tu BD (LangChain + LangGraph + LLM open source)
+# Enseña: NL -> SQL con un LLM local (Ollama) o remoto (HuggingFace).
+# Progresion: chain simple -> agente con tools -> grafo con auto-correccion.
+chat-bd = [
+    "langchain>=0.3",
+    "langchain-core>=0.3",
+    "langchain-community>=0.3",
+    "langchain-ollama>=0.2",
+    "langchain-huggingface>=0.1",
+    "langgraph>=0.2",
+    "sqlalchemy>=2.0",
+    "python-dotenv>=1.0",
+    "streamlit>=1.50.0",
+    "pydantic>=2.0",
+]
+
 # Proyecto Reconocimiento de Imágenes (CNN + transfer learning)
 reconocimiento-imagenes = [
     "torch>=2.2",
@@ -129,7 +145,7 @@ dev = [
 
 # Instalación completa
 all = [
-    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,ejemplo-completo,ingesta-eventos,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
+    "data-projects-lab[titanic,meli,regresion-automoviles,segmentacion-clientes,ejemplo-completo,ingesta-eventos,chat-bd,reconocimiento-imagenes,interpretability,optimization,experiment,web,dev]",
 ]
 
 [project.urls]
@@ -184,6 +200,9 @@ ignore = ["E501"]
 # El notebook y las apps del proyecto 06 ajustan sys.path antes de importar.
 "projects/06-ingesta-eventos-ecommerce/notebooks/*.ipynb" = ["E402", "I001", "F401"]
 "projects/06-ingesta-eventos-ecommerce/app/*.py" = ["E402"]
+# Idem para el proyecto 07.
+"projects/07-chat-con-tu-bd/notebooks/*.ipynb" = ["E402", "I001", "F401"]
+"projects/07-chat-con-tu-bd/app/*.py" = ["E402"]
 # La app Streamlit del caso guia ajusta sys.path antes de importar (Unidad 4).
 "projects/00-segmentacion-clientes/app/recompra_streamlit.py" = ["E402"]
 # La API FastAPI del caso guia tambien ajusta sys.path antes de importar.
@@ -205,11 +224,13 @@ testpaths = [
     "projects/00-segmentacion-clientes/tests",
     "projects/05-ejemplo-completo/tests",
     "projects/06-ingesta-eventos-ecommerce/tests",
+    "projects/07-chat-con-tu-bd/tests",
 ]
 pythonpath = [
     "projects/00-segmentacion-clientes/src",
     "projects/05-ejemplo-completo/src",
     "projects/06-ingesta-eventos-ecommerce/src",
+    "projects/07-chat-con-tu-bd/src",
 ]
 python_files = ["test_*.py", "*_test.py"]
 python_functions = ["test_*"]

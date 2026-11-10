@@ -26,9 +26,9 @@ Es el proyecto del curso. Las sesiones S02 y S03 trabajan sobre él.
 
 ---
 
-## Didácticos completos (prefijos `01-` a `06-`)
+## Didácticos completos (prefijos `01-` a `07-`)
 
-Cinco proyectos autocontenidos, en orden de dificultad. Cada uno recorre
+Seis proyectos autocontenidos, en orden de dificultad. Cada uno recorre
 un flujo entero: datos → modelo o pipeline → entregable. Léelos en este
 orden si estás aprendiendo.
 
@@ -40,6 +40,7 @@ orden si estás aprendiendo.
 | **04** | [`04-reconocimiento-imagenes/`](04-reconocimiento-imagenes/) | Fashion-MNIST con CNN. Es el ejemplo canónico del flujo "notebook paso a paso → paquete `src/` → Streamlit → FastAPI" | PyTorch, torchvision, Streamlit, FastAPI | Avanzado |
 | **05** | [`05-ejemplo-completo/`](05-ejemplo-completo/) | **Plantilla del trabajo final.** Clasificador tabular (Wine) con la receta mínima: `src/` modular, `Makefile` propio, tests, `app/` con Streamlit + FastAPI, plantilla de CI | sklearn, Streamlit, FastAPI | Básico-medio |
 | **06** | [`06-ingesta-eventos-ecommerce/`](06-ingesta-eventos-ecommerce/) | **Data engineering.** JSON anidado → base relacional. Credenciales por `.env`, carga en batch de 1M+ registros, dashboard que lee de la BD. SQLite por defecto, Postgres cambiando una variable | SQLAlchemy, Pydantic, python-dotenv, Streamlit | Medio |
+| **07** | [`07-chat-con-tu-bd/`](07-chat-con-tu-bd/) | **LLMs open source + agentes.** Chat NL → SQL contra la BD del 06. Progresión LangChain (cadena) → LangGraph (agente con auto-corrección). Modelo local con Ollama, fallback a HuggingFace | LangChain, LangGraph, Ollama, Qwen 2.5, Streamlit | Medio-avanzado |
 
 El **patrón de modularización** que el curso quiere que entiendas se ve
 mejor en el 03, el 04 y el 05: un archivo por responsabilidad (`config.py`,
@@ -79,6 +80,7 @@ toca algo de pasada y quieres el ejemplo mínimo aislado.
 - Quieres segmentar o entender clientes → **00** (caso guía).
 - Quieres AutoML sin escribir modelos → **01**.
 - Quieres aprender a trabajar con **JSON anidado** y **bases de datos** como en producción → **06**.
+- Quieres montar un **chat con tu BD** usando **LLMs open source**, LangChain y LangGraph → **07**.
 - Un concepto puntual te falló en el taller → la demo correspondiente.
 
 ---
@@ -96,6 +98,7 @@ uv sync --extra regresion-automoviles --extra dev     # para el 03
 uv sync --extra reconocimiento-imagenes --extra dev   # para el 04
 uv sync --extra ejemplo-completo --extra dev          # para el 05
 uv sync --extra ingesta-eventos --extra dev           # para el 06
+uv sync --extra chat-bd --extra dev                   # para el 07
 ```
 
 Las demos (`d1-` a `d4-`) corren con la base del repo. No tienen extra
